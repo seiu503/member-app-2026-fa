@@ -36,9 +36,31 @@
         width: 49% !important
     }
 
-  #tfa_32 {
-    width: 98.5% !important;
+  #tfa_134 { /* birth date / language group */
+  	margin-top: -12px;
+  }  
+
+  #tfa_134-L { /* birth date label */
+  	position: relative;
+	  top: 14px;
+	  font-family: Roboto !important;
+  }  
+
+  #tfa_91-D { /* preferred language */
+  	margin-top: -9px;
+  	width: 100% !important;
+  }  
+
+  #tfa_32, #tfa_32-D {
+    width: 98.5% !important; /* address */
   }
+
+/* city, state, zip */
+/*
+  #tfa_34-D, #tfa_35-D, #tfa_39-D {
+  	width: 100% !important; 
+  }
+  */
 
   #tfa_90 {
     width: 98.5%;
@@ -88,6 +110,7 @@
     #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
         width: 100% !important
     }
+
     #tfa_90 {
       display: block;
       width: 100%;
@@ -117,16 +140,17 @@
 
 <script type="text/javascript">
 //
+
 window.addEventListener("load", function() {
 
-	// Extract the value of the language the browser is set to:
+		// Extract the value of the language the browser is set to:
 	const getLang = navigator.language;
 	console.log("getLang = ", getLang);
 	//
 	var valueFormTitle = document.getElementsByClassName("gform_title")[0];
 	var valueSubmitButton = document.querySelector("#submit_button");
 	//
-	var formEl = document.getElementById("803");
+	var formEl = document.getElementById("810");
 	var prefillWarning1 = document.getElementById("tfa_330-DB"); // span inside this is 'This form is customized especially for'
 	var prefillWarning2 = document.getElementById("tfa_330-DA"); // span inside this is 'If this is not you, do not complete this form!'
 	var firstName = document.getElementById("tfa_1-L"); 
@@ -137,10 +161,6 @@ window.addEventListener("load", function() {
 	var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
 	var preferredLanguage = document.getElementById("tfa_91-L"); 
 	var employer = document.getElementById("tfa_22-L"); 
-	var facility = document.getElementById("tfa_6-L");
-	var jobTitle = document.getElementById("tfa_385-L");
-	var facilityPlaceholder = document.getElementById("tfa_6").options[0];
-	var employerNote = document.getElementById("tfa_127-HTML"); 
 	var address = document.getElementById("tfa_32-L"); 
 	var addressNote = document.getElementById("tfa_32-HH");
 	var city = document.getElementById("tfa_34-L"); 
@@ -152,10 +172,8 @@ window.addEventListener("load", function() {
 	var phoneNote = document.getElementById("tfa_4-HH");
 	var smsOptOut = document.getElementById("tfa_114-L");
 	var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-	// var representationAuthBlock = document.getElementById("tfa_375-HTML");
 	var membershipAuthBlock = document.getElementById("tfa_350-HTML"); 
 	var duesAuthBlock = document.getElementById("tfa_351-HTML"); 
-	var duesNote = document.getElementById("tfa_128-HTML");
 	var polOptOut = document.getElementById("tfa_122-L"); 
 	var polOptOutCheckbox = document.getElementById("tfa_123-L"); 
 	var signature = document.getElementById("tfa_386-L");
@@ -164,6 +182,59 @@ window.addEventListener("load", function() {
 	var duesAuthTitle = document.getElementById("tfa_355-L");
 	var duesAuthLL = document.getElementById("tfa_380-L");
 	var combinedLL = document.getElementById("tfa_377"); // jcl
+
+
+	var preferredLanguageF = document.getElementById("tfa_91"); 
+	var addressF = document.getElementById("tfa_32");
+	var cityF = document.getElementById("tfa_34"); 
+	var stateF = document.getElementById("tfa_35");
+	var zipF = document.getElementById("tfa_39"); 
+	var emailF = document.getElementById("tfa_3"); 
+	var phoneF = document.getElementById("tfa_4"); 
+	var employerNamePrefill = document.getElementById("tfa_444");
+
+	const prefillFieldList = [
+		preferredLanguageF,
+		addressF,
+		cityF,
+		stateF,
+		zipF,
+		emailF,
+		phoneF,
+		employerNamePrefill
+	];
+
+	// console.log('prefillFieldList', prefillFieldList);
+
+  prefillFieldList.forEach(function(field) {
+
+    // Determine if the field was prefilled (i.e., has an initial value)
+    const wasPrefilled = field.value && field.value.trim() !== "";
+
+    if (wasPrefilled) {
+
+      // Store a flag so we know it was prefilled originally
+      field.dataset.prefilled = "true";
+
+      let container;
+
+      if (field.id = 'tfa_444') {
+      	// if employer name prefill, hide the employer type container
+      	container = document.getElementById("tfa_388-D");
+      } else {
+      	container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;
+      }
+
+      if (container) {
+        container.style.display = "none";
+      }
+
+      
+    } else {
+      // Field was empty on load — mark it as user-editable
+      field.dataset.prefilled = "false";
+    }
+  });
 
 	//
 	// US English:
@@ -185,10 +256,7 @@ window.addEventListener("load", function() {
 		ddPlaceholder.innerHTML = "Day";
 		yyyyPlaceholder.innerHTML = "Year";
 		preferredLanguage.innerHTML = "Preferred language";
-		employer.innerHTML = "Employer";
-		facility.innerHTML = "Facility";
-		jobTitle.innerHTML = "Job Title";
-		employerNote.innerHTML = `<p>Note: This form is ONLY for workers at Jackson County Libraries. If you work somewhere else and want to sign a union membership form, <strong><a href="https://seiu503signup.org">you can do that here.</a></strong></p>`;
+		// employer.innerHTML = "Employer"; -- needs to be delayed until employerTypeOnChange
 		address.innerHTML = "Address";
 		addressNote.innerHTML = "Please enter your physical street address here, not a P.O. box.";
 		city.innerHTML = "City";
@@ -200,7 +268,6 @@ window.addEventListener("load", function() {
 		phoneNote.innerHTML = "† By providing my phone number, I understand that the Service Employees International Union (SEIU), its local unions, and affiliates may use automated calling technologies and/or text message me on my cellular phone on a periodic basis. SEIU will never charge for text message alerts. Carrier message and data rates may apply to such alerts. Reply STOP to stop receiving messages; reply HELP for more information.";
 		smsOptOut.innerHTML = "Opt out of receiving mobile alerts";
 		smsOptOutCheckbox.innerHTML = "Opt out";
-		duesNote.innerHTML = "Note: Your membership will not activate, and no dues will be deducted from your check, until you negotiate and vote to approve your first union contract with your employer.";
 		polOptOut.innerHTML = "Check the box below if you would like the portion of dues spent on political power to go toward SEIU 503’s scholarship fund.";
 		polOptOutCheckbox.innerHTML = "Opt out of worker political power";
 		signature.innerHTML = "Enter your full legal name. This will act as your signature.";
@@ -230,11 +297,7 @@ window.addEventListener("load", function() {
 		ddPlaceholder.innerHTML = "Día";
 		yyyyPlaceholder.innerHTML = "Año";
 		preferredLanguage.innerHTML = "Idioma preferido";
-		employer.innerHTML = "Empleador";
-		facility.innerHTML = "Instalación";
-		jobTitle.innerHTML = "Clasificación";
-		facilityPlaceholder.innerHTML = "Seleccione..."
-		employerNote.innerHTML = `<p>Nota: Este formulario es SOLO para trabajadores de las bibliotecas del Condado Jackson. Si trabaja en otro lugar y desea hacerse miembro/a de la unión, <strong><a href="https://seiu503signup.org">puede hacerlo aquí.</a></strong></p>`;
+		// employer.innerHTML = "Empleador";
 		address.innerHTML = "Calle particular";
 		addressNote.innerHTML = "Ingrese su dirección física aquí, no un apartado postal (P.O. Box).";
 		city.innerHTML = "Ciudad";
@@ -246,7 +309,6 @@ window.addEventListener("load", function() {
 		phoneNote.innerHTML = "† Al proporcionar mi número de teléfono, entiendo que la Unión Internacional de Empleados de Servicios (SEIU, por sus siglas en inglés), sus uniones locales y sus afiliados pueden usar tecnologías automatizadas para llamarme y/o para enviar mensajes de texto a mi celular periódicamente. SEIU nunca cobrará por las alertas de mensaje de texto. Pueden aplicar tarifas por el envío de mensaje y el uso de datos para dichas alertas. Responda con la palabra STOP para dejar de recibir mensajes; responda con la palabra HELP para obtener más información.";
 		smsOptOut.innerHTML = "No deseo recibir alertas por mensaje de texto";
 		smsOptOutCheckbox.innerHTML = "Optar por no participar";
-		duesNote.innerHTML = "<strong>Nota: Su membresía no se activará y no se deducirán ningunas cuotas de su cheque hasta que negocie y vote para aprobar su primer contrato de unión con su empleador.</strong>"
 		polOptOut.innerHTML = "Seleccione esta casilla si quiere que una parte de las cuotas se invierta en el poder político para mejorar el fondo para becas de SEIU 503.";
 		polOptOutCheckbox.innerHTML = "Optar por no participar del poder político de los trabajadores";
 		signature.innerHTML = "Ingrese su nombre legal completo. Esto servirá como su firma.";
@@ -415,18 +477,3 @@ window.addEventListener("load", function() {
   });
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
