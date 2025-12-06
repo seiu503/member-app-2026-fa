@@ -1,7 +1,11 @@
+<!-- MAIN FORM STYLES -->
+
 <style>
 
+	/* Form title */
   .wFormContainer .wForm .wFormTitle {
     color: #2C0940 !important;
+    background-color: white;
   } 
 
   h2.gform_title {
@@ -9,28 +13,27 @@
     text-align: center;
     width: 100%;
     font-size: 2em;
+    font-family: Roboto Slab !important;
   }
+
+  /* Address */
   #tfa_32-L {
     text-align: left;
   }
 
-  .wFormContainer .wForm .wFormTitle {
-    background-color: white;
-  }
+  /* DOB section header */
+  #tfa_134-L { 
+  	font-family: Roboto !important;
+   }
 
-  #tfa_17-HTML {
-    text-align: center;
-  }
 
-  #tfa_105-L {
-    text-wrap: wrap;
-    text-align: left;
-    max-width: 90%;
-    font-size: 1em;
-  line-height: 1.3em;
-  padding-left: 0;
-  }
+   /* 2-col fields */
+   /* First name 1-D
+   		Last name 2-D
+   		Email 3-D
+			Phone 4-D
 
+   		*/
   #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
     #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D {
         width: 49% !important
@@ -55,314 +58,408 @@
     width: 98.5% !important; /* address */
   }
 
-/* city, state, zip */
-/*
-  #tfa_34-D, #tfa_35-D, #tfa_39-D {
-  	width: 100% !important; 
-  }
-  */
+	/* city, state, zip */
+	/*
+	  #tfa_34-D, #tfa_35-D, #tfa_39-D {
+	  	width: 100% !important; 
+	  }
+	  */
 
-  #tfa_90 {
-    width: 98.5%;
-  display: flex;
-  justify-content: space-between;
-  }
-
-  /* Authorization checkbox labels (legal language) */
-  #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
-    font-size: 13.6px !important;
-    color: rgb(68, 68, 68) !important;
-    line-height: normal;
-  }
-
-  /* Authorization checkboxes */
-  #tfa_379-L:before,
-  #tfa_380-L:before,
-  #tfa_382-L:before {
-    margin-right: 6px;
-    width: 14px;
-    height: 14px;
-    top: -2px;
-  }
-
-  #tfa_379-L:after,
-  #tfa_380-L:after,
-  #tfa_382-L:after {
-    left: 3px;
-    top: 6px;
-  }
-
-  /* checkbox backgrounds checked */
-  .wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
-    background: #531078;
-  }
-  
-
-    #tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
-    #tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
-    #tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
-        display: block !important;
-    }
-
-  @media only screen and (max-width: 600px)  {
-    #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
-    #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
-        width: 100% !important
-    }
-
-    #tfa_90 {
-      display: block;
-      width: 100%;
-    }
-  }
-  
-
-	.wFormContainer .actions .primaryAction, #primaryAction {
-	 background-color: #531078 !important;
-	}
-
-	  #791-A:hover {
-	    background-color: #531078 !important;
+	  #tfa_90 {
+	    width: 98.5%;
+	  display: flex;
+	  justify-content: space-between;
 	  }
 
-	  form#801 {
-	    @media only screen and (max-width: 480px)  {
-	    .wFormContainer .wForm form {
-	      padding: 0 important;
+	  /* Authorization checkbox labels (legal language) */
+	  #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
+	    font-size: 13.6px !important;
+	    color: rgb(68, 68, 68) !important;
+	    line-height: normal;
+	  }
+
+	  /* Authorization checkboxes */
+	  #tfa_379-L:before,
+	  #tfa_380-L:before,
+	  #tfa_382-L:before {
+	    margin-right: 6px;
+	    width: 14px;
+	    height: 14px;
+	    top: -2px;
+	  }
+
+	  #tfa_379-L:after,
+	  #tfa_380-L:after,
+	  #tfa_382-L:after {
+	    left: 3px;
+	    top: 6px;
+	  }
+
+	  /* checkbox backgrounds checked */
+	  .wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
+	    background: #531078;
+	  }
+	  
+
+	    #tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
+	    #tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
+	    #tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
+	        display: block !important;
+	    }
+
+	  @media only screen and (max-width: 600px)  {
+	    #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+	    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
+	    #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
+	        width: 100% !important
+	    }
+
+	    #tfa_90 {
+	      display: block;
+	      width: 100%;
 	    }
 	  }
+	  
+
+		.wFormContainer .actions .primaryAction, #primaryAction {
+		 background-color: #531078 !important;
+		}
+
+		  #791-A:hover {
+		    background-color: #531078 !important;
+		  }
+
+		  form#801 {
+		    @media only screen and (max-width: 480px)  {
+		    .wFormContainer .wForm form {
+		      padding: 0 important;
+		    }
+		  }
+
+
+
+
+   /* ?? unused ?? */
+		  #tfa_17-HTML {
+		    text-align: center;
+		  }
+
+		  #tfa_105-L {
+		    text-wrap: wrap;
+		    text-align: left;
+		    max-width: 90%;
+		    font-size: 1em;
+		  line-height: 1.3em;
+		  padding-left: 0;
+		  }
 
 
 </style>
 
 
-
+<!-- LOCALIZATION AND MAIN FORM SCRIPT -->
 <script type="text/javascript">
-//
-
-window.addEventListener("load", function() {
-
-		// Extract the value of the language the browser is set to:
-	const getLang = navigator.language;
-	console.log("getLang = ", getLang);
 	//
-	var valueFormTitle = document.getElementsByClassName("gform_title")[0];
-	var valueSubmitButton = document.querySelector("#submit_button");
-	//
-	var formEl = document.getElementById("810");
-	var prefillWarning1 = document.getElementById("tfa_330-DB"); // span inside this is 'This form is customized especially for'
-	var prefillWarning2 = document.getElementById("tfa_330-DA"); // span inside this is 'If this is not you, do not complete this form!'
-	var firstName = document.getElementById("tfa_1-L"); 
-	var lastName = document.getElementById("tfa_2-L");
-	var birthDate = document.getElementById("tfa_134-L"); 
-	var mmPlaceholder = document.getElementById("tfa_156").options[0];
-	var ddPlaceholder = document.getElementById("tfa_157").options[0];
-	var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
-	var preferredLanguage = document.getElementById("tfa_91-L"); 
-	var employer = document.getElementById("tfa_22-L"); 
-	var address = document.getElementById("tfa_32-L"); 
-	var addressNote = document.getElementById("tfa_32-HH");
-	var city = document.getElementById("tfa_34-L"); 
-	var state = document.getElementById("tfa_35-L");
-	var zip = document.getElementById("tfa_39-L"); 
-	var email = document.getElementById("tfa_3-L"); 
-	var emailNote = document.getElementById("tfa_3-HH");
-	var phone = document.getElementById("tfa_4-L"); 
-	var phoneNote = document.getElementById("tfa_4-HH");
-	var smsOptOut = document.getElementById("tfa_114-L");
-	var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-	var membershipAuthBlock = document.getElementById("tfa_350-HTML"); 
-	var duesAuthBlock = document.getElementById("tfa_351-HTML"); 
-	var polOptOut = document.getElementById("tfa_122-L"); 
-	var polOptOutCheckbox = document.getElementById("tfa_123-L"); 
-	var signature = document.getElementById("tfa_386-L");
-	var membershipAuthTitle = document.getElementById("tfa_116-L");
-	var membershipAuthLL = document.getElementById("tfa_379-L");
-	var duesAuthTitle = document.getElementById("tfa_355-L");
-	var duesAuthLL = document.getElementById("tfa_380-L");
-	var combinedLL = document.getElementById("tfa_377"); // jcl
 
+	window.addEventListener("load", function() {
 
-	var preferredLanguageF = document.getElementById("tfa_91"); 
-	var addressF = document.getElementById("tfa_32");
-	var cityF = document.getElementById("tfa_34"); 
-	var stateF = document.getElementById("tfa_35");
-	var zipF = document.getElementById("tfa_39"); 
-	var emailF = document.getElementById("tfa_3"); 
-	var phoneF = document.getElementById("tfa_4"); 
-	var employerNamePrefill = document.getElementById("tfa_444");
-
-	const prefillFieldList = [
-		preferredLanguageF,
-		addressF,
-		cityF,
-		stateF,
-		zipF,
-		emailF,
-		phoneF,
-		employerNamePrefill
-	];
-
-	// console.log('prefillFieldList', prefillFieldList);
-
-  prefillFieldList.forEach(function(field) {
-
-    // Determine if the field was prefilled (i.e., has an initial value)
-    const wasPrefilled = field.value && field.value.trim() !== "";
-
-    if (wasPrefilled) {
-
-      // Store a flag so we know it was prefilled originally
-      field.dataset.prefilled = "true";
-
-      let container;
-
-      if (field.id = 'tfa_444') {
-      	// if employer name prefill, hide the employer type container
-      	container = document.getElementById("tfa_388-D");
-      } else {
-      	container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;
-      }
-
-      if (container) {
-        container.style.display = "none";
-      }
-
-      
-    } else {
-      // Field was empty on load — mark it as user-editable
-      field.dataset.prefilled = "false";
-    }
-  });
-
-	//
-	// US English:
-	if (getLang.startsWith("en")) {
-		console.log("Processing en-US");
+			// Extract the value of the language the browser is set to:
+		const getLang = navigator.language;
+		console.log("getLang = ", getLang);
 		//
-		document.title = "SEIU 503 Union Authorization and Membership Application";
-		valueFormTitle.innerHTML = "SEIU 503 Union Authorization and Membership Application";
-		valueSubmitButton.defaultValue = "Submit";
+		var valueFormTitle = document.getElementsByClassName("gform_title")[0];
+		var valueSubmitButton = document.querySelector("#submit_button");
 		//
-		prefillWarning1.innerText = 'This form is customized especially for'
-	    prefillWarning2.innerText = 'If this is not you, do not complete this form!'
-		firstName.innerHTML = "First Name";
-		lastName.innerHTML = "Last Name";
-		birthDate.innerHTML = `Birth Date`;
-		birthDate.classList.add("reqMark");
-		birthDate.style.cssText += 'font-size:inherit!important;font-style:inherit!important;';
-		mmPlaceholder.innerHTML = "Month";
-		ddPlaceholder.innerHTML = "Day";
-		yyyyPlaceholder.innerHTML = "Year";
-		preferredLanguage.innerHTML = "Preferred language";
-		// employer.innerHTML = "Employer"; -- needs to be delayed until employerTypeOnChange
-		address.innerHTML = "Address";
-		addressNote.innerHTML = "Please enter your physical street address here, not a P.O. box.";
-		city.innerHTML = "City";
-		state.innerHTML = "State";
-		zip.innerHTML = "ZIP Code";
-		email.innerHTML = "Email";
-		emailNote.innerHTML = "Please use your personal email if you have one, since some employers limit union communication via work email. If you don't have a personal email, work email is fine. If you don't have an email address, call us at 1.844.503.7348 to sign up over the phone.";
-		phone.innerHTML = "Phone";
-		phoneNote.innerHTML = "† By providing my phone number, I understand that the Service Employees International Union (SEIU), its local unions, and affiliates may use automated calling technologies and/or text message me on my cellular phone on a periodic basis. SEIU will never charge for text message alerts. Carrier message and data rates may apply to such alerts. Reply STOP to stop receiving messages; reply HELP for more information.";
-		smsOptOut.innerHTML = "Opt out of receiving mobile alerts";
-		smsOptOutCheckbox.innerHTML = "Opt out";
-		polOptOut.innerHTML = "Check the box below if you would like the portion of dues spent on political power to go toward SEIU 503’s scholarship fund.";
-		polOptOutCheckbox.innerHTML = "Opt out of worker political power";
-		signature.innerHTML = "Enter your full legal name. This will act as your signature.";
-		membershipAuthTitle.innerHTML = "Membership and Union Representation Authorization";
-		membershipAuthLL.innerHTML = "I request and voluntarily accept membership in SEIU Local 503 and its successors or assigns (collectively “Local 503”). This means I will receive the benefits and abide by the obligations of membership set forth in both Local 503’s and the Service Employees International Union’s Constitutions and Bylaws. I authorize Local 503 to act as my representative in collective bargaining over wages, benefits, and other terms/conditions of employment with my employer, and as my exclusive representative where authorized by law. My membership will be continuous, unless I resign by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503 policies). I know that union membership is voluntary and not a condition of employment, and that I can decline to join without reprisal. I understand that my signature may be used to obtain certification of SEIU Local 503, OPEU as the exclusive bargaining representative, without an election."
-		duesAuthTitle.innerHTML = "Dues Deduction / Checkoff Authorization";
-		duesAuthLL.innerHTML = "I request and voluntarily authorize my employer to deduct from my earnings and to pay to Local 503 and its successors and assigns (collectively “Local 503”) an amount equal to Local 503’s regular dues, and other fees or assessments uniformly applicable to members of Local 503. This dues deduction authorization shall remain in effect unless I revoke it by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503’s policies) within 15 days before or after (1) the annual anniversary date of this agreement or (2) the termination of the applicable collective bargaining agreement between my employer and union (“my window periods”). This authorization will renew automatically from year to year even if I have resigned my membership, unless I revoke it during one of my window periods and as required by Local 503’s policies. This authorization is voluntary and is not a condition of my employment, and I can decline to agree to it without reprisal. I understand that all members benefit from everyone’s commitments because they help build a strong union that is able to plan for the future."
-		combinedLL.innerText = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`
-		}
-	//
-	// Spanish:
-	else if (getLang.startsWith("es")) {
-		console.log("Processing es-ES");
-		//
-		document.title = "Autorización de representación y formulario de membresía del SEIU 503";
-		valueFormTitle.innerHTML = "Autorización de representación y formulario de membresía del SEIU 503";
-		valueSubmitButton.defaultValue = "Enviar";
-		//
-		prefillWarning1.innerText = 'Este formulario está personalizado especialmente para'
-	    prefillWarning2.innerText = '¡Si no es usted, no complete este formulario!'
-		firstName.innerHTML = "Primer nombre";
-		lastName.innerHTML = "Apellido";
-		birthDate.innerHTML = `Fecha de nacimiento`;
-		birthDate.classList.add("reqMark");
-		birthDate.style.cssText += 'font-size:inherit!important;font-style:inherit!important;';
-		mmPlaceholder.innerHTML = "Mes";
-		ddPlaceholder.innerHTML = "Día";
-		yyyyPlaceholder.innerHTML = "Año";
-		preferredLanguage.innerHTML = "Idioma preferido";
-		// employer.innerHTML = "Empleador";
-		address.innerHTML = "Calle particular";
-		addressNote.innerHTML = "Ingrese su dirección física aquí, no un apartado postal (P.O. Box).";
-		city.innerHTML = "Ciudad";
-		state.innerHTML = "Estado";
-		zip.innerHTML = "Código postal";
-		email.innerHTML = "Correo electrónico particular";
-		emailNote.innerHTML = "Use su correo electrónico particular, si tiene uno, ya que algunos empleadores limitan la comunicación de la unión a través del correo electrónico del trabajo. Si no tiene un correo electrónico personal, puede usar el correo electrónico del trabajo. Si no tiene una dirección de correo electrónico, llámenos al 1.844.503.7348 para registrarse por teléfono.";
-		phone.innerHTML = "Mejor teléfono";
-		phoneNote.innerHTML = "† Al proporcionar mi número de teléfono, entiendo que la Unión Internacional de Empleados de Servicios (SEIU, por sus siglas en inglés), sus uniones locales y sus afiliados pueden usar tecnologías automatizadas para llamarme y/o para enviar mensajes de texto a mi celular periódicamente. SEIU nunca cobrará por las alertas de mensaje de texto. Pueden aplicar tarifas por el envío de mensaje y el uso de datos para dichas alertas. Responda con la palabra STOP para dejar de recibir mensajes; responda con la palabra HELP para obtener más información.";
-		smsOptOut.innerHTML = "No deseo recibir alertas por mensaje de texto";
-		smsOptOutCheckbox.innerHTML = "Optar por no participar";
-		polOptOut.innerHTML = "Seleccione esta casilla si quiere que una parte de las cuotas se invierta en el poder político para mejorar el fondo para becas de SEIU 503.";
-		polOptOutCheckbox.innerHTML = "Optar por no participar del poder político de los trabajadores";
-		signature.innerHTML = "Ingrese su nombre legal completo. Esto servirá como su firma.";
-		membershipAuthTitle.innerHTML = "Autorización de membresía y representación de unión";
-		membershipAuthLL.innerHTML = "Solicito y acepto voluntariamente la membresía en SEIU Local 503 y sus sucesores o cesionarios (en conjunto “Local 503”). Esto significa que recibiré los beneficios y cumpliré las obligaciones derivadas de la membresía que se estipulan en la Constitución y los Estatutos de Local 503 y de la Unión Internacional de Empleados de Servicios. Autorizo a Local 503 para que actúe como mi representante en las negociaciones colectivas relativas a salarios, beneficios y demás términos/condiciones laborales que lleve a cabo con mi empleador, y como mi representante exclusivo en los casos que la ley lo permita. Mi membresía será permanente, a menos que renuncie a la misma por medio de un aviso dirigido a Local 503 y lo envíe a través del correo postal de los EE. UU. (u otro método, si así lo permiten las políticas de Local 503). Sé que la membresía de la unión es voluntaria y no es una condición laboral, y que puedo rechazar la opción de unirme sin que esto implique represalias. Entiendo que mi firma puede usarse para obtener la certificación de SEIU Local 503, OPEU como representante exclusivo de negociación, sin necesidad de elección."
-		duesAuthTitle.innerHTML = "Autorización de aportes/deducción de cuotas";
-		duesAuthLL.innerHTML = "Solicito y autorizo voluntariamente que mi empleador deduzca de mis ganancias, y le pague a Local 503 y a sus sucesores y cesionarios (en conjunto “Local 503”), un monto equivalente a las cuotas ordinarias de Local 503 y demás cargos y avalúos que sean aplicables a los miembros de Local 503. Esta autorización para deducir las cuotas seguirá vigente a menos que yo la revoque por medio de un aviso dirigido a Local 503 y lo envíe a través del correo postal de los EE. UU. (u otro método, si así lo permiten las políticas de Local 503) en un plazo de 15 días antes o después de (1) la fecha de aniversario de este acuerdo o (2) la fecha de terminación del Contrato Colectivo de Trabajo correspondiente celebrado entre la unión y mi empleador (“los márgenes estipulados”). Esta autorización se renovará automáticamente cada año, incluso en caso de que renuncie a mi membresía, salvo que yo la revoque durante uno de los márgenes estipulados y de acuerdo con las políticas de Local 503. Esta autorización es voluntaria y no es una condición laboral, así que puedo rechazarla sin que esto suponga represalias. Comprendo que todos(as) los(as) miembros se benefician de los compromisos que todos(as) asumen porque ayudan a crear una unión fuerte que es capaz de planear a futuro."
-		combinedLL.innerText = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`
-		}
-	//
-	else {
-	console.log("Processing ** unknown **")
-	//
-	// document.title = "** unknown **-language title.";
-	// valueFormTitle.innerHTML = "Form Title: ** unknown **";
-	// valueSubmitButton.defaultValue = "Submit: ** unknown **";
-	// //
-	// textInput_01.innerHTML = "First Name ** unknown ** Test";
-	// textInput_02.innerHTML = "Last Name ** unknown ** Test";
-	// textInput_03.innerHTML = "Email ** unknown ** Test";
-	// textInput_04.innerHTML = "Company ** unknown ** Test";
-	};
+		var formEl = document.getElementById("810");
+		var stagingWarning = document.getElementById("tfa_387-HTML");
+		var prefillWarning1 = document.getElementById("tfa_330-DB"); // span inside this is 'This form is customized especially for'
+		var prefillWarning2 = document.getElementById("tfa_330-DA"); // span inside this is 'If this is not you, do not complete this form!'
+		var firstName = document.getElementById("tfa_1-L"); 
+		var lastName = document.getElementById("tfa_2-L");
+		var birthDate = document.getElementById("tfa_134-L"); 
+		var mmPlaceholder = document.getElementById("tfa_156").options[0];
+		var ddPlaceholder = document.getElementById("tfa_157").options[0];
+		var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
+		var preferredLanguage = document.getElementById("tfa_91-L"); 
+		var employer = document.getElementById("tfa_22-L"); 
+		var employerType = document.getElementById("tfa_388-L");
+		var address = document.getElementById("tfa_32-L"); 
+		var addressNote = document.getElementById("tfa_32-HH");
+		var city = document.getElementById("tfa_34-L"); 
+		var state = document.getElementById("tfa_35-L");
+		var zip = document.getElementById("tfa_39-L"); 
+		var email = document.getElementById("tfa_3-L"); 
+		var emailNote = document.getElementById("tfa_3-HH");
+		var phone = document.getElementById("tfa_4-L"); 
+		var phoneNote = document.getElementById("tfa_4-HH");
+		var smsOptOut = document.getElementById("tfa_114-L");
+		var smsOptOutCheckbox = document.getElementById("tfa_115-L");
+		var membershipAuthBlock = document.getElementById("tfa_350-HTML"); 
+		var duesAuthBlock = document.getElementById("tfa_351-HTML"); 
+		var polOptOut = document.getElementById("tfa_122-L"); 
+		var polOptOutCheckbox = document.getElementById("tfa_123-L"); 
+		var signature = document.getElementById("tfa_386-L");
+		var signatureNote = document.getElementById("tfa_386-HH");
+		var membershipAuthTitle = document.getElementById("tfa_116-L");
+		var membershipAuthLL = document.getElementById("tfa_379-L");
+		var duesAuthTitle = document.getElementById("tfa_355-L");
+		var duesAuthLL = document.getElementById("tfa_380-L");
+		var combinedLL = document.getElementById("tfa_377"); // jcl
 
 
-	// replace error message text
-	formEl.addEventListener('submit', function() {
-		console.log('submitclick');
-		function replaceTextInDOM(searchText, replaceText) {
-			console.log('replaceText')
-		  const elements = document.querySelectorAll('span'); 
+		var preferredLanguageF = document.getElementById("tfa_91"); 
+		var addressF = document.getElementById("tfa_32");
+		var cityF = document.getElementById("tfa_34"); 
+		var stateF = document.getElementById("tfa_35");
+		var zipF = document.getElementById("tfa_39"); 
+		var emailF = document.getElementById("tfa_3"); 
+		var phoneF = document.getElementById("tfa_4"); 
+		var employerNamePrefill = document.getElementById("tfa_444");
 
-		  elements.forEach(element => {
-		    if (element.textContent.includes(searchText)) {
-		      element.textContent = element.textContent.replaceAll(searchText, replaceText);
+		const prefillFieldList = [
+			preferredLanguageF,
+			addressF,
+			cityF,
+			stateF,
+			zipF,
+			emailF,
+			phoneF,
+			employerNamePrefill
+		];
+
+		// console.log('prefillFieldList', prefillFieldList);
+
+		const eNameState = document.getElementById('tfa_410');
+		const eNameHiEd = document.getElementById('tfa_393');
+		const eNameHCW = document.getElementById('tfa_414');
+		const eNameNH = document.getElementById('tfa_408');
+		const eNameLGov = document.getElementById('tfa_407');
+		const eNamePNP = document.getElementById('tfa_409');
+		const eNamePHC = document.getElementById('tfa_418');
+		const eNameRetire = document.getElementById('tfa_422');
+
+		const hiddenRequired = [ eNameState, eNameHiEd, eNameHCW, eNameNH, eNameLGov, eNamePNP, eNamePHC, eNameRetire, employerType ];
+
+	  prefillFieldList.forEach(function(field) {
+
+	    // Determine if the field was prefilled (i.e., has an initial value)
+	    const wasPrefilled = field.value && field.value.trim() !== "";
+	    console.log(`field.title: ${field.title}, field.id: ${field.id}`);
+
+	    if (wasPrefilled) {
+	    	console.log(field.title, `wasPrefilled`);
+
+	      // Store a flag so we know it was prefilled originally
+	      field.dataset.prefilled = "true";
+
+	      let container;
+
+	      if (field.id === 'tfa_444') {
+	      	console.log('processing employer type field');
+	      	// if employer name prefill, hide the employer type container
+	      	container = document.getElementById("tfa_400");
+	      	document.getElementById("tfa_388").value = 'Placeholder';
+	      	hiddenRequired.forEach(field => field.removeAttribute('required'));
+	      } else {
+	      	container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;	      	
+	      }
+
+	      if (container) {
+	        container.style.display = "none";
+	      }
+
+	      
+	    } else {
+	      // Field was empty on load — mark it as user-editable
+	      field.dataset.prefilled = "false";
+	    }
+	  });
+
+
+
+		//
+		// US English:
+		if (getLang.startsWith("en")) {
+			console.log("Processing en-US");
+			//
+			document.title = "SEIU 503 Union Authorization and Membership Application";
+			valueFormTitle.innerHTML = "SEIU 503 Union Authorization and Membership Application";
+			valueSubmitButton.defaultValue = "Submit";
+			//
+			stagingWarning.innerHTML = `<div style="background-color: rgb(255, 152, 0); padding: 20px;"><div><p style="display: inline;" id="testWarning" data-testid="testWarning">This form is for testing only. Membership data submitted through this form will not be processed. If you landed on the test page by mistake and want to become a member of SEIU Local 503, please click here:&nbsp;</p><strong><a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">seiu503signup.org</a></strong></div></div>`
+			prefillWarning1.innerText = 'This form is customized especially for'
+		  prefillWarning2.innerText = 'If this is not you, do not complete this form!'
+		  employerType.innerText = 'Employer Type';
+			firstName.innerHTML = "First Name";
+			lastName.innerHTML = "Last Name";
+			birthDate.innerHTML = `Birth Date`;
+			birthDate.classList.add("reqMark");
+			birthDate.style.cssText += 'font-size:inherit!important;font-style:inherit!important;';
+			mmPlaceholder.innerHTML = "Month";
+			ddPlaceholder.innerHTML = "Day";
+			yyyyPlaceholder.innerHTML = "Year";
+			preferredLanguage.innerHTML = "Preferred language";
+			// employer.innerHTML = "Employer"; -- needs to be delayed until employerTypeOnChange
+			address.innerHTML = "Address";
+			addressNote.innerHTML = "Please enter your physical street address here, not a P.O. box.";
+			city.innerHTML = "City";
+			state.innerHTML = "State";
+			zip.innerHTML = "ZIP Code";
+			email.innerHTML = "Email";
+			emailNote.innerHTML = "Please use your personal email if you have one, since some employers limit union communication via work email. If you don't have a personal email, work email is fine. If you don't have an email address, call us at 1.844.503.7348 to sign up over the phone.";
+			phone.innerHTML = "Phone";
+			phoneNote.innerHTML = "† By providing my phone number, I understand that the Service Employees International Union (SEIU), its local unions, and affiliates may use automated calling technologies and/or text message me on my cellular phone on a periodic basis. SEIU will never charge for text message alerts. Carrier message and data rates may apply to such alerts. Reply STOP to stop receiving messages; reply HELP for more information.";
+			smsOptOut.innerHTML = "Opt out of receiving mobile alerts";
+			smsOptOutCheckbox.innerHTML = "Opt out";
+			polOptOut.innerHTML = "Check the box below if you would like the portion of dues spent on political power to go toward SEIU 503’s scholarship fund.";
+			polOptOutCheckbox.innerHTML = "Opt out of worker political power";
+			signature.innerHTML = "Signature";
+			signatureNote.innerHTML = "Enter your full legal name. This will act as your signature.";
+			membershipAuthTitle.innerHTML = "Membership and Union Representation Authorization";
+			membershipAuthLL.innerHTML = "I request and voluntarily accept membership in SEIU Local 503 and its successors or assigns (collectively “Local 503”). This means I will receive the benefits and abide by the obligations of membership set forth in both Local 503’s and the Service Employees International Union’s Constitutions and Bylaws. I authorize Local 503 to act as my representative in collective bargaining over wages, benefits, and other terms/conditions of employment with my employer, and as my exclusive representative where authorized by law. My membership will be continuous, unless I resign by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503 policies). I know that union membership is voluntary and not a condition of employment, and that I can decline to join without reprisal. I understand that my signature may be used to obtain certification of SEIU Local 503, OPEU as the exclusive bargaining representative, without an election."
+			duesAuthTitle.innerHTML = "Dues Deduction / Checkoff Authorization";
+			duesAuthLL.innerHTML = "I request and voluntarily authorize my employer to deduct from my earnings and to pay to Local 503 and its successors and assigns (collectively “Local 503”) an amount equal to Local 503’s regular dues, and other fees or assessments uniformly applicable to members of Local 503. This dues deduction authorization shall remain in effect unless I revoke it by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503’s policies) within 15 days before or after (1) the annual anniversary date of this agreement or (2) the termination of the applicable collective bargaining agreement between my employer and union (“my window periods”). This authorization will renew automatically from year to year even if I have resigned my membership, unless I revoke it during one of my window periods and as required by Local 503’s policies. This authorization is voluntary and is not a condition of my employment, and I can decline to agree to it without reprisal. I understand that all members benefit from everyone’s commitments because they help build a strong union that is able to plan for the future."
+			combinedLL.innerText = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`
+			}
+		//
+		// Spanish:
+		else if (getLang.startsWith("es")) {
+			console.log("Processing es-ES");
+			//
+			document.title = "Autorización de representación y formulario de membresía del SEIU 503";
+			valueFormTitle.innerHTML = "Autorización de representación y formulario de membresía del SEIU 503";
+			valueSubmitButton.defaultValue = "Enviar";
+			//
+			stagingWarning.innerHTML = `<div style="background-color: rgb(255, 152, 0); padding: 20px;"><div><p style="display: inline;" id="testWarning" data-testid="testWarning">Este formulario es solo para fines de prueba. Los datos de membresía enviados a través de este formulario no se procesarán. Si llegó a la página de prueba por error y desea afiliarse a SEIU Local 503, haga clic aquí:&nbsp;</p><strong><a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">seiu503signup.org</a></strong></div></div>`
+			prefillWarning1.innerHTML = `<span style="font-size: 13.6px;">Este formulario está personalizado especialmente para</span>`
+		  prefillWarning2.innerHTML = `<span style="font-weight: 700; font-size: 13.6px;">¡Si no es usted, no complete este formulario!</span>`;
+		  employerType.innerText = 'Tipo de empleador';
+			firstName.innerHTML = "Primer nombre";
+			lastName.innerHTML = "Apellido";
+			birthDate.innerHTML = `Fecha de nacimiento`;
+			birthDate.classList.add("reqMark");
+			birthDate.style.cssText += 'font-size:inherit!important;font-style:inherit!important;';
+			mmPlaceholder.innerHTML = "Mes";
+			ddPlaceholder.innerHTML = "Día";
+			yyyyPlaceholder.innerHTML = "Año";
+			preferredLanguage.innerHTML = "Idioma preferido";
+			// employer.innerHTML = "Empleador";
+			address.innerHTML = "Calle particular";
+			addressNote.innerHTML = "Ingrese su dirección física aquí, no un apartado postal (P.O. Box).";
+			city.innerHTML = "Ciudad";
+			state.innerHTML = "Estado";
+			zip.innerHTML = "Código postal";
+			email.innerHTML = "Correo electrónico particular";
+			emailNote.innerHTML = "Use su correo electrónico particular, si tiene uno, ya que algunos empleadores limitan la comunicación de la unión a través del correo electrónico del trabajo. Si no tiene un correo electrónico personal, puede usar el correo electrónico del trabajo. Si no tiene una dirección de correo electrónico, llámenos al 1.844.503.7348 para registrarse por teléfono.";
+			phone.innerHTML = "Mejor teléfono";
+			phoneNote.innerHTML = "† Al proporcionar mi número de teléfono, entiendo que la Unión Internacional de Empleados de Servicios (SEIU, por sus siglas en inglés), sus uniones locales y sus afiliados pueden usar tecnologías automatizadas para llamarme y/o para enviar mensajes de texto a mi celular periódicamente. SEIU nunca cobrará por las alertas de mensaje de texto. Pueden aplicar tarifas por el envío de mensaje y el uso de datos para dichas alertas. Responda con la palabra STOP para dejar de recibir mensajes; responda con la palabra HELP para obtener más información.";
+			smsOptOut.innerHTML = "No deseo recibir alertas por mensaje de texto";
+			smsOptOutCheckbox.innerHTML = "Optar por no participar";
+			polOptOut.innerHTML = "Seleccione esta casilla si quiere que una parte de las cuotas se invierta en el poder político para mejorar el fondo para becas de SEIU 503.";
+			polOptOutCheckbox.innerHTML = "Optar por no participar del poder político de los trabajadores";
+			signature.innerHTML = "Firma.";
+			signatureNote.innerHTML = "Ingrese su nombre legal completo. Esto servirá como su firma.";
+			membershipAuthTitle.innerHTML = "Autorización de membresía y representación de unión";
+			membershipAuthLL.innerHTML = "Solicito y acepto voluntariamente la membresía en SEIU Local 503 y sus sucesores o cesionarios (en conjunto “Local 503”). Esto significa que recibiré los beneficios y cumpliré las obligaciones derivadas de la membresía que se estipulan en la Constitución y los Estatutos de Local 503 y de la Unión Internacional de Empleados de Servicios. Autorizo a Local 503 para que actúe como mi representante en las negociaciones colectivas relativas a salarios, beneficios y demás términos/condiciones laborales que lleve a cabo con mi empleador, y como mi representante exclusivo en los casos que la ley lo permita. Mi membresía será permanente, a menos que renuncie a la misma por medio de un aviso dirigido a Local 503 y lo envíe a través del correo postal de los EE. UU. (u otro método, si así lo permiten las políticas de Local 503). Sé que la membresía de la unión es voluntaria y no es una condición laboral, y que puedo rechazar la opción de unirme sin que esto implique represalias. Entiendo que mi firma puede usarse para obtener la certificación de SEIU Local 503, OPEU como representante exclusivo de negociación, sin necesidad de elección."
+			duesAuthTitle.innerHTML = "Autorización de aportes/deducción de cuotas";
+			duesAuthLL.innerHTML = "Solicito y autorizo voluntariamente que mi empleador deduzca de mis ganancias, y le pague a Local 503 y a sus sucesores y cesionarios (en conjunto “Local 503”), un monto equivalente a las cuotas ordinarias de Local 503 y demás cargos y avalúos que sean aplicables a los miembros de Local 503. Esta autorización para deducir las cuotas seguirá vigente a menos que yo la revoque por medio de un aviso dirigido a Local 503 y lo envíe a través del correo postal de los EE. UU. (u otro método, si así lo permiten las políticas de Local 503) en un plazo de 15 días antes o después de (1) la fecha de aniversario de este acuerdo o (2) la fecha de terminación del Contrato Colectivo de Trabajo correspondiente celebrado entre la unión y mi empleador (“los márgenes estipulados”). Esta autorización se renovará automáticamente cada año, incluso en caso de que renuncie a mi membresía, salvo que yo la revoque durante uno de los márgenes estipulados y de acuerdo con las políticas de Local 503. Esta autorización es voluntaria y no es una condición laboral, así que puedo rechazarla sin que esto suponga represalias. Comprendo que todos(as) los(as) miembros se benefician de los compromisos que todos(as) asumen porque ayudan a crear una unión fuerte que es capaz de planear a futuro."
+			combinedLL.innerText = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`
+			}
+		//
+		else {
+		console.log("Processing ** unknown **")
+		//
+		// document.title = "** unknown **-language title.";
+		// valueFormTitle.innerHTML = "Form Title: ** unknown **";
+		// valueSubmitButton.defaultValue = "Submit: ** unknown **";
+		// //
+		// textInput_01.innerHTML = "First Name ** unknown ** Test";
+		// textInput_02.innerHTML = "Last Name ** unknown ** Test";
+		// textInput_03.innerHTML = "Email ** unknown ** Test";
+		// textInput_04.innerHTML = "Company ** unknown ** Test";
+		};
+
+
+		// replace error message text
+		formEl.addEventListener('submit', function() {
+			console.log('submitclick');
+
+
+			const elements = Array.from(formEl.elements);
+		  const missing = [];
+
+		  elements.forEach(el => {
+		    if (!el.name) return;
+
+		    const isRequired =
+		      el.required ||
+		      el.getAttribute('aria-required') === 'true' ||
+		      el.dataset.required === 'true';
+
+		    if (!isRequired) return;
+
+		    let hasValue = false;
+
+		    switch (el.type) {
+		      case 'checkbox':
+		      case 'radio': {
+		        const group = form.querySelectorAll(`[name="${CSS.escape(el.name)}"]`);
+		        hasValue = Array.from(group).some(f => f.checked);
+		        break;
+		      }
+		      case 'file':
+		        hasValue = el.files && el.files.length > 0;
+		        break;
+		      default:
+		        hasValue = el.value != null && el.value.trim() !== '';
+		    }
+
+		    if (!hasValue) {
+		      missing.push(el);
 		    }
 		  });
-		}
 
-		if (getLang.startsWith("es")) {
-			replaceTextInDOM("This field is required.", "Requerido");
-			replaceTextInDOM("This does not appear to be a valid email address.", "Dirección de correo electrónico no válida");
-			replaceTextInDOM("Please enter a valid 5-digit ZIP code", "Ingrese un código postal válido de 5 dígitos");
-			replaceTextInDOM("This does not appear to be a valid date.", "Ingrese una fecha válida.");
-			replaceTextInDOM("Please enter a valid phone number", "Ingrese un número de teléfono válido");
-			replaceTextInDOM("This date must be between", "La fecha debe ser entre");
-		}
+	  console.group('Missing “required” fields (custom check)');
+	  missing.forEach(el => {
+	    console.log({
+	      name: el.name,
+	      id: el.id,
+	      type: el.type,
+	      value: el.value,
+	      isHiddenType: el.type === 'hidden',
+	      isVisiblyHidden: el.offsetParent === null,
+	      element: el
+	    });
+	  });
+	  console.groupEnd();
 
-	})
+			function replaceTextInDOM(searchText, replaceText) {
+				console.log('replaceText')
+			  const elements = document.querySelectorAll('span'); 
 
-});
+			  elements.forEach(element => {
+			    if (element.textContent.includes(searchText)) {
+			      element.textContent = element.textContent.replaceAll(searchText, replaceText);
+			    }
+			  });
+			}
+
+			if (getLang.startsWith("es")) {
+				replaceTextInDOM("This field is required.", "Requerido");
+				replaceTextInDOM("This does not appear to be a valid email address.", "Dirección de correo electrónico no válida");
+				replaceTextInDOM("Please enter a valid 5-digit ZIP code", "Ingrese un código postal válido de 5 dígitos");
+				replaceTextInDOM("This does not appear to be a valid date.", "Ingrese una fecha válida.");
+				replaceTextInDOM("Please enter a valid phone number", "Ingrese un número de teléfono válido");
+				replaceTextInDOM("This date must be between", "La fecha debe ser entre");
+			}
+
+		})
+
+	});
 </script>
 
 
-
+<!-- DATE HELPERS SCRIPT -->
 <script type="text/javascript"> 
 
   window.addEventListener("load", function() {
@@ -477,3 +574,259 @@ window.addEventListener("load", function() {
   });
 
 </script>
+
+<!-- PREFILL MODAL SCRIPT -->
+
+<script>
+
+  // when page loads,
+  document.addEventListener("DOMContentLoaded", function(){
+
+  	console.log('dom loaded prefillModal');
+
+  	var fullName = document.getElementById('tfa_330').value.substring(0,40);
+
+  	console.log('fullName', fullName);
+  	// Extract the value of the language the browser is set to:
+		const getLang = navigator.language;
+		console.log("getLang = ", getLang);
+		const spanish = getLang.startsWith("es");
+
+		// append hidden button to DOM
+		var hiddenButton = document.createElement('button');
+    hiddenButton.setAttribute("id", "hiddenButton");
+		hiddenButton.setAttribute("data-modal-prefix-class", "simple-animated");
+		hiddenButton.setAttribute("data-modal-content-id", "tfa_327"); // FA fieldset containing the modal elements
+		hiddenButton.setAttribute("data-modal-title", `${spanish ? '¿Es Ud.' : 'Are you'} ${fullName}?`);
+		hiddenButton.setAttribute("data-modal-close-text", `${spanish ? 'Sí, soy' : "Yes, I'm"} ${fullName}`);
+		hiddenButton.setAttribute("data-modal-close-title", `${spanish ? 'Sí, soy' : "Yes, I'm"} ${fullName}`);
+		hiddenButton.setAttribute("class", "js-modal invisible");
+		document.body.insertBefore(hiddenButton, document.body.firstChild);
+
+  	// check if IDs are prepopulated from query params
+  	var urlParams = new URLSearchParams(window.location.search);
+		var cId = urlParams.get('cId');
+		var aId = urlParams.get('aId');
+
+		if (cId && aId) {
+			// set tfa fields for cId & aId for connectors
+			document.getElementById('tfa_445').value = cId;
+			document.getElementById('tfa_442').value = aId;
+		}
+		
+
+  	// check if FA found a single SF Contact
+  	// and was able to populate the fullName field
+  	// if cId and fullName both exist, simulate a click on the
+  	// hidden button to trigger the modal opening
+  	if (cId && aId && fullName) {
+  		document.getElementById("hiddenButton").click();
+  	}
+
+  	// append link to linkInfo display div
+  	const linkInfo = document.getElementById('tfa_331');
+  	const linkHtml = `<button type="reset" class="custom-link-text js-modal-close">${spanish ? 'No soy' : "I'm not"} ${fullName}</button>`;
+
+  	linkInfo.addEventListener('click', function() {
+  		window.location.href = window.location.origin + window.location.pathname; // strip query params
+  	})
+
+  	linkInfo.innerHTML += linkHtml;
+
+  });
+
+</script>
+
+<!-- PREFILL MODAL STYLE -->
+
+<style>
+
+	#modal-title {
+		font-size: 1.5em !important;
+	}
+	/*	fullname display */
+	#tfa_330 {
+			border: 0;
+			font-size: 1.2em;
+			font-weight: bold;
+			background: transparent;
+			text-align: center;
+			margin: auto;
+			padding: 10px 0;
+		}
+
+	/*	add spacing between elements in modal */
+		#tfa_331-HTML {
+			margin: 10px 0 30px 0;
+		}
+		/*	'If this is not you, do not complete this form' */
+		#tfa_330-DA span {
+			font-size: 16px !important;
+		}
+
+		dialog {
+		  display: block;
+		  border: 0;
+		}
+		/* screenreader only style */
+		.invisible {
+			position: absolute;
+	    top: -1000px;
+	    left: -1000px;
+	    height: 1px;
+	    width: 1px;
+	    text-align: left;
+	    overflow: hidden;
+		}
+		/* removes scroll when modal is opened */
+		.no-scroll {
+		  overflow: hidden;
+		}
+		/* overlay covers everything */
+		.simple-modal-overlay,
+		.simple-animated-modal-overlay {
+		  position: fixed;
+		  top: 0;
+		  bottom: 0;
+		  right: 0;
+		  left: 0;
+		  background: #fff;
+		  opacity: .8;
+		  z-index: 666;
+		  cursor: pointer;
+		}
+		.simple-modal-overlay[data-background-click="disabled"],
+		.simple-animated-modal-overlay[data-background-click="disabled"] {
+		  cursor: auto;
+		}
+		.simple-animated-modal-overlay  {
+		  /*animation: fadewhite ease .5s 1 normal ;*/
+		}
+
+		@keyframes fadewhite {
+		  0% {
+		    opacity: 0;
+		  }
+		  100% {
+		    opacity: .8;
+		  }
+		}
+		/* modal */
+		.simple-modal,
+		.simple-animated-modal {
+			font-family: "Open Sans", sans-serif;
+		  position: fixed;
+		  left: 50%;
+	    transform: translate(-50%, 0);
+		  top: 5%;
+		  width: 70%;
+		  max-height: 98vh;
+		  border: 2px solid #fc9802;
+		  background: #f4f2c8;
+		  z-index: 667;
+		  padding: 2em 2em 6em 2em;
+		  right: auto;
+		  overflow: hidden;
+		}
+
+		.simple-animated-modal__content {
+			text-align: center;
+		}
+	/* "Yes, I'm (name)" button */
+		.simple-modal-close,
+		.simple-animated-modal-close,
+		.custom-link-text {
+		  position: relative;
+	    bottom: 10px;
+	    left: 50%;
+	    transform: translate(-50%, 0);
+	    margin: 1.6em auto .4em auto;
+	    background-color: #2f9d26;
+	    font-weight: normal;
+	    font-size: 1em;
+	    color: rgb(254, 254, 255);
+	    box-shadow: none;
+	    padding: 1em 2em;
+	    border-radius: 0.25em;
+	    border-width: initial;
+	    border-style: none;
+	    border-color: initial;
+	    border-image: initial;
+	    transition: all 0.25s linear 0s;
+	    cursor: pointer;
+		}
+		.simple-modal-close:focus,
+		.simple-modal-close:hover,
+		.simple-modal-close:active {
+		  outline: 1px dotted #fff;
+		}
+		.simple-animated-modal-close:hover,
+		.simple-animated-modal-close:active,
+		.simple-modal-close:hover,
+		.simple-modal-close:active {
+		  background-color: #44dc38;
+		}
+		/* "No, I'm not (name), get me a new link" button */
+		.custom-link-text {
+			position: static;
+			bottom: auto;
+			left: auto;
+			transform: none;
+			margin: auto;
+			background-color: #aa0627;
+			text-decoration: none;
+		}
+		.custom-link-text:hover,
+		.custom-link-text:focus {
+			background-color: #e00834;
+		}
+
+		.simple-animated-modal {
+		  /*animation: apparition ease .5s 1 normal ;*/
+		}
+
+		@keyframes apparition {
+		  0% {
+		    opacity: 0;
+		    max-height: 0;
+		    width: 0;
+		    left: 50%;
+		  }
+		  100% {
+		    opacity: 1;
+		    max-height: 100%;
+		    width: 70%;
+		    left: 15%;
+		  }
+		}
+
+		/* tablet */
+		@media (max-width: 55.625em) {
+
+		  .simple-modal,
+		  .simple-animated-modal {
+		    left: 50%;
+	    transform: translate(-50%, 0);
+		    top: 5%;
+		    height: 50vh;
+		    width: 90%;
+		    overflow: hidden;
+		  }
+
+		}
+
+		/* mobile */
+		@media (max-width: 44.375em) {
+
+		  .simple-modal,
+		  .simple-animated-modal {
+		    left: 50%;
+	    transform: translate(-50%, 0);
+		    top: 1%;
+		    width: 98%;
+		    height: 50vh;
+		    overflow: hidden;
+		  }
+
+		}
+</style>
