@@ -182,7 +182,8 @@
 		var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
 		var preferredLanguage = document.getElementById("tfa_91-L"); 
 		var employer = document.getElementById("tfa_22-L"); 
-		var employerType = document.getElementById("tfa_388-L");
+		var employerTypeLabel = document.getElementById('tfa_388-L');
+		var employerTypeInput = document.getElementById('tfa_388');
 		var address = document.getElementById("tfa_32-L"); 
 		var addressNote = document.getElementById("tfa_32-HH");
 		var city = document.getElementById("tfa_34-L"); 
@@ -238,7 +239,7 @@
 		const eNamePHC = document.getElementById('tfa_418');
 		const eNameRetire = document.getElementById('tfa_422');
 
-		const hiddenRequired = [ eNameState, eNameHiEd, eNameHCW, eNameNH, eNameLGov, eNamePNP, eNamePHC, eNameRetire, employerType ];
+		const hiddenRequired = [ eNameState, eNameHiEd, eNameHCW, eNameNH, eNameLGov, eNamePNP, eNamePHC, eNameRetire ];
 
 	  prefillFieldList.forEach(function(field) {
 
@@ -255,18 +256,69 @@
 	      let container;
 
 	      if (field.id === 'tfa_444') {
-	      	console.log('processing employer type field');
-	      	// if employer name prefill, hide the employer type container
-	      	container = document.getElementById("tfa_400");
-	      	document.getElementById("tfa_388").value = 'Placeholder';
-	      	hiddenRequired.forEach(field => field.removeAttribute('required'));
-	      } else {
-	      	container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;	      	
-	      }
+				  console.log('processing employer type field');
 
-	      if (container) {
-	        container.style.display = "none";
-	      }
+				  // 1. Hide the Employer Type container
+				  const employerTypeContainer = document.getElementById('tfa_400');
+				  if (employerTypeContainer) {
+				    employerTypeContainer.style.display = 'none';
+				  }
+
+				  // 2. Make Employer Type *not required* (but keep its existing value, if any)
+				  if (employerTypeInput) {
+				    employerTypeInput.required = false;
+				    employerTypeInput.removeAttribute('required');
+				    employerTypeInput.classList.remove('required');
+				    employerTypeInput.setAttribute('aria-required', 'false');
+				    employerTypeInput.disabled = true;
+				  }
+
+				  // mark Employer Type as "switched off" like other conditional fields
+					const switchedOffField = document.querySelector('input[name="tfa_switchedoff"]');
+					if (switchedOffField) {
+					  const parts = switchedOffField.value
+					    .split(',')
+					    .map(s => s.trim())
+					    .filter(Boolean);
+
+					  if (!parts.includes('tfa_388')) {
+					    parts.push('tfa_388');
+					    switchedOffField.value = parts.join(',');
+					  }
+					}
+
+
+				  // 3. Make all the conditional employer-name fields optional + inert
+				  hiddenRequired.forEach(f => {
+				    if (!f) return;
+
+				    f.required = false;
+				    f.removeAttribute('required');
+				    f.classList.remove('required');
+				    f.setAttribute('aria-required', 'false');
+
+				    // These should not participate in submit at all
+				    f.disabled = true;
+
+				    const c =
+				      f.closest('.oneField') ||
+				      f.closest('.field-container-D, .form-group, .question');
+				    if (c) {
+				      c.style.display = 'none';
+				    }
+				  });
+
+				  // No container for the prefilled field itself
+				  container = null;
+				} else {
+				  container =
+				    field.closest('.field-container-D, .form-group, .question') ||
+				    field.parentNode;
+				}
+
+				if (container) {
+				  container.style.display = 'none';
+				}
 
 	      
 	    } else {
@@ -289,7 +341,7 @@
 			stagingWarning.innerHTML = `<div style="background-color: rgb(255, 152, 0); padding: 20px;"><div><p style="display: inline;" id="testWarning" data-testid="testWarning">This form is for testing only. Membership data submitted through this form will not be processed. If you landed on the test page by mistake and want to become a member of SEIU Local 503, please click here:&nbsp;</p><strong><a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">seiu503signup.org</a></strong></div></div>`
 			prefillWarning1.innerText = 'This form is customized especially for'
 		  prefillWarning2.innerText = 'If this is not you, do not complete this form!'
-		  employerType.innerText = 'Employer Type';
+		  employerTypeLabel.innerText = 'Employer Type';
 			firstName.innerHTML = "First Name";
 			lastName.innerHTML = "Last Name";
 			birthDate.innerHTML = `Birth Date`;
@@ -333,7 +385,7 @@
 			stagingWarning.innerHTML = `<div style="background-color: rgb(255, 152, 0); padding: 20px;"><div><p style="display: inline;" id="testWarning" data-testid="testWarning">Este formulario es solo para fines de prueba. Los datos de membresía enviados a través de este formulario no se procesarán. Si llegó a la página de prueba por error y desea afiliarse a SEIU Local 503, haga clic aquí:&nbsp;</p><strong><a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">seiu503signup.org</a></strong></div></div>`
 			prefillWarning1.innerHTML = `<span style="font-size: 13.6px;">Este formulario está personalizado especialmente para</span>`
 		  prefillWarning2.innerHTML = `<span style="font-weight: 700; font-size: 13.6px;">¡Si no es usted, no complete este formulario!</span>`;
-		  employerType.innerText = 'Tipo de empleador';
+		  employerTypeLabel.innerText = 'Tipo de empleador';
 			firstName.innerHTML = "Primer nombre";
 			lastName.innerHTML = "Apellido";
 			birthDate.innerHTML = `Fecha de nacimiento`;
@@ -384,12 +436,50 @@
 		formEl.addEventListener('submit', function() {
 			console.log('submitclick');
 
+			// Let FormAssembly's validation run first. It also runs on submit.
+		  // Using setTimeout(0) makes our logging happen *after* it updates the DOM.
+		  setTimeout(() => {
+		    const errContainers = document.querySelectorAll('.oneField.errFld');
 
-			const elements = Array.from(formEl.elements);
+		    console.group('FormAssembly validation errors (.errFld)');
+		    errContainers.forEach(container => {
+		      const input = container.querySelector('input, select, textarea');
+		      const labelEl =
+		        container.querySelector('.label span') ||
+		        container.querySelector('.label') ||
+		        container.querySelector('label');
+		      const msgEl = container.querySelector('.errMsg');
+
+		      console.log({
+		        id: input && input.id,
+		        name: input && input.name,
+		        label: labelEl && labelEl.textContent.trim(),
+		        errorMessage: msgEl && msgEl.textContent.trim(),
+		        visible: container.offsetParent !== null,
+		        container
+		      });
+		    });
+		    console.groupEnd();
+		  }, 0);
+
+
+
+			const switchedOffValue = formEl.elements['tfa_switchedoff']?.value || '';
+		  const switchedOff = new Set(
+		    switchedOffValue
+		      .split(',')
+		      .map(s => s.trim())
+		      .filter(Boolean)
+		  );
+
+		  const elements = Array.from(formEl.elements);
 		  const missing = [];
 
 		  elements.forEach(el => {
-		    if (!el.name) return;
+			  if (!el.name) return;
+			  if (el.disabled) return; // skip disabled fields entirely
+			  if (switchedOff.has(el.name)) return; // skip FA-switched-off fields
+
 
 		    const isRequired =
 		      el.required ||
@@ -403,7 +493,9 @@
 		    switch (el.type) {
 		      case 'checkbox':
 		      case 'radio': {
-		        const group = form.querySelectorAll(`[name="${CSS.escape(el.name)}"]`);
+		        const group = formEl.querySelectorAll(
+		          `[name="${CSS.escape(el.name)}"]`
+		        );
 		        hasValue = Array.from(group).some(f => f.checked);
 		        break;
 		      }
@@ -419,19 +511,41 @@
 		    }
 		  });
 
-	  console.group('Missing “required” fields (custom check)');
-	  missing.forEach(el => {
-	    console.log({
-	      name: el.name,
-	      id: el.id,
-	      type: el.type,
-	      value: el.value,
-	      isHiddenType: el.type === 'hidden',
-	      isVisiblyHidden: el.offsetParent === null,
-	      element: el
-	    });
-	  });
-	  console.groupEnd();
+		  console.group('Missing “required” fields (custom check, FA aware)');
+		  missing.forEach(el => {
+		    console.log({
+		      name: el.name,
+		      id: el.id,
+		      type: el.type,
+		      value: el.value,
+		      isHiddenType: el.type === 'hidden',
+		      isVisiblyHidden: el.offsetParent === null,
+		      element: el
+		    });
+		  });
+		  console.groupEnd();
+		
+
+		  const fd = new FormData(formEl);
+
+		  console.group('FormData entries');
+		  for (const [key, value] of fd.entries()) {
+		    console.log(key, '=>', value);
+		  }
+		  console.groupEnd();
+
+		  // Also log named fields that *aren't* in FormData at all
+		  const allNamed = Array.from(formEl.elements).filter(el => el.name);
+		  allNamed.forEach(el => {
+		    if (!fd.has(el.name)) {
+		      console.warn('Not present in FormData:', {
+		        name: el.name,
+		        id: el.id,
+		        type: el.type,
+		        element: el
+		      });
+		    }
+		  });
 
 			function replaceTextInDOM(searchText, replaceText) {
 				console.log('replaceText')
@@ -454,8 +568,8 @@
 			}
 
 		})
-
 	});
+
 </script>
 
 
@@ -607,11 +721,18 @@
   	var urlParams = new URLSearchParams(window.location.search);
 		var cId = urlParams.get('cId');
 		var aId = urlParams.get('aId');
+		var src = urlParams.get('src');
 
 		if (cId && aId) {
 			// set tfa fields for cId & aId for connectors
 			document.getElementById('tfa_445').value = cId;
 			document.getElementById('tfa_442').value = aId;
+		}
+
+		if (src) {
+			document.getElementById('tfa_446').value = src;
+		} else {
+			document.getElementById('tfa_446').value = 'Direct seiu503signup FA';
 		}
 		
 
