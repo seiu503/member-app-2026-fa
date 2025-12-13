@@ -1,5 +1,5 @@
 -- Generic query
-SELECT Name, Id
+SELECT Name, Id, Agency_Number__c
 FROM Account
 WHERE RecordTypeId = '01261000000ksTuAAI'
   AND Division__c IN ('Retirees', 'Public', 'Care Provider', 'Private Facilities')
@@ -71,3 +71,6 @@ ORDER BY AccountNameForOMA__c
 -- AID_StateHomecare tfa_401
 -- AID_PrivateHomecare tfa_438
 -- AID_Retirees tfa_440
+
+
+-- field mapping (in employer field 'choices' setup): https://www.dropbox.com/scl/fi/g85lkbo219r3x5nrqxe3c/Screenshot-2025-12-11-at-1.11.42-PM.png?rlkey=u2gx9dh6rtzoknpr2h2zsd01n&dl=0

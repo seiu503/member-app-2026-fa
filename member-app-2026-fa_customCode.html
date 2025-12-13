@@ -163,7 +163,7 @@
 
 	window.addEventListener("load", function() {
 
-			// Extract the value of the language the browser is set to:
+		// Extract the value of the language the browser is set to:
 		const getLang = navigator.language;
 		console.log("getLang = ", getLang);
 		//
@@ -245,7 +245,7 @@
 
 	    // Determine if the field was prefilled (i.e., has an initial value)
 	    const wasPrefilled = field.value && field.value.trim() !== "";
-	    console.log(`field.title: ${field.title}, field.id: ${field.id}`);
+	    // console.log(`field.title: ${field.title}, field.id: ${field.id}`);
 
 	    if (wasPrefilled) {
 	    	console.log(field.title, `wasPrefilled`);
@@ -326,6 +326,59 @@
 	      field.dataset.prefilled = "false";
 	    }
 	  });
+
+
+	  // set AID and Agency number on Employer change
+	  const employerNameFieldIDs = ['tfa_393', 'tfa_407', 'tfa_408', 'tfa_409', 'tfa_410', 'tfa_414', 'tfa_418', 'tfa_422'];
+	  const aIdFieldIDs = ['tfa_430', 'tfa_436', 'tfa_432', 'tfa_434', 'tfa_427', 'tfa_401', 'tfa_438', 'tfa_440'];
+	  const agencyNumberFieldIDs = ['tfa_449', 'tfa_451', 'tfa_453', 'tfa_455', 'tfa_457', 'tfa_459', 'tfa_461', 'tfa_463'];
+
+	  const employerNameFields = employerNameFieldIDs.map(id => document.getElementById(id));
+	  const aIdFields = aIdFieldIDs.map(id => document.getElementById(id));
+	  const agencyNumberFields = agencyNumberFieldIDs.map(id => document.getElementById(id));
+
+	  const aIdPrefillCalc = document.getElementById('tfa_442');
+	  const agencyNumberPrefillCalc = document.getElementById('tfa_126');
+
+	  employerTypeInput.addEventListener('blur', function() {
+	  	// when employer type is set / loses focus, check which employer field is visible
+	  	// then add an onChange listener to it
+
+	  	employerNameFields.forEach(field => {
+	  		if (!field) { return } 
+	  		// console.log(`found ${field.title}`);
+		  	// console.log('employerNameField loop');
+
+		  	field.addEventListener('blur', function() {
+		  		// loop through all agencyNumberFields to see if any are populated, and copy that value to the calc field
+		  		console.log(`onBlur`, field.id, field.title);
+		  		agencyNumberFields.forEach(anField => {
+		  			if (anField.value) {
+		  				console.log(anField.title, anField.id, anField.value);
+		  				agencyNumberPrefillCalc.value = anField.value;
+		  				console.log('agencyNumberPrefillCalc.value', agencyNumberPrefillCalc.value);
+		  			}
+		  		});
+
+		  		// loop through all aIdFields to see if any are populated, and copy that value to the calc field
+		  		aIdFields.forEach(aIdField => {
+		  			if (aIdField.value) {
+		  				console.log(aIdField.title, aIdField.id, aIdField.value);
+		  				aIdPrefillCalc.value = aIdField.value;
+		  				console.log('aIdPrefillCalc.value', aIdPrefillCalc.value);
+		  			}
+		  		});
+
+		  		// copy the employer name value to the calc field
+		  		employerNamePrefill.value = field.value;
+		  		console.log(`setting employerNameCalc to ${field.value}`);
+
+		  	})
+		  });
+
+	  })
+
+	  
 
 
 
@@ -431,13 +484,25 @@
 		// textInput_04.innerHTML = "Company ** unknown ** Test";
 		};
 
+		// set legal language (this block should run AFTER translation blocks)
+		const membershipCheckbox = document.getElementById("tfa_116");
+		const duesAuthCheckbox = document.getElementById("tfa_380");
+		const membershipAuthLanguage = membershipAuthLL.value;
+		const duesAuthLanguage = duesAuthLL.value;
+
+		membershipCheckbox.addEventListener('blur', function() {
+			const combinedLegalLanguage = `**Membership Authorization: ${membershipAuthLanguage} • **Dues Authorization: ${duesAuthLanguage}`
+			combinedLL.value = combinedLegalLanguage;
+
+		});
+
 
 		// replace error message text
 		formEl.addEventListener('submit', function() {
 			console.log('submitclick');
 
 			// Let FormAssembly's validation run first. It also runs on submit.
-		  // Using setTimeout(0) makes our logging happen *after* it updates the DOM.
+		  // Using setTimeout(0) makes this logging happen *after* it updates the DOM.
 		  setTimeout(() => {
 		    const errContainers = document.querySelectorAll('.oneField.errFld');
 
@@ -526,26 +591,26 @@
 		  console.groupEnd();
 		
 
-		  const fd = new FormData(formEl);
+		  // const fd = new FormData(formEl);
 
-		  console.group('FormData entries');
-		  for (const [key, value] of fd.entries()) {
-		    console.log(key, '=>', value);
-		  }
-		  console.groupEnd();
+		  // console.group('FormData entries');
+		  // for (const [key, value] of fd.entries()) {
+		  //   console.log(key, '=>', value);
+		  // }
+		  // console.groupEnd();
 
-		  // Also log named fields that *aren't* in FormData at all
-		  const allNamed = Array.from(formEl.elements).filter(el => el.name);
-		  allNamed.forEach(el => {
-		    if (!fd.has(el.name)) {
-		      console.warn('Not present in FormData:', {
-		        name: el.name,
-		        id: el.id,
-		        type: el.type,
-		        element: el
-		      });
-		    }
-		  });
+		  // // Also log named fields that *aren't* in FormData at all
+		  // const allNamed = Array.from(formEl.elements).filter(el => el.name);
+		  // allNamed.forEach(el => {
+		  //   if (!fd.has(el.name)) {
+		  //     console.warn('Not present in FormData:', {
+		  //       name: el.name,
+		  //       id: el.id,
+		  //       type: el.type,
+		  //       element: el
+		  //     });
+		  //   }
+		  // });
 
 			function replaceTextInDOM(searchText, replaceText) {
 				console.log('replaceText')
@@ -697,6 +762,12 @@
   document.addEventListener("DOMContentLoaded", function(){
 
   	console.log('dom loaded prefillModal');
+
+  	// insert required wrapper ID into DOM
+  	var body = document.querySelector('body');
+  	body.insertAdjacentHTML('afterBegin',`<div id="js-modal-page">`);
+  	body.insertAdjacentHTML('beforeEnd', '</div>');
+  	 
 
   	var fullName = document.getElementById('tfa_330').value.substring(0,40);
 
