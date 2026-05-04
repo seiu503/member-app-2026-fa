@@ -286,7 +286,7 @@ export function initEmployerType({
 
   translateEmployerTypeSuggestions();
 
-  initDynamicTypeaheadTranslation(employerTypeInput, normalizeEmployerTypeTranslations());
+  // initDynamicTypeaheadTranslation(employerTypeInput, normalizeEmployerTypeTranslations());
 
 	employerNameFields.forEach(field => {
 	  initDynamicTypeaheadTranslation(field, employerNameTranslations);
@@ -307,25 +307,25 @@ export function initEmployerType({
 
 	if (formEl) {
 	  formEl.addEventListener("submit", function () {
-	    restoreEnglishBeforeSubmit(
-	      employerTypeInput,
-	      normalizeEmployerTypeTranslations()
-	    );
+	    // restoreEnglishBeforeSubmit(
+	    //   employerTypeInput,
+	    //   normalizeEmployerTypeTranslations()
+	    // );
 
 	    employerNameFields.forEach(field => {
 	      restoreEnglishBeforeSubmit(field, employerNameTranslations);
 	    });
 
-	    setTimeout(() => {
-	      setTranslatedInputDisplay(
-	        employerTypeInput,
-	        normalizeEmployerTypeTranslations()
-	      );
+	    // setTimeout(() => {
+	    //   // setTranslatedInputDisplay(
+	    //   //   employerTypeInput,
+	    //   //   normalizeEmployerTypeTranslations()
+	    //   // );
 
-	      employerNameFields.forEach(field => {
-	        setTranslatedInputDisplay(field, employerNameTranslations);
-	      });
-	    }, 100);
+	    //   employerNameFields.forEach(field => {
+	    //     setTranslatedInputDisplay(field, employerNameTranslations);
+	    //   });
+	    // }, 100);
 	  }, true);
 	}
 
@@ -409,30 +409,21 @@ export function initEmployerType({
 	}
 
 	function initDynamicTypeaheadTranslation(input, translationMap) {
-	  if (!input) return;
+	  if (!input || !translationMap) return;
 
-	  input.addEventListener("focus", () => {
-	    setTimeout(() => translateAndSortTypeahead(input, translationMap), 100);
-	  });
+	  function runTranslation() {
+	    setTimeout(() => {
+	      translateAndSortTypeahead(input, translationMap);
+	    }, 0);
+	  }
 
-	  input.addEventListener("input", () => {
-	    setTimeout(() => translateAndSortTypeahead(input, translationMap), 0);
-	  });
-
-	  input.addEventListener("change", () => {
-	    setTranslatedInputDisplay(input, translationMap);
-	  });
-
-	  input.addEventListener("blur", () => {
-	    setTranslatedInputDisplay(input, translationMap);
-	  });
+	  input.addEventListener("focus", runTranslation);
+	  input.addEventListener("input", runTranslation);
 
 	  const listbox = document.getElementById(`${input.id}_listbox`);
 
 	  if (listbox) {
-	    const observer = new MutationObserver(() => {
-	      setTimeout(() => translateAndSortTypeahead(input, translationMap), 0);
-	    });
+	    const observer = new MutationObserver(runTranslation);
 
 	    observer.observe(listbox, {
 	      childList: true,
