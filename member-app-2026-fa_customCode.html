@@ -1,176 +1,113 @@
-<!-- MAIN FORM STYLES -->
-
-<style>
-
-	/* Form title */
-  .wFormContainer .wForm .wFormTitle {
-    color: #2C0940 !important;
-    background-color: white;
-  } 
-
-  h2.gform_title {
-    margin: auto;
-    text-align: center;
-    width: 100%;
-    font-size: 2em;
-    font-family: Roboto Slab !important;
-  }
-
-  /* Address */
-  #tfa_32-L {
-    text-align: left;
-  }
-
-  /* DOB section header */
-  #tfa_134-L { 
-  	font-family: Roboto !important;
-   }
-
-
-   /* 2-col fields */
-   /* First name 1-D
-   		Last name 2-D
-   		Email 3-D
-			Phone 4-D
-
-   		*/
-  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D {
-        width: 49% !important
-    }
-
-  #tfa_134 { /* birth date / language group */
-  	margin-top: -12px;
-  }  
-
-  #tfa_134-L { /* birth date label */
-  	position: relative;
-	  top: 14px;
-	  font-family: Roboto !important;
-  }  
-
-  #tfa_91-D { /* preferred language */
-  	margin-top: -9px;
-  	width: 100% !important;
-  }  
-
-  #tfa_32, #tfa_32-D {
-    width: 98.5% !important; /* address */
-  }
-
-	/* city, state, zip */
-	/*
-	  #tfa_34-D, #tfa_35-D, #tfa_39-D {
-	  	width: 100% !important; 
-	  }
-	  */
-
-	  #tfa_90 {
-	    width: 98.5%;
-	  display: flex;
-	  justify-content: space-between;
-	  }
-
-	  /* Authorization checkbox labels (legal language) */
-	  #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
-	    font-size: 13.6px !important;
-	    color: rgb(68, 68, 68) !important;
-	    line-height: normal;
-	  }
-
-	  /* Authorization checkboxes */
-	  #tfa_379-L:before,
-	  #tfa_380-L:before,
-	  #tfa_382-L:before {
-	    margin-right: 6px;
-	    width: 14px;
-	    height: 14px;
-	    top: -2px;
-	  }
-
-	  #tfa_379-L:after,
-	  #tfa_380-L:after,
-	  #tfa_382-L:after {
-	    left: 3px;
-	    top: 6px;
-	  }
-
-	  /* checkbox backgrounds checked */
-	  .wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
-	    background: #531078;
-	  }
-	  
-
-	    #tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
-	    #tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
-	    #tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
-	        display: block !important;
-	    }
-
-	  @media only screen and (max-width: 600px)  {
-	    #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-	    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
-	    #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
-	        width: 100% !important
-	    }
-
-	    #tfa_90 {
-	      display: block;
-	      width: 100%;
-	    }
-	  }
-	  
-
-		.wFormContainer .actions .primaryAction, #primaryAction {
-		 background-color: #531078 !important;
-		}
-
-		  #791-A:hover {
-		    background-color: #531078 !important;
-		  }
-
-		  form#801 {
-		    @media only screen and (max-width: 480px)  {
-		    .wFormContainer .wForm form {
-		      padding: 0 important;
-		    }
-		  }
-
-
-
-
-   /* ?? unused ?? */
-		  #tfa_17-HTML {
-		    text-align: center;
-		  }
-
-		  #tfa_105-L {
-		    text-wrap: wrap;
-		    text-align: left;
-		    max-width: 90%;
-		    font-size: 1em;
-		  line-height: 1.3em;
-		  padding-left: 0;
-		  }
-
-
-</style>
-
-
 <!-- LOCALIZATION AND MAIN FORM SCRIPT -->
 <script type="text/javascript">
 	//
 
 	window.addEventListener("load", function() {
 
-		// Extract the value of the language the browser is set to:
-		const getLang = navigator.language;
-		console.log("getLang = ", getLang);
-		//
+		const formEl = document.querySelector("form");
+
+		// parse query params from url
+
+		function getParam(name, url) {
+		  name = name.replace(/[[\]]/g, "\\$&");
+		  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+		  const results = regex.exec(url);
+		  if (!results) return null;
+		  if (!results[2]) return "";
+		  return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		// check if language is set in a passed query param
+
+		const lCode = getParam("lang", window.location.href);
+
+		// If not, extract the value of the language the browser is set to:
+
+		let getLang = (lCode || navigator.language || "en").split("-")[0];
+
+		console.log("getLang =", getLang);
+
+		document.documentElement.lang = getLang;
+		document.querySelector('.wForm')?.setAttribute('data-language', getLang);
+
+		// ADD LANGUAGE PICKER TO DOM
+
+		// Define language map
+	    const languageMap = {
+        "English": "en",
+        "Español": "es",
+        "Русский": "ru",
+        "Tiếng Việt": "vi",
+        "简体中文": "zh",
+        "عربي": "ar",
+        "Af Soomaaliga": "so"
+    	};
+
+    	const supportedLangs = Object.values(languageMap);
+
+			if (!supportedLangs.includes(getLang)) {
+			  getLang = "en"; // fallback
+			}
+
+	    // Find the target element
+	    const header = document.querySelector(".wFormHeader");
+	    if (!header) return; // exit if header not found
+
+	    // Create wrapper
+	    const pickerWrap = document.createElement("div");
+	    pickerWrap.className = "pickerWrap";
+
+	    // Create select element
+	    const select = document.createElement("select");
+	    select.id = "languagePicker";
+	    select.className = "languagePicker";
+
+	    // Create globe icon
+	    const globeSVG = document.createElement("span");
+			globeSVG.innerHTML = `
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#f1eee9" stroke-width="2" viewBox="0 0 24 24">
+			  <circle cx="12" cy="12" r="10"/>
+			  <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+			</svg>`;
+			globeSVG.className = "globeSVG";
+			
+
+	    // Append icon and select to wrapper
+	    pickerWrap.appendChild(globeSVG);
+	    pickerWrap.appendChild(select);
+
+	    // Add options
+	    Object.keys(languageMap).forEach(langName => {
+        const option = document.createElement("option");
+        option.value = languageMap[langName];
+        option.textContent = langName;
+        select.appendChild(option);
+	    });
+
+	    // Set current selection
+	    if (getLang) {
+        select.value = getLang;
+	    }
+
+	    // Handle selection change
+	    select.addEventListener("change", function() {
+        const newLang = select.value;
+        const currentUrl = new URL(window.location.href);
+
+        // Update or set the lang param
+        currentUrl.searchParams.set("lang", newLang);
+
+        // Reload page with new lang
+        window.location.href = currentUrl.toString();
+	    });
+
+	    // Insert picker after header
+	    header.parentNode.insertBefore(pickerWrap, header.nextSibling);
+
+
+		// ************ ELEMENT DEFINITIONS ************ //
 		var valueFormTitle = document.getElementsByClassName("gform_title")[0];
 		var valueSubmitButton = document.querySelector("#submit_button");
-		//
-		var formEl = document.getElementById("810");
 		var stagingWarning = document.getElementById("tfa_387-HTML");
 		var prefillWarning1 = document.getElementById("tfa_330-DB"); // span inside this is 'This form is customized especially for'
 		var prefillWarning2 = document.getElementById("tfa_330-DA"); // span inside this is 'If this is not you, do not complete this form!'
@@ -241,6 +178,237 @@
 
 		const hiddenRequired = [ eNameState, eNameHiEd, eNameHCW, eNameNH, eNameLGov, eNamePNP, eNamePHC, eNameRetire ];
 
+		// ************ HELPERS ************ //
+
+		function clearEmployerNameFields(fields) {
+		  fields.forEach(field => {
+		    if (!field) return;
+		    const container = field.closest('.oneField');
+		    if (!container) return;
+
+		    container.style.display = 'none';
+		    field.required = false;
+		    field.classList.remove('required');
+		    field.setAttribute('aria-required', 'false');
+		    field.value = '';
+		    field.dispatchEvent(new Event('input', { bubbles: true }));
+		    field.dispatchEvent(new Event('change', { bubbles: true }));
+		  });
+		}
+
+
+		// Function to show/hide employerName fields based on current employerType
+		function updateEmployerNameFields() {
+		  const englishValue =
+		    employerTypeEnglishValue ||
+		    employerTypeInput.dataset.englishValue ||
+		    getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+
+		  console.log("Employer Type English value:", englishValue);
+
+		  hiddenRequired.forEach(f => {
+		    if (!f) return;
+		    const container = f.closest(".oneField");
+		    if (container) container.style.display = "none";
+		    f.disabled = true;
+		  });
+
+		  let toShow = null;
+
+		  switch (englishValue) {
+		    case "State Agency":
+		      toShow = eNameState;
+		      break;
+
+		    case "Higher Education":
+		      toShow = eNameHiEd;
+		      break;
+
+		    case "Homecare or Personal Support Worker":
+		    case "State Homecare or Personal Support":
+		      toShow = eNameHCW;
+		      break;
+
+		    case "Nursing Home":
+		      toShow = eNameNH;
+		      break;
+
+		    case "Local Government (City, County, School District)":
+		      toShow = eNameLGov;
+		      break;
+
+		    case "Non-Profit":
+		      toShow = eNamePNP;
+		      break;
+
+		    case "Private Homecare Agency":
+		      toShow = eNamePHC;
+		      break;
+		  }
+
+		  if (toShow) {
+		    const container = toShow.closest(".oneField");
+		    if (container) container.style.display = "";
+		    toShow.disabled = false;
+		  }
+		}
+
+
+		const employerTypeTranslations = {
+		  es: {
+		    "Homecare or Personal Support Worker": "Trabajador de atención domiciliaria o de apoyo personal",
+		    "Local Government (City, County, School District)": "Gobierno local (Ciudad, Condado, Distrito Escolar)",
+		    "Nursing Home": "Hogar de ancianos",
+		    "Higher Education": "Educación superior",
+		    "Non-Profit": "Organización sin fines de lucro",
+		    "State Agency": "Agencia estatal",
+		    "Private Homecare Agency": "Agencia de atención domiciliaria privada",
+		    "State Homecare or Personal Support": "Trabajador de atención domiciliaria o de apoyo personal del estado"
+		  },
+		  ru: {
+		    "Homecare or Personal Support Worker": "Работник надомного или индивидуального обслуживания",
+		    "Local Government (City, County, School District)": "Местные органы власти",
+		    "Nursing Home": "Дома престарелых с медсестринским уходом",
+		    "Higher Education": "Высшее образование",
+		    "Non-Profit": "Некоммерческая организация",
+		    "State Agency": "Служба штата",
+		    "Private Homecare Agency": "Частное агентство по уходу на дому",
+		    "State Homecare or Personal Support": "Государственный уход на дому или личная поддержка"
+		  },
+		  vi: {
+		    "Homecare or Personal Support Worker": "Nhân viên chăm sóc tại gia hay nhân viên hỗ trợ cá nhân",
+		    "Local Government (City, County, School District)": "Chính quyền địa phương",
+		    "Nursing Home": "Viện an dưỡng",
+		    "Higher Education": "Giáo dục đại học",
+		    "Non-Profit": "Tổ chức phi lợi nhuận",
+		    "State Agency": "Cơ quan chính phủ tiểu bang",
+		    "Private Homecare Agency": "Đại lý tư nhân tại nhà",
+		    "State Homecare or Personal Support": "Chăm sóc tại nhà hoặc hỗ trợ cá nhân của tiểu bang"
+		  },
+		  zh: {
+		    "Homecare or Personal Support Worker": "居家护理或私人护理工作者",
+		    "Local Government (City, County, School District)": "当地政府",
+		    "Nursing Home": "疗养院",
+		    "Higher Education": "高等教育",
+		    "Non-Profit": "非营利",
+		    "State Agency": "州立机构",
+		    "Private Homecare Agency": "私人家庭护理机构",
+		    "State Homecare or Personal Support": "国家家庭护理或个人支持"
+		  },
+		  ar: {
+		    "Homecare or Personal Support Worker": "عامل رعاية منزلية أو دعم شخصي",
+		    "Local Government (City, County, School District)": "حكومة محلية (مدينة، مقاطعة، منطقة تعليمية)",
+		    "Nursing Home": "دار رعاية المسنين",
+		    "Higher Education": "التعليم العالي",
+		    "Non-Profit": "منظمة غير ربحية",
+		    "State Agency": "وكالة حكومية تابعة للولاية",
+		    "Private Homecare Agency": "وكالة رعاية منزلية خاصة",
+		    "State Homecare or Personal Support": "رعاية منزلية أو دعم شخصي تابع للولاية"
+		  },
+		  so: {
+		    "Homecare or Personal Support Worker": "Shaqaale daryeel guri ama taageero shaqsiyeed",
+		    "Local Government (City, County, School District)": "Dowladda hoose (Magaalo, Degmo, Degmo Dugsiyeed)",
+		    "Nursing Home": "Guriga daryeelka dadka waayeelka ah",
+		    "Higher Education": "Waxbarashada sare",
+		    "Non-Profit": "Urur aan macaash doon ahayn",
+		    "State Agency": "Hay’ad goboleed",
+		    "Private Homecare Agency": "Hay’ad gaar loo leeyahay oo daryeel guri bixisa",
+		    "State Homecare or Personal Support": "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
+		  }
+		};
+
+		let employerTypeEnglishValue = "";
+
+		function getEmployerTypeTranslation(englishValue) {
+		  const lang = document.documentElement.lang || "en";
+		  return employerTypeTranslations[lang]?.[englishValue] || englishValue;
+		}
+
+		function getEmployerTypeEnglishFromDisplayed(displayedValue) {
+		  const clean = displayedValue.trim();
+
+		  // Already English
+		  if (Object.values(employerTypeTranslations).some(langMap => clean in langMap)) {
+		    return clean;
+		  }
+
+		  // Reverse lookup translated value → English value
+		  for (const langMap of Object.values(employerTypeTranslations)) {
+		    for (const [english, translated] of Object.entries(langMap)) {
+		      if (translated === clean) return english;
+		    }
+		  }
+
+		  return clean;
+		}
+
+		function setEmployerTypeDisplay(englishValue) {
+		  if (!employerTypeInput || !englishValue) return;
+
+		  employerTypeEnglishValue = englishValue;
+		  employerTypeInput.dataset.englishValue = englishValue;
+		  employerTypeInput.value = getEmployerTypeTranslation(englishValue);
+		}
+
+		function translateEmployerTypeSuggestions() {
+		  const lang = document.documentElement.lang || "en";
+		  const translations = employerTypeTranslations[lang];
+		  if (!translations) return;
+
+		  const listbox = document.getElementById("tfa_388_listbox");
+		  if (!listbox) return;
+
+		  listbox.querySelectorAll(".tt-suggestion").forEach(option => {
+		    const englishValue =
+		      option.getAttribute("data-english-value") ||
+		      option.textContent.trim();
+
+		    option.setAttribute("data-english-value", englishValue);
+
+		    const translatedValue = translations[englishValue];
+
+		    if (translatedValue && option.textContent.trim() !== translatedValue) {
+		      option.textContent = translatedValue;
+		    }
+		  });
+		}
+
+		function handleEmployerTypeChange() {
+		  updateEmployerNameFields();
+		  setTimeout(translateEmployerTypeSuggestions, 0);
+		}
+
+		const textInput = employerTypeInput;
+
+		if (textInput) {
+		  textInput.addEventListener("input", handleEmployerTypeChange);
+		  textInput.addEventListener("change", handleEmployerTypeChange);
+		  textInput.addEventListener("typeahead:select", handleEmployerTypeChange);
+		  textInput.addEventListener("focus", () => {
+		    setTimeout(translateEmployerTypeSuggestions, 100);
+		  });
+		}
+
+		const employerTypeListbox = document.getElementById("tfa_388_listbox");
+
+		if (employerTypeListbox) {
+		  const observer = new MutationObserver(() => {
+		    setTimeout(translateEmployerTypeSuggestions, 0);
+		  });
+
+		  observer.observe(employerTypeListbox, {
+		    childList: true,
+		    subtree: true
+		  });
+		}
+
+		// Initial run
+		translateEmployerTypeSuggestions();
+		updateEmployerNameFields();
+
+
+
+		// ************ PREFILL LOGIC ************ //
 	  prefillFieldList.forEach(function(field) {
 
 	    // Determine if the field was prefilled (i.e., has an initial value)
@@ -340,43 +508,95 @@
 	  const aIdPrefillCalc = document.getElementById('tfa_442');
 	  const agencyNumberPrefillCalc = document.getElementById('tfa_126');
 
-	  employerTypeInput.addEventListener('blur', function() {
-	  	// when employer type is set / loses focus, check which employer field is visible
-	  	// then add an onChange listener to it
 
-	  	employerNameFields.forEach(field => {
-	  		if (!field) { return } 
-	  		// console.log(`found ${field.title}`);
-		  	// console.log('employerNameField loop');
+	  // ************ Clear employer type field on click of 'x' svg ************ //
+	  document.addEventListener('click', function (e) {
+	  	console.log('click');
 
-		  	field.addEventListener('blur', function() {
-		  		// loop through all agencyNumberFields to see if any are populated, and copy that value to the calc field
-		  		console.log(`onBlur`, field.id, field.title);
-		  		agencyNumberFields.forEach(anField => {
-		  			if (anField.value) {
-		  				console.log(anField.title, anField.id, anField.value);
-		  				agencyNumberPrefillCalc.value = anField.value;
-		  				console.log('agencyNumberPrefillCalc.value', agencyNumberPrefillCalc.value);
-		  			}
-		  		});
+	    const clearIcon = e.target.closest('.tt-clear');
+	    if (!clearIcon) return;
 
-		  		// loop through all aIdFields to see if any are populated, and copy that value to the calc field
-		  		aIdFields.forEach(aIdField => {
-		  			if (aIdField.value) {
-		  				console.log(aIdField.title, aIdField.id, aIdField.value);
-		  				aIdPrefillCalc.value = aIdField.value;
-		  				console.log('aIdPrefillCalc.value', aIdPrefillCalc.value);
-		  			}
-		  		});
+	    console.log('clear clicked');
 
-		  		// copy the employer name value to the calc field
-		  		employerNamePrefill.value = field.value;
-		  		console.log(`setting employerNameCalc to ${field.value}`);
+	    e.preventDefault();
+	    e.stopPropagation();
 
-		  	})
+	    // Find the containing FA field wrapper
+	    const fieldWrapper = clearIcon.closest('.inputWrapper');
+	    console.log('fieldWrapper', fieldWrapper);
+	    if (!fieldWrapper) return;
+
+	    // Visible text input (Typeahead input)
+	    const textInput = fieldWrapper.querySelector('input:not(.tt-hint)[type="text"]');
+	    console.log('textInput', textInput);
+
+	    // // Hidden Salesforce ID input (very important)
+	    // const hiddenInput = fieldWrapper.querySelector(
+	    //   'input[type="hidden"][name$="__c"], input[type="hidden"][name$="Id"]'
+	    // );
+
+	    if (textInput) {
+	      textInput.value = '';
+	      textInput.dispatchEvent(new Event('input', { bubbles: true }));
+	      textInput.dispatchEvent(new Event('change', { bubbles: true }));
+	    }
+
+	    // if (hiddenInput) {
+	    //   hiddenInput.value = '';
+	    //   hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+	    // }
+
+	    clearEmployerNameFields(hiddenRequired);
+
+	  }, true);
+
+
+	  if (employerTypeInput) {
+		  employerTypeInput.addEventListener("input", function () {
+		    const englishValue = getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+		    employerTypeEnglishValue = englishValue;
+		    employerTypeInput.dataset.englishValue = englishValue;
+
+		    updateEmployerNameFields();
+
+		    setTimeout(() => {
+		      setEmployerTypeDisplay(englishValue);
+		      translateEmployerTypeSuggestions();
+		    }, 0);
 		  });
 
-	  })
+		  employerTypeInput.addEventListener("change", function () {
+		    const englishValue = getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+		    setEmployerTypeDisplay(englishValue);
+		    updateEmployerNameFields();
+		  });
+
+		  employerTypeInput.addEventListener("blur", function () {
+		    const englishValue = getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+		    setEmployerTypeDisplay(englishValue);
+		    updateEmployerNameFields();
+		  });
+
+		  employerTypeInput.addEventListener("focus", function () {
+		    setTimeout(translateEmployerTypeSuggestions, 100);
+		  });
+		}
+
+		formEl.addEventListener("submit", function () {
+		  const englishValue =
+		    employerTypeEnglishValue ||
+		    employerTypeInput.dataset.englishValue ||
+		    getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+
+		  if (englishValue) {
+		    employerTypeInput.value = englishValue;
+		  }
+
+		  // If validation fails and the page stays open, restore translated display
+		  setTimeout(() => {
+		    setEmployerTypeDisplay(englishValue);
+		  }, 100);
+		}, true);
 
 	  
 
@@ -828,197 +1048,3 @@
   });
 
 </script>
-
-<!-- PREFILL MODAL STYLE -->
-
-<style>
-
-	#modal-title {
-		font-size: 1.5em !important;
-	}
-	/*	fullname display */
-	#tfa_330 {
-			border: 0;
-			font-size: 1.2em;
-			font-weight: bold;
-			background: transparent;
-			text-align: center;
-			margin: auto;
-			padding: 10px 0;
-		}
-
-	/*	add spacing between elements in modal */
-		#tfa_331-HTML {
-			margin: 10px 0 30px 0;
-		}
-		/*	'If this is not you, do not complete this form' */
-		#tfa_330-DA span {
-			font-size: 16px !important;
-		}
-
-		dialog {
-		  display: block;
-		  border: 0;
-		}
-		/* screenreader only style */
-		.invisible {
-			position: absolute;
-	    top: -1000px;
-	    left: -1000px;
-	    height: 1px;
-	    width: 1px;
-	    text-align: left;
-	    overflow: hidden;
-		}
-		/* removes scroll when modal is opened */
-		.no-scroll {
-		  overflow: hidden;
-		}
-		/* overlay covers everything */
-		.simple-modal-overlay,
-		.simple-animated-modal-overlay {
-		  position: fixed;
-		  top: 0;
-		  bottom: 0;
-		  right: 0;
-		  left: 0;
-		  background: #fff;
-		  opacity: .8;
-		  z-index: 666;
-		  cursor: pointer;
-		}
-		.simple-modal-overlay[data-background-click="disabled"],
-		.simple-animated-modal-overlay[data-background-click="disabled"] {
-		  cursor: auto;
-		}
-		.simple-animated-modal-overlay  {
-		  /*animation: fadewhite ease .5s 1 normal ;*/
-		}
-
-		@keyframes fadewhite {
-		  0% {
-		    opacity: 0;
-		  }
-		  100% {
-		    opacity: .8;
-		  }
-		}
-		/* modal */
-		.simple-modal,
-		.simple-animated-modal {
-			font-family: "Open Sans", sans-serif;
-		  position: fixed;
-		  left: 50%;
-	    transform: translate(-50%, 0);
-		  top: 5%;
-		  width: 70%;
-		  max-height: 98vh;
-		  border: 2px solid #fc9802;
-		  background: #f4f2c8;
-		  z-index: 667;
-		  padding: 2em 2em 6em 2em;
-		  right: auto;
-		  overflow: hidden;
-		}
-
-		.simple-animated-modal__content {
-			text-align: center;
-		}
-	/* "Yes, I'm (name)" button */
-		.simple-modal-close,
-		.simple-animated-modal-close,
-		.custom-link-text {
-		  position: relative;
-	    bottom: 10px;
-	    left: 50%;
-	    transform: translate(-50%, 0);
-	    margin: 1.6em auto .4em auto;
-	    background-color: #2f9d26;
-	    font-weight: normal;
-	    font-size: 1em;
-	    color: rgb(254, 254, 255);
-	    box-shadow: none;
-	    padding: 1em 2em;
-	    border-radius: 0.25em;
-	    border-width: initial;
-	    border-style: none;
-	    border-color: initial;
-	    border-image: initial;
-	    transition: all 0.25s linear 0s;
-	    cursor: pointer;
-		}
-		.simple-modal-close:focus,
-		.simple-modal-close:hover,
-		.simple-modal-close:active {
-		  outline: 1px dotted #fff;
-		}
-		.simple-animated-modal-close:hover,
-		.simple-animated-modal-close:active,
-		.simple-modal-close:hover,
-		.simple-modal-close:active {
-		  background-color: #44dc38;
-		}
-		/* "No, I'm not (name), get me a new link" button */
-		.custom-link-text {
-			position: static;
-			bottom: auto;
-			left: auto;
-			transform: none;
-			margin: auto;
-			background-color: #aa0627;
-			text-decoration: none;
-		}
-		.custom-link-text:hover,
-		.custom-link-text:focus {
-			background-color: #e00834;
-		}
-
-		.simple-animated-modal {
-		  /*animation: apparition ease .5s 1 normal ;*/
-		}
-
-		@keyframes apparition {
-		  0% {
-		    opacity: 0;
-		    max-height: 0;
-		    width: 0;
-		    left: 50%;
-		  }
-		  100% {
-		    opacity: 1;
-		    max-height: 100%;
-		    width: 70%;
-		    left: 15%;
-		  }
-		}
-
-		/* tablet */
-		@media (max-width: 55.625em) {
-
-		  .simple-modal,
-		  .simple-animated-modal {
-		    left: 50%;
-	    transform: translate(-50%, 0);
-		    top: 5%;
-		    height: 50vh;
-		    width: 90%;
-		    overflow: hidden;
-		  }
-
-		}
-
-		/* mobile */
-		@media (max-width: 44.375em) {
-
-		  .simple-modal,
-		  .simple-animated-modal {
-		    left: 50%;
-	    transform: translate(-50%, 0);
-		    top: 1%;
-		    width: 98%;
-		    height: 50vh;
-		    overflow: hidden;
-		  }
-
-		}
-</style>
