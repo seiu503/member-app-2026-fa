@@ -26,16 +26,19 @@ function initPrefilledFields({
   const phoneF = document.getElementById("tfa_4");
   const employerNamePrefill = document.getElementById("tfa_444");
 
-  const prefillFieldList = [
-    preferredLanguageF,
-    addressF,
-    cityF,
-    stateF,
-    zipF,
-    emailF,
-    phoneF,
-    employerNamePrefill
-  ].filter(Boolean);
+  handleAddressPrefillGroup({
+	  addressF,
+	  cityF,
+	  stateF,
+	  zipF
+	});
+
+	const prefillFieldList = [
+	  preferredLanguageF,
+	  emailF,
+	  phoneF,
+	  employerNamePrefill
+	].filter(Boolean);
 
   prefillFieldList.forEach(field => {
     const wasPrefilled = field.value && field.value.trim() !== "";
@@ -91,6 +94,37 @@ function initPrefilledFields({
 
     if (container) {
       container.style.display = "none";
+    }
+  });
+}
+
+function handleAddressPrefillGroup({
+  addressF,
+  cityF,
+  stateF,
+  zipF
+}) {
+  const addressFields = [addressF, cityF, stateF, zipF].filter(Boolean);
+
+  const hasAddress = !!addressF && addressF.value.trim() !== "";
+	const hasCity = !!cityF && cityF.value.trim() !== "";
+	const hasZip = !!zipF && zipF.value.trim() !== "";
+
+  const shouldHideAddressGroup = hasAddress && hasCity && hasZip;
+
+  addressFields.forEach(field => {
+    field.dataset.prefilled = shouldHideAddressGroup ? "true" : "false";
+
+    const container =
+      field.closest(".field-container-D, .form-group, .question") ||
+      field.parentNode;
+
+    if (container) {
+      if (shouldHideAddressGroup) {
+			  container.style.display = "none";
+			} else {
+			  container.style.removeProperty("display");
+			}
     }
   });
 }

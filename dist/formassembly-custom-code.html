@@ -1,5 +1,5 @@
 <style>
-/* styles.css */
+/* form styles.css */
 /* MAIN FORM STYLES */
 
 	/* Form title extra h3? h2 is actual form title */
@@ -172,10 +172,9 @@
 	  background-color: #531078 !important;
 	}
 
-	form#801 {
-	  @media only screen and (max-width: 480px)  {
-	  .wFormContainer .wForm form {
-	    padding: 0 important;
+	@media only screen and (max-width: 480px) {
+	  form {
+	    padding: 0 !important;
 	  }
 	}
 
@@ -207,6 +206,11 @@
 #modal-title {
 	font-size: 1.5em !important;
 }
+
+#hiddenButton {
+	left: -10000px;
+}
+
 /*	fullname display */
 #tfa_330 {
 		border: 0;
@@ -393,6 +397,119 @@
 
 	}
 
+/* --------------------------- */
+/* Arabic form-specific layout */
+/* --------------------------- */
+
+html:lang(ar) #tfa_400,
+html:lang(ar) #tfa_90 {
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+
+/* Reverse visual order of 2-column fields */
+html:lang(ar) #tfa_1-D,
+html:lang(ar) #tfa_3-D,
+html:lang(ar) #tfa_193-D {
+  order: 2;
+}
+
+html:lang(ar) #tfa_2-D,
+html:lang(ar) #tfa_4-D,
+html:lang(ar) #tfa_91-D,
+html:lang(ar) #tfa_410-D,
+html:lang(ar) #tfa_393-D,
+html:lang(ar) #tfa_414-D,
+html:lang(ar) #tfa_408-D,
+html:lang(ar) #tfa_407-D,
+html:lang(ar) #tfa_409-D,
+html:lang(ar) #tfa_418-D,
+html:lang(ar) #tfa_422-D {
+  order: 1;
+}
+
+/* Address override */
+html[lang="ar"] #tfa_32-L,
+html[lang="ar"] #tfa_105-L,
+.wForm[data-language="ar"] #tfa_32-L,
+.wForm[data-language="ar"] #tfa_105-L {
+  text-align: right !important;
+}
+
+/* Employer translated overlay */
+html:lang(ar) #tfa_410 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_393 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_414 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_408 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_407 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_409 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_418 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_422 ~ .translated-typeahead-value {
+  right: 27px !important;
+  left: auto !important;
+  text-align: right;
+  font-family: "cofo-sans-variable", sans-serif !important;
+}
+
+/* Mobile: stacked order should be normal top-to-bottom */
+@media only screen and (max-width: 600px) {
+  html:lang(ar) #tfa_400,
+  html:lang(ar) #tfa_90 {
+    display: block;
+  }
+
+  html:lang(ar) #tfa_1-D,
+  html:lang(ar) #tfa_2-D,
+  html:lang(ar) #tfa_3-D,
+  html:lang(ar) #tfa_4-D,
+  html:lang(ar) #tfa_91-D,
+  html:lang(ar) #tfa_193-D,
+  html:lang(ar) #tfa_388-D,
+  html:lang(ar) #tfa_410-D,
+  html:lang(ar) #tfa_393-D,
+  html:lang(ar) #tfa_414-D,
+  html:lang(ar) #tfa_408-D,
+  html:lang(ar) #tfa_407-D,
+  html:lang(ar) #tfa_409-D,
+  html:lang(ar) #tfa_418-D,
+  html:lang(ar) #tfa_422-D {
+    order: initial;
+  }
+}
+
+/* Arabic: keep Employer Type in right column before Employer Name renders */
+html[lang="ar"] #tfa_400,
+.wForm[data-language="ar"] #tfa_400 {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] #tfa_388-D,
+.wForm[data-language="ar"] #tfa_388-D {
+  order: 1;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Move search icon to the right in Arabic */
+html[lang="ar"] .tt-search,
+.wForm[data-language="ar"] .tt-search {
+  right: 0.75rem !important;
+  left: auto !important;
+}
+
+html[lang="ar"] .wfAutosuggest.tt-input {
+  padding-right: 2.2rem; /* space for icon */
+  padding-left: 0.75rem;
+}
+
+/* Spinner + clear stay left */
+html[lang="ar"] .tt-spinner,
+html[lang="ar"] .tt-clear {
+  right: auto !important;
+  left: 0.5rem !important;
+}
 </style>
 
 <script>
@@ -1125,7 +1242,7 @@ var SEIUForm = (() => {
       es: "Universidad del Este de Oregon",
       ru: "\u0423\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u0432\u043E\u0441\u0442\u043E\u0447\u043D\u043E\u0433\u043E \u041E\u0440\u0435\u0433\u043E\u043D\u0430",
       vi: "Tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc \u0110\xF4ng Oregon (Eastern Oregon University)",
-      zh: "\u4E1C\u4FC4\u52D2\u5188\u5927\u5B66: 58010",
+      zh: "\u4E1C\u4FC4\u52D2\u5188\u5927\u5B66",
       ar: "\u062C\u0627\u0645\u0639\u0629 \u0634\u0631\u0642 \u0623\u0648\u0631\u064A\u063A\u0648\u0646",
       so: "Jaamacadda Bariga Oregon"
     },
@@ -1161,7 +1278,7 @@ var SEIUForm = (() => {
       es: "Universidad del Sur de Oregon",
       ru: "\u0423\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u042E\u0436\u043D\u043E\u0433\u043E \u041E\u0440\u0435\u0433\u043E\u043D\u0430",
       vi: "Tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc Nam Oregon (Southern Oregon University)",
-      zh: "\u5357\u4FC4\u52D2\u5188\u5927\u5B66: 58040",
+      zh: "\u5357\u4FC4\u52D2\u5188\u5927\u5B66",
       ar: "\u062C\u0627\u0645\u0639\u0629 \u062C\u0646\u0648\u0628 \u0623\u0648\u0631\u064A\u063A\u0648\u0646",
       so: "Jaamacadda Koonfurta Oregon"
     },
@@ -1431,7 +1548,7 @@ var SEIUForm = (() => {
       es: "Departamento de Servicios Humanos (DHS/OHA)",
       ru: "\u0414\u0435\u043F\u0430\u0440\u0442\u0430\u043C\u0435\u043D\u0442 \u0441\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0435\u043D\u0438\u044F/\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0437\u0434\u0440\u0430\u0432\u043E\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F \u0448\u0442\u0430\u0442\u0430 \u041E\u0440\u0435\u0433\u043E\u043D",
       vi: "B\u1ED9 X\xE3 h\u1ED9i/C\u01A1 quan Qu\u1EA3n l\xFD B\u1EA3o hi\u1EC3m Y t\u1EBF Oregon (DHS/OHA)",
-      zh: "DHS/OHA: 10000",
+      zh: "DHS/OHA",
       ar: "DHS/OHA",
       so: "DHS/OHA"
     },
@@ -2161,12 +2278,14 @@ var SEIUForm = (() => {
     const emailF = document.getElementById("tfa_3");
     const phoneF = document.getElementById("tfa_4");
     const employerNamePrefill = document.getElementById("tfa_444");
-    const prefillFieldList = [
-      preferredLanguageF,
+    handleAddressPrefillGroup({
       addressF,
       cityF,
       stateF,
-      zipF,
+      zipF
+    });
+    const prefillFieldList = [
+      preferredLanguageF,
       emailF,
       phoneF,
       employerNamePrefill
@@ -2208,6 +2327,29 @@ var SEIUForm = (() => {
       }
       if (container) {
         container.style.display = "none";
+      }
+    });
+  }
+  function handleAddressPrefillGroup({
+    addressF,
+    cityF,
+    stateF,
+    zipF
+  }) {
+    const addressFields = [addressF, cityF, stateF, zipF].filter(Boolean);
+    const hasAddress = !!addressF && addressF.value.trim() !== "";
+    const hasCity = !!cityF && cityF.value.trim() !== "";
+    const hasZip = !!zipF && zipF.value.trim() !== "";
+    const shouldHideAddressGroup = hasAddress && hasCity && hasZip;
+    addressFields.forEach((field) => {
+      field.dataset.prefilled = shouldHideAddressGroup ? "true" : "false";
+      const container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;
+      if (container) {
+        if (shouldHideAddressGroup) {
+          container.style.display = "none";
+        } else {
+          container.style.removeProperty("display");
+        }
       }
     });
   }

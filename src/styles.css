@@ -1,4 +1,4 @@
-/* styles.css */
+/* form styles.css */
 /* MAIN FORM STYLES */
 
 	/* Form title extra h3? h2 is actual form title */
@@ -171,10 +171,9 @@
 	  background-color: #531078 !important;
 	}
 
-	form#801 {
-	  @media only screen and (max-width: 480px)  {
-	  .wFormContainer .wForm form {
-	    padding: 0 important;
+	@media only screen and (max-width: 480px) {
+	  form {
+	    padding: 0 !important;
 	  }
 	}
 
@@ -206,6 +205,11 @@
 #modal-title {
 	font-size: 1.5em !important;
 }
+
+#hiddenButton {
+	left: -10000px;
+}
+
 /*	fullname display */
 #tfa_330 {
 		border: 0;
@@ -391,3 +395,117 @@
 	  }
 
 	}
+
+/* --------------------------- */
+/* Arabic form-specific layout */
+/* --------------------------- */
+
+html:lang(ar) #tfa_400,
+html:lang(ar) #tfa_90 {
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+
+/* Reverse visual order of 2-column fields */
+html:lang(ar) #tfa_1-D,
+html:lang(ar) #tfa_3-D,
+html:lang(ar) #tfa_193-D {
+  order: 2;
+}
+
+html:lang(ar) #tfa_2-D,
+html:lang(ar) #tfa_4-D,
+html:lang(ar) #tfa_91-D,
+html:lang(ar) #tfa_410-D,
+html:lang(ar) #tfa_393-D,
+html:lang(ar) #tfa_414-D,
+html:lang(ar) #tfa_408-D,
+html:lang(ar) #tfa_407-D,
+html:lang(ar) #tfa_409-D,
+html:lang(ar) #tfa_418-D,
+html:lang(ar) #tfa_422-D {
+  order: 1;
+}
+
+/* Address override */
+html[lang="ar"] #tfa_32-L,
+html[lang="ar"] #tfa_105-L,
+.wForm[data-language="ar"] #tfa_32-L,
+.wForm[data-language="ar"] #tfa_105-L {
+  text-align: right !important;
+}
+
+/* Employer translated overlay */
+html:lang(ar) #tfa_410 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_393 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_414 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_408 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_407 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_409 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_418 ~ .translated-typeahead-value,
+html:lang(ar) #tfa_422 ~ .translated-typeahead-value {
+  right: 27px !important;
+  left: auto !important;
+  text-align: right;
+  font-family: "cofo-sans-variable", sans-serif !important;
+}
+
+/* Mobile: stacked order should be normal top-to-bottom */
+@media only screen and (max-width: 600px) {
+  html:lang(ar) #tfa_400,
+  html:lang(ar) #tfa_90 {
+    display: block;
+  }
+
+  html:lang(ar) #tfa_1-D,
+  html:lang(ar) #tfa_2-D,
+  html:lang(ar) #tfa_3-D,
+  html:lang(ar) #tfa_4-D,
+  html:lang(ar) #tfa_91-D,
+  html:lang(ar) #tfa_193-D,
+  html:lang(ar) #tfa_388-D,
+  html:lang(ar) #tfa_410-D,
+  html:lang(ar) #tfa_393-D,
+  html:lang(ar) #tfa_414-D,
+  html:lang(ar) #tfa_408-D,
+  html:lang(ar) #tfa_407-D,
+  html:lang(ar) #tfa_409-D,
+  html:lang(ar) #tfa_418-D,
+  html:lang(ar) #tfa_422-D {
+    order: initial;
+  }
+}
+
+/* Arabic: keep Employer Type in right column before Employer Name renders */
+html[lang="ar"] #tfa_400,
+.wForm[data-language="ar"] #tfa_400 {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] #tfa_388-D,
+.wForm[data-language="ar"] #tfa_388-D {
+  order: 1;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Move search icon to the right in Arabic */
+html[lang="ar"] .tt-search,
+.wForm[data-language="ar"] .tt-search {
+  right: 0.75rem !important;
+  left: auto !important;
+}
+
+html[lang="ar"] .wfAutosuggest.tt-input {
+  padding-right: 2.2rem; /* space for icon */
+  padding-left: 0.75rem;
+}
+
+/* Spinner + clear stay left */
+html[lang="ar"] .tt-spinner,
+html[lang="ar"] .tt-clear {
+  right: auto !important;
+  left: 0.5rem !important;
+}

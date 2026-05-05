@@ -767,7 +767,7 @@ export const employerNameTranslations = {
     es: "Universidad del Este de Oregon",
     ru: "Университет восточного Орегона",
     vi: "Trường Đại học Đông Oregon (Eastern Oregon University)",
-    zh: "东俄勒冈大学: 58010",
+    zh: "东俄勒冈大学",
     ar: "جامعة شرق أوريغون",
     so: "Jaamacadda Bariga Oregon"
   },
@@ -803,7 +803,7 @@ export const employerNameTranslations = {
     es: "Universidad del Sur de Oregon",
     ru: "Университет Южного Орегона",
     vi: "Trường Đại học Nam Oregon (Southern Oregon University)",
-    zh: "南俄勒冈大学: 58040",
+    zh: "南俄勒冈大学",
     ar: "جامعة جنوب أوريغون",
     so: "Jaamacadda Koonfurta Oregon"
   },
@@ -1073,7 +1073,7 @@ export const employerNameTranslations = {
     es: "Departamento de Servicios Humanos (DHS/OHA)",
     ru: "Департамент социального обеспечения/Управление здравоохранения штата Орегон",
     vi: "Bộ Xã hội/Cơ quan Quản lý Bảo hiểm Y tế Oregon (DHS/OHA)",
-    zh: "DHS/OHA: 10000",
+    zh: "DHS/OHA",
     ar: "DHS/OHA",
     so: "DHS/OHA"
   },
