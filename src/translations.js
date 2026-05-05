@@ -65,14 +65,14 @@ export const employerTypeTranslations = {
 
 export const translations = {
   formTitle: {
-    en: "SEIU 503 Union Authorization and Membership Application",
-    es: "Autorización de representación y formulario de membresía del SEIU 503",
-    ru: "Разрешение на представительство профсоюза SEIU 503 и заявление на членство",
-    vi: "Đơn ủy quyền đại diện công đoàn và đăng ký hội viên SEIU 503",
-    zh: "SEIU 503 工会授权和会员申请表",
-    ar: "تفويض تمثيل نقابة SEIU 503 وطلب العضوية",
-    so: "Oggolaanshaha Matalaadda Ururka SEIU 503 iyo Codsiga Xubinimada"
-  },
+	  en: "SEIU 503 Membership Application",
+	  es: "Solicitud de membresía de SEIU 503",
+	  ru: "Заявление на вступление в профсоюз SEIU 503",
+	  vi: "Đơn đăng ký hội viên SEIU 503",
+	  zh: "SEIU 503 会员申请表",
+	  ar: "طلب عضوية SEIU 503",
+	  so: "Codsiga Xubinimada SEIU 503"
+	},
 
   submitButton: {
     en: "Submit",
@@ -355,14 +355,14 @@ export const translations = {
   },
 
   membershipAuthTitle: {
-    en: "Membership and Union Representation Authorization",
-    es: "Autorización de membresía y representación de unión",
-    ru: "Разрешение на членство и представительство профсоюза",
-    vi: "Ủy quyền hội viên và đại diện công đoàn",
-    zh: "会员资格和工会代表授权",
-    ar: "تفويض العضوية والتمثيل النقابي",
-    so: "Oggolaanshaha Xubinimada iyo Matalaadda Ururka"
-  },
+	  en: "Membership Authorization",
+	  es: "Autorización de membresía",
+	  ru: "Разрешение на членство",
+	  vi: "Ủy quyền hội viên",
+	  zh: "会员授权",
+	  ar: "تفويض العضوية",
+	  so: "Oggolaanshaha Xubinimada"
+	},
 
   duesAuthTitle: {
     en: "Dues Deduction / Checkoff Authorization",

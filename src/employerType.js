@@ -5,7 +5,8 @@ export function initEmployerType({
   getLang,
   employerTypeInput,
   employerTypeTranslations,
-  employerNameTranslations
+  employerNameTranslations,
+  translations
 }) {
   if (!employerTypeInput) return;
 
@@ -152,18 +153,20 @@ export function initEmployerType({
     }
 
     if (toShow) {
-      const container = toShow.closest(".oneField");
-      if (container) container.style.display = "";
-      toShow.disabled = false;
+		  const container = toShow.closest(".oneField");
+		  if (container) container.style.display = "";
+		  toShow.disabled = false;
 
-      const label = document.getElementById(`${toShow.id}-L`);
-			if (label && translations?.employerNameLabel) {
-			  label.textContent =
-			    translations.employerNameLabel[getLangCode()] ||
-			    translations.employerNameLabel.en ||
-			    "Employer Name";
-			}
-    }
+		  const label = document.getElementById(`${toShow.id}-L`);
+		  const lang = getLangCode();
+
+		  if (label) {
+		    label.textContent =
+		      translations?.employerNameLabel?.[lang] ||
+		      translations?.employerNameLabel?.en ||
+		      "Employer Name";
+		  }
+		}
   }
 
   function translateEmployerTypeSuggestions() {
@@ -234,34 +237,57 @@ export function initEmployerType({
   }
 
   document.addEventListener(
-    "click",
-    function (e) {
-      const clearIcon = e.target.closest(".tt-clear");
-      if (!clearIcon) return;
+	  "click",
+	  function (e) {
+	    const clearIcon = e.target.closest(".tt-clear");
+	    if (!clearIcon) return;
 
-      const fieldWrapper = clearIcon.closest(".inputWrapper");
-      if (!fieldWrapper) return;
+	    const fieldWrapper = clearIcon.closest(".inputWrapper");
+	    if (!fieldWrapper) return;
 
-      const textInput = fieldWrapper.querySelector(
-        'input:not(.tt-hint)[type="text"]'
-      );
+	    const textInput = fieldWrapper.querySelector(
+	      'input:not(.tt-hint)[type="text"]'
+	    );
 
-      if (textInput && textInput.id === employerTypeInput.id) {
-        e.preventDefault();
-        e.stopPropagation();
+	    if (!textInput) return;
 
-        employerTypeEnglishValue = "";
-        employerTypeInput.dataset.englishValue = "";
+	    // Employer Name fields
+	    const employerNameField = employerNameFields.find(field => {
+	      return field && field.id === textInput.id;
+	    });
 
-        textInput.value = "";
-        textInput.dispatchEvent(new Event("input", { bubbles: true }));
-        textInput.dispatchEvent(new Event("change", { bubbles: true }));
+	    if (employerNameField) {
+	      e.preventDefault();
+	      e.stopPropagation();
 
-        clearEmployerNameFields(hiddenRequired);
-      }
-    },
-    true
-  );
+	      clearTranslatedSelectedValue(employerNameField);
+
+	      employerNameField.value = "";
+	      employerNameField.dataset.englishValue = "";
+
+	      employerNameField.dispatchEvent(new Event("input", { bubbles: true }));
+	      employerNameField.dispatchEvent(new Event("change", { bubbles: true }));
+
+	      return;
+	    }
+
+	    // Employer Type field
+	    if (textInput.id === employerTypeInput.id) {
+	      e.preventDefault();
+	      e.stopPropagation();
+
+	      employerTypeEnglishValue = "";
+	      employerTypeInput.dataset.englishValue = "";
+
+	      textInput.value = "";
+	      textInput.dispatchEvent(new Event("input", { bubbles: true }));
+	      textInput.dispatchEvent(new Event("change", { bubbles: true }));
+
+	      clearEmployerNameFields(hiddenRequired);
+	    }
+	  },
+	  true
+	);
 
   if (formEl) {
     formEl.addEventListener(
@@ -303,30 +329,6 @@ export function initEmployerType({
 	  });
 
 	  return normalized;
-	}
-
-	if (formEl) {
-	  formEl.addEventListener("submit", function () {
-	    // restoreEnglishBeforeSubmit(
-	    //   employerTypeInput,
-	    //   normalizeEmployerTypeTranslations()
-	    // );
-
-	    employerNameFields.forEach(field => {
-	      restoreEnglishBeforeSubmit(field, employerNameTranslations);
-	    });
-
-	    // setTimeout(() => {
-	    //   // setTranslatedInputDisplay(
-	    //   //   employerTypeInput,
-	    //   //   normalizeEmployerTypeTranslations()
-	    //   // );
-
-	    //   employerNameFields.forEach(field => {
-	    //     setTranslatedInputDisplay(field, employerNameTranslations);
-	    //   });
-	    // }, 100);
-	  }, true);
 	}
 
 	function translateAndSortTypeahead(input, translationMap) {
@@ -383,54 +385,128 @@ export function initEmployerType({
 	  return clean;
 	}
 
-	function setTranslatedInputDisplay(input, translationMap) {
-	  if (!input || !input.value) return;
-
-	  const lang = getLangCode();
-	  const englishValue =
-	    input.dataset.englishValue ||
-	    getEnglishFromDisplayed(input.value, translationMap);
-
-	  input.dataset.englishValue = englishValue;
-	  input.value =
-	    translationMap[englishValue]?.[lang] ||
-	    translationMap[englishValue]?.en ||
-	    englishValue;
-	}
-
-	function restoreEnglishBeforeSubmit(input, translationMap) {
-	  if (!input) return;
-
-	  const englishValue =
-	    input.dataset.englishValue ||
-	    getEnglishFromDisplayed(input.value, translationMap);
-
-	  if (englishValue) input.value = englishValue;
-	}
-
 	function initDynamicTypeaheadTranslation(input, translationMap) {
 	  if (!input || !translationMap) return;
 
+	  let isTranslating = false;
+
 	  function runTranslation() {
-	    setTimeout(() => {
-	      translateAndSortTypeahead(input, translationMap);
-	    }, 0);
-	  }
+		  if (isTranslating) return;
+
+		  isTranslating = true;
+
+		  const delays = [100, 250, 500, 900];
+
+		  delays.forEach((delay, index) => {
+		    setTimeout(() => {
+		      translateAndSortTypeahead(input, translationMap);
+
+		      if (index === delays.length - 1) {
+		        isTranslating = false;
+		      }
+		    }, delay);
+		  });
+		}
 
 	  input.addEventListener("focus", runTranslation);
-	  input.addEventListener("input", runTranslation);
 
-	  const listbox = document.getElementById(`${input.id}_listbox`);
+	  input.addEventListener("input", function () {
+	    clearTranslatedSelectedValue(input);
 
-	  if (listbox) {
-	    const observer = new MutationObserver(runTranslation);
+	    if (input.value.trim()) {
+	      runTranslation();
+	    }
+	  });
 
-	    observer.observe(listbox, {
-	      childList: true,
-	      subtree: true
-	    });
-	  }
+	  input.addEventListener("change", function () {
+	    setTimeout(() => {
+	      showTranslatedSelectedValue(input, translationMap);
+	    }, 50);
+	  });
+
+	  input.addEventListener("typeahead:select", function () {
+	    setTimeout(() => {
+	      showTranslatedSelectedValue(input, translationMap);
+	    }, 50);
+	  });
+
+	  input.addEventListener("blur", function () {
+	    setTimeout(() => {
+	      showTranslatedSelectedValue(input, translationMap);
+	    }, 50);
+	  });
 	}
+
+	function getTranslatedValue(englishValue, translationMap) {
+  const lang = getLangCode();
+
+  return (
+    translationMap?.[englishValue]?.[lang] ||
+    translationMap?.[englishValue]?.en ||
+    englishValue
+  );
+}
+
+function ensureDisplayOverlay(input) {
+  const wrapper = input.closest(".twitter-typeahead") || input.parentElement;
+  if (!wrapper) return null;
+
+  wrapper.style.position = "relative";
+
+  let overlay = wrapper.querySelector(".translated-typeahead-value");
+
+  if (!overlay) {
+    overlay = document.createElement("span");
+    overlay.className = "translated-typeahead-value";
+
+    overlay.style.position = "absolute";
+    overlay.style.left = "0";
+    overlay.style.top = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.pointerEvents = "none";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.paddingLeft = "inherit";
+    overlay.style.font = "inherit";
+    overlay.style.color = "inherit";
+    overlay.style.background = "transparent";
+    overlay.style.zIndex = "2";
+
+    wrapper.appendChild(overlay);
+  }
+
+  return overlay;
+}
+
+function showTranslatedSelectedValue(input, translationMap) {
+  if (!input || !input.value) return;
+
+  const englishValue = getEnglishFromDisplayed(input.value, translationMap);
+  const translatedValue = getTranslatedValue(englishValue, translationMap);
+
+  input.dataset.englishValue = englishValue;
+
+  const overlay = ensureDisplayOverlay(input);
+  if (!overlay) return;
+
+  overlay.textContent = translatedValue;
+
+  // Hide real English text, but keep the real value for FormAssembly/Salesforce
+  input.style.color = "transparent";
+  input.style.caretColor = "transparent";
+}
+
+function clearTranslatedSelectedValue(input) {
+  const wrapper = input.closest(".twitter-typeahead") || input.parentElement;
+  const overlay = wrapper?.querySelector(".translated-typeahead-value");
+
+  if (overlay) overlay.textContent = "";
+
+  input.style.color = "";
+  input.style.caretColor = "";
+  input.dataset.englishValue = "";
+}
 }
 
 

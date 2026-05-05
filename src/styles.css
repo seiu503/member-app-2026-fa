@@ -1,145 +1,197 @@
+/* styles.css */
 /* MAIN FORM STYLES */
 
-/* Form title extra h3? h2 is actual form title */
+	/* Form title extra h3? h2 is actual form title */
 
-h3.wFormTitle {
-	display: none;
+	h3.wFormTitle {
+		display: none;
+		}
+
+	/* Address */
+	#tfa_32-L {
+		text-align: left;
+		}
+
+	/* DOB section header */
+	#tfa_134-L { 
+
+	}
+	/* 2-col field groups */
+	/* Employer Type / Employer Name group 400
+			Birthdate / Language group 134
+
+	*/
+
+	#tfa_400 {
+		display: flex;
 	}
 
-/* Address */
-#tfa_32-L {
-	text-align: left;
+	/* 2-col fields */
+	/* First name 1-D
+			Last name 2-D
+			Email 3-D
+			Phone 4-D
+			DOB group 193-D
+			Language 91-D
+			Employer Type 388-D
+			Employer Name
+				eNameState: 410-D
+			  eNameHiEd: 393-D
+			  eNameHCW: 414-D
+			  eNameNH: 408-D
+			  eNameLGov: 407-D
+			  eNamePNP: 409-D
+			  eNamePHC: 418-D
+			  eNameRetire: 422-D
+			*/
+	#tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+	#tfa_91-D, #tfa_193-D, #tfa_388-D, #tfa_410-D,
+	#tfa_393-D, #tfa_414-D, #tfa_408-D, #tfa_407-D,
+	#tfa_409-D, #tfa_418-D, #tfa_422-D
+	 {
+	    width: 49% !important
 	}
 
-/* DOB section header */
-#tfa_134-L { 
+		#tfa_410,
+		#tfa_393,
+		#tfa_414,
+		#tfa_408,
+		#tfa_407,
+		#tfa_409,
+		#tfa_418,
+		#tfa_422 {
+		  /* employer name inputs */
+		  font-family: "cofo-sans-variable", sans-serif;
+		}
 
-}
-
-
-/* 2-col fields */
-/* First name 1-D
-		Last name 2-D
-		Email 3-D
-		Phone 4-D
-
-		*/
-#tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-#tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D {
-    width: 49% !important
-}
-
-#tfa_134 { /* birth date / language group */
-	margin-top: -12px;
-}  
-
-#tfa_134-L { /* birth date label */
-	position: relative;
-  top: 14px;
-  /*font-family: Roboto !important;*/
-}  
-
-#tfa_91-D { /* preferred language */
-	margin-top: -9px;
-	width: 100% !important;
-}  
-
-#tfa_32, #tfa_32-D {
-width: 98.5% !important; /* address */
-}
-
-/* city, state, zip */
-/*
-  #tfa_34-D, #tfa_35-D, #tfa_39-D {
-  	width: 100% !important; 
-  }
-  */
-
-#tfa_90 {
-  width: 98.5%;
-display: flex;
-justify-content: space-between;
-}
-
-/* Authorization checkbox labels (legal language) */
-#tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
-  font-size: 13.6px !important;
-  color: rgb(68, 68, 68) !important;
-  line-height: normal;
-}
-
-/* Authorization checkboxes */
-#tfa_379-L:before,
-#tfa_380-L:before,
-#tfa_382-L:before {
-  margin-right: 6px;
-  width: 14px;
-  height: 14px;
-  top: -2px;
-}
-
-#tfa_379-L:after,
-#tfa_380-L:after,
-#tfa_382-L:after {
-  left: 3px;
-  top: 6px;
-}
-
-/* checkbox backgrounds checked */
-.wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
-  background: #531078;
-}
+		#tfa_410 ~ .translated-typeahead-value,
+		#tfa_393 ~ .translated-typeahead-value,
+		#tfa_414 ~ .translated-typeahead-value,
+		#tfa_408 ~ .translated-typeahead-value,
+		#tfa_407 ~ .translated-typeahead-value,
+		#tfa_409 ~ .translated-typeahead-value,
+		#tfa_418 ~ .translated-typeahead-value,
+		#tfa_422 ~ .translated-typeahead-value {
+		  /* employer name translated typeahead overlays */
+		    left: 27px !important;
+		    font-family: 'cofo-sans-variable' !important;
+		}
 
 
-#tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
-#tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
-#tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
-    display: block !important;
-}
 
-@media only screen and (max-width: 600px)  {
-  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-  #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
-  #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
-      width: 100% !important
-  }
+	#tfa_134 { /* birth date / language group */
+		margin-top: -12px;
+	} 
 
-  #tfa_90 {
-    display: block;
-    width: 100%;
-  }
-}
-  
+	#tfa_134-L { /* birth date label */
+		position: relative;
+	  top: 14px;
+	  /*font-family: Roboto !important;*/
+	}  
 
-.wFormContainer .actions .primaryAction, #primaryAction {
- background-color: #531078 !important;
-}
+	#tfa_91-D { /* preferred language */
+		margin-top: -9px;
+		width: 100% !important;
+	}  
 
-#791-A:hover {
-  background-color: #531078 !important;
-}
+	#tfa_32, #tfa_32-D {
+	width: 98.5% !important; /* address */
+	}
 
-form#801 {
-  @media only screen and (max-width: 480px)  {
-  .wFormContainer .wForm form {
-    padding: 0 important;
-  }
-}
-
-
-/* ?? unused ?? */
-	  #tfa_17-HTML {
-	    text-align: center;
+	/* city, state, zip */
+	/*
+	  #tfa_34-D, #tfa_35-D, #tfa_39-D {
+	  	width: 100% !important; 
 	  }
+	  */
 
-	  #tfa_105-L {
-	    text-wrap: wrap;
-	    text-align: left;
-	    max-width: 90%;
-	    font-size: 1em;
-	  line-height: 1.3em;
-	  padding-left: 0;
+	/* CSZ group */
+	#tfa_90 {
+	  width: 98.5%;
+	display: flex;
+	justify-content: space-between;
+	}
+
+	/* Authorization checkbox labels (legal language) */
+	#tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
+	  font-size: 13.6px !important;
+	  color: rgb(68, 68, 68) !important;
+	  line-height: normal;
+	}
+
+	/* Authorization checkboxes */
+	#tfa_379-L:before,
+	#tfa_380-L:before,
+	#tfa_382-L:before {
+	  margin-right: 6px;
+	  width: 14px;
+	  height: 14px;
+	  top: -2px;
+	}
+
+	#tfa_379-L:after,
+	#tfa_380-L:after,
+	#tfa_382-L:after {
+	  left: 3px;
+	  top: 6px;
+	}
+
+	/* checkbox backgrounds checked */
+	.wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
+	  background: #531078;
+	}
+
+
+	#tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
+	#tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
+	#tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
+	    display: block !important;
+	}
+
+	@media only screen and (max-width: 600px)  {
+	  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+		#tfa_91-D, #tfa_193-D, #tfa_388-D, #tfa_410-D,
+		#tfa_393-D, #tfa_414-D, #tfa_408-D, #tfa_407-D,
+		#tfa_409-D, #tfa_418-D, #tfa_422-D {
+	      width: 100% !important
 	  }
+	  /* CSZ group */
+	  #tfa_90 {
+	    display: block;
+	    width: 100%;
+	  }
+	}
+	  
+
+	.wFormContainer .actions .primaryAction, #primaryAction {
+	 background-color: #531078 !important;
+	}
+
+	#791-A:hover {
+	  background-color: #531078 !important;
+	}
+
+	form#801 {
+	  @media only screen and (max-width: 480px)  {
+	  .wFormContainer .wForm form {
+	    padding: 0 important;
+	  }
+	}
+
+
+	/* ?? unused ?? */
+		  #tfa_17-HTML {
+		    text-align: center;
+		  }
+
+		  #tfa_105-L {
+		    text-wrap: wrap;
+		    text-align: left;
+		    max-width: 90%;
+		    font-size: 1em;
+		  line-height: 1.3em;
+		  padding-left: 0;
+		  }
 
 
 

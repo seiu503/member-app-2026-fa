@@ -168,9 +168,8 @@ window.addEventListener("load", function() {
 	  getLang,
 	  employerTypeInput,
 	  employerTypeTranslations,
-	  hiddenRequired,
-  	employerNameTranslations,
-	  ...employerNameElements
+	  employerNameTranslations,
+	  translations
 	});
 
 	initValidation({

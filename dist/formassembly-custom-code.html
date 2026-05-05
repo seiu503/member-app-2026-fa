@@ -1,146 +1,198 @@
 <style>
+/* styles.css */
 /* MAIN FORM STYLES */
 
-/* Form title extra h3? h2 is actual form title */
+	/* Form title extra h3? h2 is actual form title */
 
-h3.wFormTitle {
-	display: none;
+	h3.wFormTitle {
+		display: none;
+		}
+
+	/* Address */
+	#tfa_32-L {
+		text-align: left;
+		}
+
+	/* DOB section header */
+	#tfa_134-L { 
+
+	}
+	/* 2-col field groups */
+	/* Employer Type / Employer Name group 400
+			Birthdate / Language group 134
+
+	*/
+
+	#tfa_400 {
+		display: flex;
 	}
 
-/* Address */
-#tfa_32-L {
-	text-align: left;
+	/* 2-col fields */
+	/* First name 1-D
+			Last name 2-D
+			Email 3-D
+			Phone 4-D
+			DOB group 193-D
+			Language 91-D
+			Employer Type 388-D
+			Employer Name
+				eNameState: 410-D
+			  eNameHiEd: 393-D
+			  eNameHCW: 414-D
+			  eNameNH: 408-D
+			  eNameLGov: 407-D
+			  eNamePNP: 409-D
+			  eNamePHC: 418-D
+			  eNameRetire: 422-D
+			*/
+	#tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+	#tfa_91-D, #tfa_193-D, #tfa_388-D, #tfa_410-D,
+	#tfa_393-D, #tfa_414-D, #tfa_408-D, #tfa_407-D,
+	#tfa_409-D, #tfa_418-D, #tfa_422-D
+	 {
+	    width: 49% !important
 	}
 
-/* DOB section header */
-#tfa_134-L { 
+		#tfa_410,
+		#tfa_393,
+		#tfa_414,
+		#tfa_408,
+		#tfa_407,
+		#tfa_409,
+		#tfa_418,
+		#tfa_422 {
+		  /* employer name inputs */
+		  font-family: "cofo-sans-variable", sans-serif;
+		}
 
-}
-
-
-/* 2-col fields */
-/* First name 1-D
-		Last name 2-D
-		Email 3-D
-		Phone 4-D
-
-		*/
-#tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-#tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D {
-    width: 49% !important
-}
-
-#tfa_134 { /* birth date / language group */
-	margin-top: -12px;
-}  
-
-#tfa_134-L { /* birth date label */
-	position: relative;
-  top: 14px;
-  /*font-family: Roboto !important;*/
-}  
-
-#tfa_91-D { /* preferred language */
-	margin-top: -9px;
-	width: 100% !important;
-}  
-
-#tfa_32, #tfa_32-D {
-width: 98.5% !important; /* address */
-}
-
-/* city, state, zip */
-/*
-  #tfa_34-D, #tfa_35-D, #tfa_39-D {
-  	width: 100% !important; 
-  }
-  */
-
-#tfa_90 {
-  width: 98.5%;
-display: flex;
-justify-content: space-between;
-}
-
-/* Authorization checkbox labels (legal language) */
-#tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
-  font-size: 13.6px !important;
-  color: rgb(68, 68, 68) !important;
-  line-height: normal;
-}
-
-/* Authorization checkboxes */
-#tfa_379-L:before,
-#tfa_380-L:before,
-#tfa_382-L:before {
-  margin-right: 6px;
-  width: 14px;
-  height: 14px;
-  top: -2px;
-}
-
-#tfa_379-L:after,
-#tfa_380-L:after,
-#tfa_382-L:after {
-  left: 3px;
-  top: 6px;
-}
-
-/* checkbox backgrounds checked */
-.wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
-  background: #531078;
-}
+		#tfa_410 ~ .translated-typeahead-value,
+		#tfa_393 ~ .translated-typeahead-value,
+		#tfa_414 ~ .translated-typeahead-value,
+		#tfa_408 ~ .translated-typeahead-value,
+		#tfa_407 ~ .translated-typeahead-value,
+		#tfa_409 ~ .translated-typeahead-value,
+		#tfa_418 ~ .translated-typeahead-value,
+		#tfa_422 ~ .translated-typeahead-value {
+		  /* employer name translated typeahead overlays */
+		    left: 27px !important;
+		    font-family: 'cofo-sans-variable' !important;
+		}
 
 
-#tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
-#tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
-#tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
-    display: block !important;
-}
 
-@media only screen and (max-width: 600px)  {
-  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
-  #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
-  #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
-      width: 100% !important
-  }
+	#tfa_134 { /* birth date / language group */
+		margin-top: -12px;
+	} 
 
-  #tfa_90 {
-    display: block;
-    width: 100%;
-  }
-}
-  
+	#tfa_134-L { /* birth date label */
+		position: relative;
+	  top: 14px;
+	  /*font-family: Roboto !important;*/
+	}  
 
-.wFormContainer .actions .primaryAction, #primaryAction {
- background-color: #531078 !important;
-}
+	#tfa_91-D { /* preferred language */
+		margin-top: -9px;
+		width: 100% !important;
+	}  
 
-#791-A:hover {
-  background-color: #531078 !important;
-}
+	#tfa_32, #tfa_32-D {
+	width: 98.5% !important; /* address */
+	}
 
-form#801 {
-  @media only screen and (max-width: 480px)  {
-  .wFormContainer .wForm form {
-    padding: 0 important;
-  }
-}
-
-
-/* ?? unused ?? */
-	  #tfa_17-HTML {
-	    text-align: center;
+	/* city, state, zip */
+	/*
+	  #tfa_34-D, #tfa_35-D, #tfa_39-D {
+	  	width: 100% !important; 
 	  }
+	  */
 
-	  #tfa_105-L {
-	    text-wrap: wrap;
-	    text-align: left;
-	    max-width: 90%;
-	    font-size: 1em;
-	  line-height: 1.3em;
-	  padding-left: 0;
+	/* CSZ group */
+	#tfa_90 {
+	  width: 98.5%;
+	display: flex;
+	justify-content: space-between;
+	}
+
+	/* Authorization checkbox labels (legal language) */
+	#tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
+	  font-size: 13.6px !important;
+	  color: rgb(68, 68, 68) !important;
+	  line-height: normal;
+	}
+
+	/* Authorization checkboxes */
+	#tfa_379-L:before,
+	#tfa_380-L:before,
+	#tfa_382-L:before {
+	  margin-right: 6px;
+	  width: 14px;
+	  height: 14px;
+	  top: -2px;
+	}
+
+	#tfa_379-L:after,
+	#tfa_380-L:after,
+	#tfa_382-L:after {
+	  left: 3px;
+	  top: 6px;
+	}
+
+	/* checkbox backgrounds checked */
+	.wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
+	  background: #531078;
+	}
+
+
+	#tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
+	#tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
+	#tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
+	    display: block !important;
+	}
+
+	@media only screen and (max-width: 600px)  {
+	  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+		#tfa_91-D, #tfa_193-D, #tfa_388-D, #tfa_410-D,
+		#tfa_393-D, #tfa_414-D, #tfa_408-D, #tfa_407-D,
+		#tfa_409-D, #tfa_418-D, #tfa_422-D {
+	      width: 100% !important
 	  }
+	  /* CSZ group */
+	  #tfa_90 {
+	    display: block;
+	    width: 100%;
+	  }
+	}
+	  
+
+	.wFormContainer .actions .primaryAction, #primaryAction {
+	 background-color: #531078 !important;
+	}
+
+	#791-A:hover {
+	  background-color: #531078 !important;
+	}
+
+	form#801 {
+	  @media only screen and (max-width: 480px)  {
+	  .wFormContainer .wForm form {
+	    padding: 0 important;
+	  }
+	}
+
+
+	/* ?? unused ?? */
+		  #tfa_17-HTML {
+		    text-align: center;
+		  }
+
+		  #tfa_105-L {
+		    text-wrap: wrap;
+		    text-align: left;
+		    max-width: 90%;
+		    font-size: 1em;
+		  line-height: 1.3em;
+		  padding-left: 0;
+		  }
 
 
 
@@ -408,15 +460,15 @@ var SEIUForm = (() => {
       "State Homecare or Personal Support": "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
     }
   };
-  var translations2 = {
+  var translations = {
     formTitle: {
-      en: "SEIU 503 Union Authorization and Membership Application",
-      es: "Autorizaci\xF3n de representaci\xF3n y formulario de membres\xEDa del SEIU 503",
-      ru: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043D\u0430 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430 SEIU 503 \u0438 \u0437\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E",
-      vi: "\u0110\u01A1n \u1EE7y quy\u1EC1n \u0111\u1EA1i di\u1EC7n c\xF4ng \u0111o\xE0n v\xE0 \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn SEIU 503",
-      zh: "SEIU 503 \u5DE5\u4F1A\u6388\u6743\u548C\u4F1A\u5458\u7533\u8BF7\u8868",
-      ar: "\u062A\u0641\u0648\u064A\u0636 \u062A\u0645\u062B\u064A\u0644 \u0646\u0642\u0627\u0628\u0629 SEIU 503 \u0648\u0637\u0644\u0628 \u0627\u0644\u0639\u0636\u0648\u064A\u0629",
-      so: "Oggolaanshaha Matalaadda Ururka SEIU 503 iyo Codsiga Xubinimada"
+      en: "SEIU 503 Membership Application",
+      es: "Solicitud de membres\xEDa de SEIU 503",
+      ru: "\u0417\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 SEIU 503",
+      vi: "\u0110\u01A1n \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn SEIU 503",
+      zh: "SEIU 503 \u4F1A\u5458\u7533\u8BF7\u8868",
+      ar: "\u0637\u0644\u0628 \u0639\u0636\u0648\u064A\u0629 SEIU 503",
+      so: "Codsiga Xubinimada SEIU 503"
     },
     submitButton: {
       en: "Submit",
@@ -671,13 +723,13 @@ var SEIUForm = (() => {
       so: "Geli magacaaga sharciga ah oo buuxa. Tani waxay noqon doontaa saxiixaaga."
     },
     membershipAuthTitle: {
-      en: "Membership and Union Representation Authorization",
-      es: "Autorizaci\xF3n de membres\xEDa y representaci\xF3n de uni\xF3n",
-      ru: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043D\u0430 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E \u0438 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430",
-      vi: "\u1EE6y quy\u1EC1n h\u1ED9i vi\xEAn v\xE0 \u0111\u1EA1i di\u1EC7n c\xF4ng \u0111o\xE0n",
-      zh: "\u4F1A\u5458\u8D44\u683C\u548C\u5DE5\u4F1A\u4EE3\u8868\u6388\u6743",
-      ar: "\u062A\u0641\u0648\u064A\u0636 \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0648\u0627\u0644\u062A\u0645\u062B\u064A\u0644 \u0627\u0644\u0646\u0642\u0627\u0628\u064A",
-      so: "Oggolaanshaha Xubinimada iyo Matalaadda Ururka"
+      en: "Membership Authorization",
+      es: "Autorizaci\xF3n de membres\xEDa",
+      ru: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043D\u0430 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E",
+      vi: "\u1EE6y quy\u1EC1n h\u1ED9i vi\xEAn",
+      zh: "\u4F1A\u5458\u6388\u6743",
+      ar: "\u062A\u0641\u0648\u064A\u0636 \u0627\u0644\u0639\u0636\u0648\u064A\u0629",
+      so: "Oggolaanshaha Xubinimada"
     },
     duesAuthTitle: {
       en: "Dues Deduction / Checkoff Authorization",
@@ -1580,7 +1632,8 @@ var SEIUForm = (() => {
     getLang,
     employerTypeInput,
     employerTypeTranslations: employerTypeTranslations2,
-    employerNameTranslations: employerNameTranslations2
+    employerNameTranslations: employerNameTranslations2,
+    translations: translations2
   }) {
     if (!employerTypeInput) return;
     const eNameState = document.getElementById("tfa_410");
@@ -1704,8 +1757,9 @@ var SEIUForm = (() => {
         if (container) container.style.display = "";
         toShow.disabled = false;
         const label = document.getElementById(`${toShow.id}-L`);
-        if (label && translations?.employerNameLabel) {
-          label.textContent = translations.employerNameLabel[getLangCode()] || translations.employerNameLabel.en || "Employer Name";
+        const lang = getLangCode();
+        if (label) {
+          label.textContent = translations2?.employerNameLabel?.[lang] || translations2?.employerNameLabel?.en || "Employer Name";
         }
       }
     }
@@ -1767,7 +1821,21 @@ var SEIUForm = (() => {
         const textInput = fieldWrapper.querySelector(
           'input:not(.tt-hint)[type="text"]'
         );
-        if (textInput && textInput.id === employerTypeInput.id) {
+        if (!textInput) return;
+        const employerNameField = employerNameFields.find((field) => {
+          return field && field.id === textInput.id;
+        });
+        if (employerNameField) {
+          e.preventDefault();
+          e.stopPropagation();
+          clearTranslatedSelectedValue(employerNameField);
+          employerNameField.value = "";
+          employerNameField.dataset.englishValue = "";
+          employerNameField.dispatchEvent(new Event("input", { bubbles: true }));
+          employerNameField.dispatchEvent(new Event("change", { bubbles: true }));
+          return;
+        }
+        if (textInput.id === employerTypeInput.id) {
           e.preventDefault();
           e.stopPropagation();
           employerTypeEnglishValue = "";
@@ -1809,13 +1877,6 @@ var SEIUForm = (() => {
       });
       return normalized;
     }
-    if (formEl) {
-      formEl.addEventListener("submit", function() {
-        employerNameFields.forEach((field) => {
-          restoreEnglishBeforeSubmit(field, employerNameTranslations2);
-        });
-      }, true);
-    }
     function translateAndSortTypeahead(input, translationMap) {
       if (!input || !translationMap) return;
       const lang = getLangCode();
@@ -1850,35 +1911,92 @@ var SEIUForm = (() => {
       }
       return clean;
     }
-    function setTranslatedInputDisplay(input, translationMap) {
-      if (!input || !input.value) return;
-      const lang = getLangCode();
-      const englishValue = input.dataset.englishValue || getEnglishFromDisplayed(input.value, translationMap);
-      input.dataset.englishValue = englishValue;
-      input.value = translationMap[englishValue]?.[lang] || translationMap[englishValue]?.en || englishValue;
-    }
-    function restoreEnglishBeforeSubmit(input, translationMap) {
-      if (!input) return;
-      const englishValue = input.dataset.englishValue || getEnglishFromDisplayed(input.value, translationMap);
-      if (englishValue) input.value = englishValue;
-    }
     function initDynamicTypeaheadTranslation(input, translationMap) {
       if (!input || !translationMap) return;
+      let isTranslating = false;
       function runTranslation() {
-        setTimeout(() => {
-          translateAndSortTypeahead(input, translationMap);
-        }, 0);
-      }
-      input.addEventListener("focus", runTranslation);
-      input.addEventListener("input", runTranslation);
-      const listbox = document.getElementById(`${input.id}_listbox`);
-      if (listbox) {
-        const observer = new MutationObserver(runTranslation);
-        observer.observe(listbox, {
-          childList: true,
-          subtree: true
+        if (isTranslating) return;
+        isTranslating = true;
+        const delays = [100, 250, 500, 900];
+        delays.forEach((delay, index) => {
+          setTimeout(() => {
+            translateAndSortTypeahead(input, translationMap);
+            if (index === delays.length - 1) {
+              isTranslating = false;
+            }
+          }, delay);
         });
       }
+      input.addEventListener("focus", runTranslation);
+      input.addEventListener("input", function() {
+        clearTranslatedSelectedValue(input);
+        if (input.value.trim()) {
+          runTranslation();
+        }
+      });
+      input.addEventListener("change", function() {
+        setTimeout(() => {
+          showTranslatedSelectedValue(input, translationMap);
+        }, 50);
+      });
+      input.addEventListener("typeahead:select", function() {
+        setTimeout(() => {
+          showTranslatedSelectedValue(input, translationMap);
+        }, 50);
+      });
+      input.addEventListener("blur", function() {
+        setTimeout(() => {
+          showTranslatedSelectedValue(input, translationMap);
+        }, 50);
+      });
+    }
+    function getTranslatedValue(englishValue, translationMap) {
+      const lang = getLangCode();
+      return translationMap?.[englishValue]?.[lang] || translationMap?.[englishValue]?.en || englishValue;
+    }
+    function ensureDisplayOverlay(input) {
+      const wrapper = input.closest(".twitter-typeahead") || input.parentElement;
+      if (!wrapper) return null;
+      wrapper.style.position = "relative";
+      let overlay = wrapper.querySelector(".translated-typeahead-value");
+      if (!overlay) {
+        overlay = document.createElement("span");
+        overlay.className = "translated-typeahead-value";
+        overlay.style.position = "absolute";
+        overlay.style.left = "0";
+        overlay.style.top = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.pointerEvents = "none";
+        overlay.style.display = "flex";
+        overlay.style.alignItems = "center";
+        overlay.style.paddingLeft = "inherit";
+        overlay.style.font = "inherit";
+        overlay.style.color = "inherit";
+        overlay.style.background = "transparent";
+        overlay.style.zIndex = "2";
+        wrapper.appendChild(overlay);
+      }
+      return overlay;
+    }
+    function showTranslatedSelectedValue(input, translationMap) {
+      if (!input || !input.value) return;
+      const englishValue = getEnglishFromDisplayed(input.value, translationMap);
+      const translatedValue = getTranslatedValue(englishValue, translationMap);
+      input.dataset.englishValue = englishValue;
+      const overlay = ensureDisplayOverlay(input);
+      if (!overlay) return;
+      overlay.textContent = translatedValue;
+      input.style.color = "transparent";
+      input.style.caretColor = "transparent";
+    }
+    function clearTranslatedSelectedValue(input) {
+      const wrapper = input.closest(".twitter-typeahead") || input.parentElement;
+      const overlay = wrapper?.querySelector(".translated-typeahead-value");
+      if (overlay) overlay.textContent = "";
+      input.style.color = "";
+      input.style.caretColor = "";
+      input.dataset.englishValue = "";
     }
   }
 
@@ -2373,14 +2491,13 @@ var SEIUForm = (() => {
       getLang,
       employerTypeInput,
       employerTypeTranslations,
-      hiddenRequired,
       employerNameTranslations,
-      ...employerNameElements
+      translations
     });
     initValidation({
       formEl,
       getLang,
-      translations: translations2
+      translations
     });
     initDateHelpers();
     initPrefill({
@@ -2397,7 +2514,7 @@ var SEIUForm = (() => {
     const aIdPrefillCalc = document.getElementById("tfa_442");
     const agencyNumberPrefillCalc = document.getElementById("tfa_126");
     function t(key) {
-      return translations2[key]?.[getLang] || translations2[key]?.en || "";
+      return translations[key]?.[getLang] || translations[key]?.en || "";
     }
     function setText(el, key) {
       if (!el) return;
