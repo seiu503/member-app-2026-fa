@@ -11,8 +11,8 @@ export function initDateHelpers() {
 
   const dateSelects = [mmSelect, ddSelect, yyyySelect];
 
-  function getSelectedText(el) {
-    return el?.options?.[el.selectedIndex]?.text || "";
+  function getSelectedValue(el) {
+    return el?.value || "";
   }
 
   function getMaxDay(month) {
@@ -30,50 +30,52 @@ export function initDateHelpers() {
   }
 
   function dateOptions() {
-    const mm = getSelectedText(mmSelect);
+    const mm = getSelectedValue(mmSelect);
     const max = getMaxDay(mm);
-    const dates = [];
+    const dates = [""];
 
     for (let i = 1; i <= max; i++) {
       dates.push(i < 10 ? `0${i}` : String(i));
     }
 
-    dates.unshift("");
     return dates;
   }
 
   function yearOptions() {
-    const years = [];
+    const years = [""];
     const currentYear = new Date().getFullYear();
 
-    for (let i = currentYear - 99; i <= currentYear; i++) {
-      years.unshift(String(i));
+    for (let i = currentYear; i >= currentYear - 99; i--) {
+      years.push(String(i));
     }
 
-    years.unshift("");
     return years;
   }
 
   function emptyCombo(selectEl) {
-    selectEl.options.length = 1;
+    selectEl.options.length = 0;
     return selectEl;
   }
 
   function populateCombo(selectEl, items) {
+    emptyCombo(selectEl);
     selectEl.append(...items.map(item => new Option(item, item)));
+  }
+
+  function hasOption(selectEl, value) {
+    return Array.from(selectEl.options).some(option => option.value === value);
   }
 
   function formatSFDate(mm, dd, yyyy) {
     if (!mm || !dd || !yyyy) return "";
-
     return `${yyyy}-${mm}-${dd}`;
   }
 
   function updateBirthdateField() {
     dobEl.value = formatSFDate(
-      getSelectedText(mmSelect),
-      getSelectedText(ddSelect),
-      getSelectedText(yyyySelect)
+      getSelectedValue(mmSelect),
+      getSelectedValue(ddSelect),
+      getSelectedValue(yyyySelect)
     );
 
     dobEl.dispatchEvent(new Event("input", { bubbles: true }));
@@ -81,7 +83,14 @@ export function initDateHelpers() {
   }
 
   mmSelect.addEventListener("change", function () {
-    populateCombo(emptyCombo(ddSelect), dateOptions());
+    const previousDay = getSelectedValue(ddSelect);
+
+    populateCombo(ddSelect, dateOptions());
+
+    if (previousDay && hasOption(ddSelect, previousDay)) {
+      ddSelect.value = previousDay;
+    }
+
     updateBirthdateField();
   });
 
@@ -89,5 +98,5 @@ export function initDateHelpers() {
     field.addEventListener("change", updateBirthdateField);
   });
 
-  populateCombo(emptyCombo(yyyySelect), yearOptions());
+  populateCombo(yyyySelect, yearOptions());
 }

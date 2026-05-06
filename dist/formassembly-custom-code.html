@@ -13,10 +13,18 @@
 		text-align: left;
 		}
 
-	/* DOB section header */
-	#tfa_134-L { 
-
+	/* DOB section header -- style to match other field labels */
+	#tfa_134-L {
+		position: relative;
+	  top: 14px;
+	  font-family: var(--font-mono), monospace !important;
+	  font-size: 100% !important;
+	  font-weight: 400 !important;
+	  color: #444444 !important;
+	  text-transform: uppercase !important;
+	  line-height: normal !important;
 	}
+
 	/* 2-col field groups */
 	/* Employer Type / Employer Name group 400
 			Birthdate / Language group 134
@@ -83,12 +91,6 @@
 	#tfa_134 { /* birth date / language group */
 		margin-top: -12px;
 	} 
-
-	#tfa_134-L { /* birth date label */
-		position: relative;
-	  top: 14px;
-	  /*font-family: Roboto !important;*/
-	}  
 
 	#tfa_91-D { /* preferred language */
 		margin-top: -9px;
@@ -848,6 +850,15 @@ var SEIUForm = (() => {
       ar: "\u062A\u0641\u0648\u064A\u0636 \u0627\u0644\u0639\u0636\u0648\u064A\u0629",
       so: "Oggolaanshaha Xubinimada"
     },
+    membershipAuthLL: {
+      en: "I request and voluntarily accept membership in SEIU Local 503 and its successors or assigns (collectively \u201CLocal 503\u201D). This means I will receive the benefits and abide by the obligations of membership set forth in both Local 503\u2019s and the Service Employees International Union\u2019s Constitutions and Bylaws. I authorize Local 503 to act as my representative in collective bargaining over wages, benefits, and other terms/conditions of employment with my employer, and as my exclusive representative where authorized by law. My membership will be continuous, unless I resign by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503 policies). I know that union membership is voluntary and not a condition of employment, and that I can decline to join without reprisal.",
+      es: "Solicito y acepto voluntariamente la membres\xEDa en SEIU Local 503 y sus sucesores o cesionarios (en conjunto \u201CLocal 503\u201D). Esto significa que recibir\xE9 los beneficios y cumplir\xE9 las obligaciones derivadas de la membres\xEDa que se estipulan en la Constituci\xF3n y los Estatutos de Local 503 y de la Uni\xF3n Internacional de Empleados de Servicios. Autorizo a Local 503 para que act\xFAe como mi representante en las negociaciones colectivas relativas a salarios, beneficios y dem\xE1s t\xE9rminos/condiciones laborales que lleve a cabo con mi empleador, y como mi representante exclusivo en los casos que la ley lo permita. Mi membres\xEDa ser\xE1 permanente, a menos que renuncie a la misma por medio de un aviso dirigido a Local 503 y lo env\xEDe a trav\xE9s del correo postal de los EE. UU. (u otro m\xE9todo, si as\xED lo permiten las pol\xEDticas de Local 503). S\xE9 que la membres\xEDa de la uni\xF3n es voluntaria y no es una condici\xF3n laboral, y que puedo rechazar la opci\xF3n de unirme sin que esto implique represalias.",
+      ru: "\u042F \u0437\u0430\u043F\u0440\u0430\u0448\u0438\u0432\u0430\u044E \u0438 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0430\u044E \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 SEIU Local 503 \u0438 \u0435\u0433\u043E \u043F\u0440\u0430\u0432\u043E\u043F\u0440\u0435\u0435\u043C\u043D\u0438\u043A\u0430\u0445 \u0438\u043B\u0438 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F\u0445 (\u0441\u043E\u0432\u043C\u0435\u0441\u0442\u043D\u043E \u0438\u043C\u0435\u043D\u0443\u0435\u043C\u044B\u0445 Local 503). \u042D\u0442\u043E \u043E\u0437\u043D\u0430\u0447\u0430\u0435\u0442, \u0447\u0442\u043E \u044F \u0431\u0443\u0434\u0443 \u043F\u043E\u043B\u0443\u0447\u0430\u0442\u044C \u043B\u044C\u0433\u043E\u0442\u044B \u0438 \u0441\u043E\u0431\u043B\u044E\u0434\u0430\u0442\u044C \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 \u043F\u043E \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u0443, \u0438\u0437\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0432 \u0423\u0441\u0442\u0430\u0432\u0435 \u0438 \u0432\u043D\u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0445 \u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u0445 \u043A\u0430\u043A Local 503, \u0442\u0430\u043A \u0438 \u041C\u0435\u0436\u0434\u0443\u043D\u0430\u0440\u043E\u0434\u043D\u043E\u0433\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430 \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432 \u0441\u0444\u0435\u0440\u044B \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u044F (Service Employees International Union, SEIU). \u042F \u0443\u043F\u043E\u043B\u043D\u043E\u043C\u043E\u0447\u0438\u0432\u0430\u044E Local 503 \u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u0435 \u043C\u043E\u0435\u0433\u043E \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F \u0432 \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0430\u0445 \u043E \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u043D\u043E\u0439 \u043F\u043B\u0430\u0442\u0435, \u043B\u044C\u0433\u043E\u0442\u0430\u0445 \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u0443\u0441\u043B\u043E\u0432\u0438\u044F\u0445 \u043D\u0430\u0439\u043C\u0430 \u0441 \u043C\u043E\u0438\u043C \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u0435\u043C, \u0438 \u044D\u043A\u0441\u043A\u043B\u044E\u0437\u0438\u0432\u043D\u043E\u0433\u043E \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F \u0432 \u0441\u043B\u0443\u0447\u0430\u044F\u0445, \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u0445 \u0437\u0430\u043A\u043E\u043D\u043E\u043C. \u0423\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0431\u0435\u0441\u0441\u0440\u043E\u0447\u043D\u044B\u043C \u0432\u043F\u043B\u043E\u0442\u044C \u0434\u043E \u043C\u043E\u0435\u0433\u043E \u043E\u0442\u043A\u0430\u0437\u0430 \u043E\u0442 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u0430 \u043F\u0443\u0442\u0435\u043C \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F Local 503 \u043F\u043E \u041F\u043E\u0447\u0442\u0435 \u0421\u0428\u0410 (\u0438\u043B\u0438 \u0438\u043D\u044B\u043C \u0441\u043F\u043E\u0441\u043E\u0431\u043E\u043C, \u043F\u0440\u0435\u0434\u0443\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u043C \u0440\u0435\u0433\u043B\u0430\u043C\u0435\u043D\u0442\u0430\u043C\u0438 Local 503). \u042F \u0437\u043D\u0430\u044E, \u0447\u0442\u043E \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E\u0435, \u0438 \u043E\u0442\u043A\u0430\u0437 \u043E\u0442 \u043D\u0435\u0433\u043E \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0441\u043B\u0443\u0436\u0438\u0442\u044C \u043E\u0441\u043D\u043E\u0432\u0430\u043D\u0438\u0435\u043C \u0434\u043B\u044F \u043D\u0435\u0433\u0430\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u043E\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u0438\u0439.",
+      vi: "T\xF4i y\xEAu c\u1EA7u v\xE0 t\u1EF1 nguy\u1EC7n ch\u1EA5p nh\u1EADn tr\u1EDF th\xE0nh th\xE0nh vi\xEAn c\u1EE7a SEIU Local 503 c\u0169ng nh\u01B0 c\xE1c t\u1ED5 ch\u1EE9c li\xEAn \u0111o\xE0n k\u1EBF nhi\u1EC7m ho\u1EB7c \u0111\u01B0\u1EE3c giao tr\u1ECDng tr\xE1ch (g\u1ECDi chung l\xE0 \u201CLocal 503\u201D). \u0110i\u1EC1u n\xE0y c\xF3 ngh\u0129a l\xE0 t\xF4i s\u1EBD \u0111\u01B0\u1EE3c h\u01B0\u1EDFng c\xE1c l\u1EE3i \xEDch v\xE0 tu\xE2n th\u1EE7 c\xE1c ngh\u0129a v\u1EE5 c\u1EE7a th\xE0nh vi\xEAn \u0111\u01B0\u1EE3c quy \u0111\u1ECBnh trong Hi\u1EBFn ph\xE1p v\xE0 Quy ch\u1EBF c\u1EE7a c\u1EA3 Local 503 v\xE0 Service Employees International Union. T\xF4i \u1EE7y quy\u1EC1n cho Local 503 l\xE0m \u0111\u1EA1i di\u1EC7n c\u1EE7a t\xF4i trong vi\u1EC7c th\u01B0\u01A1ng l\u01B0\u1EE3ng t\u1EADp th\u1EC3 v\u1EC1 ti\u1EC1n l\u01B0\u01A1ng, l\u1EE3i \xEDch v\xE0 c\xE1c \u0111i\u1EC1u kho\u1EA3n/\u0111i\u1EC1u ki\u1EC7n l\xE0m vi\u1EC7c kh\xE1c v\u1EDBi ch\u1EE7 lao \u0111\u1ED9ng c\u1EE7a t\xF4i, v\xE0 l\xE0 \u0111\u1EA1i di\u1EC7n \u0111\u1ED9c quy\u1EC1n khi ph\xE1p lu\u1EADt cho ph\xE9p. T\u01B0 c\xE1ch th\xE0nh vi\xEAn c\u1EE7a t\xF4i s\u1EBD ti\u1EBFp t\u1EE5c tr\u1EEB khi t\xF4i t\u1EEB ch\u1EE9c b\u1EB1ng c\xE1ch g\u1EEDi th\xF4ng b\xE1o cho Local 503 qua d\u1ECBch v\u1EE5 b\u01B0u \u0111i\u1EC7n Hoa K\u1EF3 (ho\u1EB7c ph\u01B0\u01A1ng th\u1EE9c kh\xE1c n\u1EBFu \u0111\u01B0\u1EE3c ph\xE9p theo ch\xEDnh s\xE1ch c\u1EE7a Local 503). T\xF4i hi\u1EC3u r\u1EB1ng vi\u1EC7c tham gia c\xF4ng \u0111o\xE0n l\xE0 t\u1EF1 nguy\u1EC7n v\xE0 kh\xF4ng ph\u1EA3i l\xE0 \u0111i\u1EC1u ki\u1EC7n l\xE0m vi\u1EC7c, v\xE0 t\xF4i c\xF3 th\u1EC3 t\u1EEB ch\u1ED1i tham gia m\xE0 kh\xF4ng b\u1ECB tr\u1EA3 \u0111\u0169a.",
+      zh: "\u672C\u4EBA\u8BF7\u6C42\u81EA\u613F\u6210\u4E3A SEIU Local 503 \u4EE5\u53CA\u5176\u7EE7\u627F\u65B9\u6216\u53D7\u8BA9\u65B9\uFF08\u7EDF\u79F0\u201CLocal 503\u201D\uFF09\u7684\u6210\u5458\u3002\u8FD9\u8868\u793A\u6211\u5C06\u83B7\u5F97\u798F\u5229\uFF0C\u5E76\u9075\u5B88 Local 503 \u548C\u670D\u52A1\u884C\u4E1A\u96C7\u5458\u56FD\u9645\u5DE5\u4F1A\u7AE0\u7A0B\u548C\u7EC6\u5219\u4E2D\u89C4\u5B9A\u7684\u4F1A\u5458\u4E49\u52A1\u3002\u6211\u6388\u6743 Local 503 \u4F5C\u4E3A\u6211\u7684\u4EE3\u8868\u4E0E\u6211\u7684\u96C7\u4E3B\u5C31\u5DE5\u8D44\u3001\u798F\u5229\u548C\u5176\u4ED6\u96C7\u4F63\u6761\u6B3E/\u6761\u4EF6\u8FDB\u884C\u96C6\u4F53\u8C08\u5224\uFF0C\u5E76\u5728\u6CD5\u5F8B\u5141\u8BB8\u7684\u60C5\u51B5\u4E0B\u4F5C\u4E3A\u6211\u7684\u4E13\u5C5E\u4EE3\u8868\u3002\u9664\u975E\u6211\u901A\u8FC7\u7F8E\u56FD\u90AE\u653F\u670D\u52A1\uFF08\u6216 Local 503 \u653F\u7B56\u89C4\u5B9A\u7684\u5176\u4ED6\u65B9\u5F0F\uFF09\u5411 Local 503 \u63D0\u4EA4\u901A\u77E5\u9000\u51FA\uFF0C\u5426\u5219\u6211\u7684\u6210\u5458\u8D44\u683C\u5C06\u6301\u7EED\u6709\u6548\u3002\u6211\u4E86\u89E3\u52A0\u5165\u5DE5\u4F1A\u662F\u81EA\u613F\u7684\uFF0C\u5E76\u4E0D\u662F\u5C31\u4E1A\u7684\u6761\u4EF6\uFF0C\u6211\u53EF\u4EE5\u62D2\u7EDD\u52A0\u5165\u800C\u4E0D\u4F1A\u53D7\u5230\u62A5\u590D\u3002",
+      ar: '\u0623\u0637\u0644\u0628 \u0648\u0623\u0648\u0627\u0641\u0642 \u0637\u0648\u0639\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0627\u0646\u0636\u0645\u0627\u0645 \u0625\u0644\u0649 SEIU Local 503 \u0648\u062E\u0644\u0641\u0627\u0626\u0647 \u0623\u0648 \u0627\u0644\u062C\u0647\u0627\u062A \u0627\u0644\u0645\u062D\u0627\u0644\u0629 \u0625\u0644\u064A\u0647 (\u0648\u064A\u0634\u0627\u0631 \u0625\u0644\u064A\u0647\u0645 \u0645\u062C\u062A\u0645\u0639\u064A\u0646 \u0628\u0627\u0633\u0645 "Local 503"). \u0648\u0647\u0630\u0627 \u064A\u0639\u0646\u064A \u0623\u0646\u0646\u064A \u0633\u0623\u062D\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u0645\u0632\u0627\u064A\u0627 \u0648\u0623\u0644\u062A\u0632\u0645 \u0628\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u0645\u0646\u0635\u0648\u0635 \u0639\u0644\u064A\u0647\u0627 \u0641\u064A \u062F\u0633\u0627\u062A\u064A\u0631 \u0648\u0644\u0648\u0627\u0626\u062D \u0643\u0644 \u0645\u0646 Local 503 \u0648\u0627\u062A\u062D\u0627\u062F \u0645\u0648\u0638\u0641\u064A \u0627\u0644\u062E\u062F\u0645\u0627\u062A \u0627\u0644\u062F\u0648\u0644\u064A. \u0648\u0623\u0641\u0648\u0636 Local 503 \u0644\u0644\u0639\u0645\u0644 \u0643\u0645\u0645\u062B\u0644 \u0644\u064A \u0641\u064A \u0627\u0644\u0645\u0641\u0627\u0648\u0636\u0627\u062A \u0627\u0644\u062C\u0645\u0627\u0639\u064A\u0629 \u0628\u0634\u0623\u0646 \u0627\u0644\u0623\u062C\u0648\u0631 \u0648\u0627\u0644\u0645\u0632\u0627\u064A\u0627 \u0648\u0634\u0631\u0648\u0637 \u0648\u0623\u062D\u0643\u0627\u0645 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0623\u062E\u0631\u0649 \u0645\u0639 \u0635\u0627\u062D\u0628 \u0639\u0645\u0644\u064A\u060C \u0648\u0643\u0630\u0644\u0643 \u0643\u0645\u0645\u062B\u0644 \u062D\u0635\u0631\u064A \u0644\u064A \u062D\u064A\u062B \u064A\u0633\u0645\u062D \u0627\u0644\u0642\u0627\u0646\u0648\u0646 \u0628\u0630\u0644\u0643. \u0633\u062A\u0633\u062A\u0645\u0631 \u0639\u0636\u0648\u064A\u062A\u064A \u0645\u0627 \u0644\u0645 \u0623\u0633\u062A\u0642\u0644 \u0645\u0646 \u062E\u0644\u0627\u0644 \u062A\u0642\u062F\u064A\u0645 \u0625\u0634\u0639\u0627\u0631 \u0625\u0644\u0649 Local 503 \u0639\u0628\u0631 \u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0623\u0645\u0631\u064A\u0643\u064A (\u0623\u0648 \u0623\u064A \u0648\u0633\u064A\u0644\u0629 \u0623\u062E\u0631\u0649 \u062A\u0633\u0645\u062D \u0628\u0647\u0627 \u0633\u064A\u0627\u0633\u0627\u062A Local 503). \u0623\u0639\u0644\u0645 \u0623\u0646 \u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u0646\u0642\u0627\u0628\u0629 \u0637\u0648\u0639\u064A\u0629 \u0648\u0644\u064A\u0633\u062A \u0634\u0631\u0637\u064B\u0627 \u0644\u0644\u062A\u0648\u0638\u064A\u0641\u060C \u0648\u064A\u0645\u0643\u0646\u0646\u064A \u0631\u0641\u0636 \u0627\u0644\u0627\u0646\u0636\u0645\u0627\u0645 \u062F\u0648\u0646 \u0627\u0644\u062A\u0639\u0631\u0636 \u0644\u0623\u064A \u0627\u0646\u062A\u0642\u0627\u0645.',
+      so: "Waxaan codsanayaa oo si ikhtiyaari ah u aqbalayaa xubinimada SEIU Local 503 iyo cid kasta oo beddesha ama loo wareejiyo (oo si wadajir ah loogu yeero \u201CLocal 503\u201D). Tani waxay ka dhigan tahay inaan heli doono faa\u2019iidooyinka isla markaana aan raaci doono waajibaadka xubinimada ee ku xusan dastuurka iyo xeerarka Local 503 iyo Ururka Caalamiga ah ee Shaqaalaha Adeegga. Waxaan u oggolaanayaa Local 503 inuu iga noqdo wakiilkayga wadaxaajoodyada mushaharka, faa\u2019iidooyinka, iyo shuruudaha kale ee shaqada ee aan la leeyahay loo-shaqeeyahayga, iyo inuu noqdo wakiilkayga keliya marka sharcigu oggolaado. Xubinimadaydu way sii socon doontaa ilaa aan iska casilo anigoo ogeysiis siinaya Local 503 anigoo adeegsanaya boostada Mareykanka (ama hab kale haddii siyaasadaha Local 503 oggolaadaan). Waan ogahay in xubinimada ururku ay tahay mid ikhtiyaari ah oo aan ahayn shuruud shaqo, waxaana diidi karaa inaan ku biiro anigoon ka baqayn aargudasho."
+    },
     duesAuthTitle: {
       en: "Dues Deduction / Checkoff Authorization",
       es: "Autorizaci\xF3n de aportes/deducci\xF3n de cuotas",
@@ -856,6 +867,15 @@ var SEIUForm = (() => {
       zh: "\u4F1A\u8D39\u6263\u9664\u6388\u6743",
       ar: "\u062A\u0641\u0648\u064A\u0636 \u062E\u0635\u0645 \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0627\u062A",
       so: "Oggolaanshaha Jarista Qaaraanka"
+    },
+    duesAuthLL: {
+      en: "I request and voluntarily authorize my employer to deduct from my earnings and to pay to Local 503 and its successors and assigns (collectively \u201CLocal 503\u201D) an amount equal to Local 503\u2019s regular dues. This dues deduction authorization shall remain in effect unless I revoke it by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503\u2019s policies) within 15 days before or after (1) the annual anniversary date of this agreement or (2) the termination of the applicable collective bargaining agreement between my employer and union (\u201Cmy window periods\u201D). This authorization will renew automatically from year to year even if I have resigned my membership, unless I revoke it during one of my window periods and as required by Local 503\u2019s policies. This authorization is voluntary and is not a condition of my employment, and I can decline to agree to it without reprisal. I understand that all members benefit from everyone\u2019s commitments because they help build a strong union that is able to plan for the future.",
+      es: "Solicito y autorizo voluntariamente que mi empleador deduzca de mis ganancias, y le pague a Local 503 y a sus sucesores y cesionarios (en conjunto \u201CLocal 503\u201D), un monto equivalente a las cuotas ordinarias de Local 503. Esta autorizaci\xF3n para deducir las cuotas seguir\xE1 vigente a menos que yo la revoque por medio de un aviso dirigido a Local 503 y lo env\xEDe a trav\xE9s del correo postal de los EE. UU. (u otro m\xE9todo, si as\xED lo permiten las pol\xEDticas de Local 503) en un plazo de 15 d\xEDas antes o despu\xE9s de (1) la fecha de aniversario de este acuerdo o (2) la fecha de terminaci\xF3n del Contrato Colectivo de Trabajo correspondiente celebrado entre la uni\xF3n y mi empleador. Esta autorizaci\xF3n se renovar\xE1 autom\xE1ticamente cada a\xF1o, incluso si renuncio a mi membres\xEDa, salvo que la revoque dentro de los per\xEDodos permitidos. Esta autorizaci\xF3n es voluntaria y no es una condici\xF3n laboral, y puedo rechazarla sin represalias. Entiendo que todos los miembros se benefician de los compromisos colectivos porque ayudan a construir un sindicato fuerte capaz de planificar el futuro.",
+      ru: "\u042F \u043F\u0440\u043E\u0448\u0443 \u0438 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u0440\u0430\u0437\u0440\u0435\u0448\u0430\u044E \u043C\u043E\u0435\u043C\u0443 \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044E \u0443\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0442\u044C \u0438\u0437 \u043C\u043E\u0435\u0433\u043E \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u043A\u0430 \u0438 \u043F\u0435\u0440\u0435\u0447\u0438\u0441\u043B\u044F\u0442\u044C \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0443 Local 503 \u0438 \u0435\u0433\u043E \u043F\u0440\u0430\u0432\u043E\u043F\u0440\u0435\u0435\u043C\u043D\u0438\u043A\u0430\u043C \u0441\u0443\u043C\u043C\u0443, \u0440\u0430\u0432\u043D\u0443\u044E \u0440\u0435\u0433\u0443\u043B\u044F\u0440\u043D\u044B\u043C \u0447\u043B\u0435\u043D\u0441\u043A\u0438\u043C \u0432\u0437\u043D\u043E\u0441\u0430\u043C Local 503. \u0414\u0430\u043D\u043D\u043E\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043E\u0441\u0442\u0430\u0435\u0442\u0441\u044F \u0432 \u0441\u0438\u043B\u0435, \u0435\u0441\u043B\u0438 \u044F \u043D\u0435 \u043E\u0442\u0437\u043E\u0432\u0443 \u0435\u0433\u043E, \u043D\u0430\u043F\u0440\u0430\u0432\u0438\u0432 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0435 \u0432 Local 503 \u043F\u043E \u041F\u043E\u0447\u0442\u0435 \u0421\u0428\u0410 (\u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u043C \u0441\u043F\u043E\u0441\u043E\u0431\u043E\u043C, \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u043C \u043F\u043E\u043B\u0438\u0442\u0438\u043A\u0430\u043C\u0438 Local 503) \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 15 \u0434\u043D\u0435\u0439 \u0434\u043E \u0438\u043B\u0438 \u043F\u043E\u0441\u043B\u0435 \u0434\u0430\u0442\u044B \u0433\u043E\u0434\u043E\u0432\u0449\u0438\u043D\u044B \u0441\u043E\u0433\u043B\u0430\u0448\u0435\u043D\u0438\u044F \u0438\u043B\u0438 \u043F\u0440\u0435\u043A\u0440\u0430\u0449\u0435\u043D\u0438\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430. \u042D\u0442\u043E \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043F\u0440\u043E\u0434\u043B\u0435\u0432\u0430\u0435\u0442\u0441\u044F \u0435\u0436\u0435\u0433\u043E\u0434\u043D\u043E, \u0434\u0430\u0436\u0435 \u0435\u0441\u043B\u0438 \u044F \u0432\u044B\u0439\u0434\u0443 \u0438\u0437 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430, \u0435\u0441\u043B\u0438 \u0442\u043E\u043B\u044C\u043A\u043E \u044F \u043D\u0435 \u043E\u0442\u0437\u043E\u0432\u0443 \u0435\u0433\u043E \u0432 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u044B\u0435 \u043F\u0435\u0440\u0438\u043E\u0434\u044B. \u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u044B\u043C \u0438 \u043D\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0443\u0441\u043B\u043E\u0432\u0438\u0435\u043C \u0442\u0440\u0443\u0434\u043E\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430. \u042F \u043F\u043E\u043D\u0438\u043C\u0430\u044E, \u0447\u0442\u043E \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u044B\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 \u043F\u043E\u043C\u043E\u0433\u0430\u044E\u0442 \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C \u0441\u0438\u043B\u044C\u043D\u044B\u0439 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437.",
+      vi: "T\xF4i y\xEAu c\u1EA7u v\xE0 t\u1EF1 nguy\u1EC7n \u1EE7y quy\u1EC1n cho ch\u1EE7 lao \u0111\u1ED9ng c\u1EE7a t\xF4i kh\u1EA5u tr\u1EEB t\u1EEB thu nh\u1EADp c\u1EE7a t\xF4i v\xE0 thanh to\xE1n cho Local 503 s\u1ED1 ti\u1EC1n t\u01B0\u01A1ng \u0111\u01B0\u01A1ng v\u1EDBi h\u1ED9i ph\xED th\xF4ng th\u01B0\u1EDDng. Vi\u1EC7c \u1EE7y quy\u1EC1n n\xE0y s\u1EBD ti\u1EBFp t\u1EE5c c\xF3 hi\u1EC7u l\u1EF1c tr\u1EEB khi t\xF4i r\xFAt l\u1EA1i b\u1EB1ng c\xE1ch g\u1EEDi th\xF4ng b\xE1o cho Local 503 trong kho\u1EA3ng th\u1EDDi gian quy \u0111\u1ECBnh. Vi\u1EC7c \u1EE7y quy\u1EC1n n\xE0y s\u1EBD t\u1EF1 \u0111\u1ED9ng gia h\u1EA1n h\u1EB1ng n\u0103m tr\u1EEB khi t\xF4i r\xFAt l\u1EA1i theo quy \u0111\u1ECBnh. \u0110\xE2y l\xE0 s\u1EF1 \u1EE7y quy\u1EC1n t\u1EF1 nguy\u1EC7n v\xE0 kh\xF4ng ph\u1EA3i l\xE0 \u0111i\u1EC1u ki\u1EC7n vi\u1EC7c l\xE0m. T\xF4i hi\u1EC3u r\u1EB1ng s\u1EF1 \u0111\xF3ng g\xF3p c\u1EE7a m\u1ECDi th\xE0nh vi\xEAn gi\xFAp x\xE2y d\u1EF1ng m\u1ED9t li\xEAn \u0111o\xE0n v\u1EEFng m\u1EA1nh.",
+      zh: "\u672C\u4EBA\u8BF7\u6C42\u5E76\u81EA\u613F\u6388\u6743\u6211\u7684\u96C7\u4E3B\u4ECE\u6211\u7684\u6536\u5165\u4E2D\u6263\u9664\u5E76\u652F\u4ED8\u7ED9 Local 503 \u7B49\u4E8E\u5E38\u89C4\u4F1A\u8D39\u7684\u91D1\u989D\u3002\u9664\u975E\u6211\u5728\u89C4\u5B9A\u65F6\u95F4\u5185\u64A4\u56DE\u6388\u6743\uFF0C\u5426\u5219\u8BE5\u6388\u6743\u5C06\u6301\u7EED\u6709\u6548\u5E76\u81EA\u52A8\u6BCF\u5E74\u66F4\u65B0\u3002\u8BE5\u6388\u6743\u662F\u81EA\u613F\u7684\uFF0C\u5E76\u4E0D\u662F\u5C31\u4E1A\u7684\u6761\u4EF6\u3002\u6211\u7406\u89E3\u6240\u6709\u6210\u5458\u7684\u627F\u8BFA\u6709\u52A9\u4E8E\u5EFA\u7ACB\u4E00\u4E2A\u5F3A\u5927\u7684\u5DE5\u4F1A\u3002",
+      ar: "\u0623\u0637\u0644\u0628 \u0648\u0623\u0641\u0648\u0636 \u0637\u0648\u0639\u064B\u0627 \u0635\u0627\u062D\u0628 \u0639\u0645\u0644\u064A \u0623\u0646 \u064A\u062E\u0635\u0645 \u0645\u0646 \u0623\u0631\u0628\u0627\u062D\u064A \u0648\u064A\u062F\u0641\u0639 \u0625\u0644\u0649 Local 503 \u0645\u0628\u0644\u063A\u064B\u0627 \u064A\u0639\u0627\u062F\u0644 \u0627\u0644\u0631\u0633\u0648\u0645 \u0627\u0644\u0646\u0642\u0627\u0628\u064A\u0629 \u0627\u0644\u0639\u0627\u062F\u064A\u0629. \u0633\u064A\u0638\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u0633\u0627\u0631\u064A\u064B\u0627 \u0645\u0627 \u0644\u0645 \u0623\u0642\u0645 \u0628\u0625\u0644\u063A\u0627\u0626\u0647 \u0645\u0646 \u062E\u0644\u0627\u0644 \u062A\u0642\u062F\u064A\u0645 \u0625\u0634\u0639\u0627\u0631 \u0625\u0644\u0649 Local 503 \u062E\u0644\u0627\u0644 \u0627\u0644\u0641\u062A\u0631\u0627\u062A \u0627\u0644\u0645\u062D\u062F\u062F\u0629. \u0633\u064A\u062A\u0645 \u062A\u062C\u062F\u064A\u062F \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u062A\u0644\u0642\u0627\u0626\u064A\u064B\u0627 \u0643\u0644 \u0639\u0627\u0645 \u0645\u0627 \u0644\u0645 \u0623\u0642\u0645 \u0628\u0625\u0644\u063A\u0627\u0626\u0647 \u0648\u0641\u0642\u064B\u0627 \u0644\u0644\u0633\u064A\u0627\u0633\u0627\u062A \u0627\u0644\u0645\u0639\u0645\u0648\u0644 \u0628\u0647\u0627. \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u0637\u0648\u0639\u064A \u0648\u0644\u064A\u0633 \u0634\u0631\u0637\u064B\u0627 \u0645\u0646 \u0634\u0631\u0648\u0637 \u0627\u0644\u062A\u0648\u0638\u064A\u0641\u060C \u0648\u064A\u0645\u0643\u0646\u0646\u064A \u0631\u0641\u0636\u0647 \u062F\u0648\u0646 \u0627\u0644\u062A\u0639\u0631\u0636 \u0644\u0623\u064A \u0627\u0646\u062A\u0642\u0627\u0645. \u0623\u0641\u0647\u0645 \u0623\u0646 \u0627\u0644\u062A\u0632\u0627\u0645 \u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0639\u0636\u0627\u0621 \u064A\u0633\u0627\u0639\u062F \u0641\u064A \u0628\u0646\u0627\u0621 \u0646\u0642\u0627\u0628\u0629 \u0642\u0648\u064A\u0629 \u0642\u0627\u062F\u0631\u0629 \u0639\u0644\u0649 \u0627\u0644\u062A\u062E\u0637\u064A\u0637 \u0644\u0644\u0645\u0633\u062A\u0642\u0628\u0644.",
+      so: "Waxaan codsanayaa oo si ikhtiyaari ah u oggolaanayaa loo-shaqeeyahayga inuu ka jaro mushaharkayga lacag u dhiganta qaaraanka caadiga ah ee Local 503 oo uu u gudbiyo ururka. Oggolaanshahani wuu sii jiri doonaa ilaa aan ka noqdo anigoo ogeysiis siinaya Local 503 inta lagu jiro waqtiyada la oggol yahay. Oggolaanshahani si toos ah ayuu u cusboonaanayaa sanad kasta ilaa aan ka noqdo sida ay dhigayaan siyaasadaha Local 503. Oggolaanshahani waa ikhtiyaari mana aha shuruud shaqo, waxaana diidi karaa anigoon ka baqayn aargudasho. Waxaan fahamsanahay in dhammaan xubnuhu ka faa\u2019iidaystaan ballanqaadyada wadajirka ah sababtoo ah waxay dhisaan urur xooggan oo qorsheyn kara mustaqbalka."
     },
     homecareOrPersonalSupportWorker: {
       en: "Homecare or Personal Support Worker",
@@ -2257,16 +2277,21 @@ var SEIUForm = (() => {
   // src/prefill.js
   function initPrefill({
     getLang,
+    detectedSupportedLang,
     employerTypeInput,
     hiddenRequired = []
   }) {
     initPrefilledFields({
+      getLang,
+      detectedSupportedLang,
       employerTypeInput,
       hiddenRequired
     });
     initPrefillModal({ getLang });
   }
   function initPrefilledFields({
+    getLang,
+    detectedSupportedLang,
     employerTypeInput,
     hiddenRequired
   }) {
@@ -2284,8 +2309,12 @@ var SEIUForm = (() => {
       stateF,
       zipF
     });
-    const prefillFieldList = [
+    handlePreferredLanguagePrefill({
       preferredLanguageF,
+      getLang,
+      detectedSupportedLang
+    });
+    const prefillFieldList = [
       emailF,
       phoneF,
       employerNamePrefill
@@ -2352,6 +2381,26 @@ var SEIUForm = (() => {
         }
       }
     });
+  }
+  function handlePreferredLanguagePrefill({
+    preferredLanguageF,
+    getLang,
+    detectedSupportedLang
+  }) {
+    if (!preferredLanguageF) return;
+    const container = preferredLanguageF.closest(".field-container-D, .form-group, .question") || preferredLanguageF.parentNode;
+    if (!detectedSupportedLang) {
+      preferredLanguageF.dataset.prefilled = "false";
+      if (container) container.style.removeProperty("display");
+      return;
+    }
+    preferredLanguageF.value = getLang;
+    preferredLanguageF.dataset.prefilled = "true";
+    preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));
+    preferredLanguageF.dispatchEvent(new Event("change", { bubbles: true }));
+    if (container) {
+      container.style.display = "none";
+    }
   }
   function markFieldSwitchedOff(fieldName) {
     const switchedOffField = document.querySelector('input[name="tfa_switchedoff"]');
@@ -2453,8 +2502,8 @@ var SEIUForm = (() => {
     const yyyySelect = document.getElementById("tfa_158");
     if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
     const dateSelects = [mmSelect, ddSelect, yyyySelect];
-    function getSelectedText(el) {
-      return el?.options?.[el.selectedIndex]?.text || "";
+    function getSelectedValue(el) {
+      return el?.value || "";
     }
     function getMaxDay(month) {
       switch (month) {
@@ -2470,30 +2519,32 @@ var SEIUForm = (() => {
       }
     }
     function dateOptions() {
-      const mm = getSelectedText(mmSelect);
+      const mm = getSelectedValue(mmSelect);
       const max = getMaxDay(mm);
-      const dates = [];
+      const dates = [""];
       for (let i = 1; i <= max; i++) {
         dates.push(i < 10 ? `0${i}` : String(i));
       }
-      dates.unshift("");
       return dates;
     }
     function yearOptions() {
-      const years = [];
+      const years = [""];
       const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
-      for (let i = currentYear - 99; i <= currentYear; i++) {
-        years.unshift(String(i));
+      for (let i = currentYear; i >= currentYear - 99; i--) {
+        years.push(String(i));
       }
-      years.unshift("");
       return years;
     }
     function emptyCombo(selectEl) {
-      selectEl.options.length = 1;
+      selectEl.options.length = 0;
       return selectEl;
     }
     function populateCombo(selectEl, items) {
+      emptyCombo(selectEl);
       selectEl.append(...items.map((item) => new Option(item, item)));
+    }
+    function hasOption(selectEl, value) {
+      return Array.from(selectEl.options).some((option) => option.value === value);
     }
     function formatSFDate(mm, dd, yyyy) {
       if (!mm || !dd || !yyyy) return "";
@@ -2501,21 +2552,25 @@ var SEIUForm = (() => {
     }
     function updateBirthdateField() {
       dobEl.value = formatSFDate(
-        getSelectedText(mmSelect),
-        getSelectedText(ddSelect),
-        getSelectedText(yyyySelect)
+        getSelectedValue(mmSelect),
+        getSelectedValue(ddSelect),
+        getSelectedValue(yyyySelect)
       );
       dobEl.dispatchEvent(new Event("input", { bubbles: true }));
       dobEl.dispatchEvent(new Event("change", { bubbles: true }));
     }
     mmSelect.addEventListener("change", function() {
-      populateCombo(emptyCombo(ddSelect), dateOptions());
+      const previousDay = getSelectedValue(ddSelect);
+      populateCombo(ddSelect, dateOptions());
+      if (previousDay && hasOption(ddSelect, previousDay)) {
+        ddSelect.value = previousDay;
+      }
       updateBirthdateField();
     });
     dateSelects.forEach((field) => {
       field.addEventListener("change", updateBirthdateField);
     });
-    populateCombo(emptyCombo(yyyySelect), yearOptions());
+    populateCombo(yyyySelect, yearOptions());
   }
 
   // src/main.js
@@ -2544,9 +2599,7 @@ var SEIUForm = (() => {
       "Af Soomaaliga": "so"
     };
     const supportedLangs = Object.values(languageMap);
-    if (!supportedLangs.includes(getLang)) {
-      getLang = "en";
-    }
+    const detectedSupportedLang = supportedLangs.includes(getLang);
     const header = document.querySelector(".wFormHeader");
     if (!header) return;
     const pickerWrap = document.createElement("div");
@@ -2616,6 +2669,7 @@ var SEIUForm = (() => {
     var duesAuthTitle = document.getElementById("tfa_355-L");
     var duesAuthLL = document.getElementById("tfa_380-L");
     var combinedLL = document.getElementById("tfa_377");
+    const preferredLanguageField = document.getElementById("tfa_91");
     applyTranslations();
     const employerNameElements = {
       eNameState: document.getElementById("tfa_410"),
@@ -2644,6 +2698,7 @@ var SEIUForm = (() => {
     initDateHelpers();
     initPrefill({
       getLang,
+      detectedSupportedLang,
       employerTypeInput,
       hiddenRequired
     });
@@ -2655,27 +2710,54 @@ var SEIUForm = (() => {
     const agencyNumberFields = agencyNumberFieldIDs.map((id) => document.getElementById(id));
     const aIdPrefillCalc = document.getElementById("tfa_442");
     const agencyNumberPrefillCalc = document.getElementById("tfa_126");
-    function t(key) {
-      return translations[key]?.[getLang] || translations[key]?.en || "";
+    function getTranslation(key, fallbackText = "") {
+      const entry = translations?.[key];
+      if (!entry) return fallbackText;
+      const value = entry?.[getLang];
+      if (typeof value === "string" && value.trim() !== "") return value;
+      const english = entry?.en;
+      if (typeof english === "string" && english.trim() !== "") return english;
+      return fallbackText;
+    }
+    function getOriginalText(el) {
+      if (!el) return "";
+      if (!el.dataset.originalText) {
+        el.dataset.originalText = el.textContent || "";
+      }
+      return el.dataset.originalText;
+    }
+    function getOriginalHTML(el) {
+      if (!el) return "";
+      if (!el.dataset.originalHtml) {
+        el.dataset.originalHtml = el.innerHTML || "";
+      }
+      return el.dataset.originalHtml;
     }
     function setText(el, key) {
       if (!el) return;
-      el.textContent = t(key);
+      const fallbackText = getOriginalText(el);
+      const translated = getTranslation(key, fallbackText);
+      el.textContent = translated;
     }
     function setHTML(el, key) {
       if (!el) return;
-      el.innerHTML = t(key);
+      const fallbackHTML = getOriginalHTML(el);
+      const translated = getTranslation(key, fallbackHTML);
+      el.innerHTML = translated;
     }
     function applyTranslations() {
-      document.title = t("formTitle");
+      document.title = getTranslation("formTitle", document.title);
       setHTML(valueFormTitle, "formTitle");
-      if (valueSubmitButton) valueSubmitButton.value = t("submitButton");
+      if (valueSubmitButton) {
+        valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
+        valueSubmitButton.value = getTranslation("submitButton", valueSubmitButton.dataset.originalValue);
+      }
       if (stagingWarning) {
         stagingWarning.innerHTML = `
       <div style="background-color: rgb(255, 152, 0); padding: 20px;">
         <div>
           <p style="display: inline;" id="testWarning" data-testid="testWarning">
-            ${t("stagingWarning")}&nbsp;
+            ${getTranslation("stagingWarning", "This form is for testing only.")}&nbsp;
           </p>
           <strong>
             <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
@@ -2696,9 +2778,24 @@ var SEIUForm = (() => {
         birthDate.classList.add("reqMark");
         birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
       }
-      if (mmPlaceholder) mmPlaceholder.textContent = t("mmPlaceholder");
-      if (ddPlaceholder) ddPlaceholder.textContent = t("ddPlaceholder");
-      if (yyyyPlaceholder) yyyyPlaceholder.textContent = t("yyyyPlaceholder");
+      if (mmPlaceholder) {
+        mmPlaceholder.textContent = getTranslation(
+          "mmPlaceholder",
+          mmPlaceholder.textContent
+        );
+      }
+      if (ddPlaceholder) {
+        ddPlaceholder.textContent = getTranslation(
+          "ddPlaceholder",
+          ddPlaceholder.textContent
+        );
+      }
+      if (yyyyPlaceholder) {
+        yyyyPlaceholder.textContent = getTranslation(
+          "yyyyPlaceholder",
+          yyyyPlaceholder.textContent
+        );
+      }
       setText(preferredLanguage, "preferredLanguage");
       setText(address, "address");
       setText(addressNote, "addressNote");

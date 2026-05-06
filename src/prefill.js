@@ -2,10 +2,13 @@
 
 export function initPrefill({
   getLang,
+  detectedSupportedLang,
   employerTypeInput,
   hiddenRequired = []
 }) {
   initPrefilledFields({
+    getLang,
+    detectedSupportedLang,
     employerTypeInput,
     hiddenRequired
   });
@@ -14,6 +17,8 @@ export function initPrefill({
 }
 
 function initPrefilledFields({
+  getLang,
+  detectedSupportedLang,
   employerTypeInput,
   hiddenRequired
 }) {
@@ -33,12 +38,17 @@ function initPrefilledFields({
 	  zipF
 	});
 
-	const prefillFieldList = [
-	  preferredLanguageF,
-	  emailF,
-	  phoneF,
-	  employerNamePrefill
-	].filter(Boolean);
+	handlePreferredLanguagePrefill({
+    preferredLanguageF,
+    getLang,
+    detectedSupportedLang
+  });
+
+  const prefillFieldList = [
+    emailF,
+    phoneF,
+    employerNamePrefill
+  ].filter(Boolean);
 
   prefillFieldList.forEach(field => {
     const wasPrefilled = field.value && field.value.trim() !== "";
@@ -127,6 +137,34 @@ function handleAddressPrefillGroup({
 			}
     }
   });
+}
+
+function handlePreferredLanguagePrefill({
+  preferredLanguageF,
+  getLang,
+  detectedSupportedLang
+}) {
+  if (!preferredLanguageF) return;
+
+  const container =
+    preferredLanguageF.closest(".field-container-D, .form-group, .question") ||
+    preferredLanguageF.parentNode;
+
+  if (!detectedSupportedLang) {
+    preferredLanguageF.dataset.prefilled = "false";
+    if (container) container.style.removeProperty("display");
+    return;
+  }
+
+  preferredLanguageF.value = getLang;
+  preferredLanguageF.dataset.prefilled = "true";
+
+  preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));
+  preferredLanguageF.dispatchEvent(new Event("change", { bubbles: true }));
+
+  if (container) {
+    container.style.display = "none";
+  }
 }
 
 function markFieldSwitchedOff(fieldName) {

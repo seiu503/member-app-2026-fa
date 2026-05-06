@@ -12,10 +12,18 @@
 		text-align: left;
 		}
 
-	/* DOB section header */
-	#tfa_134-L { 
-
+	/* DOB section header -- style to match other field labels */
+	#tfa_134-L {
+		position: relative;
+	  top: 14px;
+	  font-family: var(--font-mono), monospace !important;
+	  font-size: 100% !important;
+	  font-weight: 400 !important;
+	  color: #444444 !important;
+	  text-transform: uppercase !important;
+	  line-height: normal !important;
 	}
+
 	/* 2-col field groups */
 	/* Employer Type / Employer Name group 400
 			Birthdate / Language group 134
@@ -82,12 +90,6 @@
 	#tfa_134 { /* birth date / language group */
 		margin-top: -12px;
 	} 
-
-	#tfa_134-L { /* birth date label */
-		position: relative;
-	  top: 14px;
-	  /*font-family: Roboto !important;*/
-	}  
 
 	#tfa_91-D { /* preferred language */
 		margin-top: -9px;

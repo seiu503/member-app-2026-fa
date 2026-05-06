@@ -49,9 +49,7 @@ window.addEventListener("load", function() {
 
   	const supportedLangs = Object.values(languageMap);
 
-		if (!supportedLangs.includes(getLang)) {
-		  getLang = "en"; // fallback
-		}
+		const detectedSupportedLang = supportedLangs.includes(getLang);
 
     // Find the target element
     const header = document.querySelector(".wFormHeader");
@@ -147,6 +145,7 @@ window.addEventListener("load", function() {
 	var duesAuthTitle = document.getElementById("tfa_355-L");
 	var duesAuthLL = document.getElementById("tfa_380-L");
 	var combinedLL = document.getElementById("tfa_377"); // jcl
+	const preferredLanguageField = document.getElementById("tfa_91");
 
 	applyTranslations();
 
@@ -182,6 +181,7 @@ window.addEventListener("load", function() {
 
 	initPrefill({
 	  getLang,
+	  detectedSupportedLang,
 	  employerTypeInput,
 	  hiddenRequired
 	});
@@ -199,32 +199,73 @@ window.addEventListener("load", function() {
   const aIdPrefillCalc = document.getElementById('tfa_442');
   const agencyNumberPrefillCalc = document.getElementById('tfa_126');
 
-  function t(key) {
-  return translations[key]?.[getLang] || translations[key]?.en || "";
+  function getTranslation(key, fallbackText = "") {
+	  const entry = translations?.[key];
+
+	  if (!entry) return fallbackText;
+
+	  const value = entry?.[getLang];
+	  if (typeof value === "string" && value.trim() !== "") return value;
+
+	  const english = entry?.en;
+	  if (typeof english === "string" && english.trim() !== "") return english;
+
+	  return fallbackText;
+	}
+
+function getOriginalText(el) {
+  if (!el) return "";
+
+  if (!el.dataset.originalText) {
+    el.dataset.originalText = el.textContent || "";
+  }
+
+  return el.dataset.originalText;
+}
+
+function getOriginalHTML(el) {
+  if (!el) return "";
+
+  if (!el.dataset.originalHtml) {
+    el.dataset.originalHtml = el.innerHTML || "";
+  }
+
+  return el.dataset.originalHtml;
 }
 
 function setText(el, key) {
   if (!el) return;
-  el.textContent = t(key);
+
+  const fallbackText = getOriginalText(el);
+  const translated = getTranslation(key, fallbackText);
+
+  el.textContent = translated;
 }
 
 function setHTML(el, key) {
   if (!el) return;
-  el.innerHTML = t(key);
+
+  const fallbackHTML = getOriginalHTML(el);
+  const translated = getTranslation(key, fallbackHTML);
+
+  el.innerHTML = translated;
 }
 
 function applyTranslations() {
-  document.title = t("formTitle");
+  document.title = getTranslation("formTitle", document.title);
 
   setHTML(valueFormTitle, "formTitle");
-  if (valueSubmitButton) valueSubmitButton.value = t("submitButton");
+  if (valueSubmitButton) {
+	  valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
+	  valueSubmitButton.value = getTranslation("submitButton", valueSubmitButton.dataset.originalValue);
+	}
 
   if (stagingWarning) {
     stagingWarning.innerHTML = `
       <div style="background-color: rgb(255, 152, 0); padding: 20px;">
         <div>
           <p style="display: inline;" id="testWarning" data-testid="testWarning">
-            ${t("stagingWarning")}&nbsp;
+            ${getTranslation("stagingWarning", "This form is for testing only.")}&nbsp;
           </p>
           <strong>
             <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
@@ -248,9 +289,26 @@ function applyTranslations() {
     birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
   }
 
-  if (mmPlaceholder) mmPlaceholder.textContent = t("mmPlaceholder");
-  if (ddPlaceholder) ddPlaceholder.textContent = t("ddPlaceholder");
-  if (yyyyPlaceholder) yyyyPlaceholder.textContent = t("yyyyPlaceholder");
+  if (mmPlaceholder) {
+	  mmPlaceholder.textContent = getTranslation(
+	    "mmPlaceholder",
+	    mmPlaceholder.textContent
+	  );
+	}
+
+	if (ddPlaceholder) {
+	  ddPlaceholder.textContent = getTranslation(
+	    "ddPlaceholder",
+	    ddPlaceholder.textContent
+	  );
+	}
+
+	if (yyyyPlaceholder) {
+	  yyyyPlaceholder.textContent = getTranslation(
+	    "yyyyPlaceholder",
+	    yyyyPlaceholder.textContent
+	  );
+	}
 
   setText(preferredLanguage, "preferredLanguage");
   setText(address, "address");
