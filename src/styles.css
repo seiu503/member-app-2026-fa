@@ -114,12 +114,7 @@
 	justify-content: space-between;
 	}
 
-	/* Authorization checkbox labels (legal language) */
-	#tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
-	  font-size: 13.6px !important;
-	  color: rgb(68, 68, 68) !important;
-	  line-height: normal;
-	}
+
 
 	/* Authorization checkboxes */
 	#tfa_379-L:before,
@@ -141,6 +136,14 @@
 	/* checkbox backgrounds checked */
 	.wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
 	  background: #531078;
+	}
+
+	#tfa_122-L { /* scholarship opt-out small type */
+		font-size: 13.6px !important;
+	  font-family: var(--font-body), sans-serif !important;
+	  color: rgb(68, 68, 68) !important;
+	  text-transform: none !important;
+	  line-height: normal;
 	}
 
 
