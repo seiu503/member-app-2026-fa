@@ -6,6 +6,31 @@ import { initValidation } from "./validation.js";
 import { initPrefill } from "./prefill.js";
 import { initDateHelpers } from "./dateHelpers.js";
 
+function normalizeTranslationMap(map) {
+  return Object.fromEntries(
+    Object.entries(map).map(([key, value]) => [key.toLowerCase(), value])
+  );
+}
+
+const translationsNorm = normalizeTranslationMap(translations);
+const employerTypeTranslationsNorm = normalizeTranslationMap(employerTypeTranslations);
+const employerNameTranslationsNorm = normalizeTranslationMap(employerNameTranslations);
+
+function getTranslation(map, key, lang, fallbackText = "") {
+  if (!map || !key) return fallbackText;
+
+  const entry = map[key.toLowerCase()];
+  if (!entry) return fallbackText;
+
+  const value = entry?.[lang];
+  if (typeof value === "string" && value.trim()) return value;
+
+  const english = entry?.en;
+  if (typeof english === "string" && english.trim()) return english;
+
+  return fallbackText;
+}
+
 window.addEventListener("load", function() {
 
 	const formEl = document.querySelector("form");
@@ -199,65 +224,52 @@ window.addEventListener("load", function() {
   const aIdPrefillCalc = document.getElementById('tfa_442');
   const agencyNumberPrefillCalc = document.getElementById('tfa_126');
 
-  function getTranslation(key, fallbackText = "") {
-	  const entry = translations?.[key];
-
-	  if (!entry) return fallbackText;
-
-	  const value = entry?.[getLang];
-	  if (typeof value === "string" && value.trim() !== "") return value;
-
-	  const english = entry?.en;
-	  if (typeof english === "string" && english.trim() !== "") return english;
-
-	  return fallbackText;
+  function getOriginalText(el) {
+	  if (!el) return "";
+	  if (!el.dataset.originalText) {
+	    el.dataset.originalText = el.textContent || "";
+	  }
+	  return el.dataset.originalText;
 	}
 
-function getOriginalText(el) {
-  if (!el) return "";
+	function getOriginalHTML(el) {
+	  if (!el) return "";
+	  if (!el.dataset.originalHtml) {
+	    el.dataset.originalHtml = el.innerHTML || "";
+	  }
+	  return el.dataset.originalHtml;
+	}
 
-  if (!el.dataset.originalText) {
-    el.dataset.originalText = el.textContent || "";
-  }
+	function setText(el, key) {
+	  if (!el) return;
 
-  return el.dataset.originalText;
-}
+	  const fallback = getOriginalText(el);
+	  const translated = getTranslation(translationsNorm, key, getLang, fallback);
 
-function getOriginalHTML(el) {
-  if (!el) return "";
+	  el.textContent = translated;
+	}
 
-  if (!el.dataset.originalHtml) {
-    el.dataset.originalHtml = el.innerHTML || "";
-  }
+	function setHTML(el, key) {
+	  if (!el) return;
 
-  return el.dataset.originalHtml;
-}
+	  const fallback = getOriginalHTML(el);
+	  const translated = getTranslation(translationsNorm, key, getLang, fallback);
 
-function setText(el, key) {
-  if (!el) return;
-
-  const fallbackText = getOriginalText(el);
-  const translated = getTranslation(key, fallbackText);
-
-  el.textContent = translated;
-}
-
-function setHTML(el, key) {
-  if (!el) return;
-
-  const fallbackHTML = getOriginalHTML(el);
-  const translated = getTranslation(key, fallbackHTML);
-
-  el.innerHTML = translated;
-}
+	  el.innerHTML = translated;
+	}
 
 function applyTranslations() {
-  document.title = getTranslation("formTitle", document.title);
+  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
 
   setHTML(valueFormTitle, "formTitle");
   if (valueSubmitButton) {
 	  valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
-	  valueSubmitButton.value = getTranslation("submitButton", valueSubmitButton.dataset.originalValue);
+	  valueSubmitButton.value = getTranslation(
+		  translationsNorm,
+		  "submitButton",
+		  getLang,
+		  valueSubmitButton.dataset.originalValue
+		);
 	}
 
   if (stagingWarning) {
@@ -265,7 +277,12 @@ function applyTranslations() {
       <div style="background-color: rgb(255, 152, 0); padding: 20px;">
         <div>
           <p style="display: inline;" id="testWarning" data-testid="testWarning">
-            ${getTranslation("stagingWarning", "This form is for testing only.")}&nbsp;
+            ${getTranslation(
+						  translationsNorm,
+						  "stagingWarning",
+						  getLang,
+						  "This form is for testing only."
+						)}&nbsp;
           </p>
           <strong>
             <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
@@ -291,23 +308,29 @@ function applyTranslations() {
 
   if (mmPlaceholder) {
 	  mmPlaceholder.textContent = getTranslation(
-	    "mmPlaceholder",
-	    mmPlaceholder.textContent
-	  );
+		  translationsNorm,
+		  "mmPlaceholder",
+		  getLang,
+		  mmPlaceholder.textContent
+		);
 	}
 
 	if (ddPlaceholder) {
 	  ddPlaceholder.textContent = getTranslation(
-	    "ddPlaceholder",
-	    ddPlaceholder.textContent
-	  );
+		  translationsNorm,
+		  "ddPlaceholder",
+		  getLang,
+		  ddPlaceholder.textContent
+		);
 	}
 
 	if (yyyyPlaceholder) {
 	  yyyyPlaceholder.textContent = getTranslation(
-	    "yyyyPlaceholder",
-	    yyyyPlaceholder.textContent
-	  );
+		  translationsNorm,
+		  "yyyyPlaceholder",
+		  getLang,
+		  yyyyPlaceholder.textContent
+		);
 	}
 
   setText(preferredLanguage, "preferredLanguage");

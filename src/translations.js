@@ -945,6 +945,15 @@ export const employerNameTranslations = {
     ar: "مكتب العمل والصناعات",
     so: "Xafiiska Shaqada iyo Warshadaha"
   },
+  "BOARD OF LICENSED PROFESSIONAL COUNSELORS AND THERAPISTS (MHRA)": {
+  	en: "Board of Licensed Professional Counselors and Therapists (MHRA)",
+    es: "Junta de Consejeros y Terapeutas Profesionales Licenciados (MHRA)",
+    ru: "Совет лицензированных профессиональных консультантов и терапевтов (MHRA)",
+    vi: "Hội đồng tư vấn và trị liệu chuyên nghiệp được cấp phép (MHRA)",
+    zh: "持牌专业咨询师和治疗师委员会 (MHRA)",
+    ar: "مجلس المستشارين والمعالجين المهنيين المرخصين (MHRA)",
+    so: "Guddiga La-taliyeyaasha iyo Daaweeyayaasha Xirfadlayaasha Shatiga Leh (MHRA)"
+  },
   "COMMISSION FOR THE BLIND": {
     en: "Commission for the Blind",
     es: "Comisión para las Personas Ciegas (Commission for the Blind)",
@@ -1098,15 +1107,74 @@ export const employerNameTranslations = {
     ar: "DHS/OHA",
     so: "DHS/OHA"
   },
-  "EMPLOYMENT DIVISION": {
-    en: "Employment Division",
-    es: "División de Empleo",
+  "EMPLOYMENT DEPARTMENT": {
+    en: "Employment Department",
+    es: "Departamento de Empleo",
     ru: "Отдел занятости",
     vi: "Bộ Lao động (Employment Division)",
     zh: "人事部",
     ar: "قسم التوظيف",
     so: "Qaybta Shaqaaleynta"
   },
+  "LONG TERM CARE OMBUDMAN": {
+	  en: "Long Term Care Ombudsman",
+	  es: "Defensor del pueblo de cuidados a largo plazo",
+	  ru: "Омбудсмен по вопросам долгосрочного ухода",
+	  vi: "Thanh tra chăm sóc dài hạn",
+	  zh: "长期护理监察专员",
+	  ar: "أمين مظالم الرعاية طويلة الأجل",
+	  so: "Difaacaha daryeelka muddada dheer"
+	},
+
+	"OREGON HEALTH AUTHORITY": {
+	  en: "Oregon Health Authority",
+	  es: "Autoridad de Salud de Oregón",
+	  ru: "Управление здравоохранения штата Орегон",
+	  vi: "Cơ quan Y tế Oregon",
+	  zh: "俄勒冈州卫生管理局",
+	  ar: "هيئة الصحة في ولاية أوريغون",
+	  so: "Hay’adda Caafimaadka Oregon"
+	},
+
+	"OREGON HEALTH RELATED LICENSING BOARD": {
+	  en: "Oregon Health Related Licensing Board",
+	  es: "Junta de Licencias Relacionadas con la Salud de Oregón",
+	  ru: "Лицензионный совет штата Орегон по вопросам здравоохранения",
+	  vi: "Hội đồng cấp phép liên quan đến y tế Oregon",
+	  zh: "俄勒冈州卫生相关执照委员会",
+	  ar: "مجلس التراخيص المرتبطة بالصحة في ولاية أوريغون",
+	  so: "Guddiga Ruqsadaha La Xiriira Caafimaadka ee Oregon"
+	},
+
+	"OREGON MILITARY DEPARTMENT FEDERAL EMPLOYEES": {
+	  en: "Oregon Military Department Federal Employees",
+	  es: "Empleados federales del Departamento Militar de Oregón",
+	  ru: "Федеральные сотрудники военного департамента штата Орегон",
+	  vi: "Nhân viên liên bang thuộc Sở Quân sự Oregon",
+	  zh: "俄勒冈州军事部门联邦雇员",
+	  ar: "الموظفون الفيدراليون في إدارة الشؤون العسكرية بولاية أوريغون",
+	  so: "Shaqaalaha federaalka ee Waaxda Milatariga Oregon"
+	},
+
+	"OREGON WATER ENHANCEMENT BOARD": {
+	  en: "Oregon Water Enhancement Board",
+	  es: "Junta de Mejora del Agua de Oregón",
+	  ru: "Совет по улучшению водных ресурсов штата Орегон",
+	  vi: "Hội đồng Cải thiện Nguồn nước Oregon",
+	  zh: "俄勒冈州水资源改善委员会",
+	  ar: "مجلس تحسين المياه في ولاية أوريغون",
+	  so: "Guddiga Horumarinta Biyaha Oregon"
+	},
+
+	"PUBLIC EMPLOYEES RETIREMENT SYSTEM": {
+	  en: "Public Employees Retirement System",
+	  es: "Sistema de Jubilación de Empleados Públicos",
+	  ru: "Система пенсионного обеспечения государственных служащих",
+	  vi: "Hệ thống hưu trí dành cho nhân viên công",
+	  zh: "公共雇员退休系统",
+	  ar: "نظام تقاعد الموظفين العموميين",
+	  so: "Nidaamka Hawlgabka Shaqaalaha Dowladda"
+	},
   "HEALTH LICENSING AGENCY": {
     en: "Health Licensing Agency",
     es: "Agencia de Licencias de Salud (Health Licensing Agency)",

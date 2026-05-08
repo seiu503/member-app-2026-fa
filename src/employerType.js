@@ -110,9 +110,9 @@ export function initEmployerType({
 
   function updateEmployerNameFields() {
     const englishValue =
-      employerTypeEnglishValue ||
+      getEmployerTypeEnglishFromDisplayed(employerTypeInput.value) ||
       employerTypeInput.dataset.englishValue ||
-      getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+      employerTypeEnglishValue;
 
     hideEmployerNameFields();
 
@@ -211,6 +211,9 @@ export function initEmployerType({
   function handleEmployerTypeCommit() {
     const englishValue = getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
 
+    employerTypeEnglishValue = englishValue;
+    employerTypeInput.dataset.englishValue = englishValue;
+
     setEmployerTypeDisplay(englishValue);
     updateEmployerNameFields();
   }
@@ -272,19 +275,23 @@ export function initEmployerType({
 	    }
 
 	    // Employer Type field
-	    if (textInput.id === employerTypeInput.id) {
-	      e.preventDefault();
-	      e.stopPropagation();
+      if (textInput.id === employerTypeInput.id) {
+        e.preventDefault();
+        e.stopPropagation();
 
-	      employerTypeEnglishValue = "";
-	      employerTypeInput.dataset.englishValue = "";
+        employerTypeEnglishValue = "";
+        employerTypeInput.dataset.englishValue = "";
+        employerTypeInput.value = "";
+        textInput.value = "";
 
-	      textInput.value = "";
-	      textInput.dispatchEvent(new Event("input", { bubbles: true }));
-	      textInput.dispatchEvent(new Event("change", { bubbles: true }));
+        clearEmployerNameFields(hiddenRequired);
+        updateEmployerNameFields();
 
-	      clearEmployerNameFields(hiddenRequired);
-	    }
+        textInput.dispatchEvent(new Event("input", { bubbles: true }));
+        textInput.dispatchEvent(new Event("change", { bubbles: true }));
+
+        return;
+      }
 	  },
 	  true
 	);
@@ -294,9 +301,9 @@ export function initEmployerType({
       "submit",
       function () {
         const englishValue =
-          employerTypeEnglishValue ||
+          getEmployerTypeEnglishFromDisplayed(employerTypeInput.value) ||
           employerTypeInput.dataset.englishValue ||
-          getEmployerTypeEnglishFromDisplayed(employerTypeInput.value);
+          employerTypeEnglishValue;
 
         if (englishValue) {
           employerTypeInput.value = englishValue;
