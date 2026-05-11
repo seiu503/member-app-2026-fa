@@ -243,6 +243,81 @@ window.addEventListener("load", function() {
   const aIdPrefillCalc = document.getElementById('tfa_442');
   const agencyNumberPrefillCalc = document.getElementById('tfa_126');
 
+  function clearAllEmployerAccountFields() {
+	  [...aIdFields, ...agencyNumberFields].forEach(field => {
+	    if (!field) return;
+
+	    field.value = "";
+	    field.dispatchEvent(new Event("input", { bubbles: true }));
+	    field.dispatchEvent(new Event("change", { bubbles: true }));
+	  });
+
+	  if (aIdPrefillCalc) {
+	    aIdPrefillCalc.value = "";
+	    aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
+	    aIdPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
+	  }
+
+	  if (agencyNumberPrefillCalc) {
+	    agencyNumberPrefillCalc.value = "";
+	    agencyNumberPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
+	    agencyNumberPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
+	  }
+	}
+
+	function getFirstPopulatedValue(fields) {
+	  const populated = fields.find(field => {
+	    return field && field.value && field.value.trim() !== "";
+	  });
+
+	  return populated ? populated.value.trim() : "";
+	}
+
+	function updateEmployerAccountCalcFields() {
+	  if (aIdPrefillCalc) {
+	    aIdPrefillCalc.value = getFirstPopulatedValue(aIdFields);
+	    aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
+	    aIdPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
+	  }
+
+	  if (agencyNumberPrefillCalc) {
+	    agencyNumberPrefillCalc.value = getFirstPopulatedValue(agencyNumberFields);
+	    agencyNumberPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
+	    agencyNumberPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
+	  }
+	}
+
+	function initEmployerAccountFieldSync() {
+	  employerNameFields.forEach(field => {
+	    field.addEventListener("input", function () {
+	      clearAllEmployerAccountFields();
+	    });
+
+	    field.addEventListener("change", function () {
+	      // Give FormAssembly time to write mapped Salesforce values.
+	      setTimeout(updateEmployerAccountCalcFields, 100);
+	      setTimeout(updateEmployerAccountCalcFields, 300);
+	    });
+
+	    field.addEventListener("typeahead:select", function () {
+	      setTimeout(updateEmployerAccountCalcFields, 100);
+	      setTimeout(updateEmployerAccountCalcFields, 300);
+	    });
+	  });
+
+	  if (formEl) {
+	    formEl.addEventListener(
+	      "submit",
+	      function () {
+	        updateEmployerAccountCalcFields();
+	      },
+	      true
+	    );
+	  }
+	}
+
+	initEmployerAccountFieldSync();
+
   function getOriginalText(el) {
 	  if (!el) return "";
 	  if (!el.dataset.originalText) {
