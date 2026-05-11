@@ -152,11 +152,42 @@ function handlePreferredLanguagePrefill({
 
   if (!detectedSupportedLang) {
     preferredLanguageF.dataset.prefilled = "false";
+    preferredLanguageF.required = true;
+    preferredLanguageF.setAttribute("aria-required", "true");
+
     if (container) container.style.removeProperty("display");
     return;
   }
 
-  preferredLanguageF.value = getLang;
+  const languageValueMap = {
+    en: "English",
+    es: "Spanish",
+    ru: "Russian",
+    vi: "Vietnamese",
+    zh: "Chinese",
+    ar: "Arabic",
+    so: "Somali"
+  };
+
+  const desiredValue = languageValueMap[getLang];
+
+  const matchingOption = Array.from(preferredLanguageF.options).find(option => {
+    return (
+      option.value === desiredValue ||
+      option.textContent.trim() === desiredValue ||
+      option.value.toLowerCase() === getLang.toLowerCase()
+    );
+  });
+
+  if (!matchingOption) {
+    preferredLanguageF.dataset.prefilled = "false";
+    if (container) container.style.removeProperty("display");
+    return;
+  }
+
+  preferredLanguageF.value = matchingOption.value;
+  matchingOption.selected = true;
+
   preferredLanguageF.dataset.prefilled = "true";
 
   preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));

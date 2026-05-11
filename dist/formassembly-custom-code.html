@@ -2462,10 +2462,31 @@ var SEIUForm = (() => {
     const container = preferredLanguageF.closest(".field-container-D, .form-group, .question") || preferredLanguageF.parentNode;
     if (!detectedSupportedLang) {
       preferredLanguageF.dataset.prefilled = "false";
+      preferredLanguageF.required = true;
+      preferredLanguageF.setAttribute("aria-required", "true");
       if (container) container.style.removeProperty("display");
       return;
     }
-    preferredLanguageF.value = getLang;
+    const languageValueMap = {
+      en: "English",
+      es: "Spanish",
+      ru: "Russian",
+      vi: "Vietnamese",
+      zh: "Chinese",
+      ar: "Arabic",
+      so: "Somali"
+    };
+    const desiredValue = languageValueMap[getLang];
+    const matchingOption = Array.from(preferredLanguageF.options).find((option) => {
+      return option.value === desiredValue || option.textContent.trim() === desiredValue || option.value.toLowerCase() === getLang.toLowerCase();
+    });
+    if (!matchingOption) {
+      preferredLanguageF.dataset.prefilled = "false";
+      if (container) container.style.removeProperty("display");
+      return;
+    }
+    preferredLanguageF.value = matchingOption.value;
+    matchingOption.selected = true;
     preferredLanguageF.dataset.prefilled = "true";
     preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));
     preferredLanguageF.dispatchEvent(new Event("change", { bubbles: true }));
@@ -2566,15 +2587,36 @@ var SEIUForm = (() => {
   }
 
   // src/dateHelpers.js
-  function initDateHelpers() {
+  function initDateHelpers({
+    monthPlaceholder = "Month",
+    dayPlaceholder = "Day",
+    yearPlaceholder = "Year"
+  } = {}) {
     const dobEl = document.getElementById("tfa_113");
     const mmSelect = document.getElementById("tfa_156");
     const ddSelect = document.getElementById("tfa_157");
     const yyyySelect = document.getElementById("tfa_158");
     if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
-    const dateSelects = [mmSelect, ddSelect, yyyySelect];
-    function getSelectedValue(el) {
-      return el?.value || "";
+    const mmPlaceholder = monthPlaceholder;
+    const ddPlaceholder = dayPlaceholder;
+    const yyyyPlaceholder = yearPlaceholder;
+    if (mmSelect.options[0]) {
+      mmSelect.options[0].textContent = mmPlaceholder;
+      mmSelect.options[0].value = "";
+    }
+    function getSelectedText(selectEl) {
+      const option = selectEl?.options?.[selectEl.selectedIndex];
+      return option?.textContent?.trim() || "";
+    }
+    function setSelectByText(selectEl, text) {
+      if (!selectEl || !text) return false;
+      const option = Array.from(selectEl.options).find((opt) => {
+        return opt.textContent.trim() === text || opt.value === text;
+      });
+      if (!option) return false;
+      selectEl.value = option.value;
+      option.selected = true;
+      return true;
     }
     function getMaxDay(month) {
       switch (month) {
@@ -2589,59 +2631,71 @@ var SEIUForm = (() => {
           return 31;
       }
     }
-    function dateOptions() {
-      const mm = getSelectedValue(mmSelect);
-      const max = getMaxDay(mm);
-      const dates = [""];
+    function buildDayOptions(month) {
+      const max = getMaxDay(month || "01");
+      const days = [ddPlaceholder];
       for (let i = 1; i <= max; i++) {
-        dates.push(i < 10 ? `0${i}` : String(i));
+        days.push(i < 10 ? `0${i}` : String(i));
       }
-      return dates;
+      return days;
     }
-    function yearOptions() {
-      const years = [""];
+    function buildYearOptions() {
+      const years = [yyyyPlaceholder];
       const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
       for (let i = currentYear; i >= currentYear - 99; i--) {
         years.push(String(i));
       }
       return years;
     }
-    function emptyCombo(selectEl) {
+    function populateSelect(selectEl, items, previousText) {
       selectEl.options.length = 0;
-      return selectEl;
+      items.forEach((item, index) => {
+        const value = index === 0 ? "" : item;
+        selectEl.appendChild(new Option(item, value));
+      });
+      if (previousText) {
+        setSelectByText(selectEl, previousText);
+      }
     }
-    function populateCombo(selectEl, items) {
-      emptyCombo(selectEl);
-      selectEl.append(...items.map((item) => new Option(item, item)));
-    }
-    function hasOption(selectEl, value) {
-      return Array.from(selectEl.options).some((option) => option.value === value);
+    function refreshDayOptions() {
+      const previousDay = getSelectedText(ddSelect);
+      const month = getSelectedText(mmSelect);
+      populateSelect(ddSelect, buildDayOptions(month), previousDay);
     }
     function formatSFDate(mm, dd, yyyy) {
       if (!mm || !dd || !yyyy) return "";
       return `${yyyy}-${mm}-${dd}`;
     }
     function updateBirthdateField() {
-      dobEl.value = formatSFDate(
-        getSelectedValue(mmSelect),
-        getSelectedValue(ddSelect),
-        getSelectedValue(yyyySelect)
-      );
+      const mm = getSelectedText(mmSelect);
+      const dd = getSelectedText(ddSelect);
+      const yyyy = getSelectedText(yyyySelect);
+      dobEl.value = formatSFDate(mm, dd, yyyy);
       dobEl.dispatchEvent(new Event("input", { bubbles: true }));
       dobEl.dispatchEvent(new Event("change", { bubbles: true }));
     }
+    function restoreVisibleFieldsFromDob() {
+      const dobValue = dobEl.value || "";
+      const match = dobValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return;
+      const [, yyyy, mm, dd] = match;
+      setSelectByText(mmSelect, mm);
+      refreshDayOptions();
+      setSelectByText(ddSelect, dd);
+      setSelectByText(yyyySelect, yyyy);
+    }
+    populateSelect(yyyySelect, buildYearOptions(), getSelectedText(yyyySelect));
+    refreshDayOptions();
+    restoreVisibleFieldsFromDob();
     mmSelect.addEventListener("change", function() {
-      const previousDay = getSelectedValue(ddSelect);
-      populateCombo(ddSelect, dateOptions());
-      if (previousDay && hasOption(ddSelect, previousDay)) {
-        ddSelect.value = previousDay;
-      }
+      refreshDayOptions();
       updateBirthdateField();
     });
-    dateSelects.forEach((field) => {
-      field.addEventListener("change", updateBirthdateField);
-    });
-    populateCombo(yyyySelect, yearOptions());
+    ddSelect.addEventListener("change", updateBirthdateField);
+    yyyySelect.addEventListener("change", updateBirthdateField);
+    if (dobEl.value) {
+      restoreVisibleFieldsFromDob();
+    }
   }
 
   // src/main.js
@@ -2759,6 +2813,26 @@ var SEIUForm = (() => {
     var duesAuthLL = document.getElementById("tfa_380-L");
     var combinedLL = document.getElementById("tfa_377");
     const preferredLanguageField = document.getElementById("tfa_91");
+    initDateHelpers({
+      monthPlaceholder: getTranslation(
+        translationsNorm,
+        "mmPlaceholder",
+        getLang,
+        "Month"
+      ),
+      dayPlaceholder: getTranslation(
+        translationsNorm,
+        "ddPlaceholder",
+        getLang,
+        "Day"
+      ),
+      yearPlaceholder: getTranslation(
+        translationsNorm,
+        "yyyyPlaceholder",
+        getLang,
+        "Year"
+      )
+    });
     applyTranslations();
     const employerNameElements = {
       eNameState: document.getElementById("tfa_410"),
@@ -2784,7 +2858,6 @@ var SEIUForm = (() => {
       getLang,
       translations
     });
-    initDateHelpers();
     initPrefill({
       getLang,
       detectedSupportedLang,
@@ -2867,30 +2940,6 @@ var SEIUForm = (() => {
       if (birthDate) {
         birthDate.classList.add("reqMark");
         birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
-      }
-      if (mmPlaceholder) {
-        mmPlaceholder.textContent = getTranslation(
-          translationsNorm,
-          "mmPlaceholder",
-          getLang,
-          mmPlaceholder.textContent
-        );
-      }
-      if (ddPlaceholder) {
-        ddPlaceholder.textContent = getTranslation(
-          translationsNorm,
-          "ddPlaceholder",
-          getLang,
-          ddPlaceholder.textContent
-        );
-      }
-      if (yyyyPlaceholder) {
-        yyyyPlaceholder.textContent = getTranslation(
-          translationsNorm,
-          "yyyyPlaceholder",
-          getLang,
-          yyyyPlaceholder.textContent
-        );
       }
       setText(preferredLanguage, "preferredLanguage");
       setText(address, "address");

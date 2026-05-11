@@ -172,6 +172,27 @@ window.addEventListener("load", function() {
 	var combinedLL = document.getElementById("tfa_377"); // jcl
 	const preferredLanguageField = document.getElementById("tfa_91");
 
+	initDateHelpers({
+	  monthPlaceholder: getTranslation(
+	    translationsNorm,
+	    "mmPlaceholder",
+	    getLang,
+	    "Month"
+	  ),
+	  dayPlaceholder: getTranslation(
+	    translationsNorm,
+	    "ddPlaceholder",
+	    getLang,
+	    "Day"
+	  ),
+	  yearPlaceholder: getTranslation(
+	    translationsNorm,
+	    "yyyyPlaceholder",
+	    getLang,
+	    "Year"
+	  )
+	});
+
 	applyTranslations();
 
 	const employerNameElements = {
@@ -201,8 +222,6 @@ window.addEventListener("load", function() {
 	  getLang,
 	  translations
 	});
-
-	initDateHelpers();
 
 	initPrefill({
 	  getLang,
@@ -305,33 +324,6 @@ function applyTranslations() {
     birthDate.classList.add("reqMark");
     birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
   }
-
-  if (mmPlaceholder) {
-	  mmPlaceholder.textContent = getTranslation(
-		  translationsNorm,
-		  "mmPlaceholder",
-		  getLang,
-		  mmPlaceholder.textContent
-		);
-	}
-
-	if (ddPlaceholder) {
-	  ddPlaceholder.textContent = getTranslation(
-		  translationsNorm,
-		  "ddPlaceholder",
-		  getLang,
-		  ddPlaceholder.textContent
-		);
-	}
-
-	if (yyyyPlaceholder) {
-	  yyyyPlaceholder.textContent = getTranslation(
-		  translationsNorm,
-		  "yyyyPlaceholder",
-		  getLang,
-		  yyyyPlaceholder.textContent
-		);
-	}
 
   setText(preferredLanguage, "preferredLanguage");
   setText(address, "address");

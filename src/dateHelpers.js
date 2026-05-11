@@ -1,6 +1,10 @@
 // dateHelpers.js
 
-export function initDateHelpers() {
+export function initDateHelpers({
+  monthPlaceholder = "Month",
+  dayPlaceholder = "Day",
+  yearPlaceholder = "Year"
+} = {}) {
   const dobEl = document.getElementById("tfa_113");
 
   const mmSelect = document.getElementById("tfa_156");
@@ -9,10 +13,32 @@ export function initDateHelpers() {
 
   if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
 
-  const dateSelects = [mmSelect, ddSelect, yyyySelect];
+  const mmPlaceholder = monthPlaceholder;
+  const ddPlaceholder = dayPlaceholder;
+  const yyyyPlaceholder = yearPlaceholder;
 
-  function getSelectedValue(el) {
-    return el?.value || "";
+  if (mmSelect.options[0]) {
+    mmSelect.options[0].textContent = mmPlaceholder;
+    mmSelect.options[0].value = "";
+  }
+
+  function getSelectedText(selectEl) {
+    const option = selectEl?.options?.[selectEl.selectedIndex];
+    return option?.textContent?.trim() || "";
+  }
+
+  function setSelectByText(selectEl, text) {
+    if (!selectEl || !text) return false;
+
+    const option = Array.from(selectEl.options).find(opt => {
+      return opt.textContent.trim() === text || opt.value === text;
+    });
+
+    if (!option) return false;
+
+    selectEl.value = option.value;
+    option.selected = true;
+    return true;
   }
 
   function getMaxDay(month) {
@@ -29,20 +55,19 @@ export function initDateHelpers() {
     }
   }
 
-  function dateOptions() {
-    const mm = getSelectedValue(mmSelect);
-    const max = getMaxDay(mm);
-    const dates = [""];
+  function buildDayOptions(month) {
+    const max = getMaxDay(month || "01");
+    const days = [ddPlaceholder];
 
     for (let i = 1; i <= max; i++) {
-      dates.push(i < 10 ? `0${i}` : String(i));
+      days.push(i < 10 ? `0${i}` : String(i));
     }
 
-    return dates;
+    return days;
   }
 
-  function yearOptions() {
-    const years = [""];
+  function buildYearOptions() {
+    const years = [yyyyPlaceholder];
     const currentYear = new Date().getFullYear();
 
     for (let i = currentYear; i >= currentYear - 99; i--) {
@@ -52,18 +77,24 @@ export function initDateHelpers() {
     return years;
   }
 
-  function emptyCombo(selectEl) {
+  function populateSelect(selectEl, items, previousText) {
     selectEl.options.length = 0;
-    return selectEl;
+
+    items.forEach((item, index) => {
+      const value = index === 0 ? "" : item;
+      selectEl.appendChild(new Option(item, value));
+    });
+
+    if (previousText) {
+      setSelectByText(selectEl, previousText);
+    }
   }
 
-  function populateCombo(selectEl, items) {
-    emptyCombo(selectEl);
-    selectEl.append(...items.map(item => new Option(item, item)));
-  }
+  function refreshDayOptions() {
+    const previousDay = getSelectedText(ddSelect);
+    const month = getSelectedText(mmSelect);
 
-  function hasOption(selectEl, value) {
-    return Array.from(selectEl.options).some(option => option.value === value);
+    populateSelect(ddSelect, buildDayOptions(month), previousDay);
   }
 
   function formatSFDate(mm, dd, yyyy) {
@@ -72,31 +103,43 @@ export function initDateHelpers() {
   }
 
   function updateBirthdateField() {
-    dobEl.value = formatSFDate(
-      getSelectedValue(mmSelect),
-      getSelectedValue(ddSelect),
-      getSelectedValue(yyyySelect)
-    );
+    const mm = getSelectedText(mmSelect);
+    const dd = getSelectedText(ddSelect);
+    const yyyy = getSelectedText(yyyySelect);
+
+    dobEl.value = formatSFDate(mm, dd, yyyy);
 
     dobEl.dispatchEvent(new Event("input", { bubbles: true }));
     dobEl.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
+  function restoreVisibleFieldsFromDob() {
+    const dobValue = dobEl.value || "";
+    const match = dobValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+    if (!match) return;
+
+    const [, yyyy, mm, dd] = match;
+
+    setSelectByText(mmSelect, mm);
+    refreshDayOptions();
+    setSelectByText(ddSelect, dd);
+    setSelectByText(yyyySelect, yyyy);
+  }
+
+  populateSelect(yyyySelect, buildYearOptions(), getSelectedText(yyyySelect));
+  refreshDayOptions();
+  restoreVisibleFieldsFromDob();
+
   mmSelect.addEventListener("change", function () {
-    const previousDay = getSelectedValue(ddSelect);
-
-    populateCombo(ddSelect, dateOptions());
-
-    if (previousDay && hasOption(ddSelect, previousDay)) {
-      ddSelect.value = previousDay;
-    }
-
+    refreshDayOptions();
     updateBirthdateField();
   });
 
-  dateSelects.forEach(field => {
-    field.addEventListener("change", updateBirthdateField);
-  });
+  ddSelect.addEventListener("change", updateBirthdateField);
+  yyyySelect.addEventListener("change", updateBirthdateField);
 
-  populateCombo(yyyySelect, yearOptions());
+  if (dobEl.value) {
+    restoreVisibleFieldsFromDob();
+  }
 }
