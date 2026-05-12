@@ -2566,18 +2566,28 @@ var SEIUForm = (() => {
     setFieldValue("tfa_445", cId);
     setFieldValue("tfa_442", aId);
     setFieldValue("tfa_446", src || "Direct seiu503signup FA");
-    if (cId && aId && fullName) {
-      hiddenButton.click();
-    }
     const linkHtml = `
-    <button type="reset" class="custom-link-text js-modal-close">
+    <button type="button" class="custom-link-text not-me-button">
       ${text.notMePrefix} ${fullName}
     </button>
   `;
-    linkInfo.addEventListener("click", function() {
-      window.location.href = window.location.origin + window.location.pathname;
-    });
     linkInfo.innerHTML += linkHtml;
+    document.addEventListener(
+      "click",
+      function(e) {
+        const notMeButton = e.target.closest(".not-me-button");
+        if (!notMeButton) return;
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        const cleanUrl = window.location.origin + window.location.pathname;
+        window.location.replace(cleanUrl);
+      },
+      true
+    );
+    if (cId && aId && fullName) {
+      hiddenButton.click();
+    }
   }
   function setFieldValue(id, value) {
     if (!value) return;
@@ -2872,6 +2882,9 @@ var SEIUForm = (() => {
     const agencyNumberFields = agencyNumberFieldIDs.map((id) => document.getElementById(id));
     const aIdPrefillCalc = document.getElementById("tfa_442");
     const agencyNumberPrefillCalc = document.getElementById("tfa_126");
+    const isEmployerPrefilled = document.getElementById("tfa_444")?.value?.trim() !== "" || new URLSearchParams(window.location.search).has("aId");
+    console.log(`isEmployerPrefilled: ${isEmployerPrefilled}`);
+    console.log(`Agency Number: ${agencyNumberPrefillCalc.value}`);
     function clearAllEmployerAccountFields() {
       [...aIdFields, ...agencyNumberFields].forEach((field) => {
         if (!field) return;
@@ -2897,6 +2910,7 @@ var SEIUForm = (() => {
       return populated ? populated.value.trim() : "";
     }
     function updateEmployerAccountCalcFields() {
+      if (isEmployerPrefilled) return;
       if (aIdPrefillCalc) {
         aIdPrefillCalc.value = getFirstPopulatedValue(aIdFields);
         aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
@@ -2911,13 +2925,16 @@ var SEIUForm = (() => {
     function initEmployerAccountFieldSync() {
       employerNameFields.forEach((field) => {
         field.addEventListener("input", function() {
+          if (isEmployerPrefilled) return;
           clearAllEmployerAccountFields();
         });
         field.addEventListener("change", function() {
+          if (isEmployerPrefilled) return;
           setTimeout(updateEmployerAccountCalcFields, 100);
           setTimeout(updateEmployerAccountCalcFields, 300);
         });
         field.addEventListener("typeahead:select", function() {
+          if (isEmployerPrefilled) return;
           setTimeout(updateEmployerAccountCalcFields, 100);
           setTimeout(updateEmployerAccountCalcFields, 300);
         });
@@ -2926,13 +2943,16 @@ var SEIUForm = (() => {
         formEl.addEventListener(
           "submit",
           function() {
+            if (isEmployerPrefilled) return;
             updateEmployerAccountCalcFields();
           },
           true
         );
       }
     }
-    initEmployerAccountFieldSync();
+    if (!isEmployerPrefilled) {
+      initEmployerAccountFieldSync();
+    }
     function getOriginalText(el) {
       if (!el) return "";
       if (!el.dataset.originalText) {

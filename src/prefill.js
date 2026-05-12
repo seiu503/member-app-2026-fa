@@ -286,21 +286,33 @@ function initPrefillModal({ getLang }) {
   setFieldValue("tfa_442", aId);
   setFieldValue("tfa_446", src || "Direct seiu503signup FA");
 
-  if (cId && aId && fullName) {
-    hiddenButton.click();
-  }
-
   const linkHtml = `
-    <button type="reset" class="custom-link-text js-modal-close">
+    <button type="button" class="custom-link-text not-me-button">
       ${text.notMePrefix} ${fullName}
     </button>
   `;
 
-  linkInfo.addEventListener("click", function () {
-    window.location.href = window.location.origin + window.location.pathname;
-  });
-
   linkInfo.innerHTML += linkHtml;
+
+  document.addEventListener(
+    "click",
+    function (e) {
+      const notMeButton = e.target.closest(".not-me-button");
+      if (!notMeButton) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.location.replace(cleanUrl);
+    },
+    true
+  );
+
+  if (cId && aId && fullName) {
+    hiddenButton.click();
+  }
 }
 
 function setFieldValue(id, value) {

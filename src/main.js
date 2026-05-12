@@ -243,6 +243,13 @@ window.addEventListener("load", function() {
   const aIdPrefillCalc = document.getElementById('tfa_442');
   const agencyNumberPrefillCalc = document.getElementById('tfa_126');
 
+  const isEmployerPrefilled =
+	  document.getElementById("tfa_444")?.value?.trim() !== "" ||
+	  new URLSearchParams(window.location.search).has("aId");
+
+	console.log(`isEmployerPrefilled: ${isEmployerPrefilled}`);
+	console.log(`Agency Number: ${agencyNumberPrefillCalc.value}`);
+
   function clearAllEmployerAccountFields() {
 	  [...aIdFields, ...agencyNumberFields].forEach(field => {
 	    if (!field) return;
@@ -274,6 +281,7 @@ window.addEventListener("load", function() {
 	}
 
 	function updateEmployerAccountCalcFields() {
+		if (isEmployerPrefilled) return;
 	  if (aIdPrefillCalc) {
 	    aIdPrefillCalc.value = getFirstPopulatedValue(aIdFields);
 	    aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
@@ -290,33 +298,41 @@ window.addEventListener("load", function() {
 	function initEmployerAccountFieldSync() {
 	  employerNameFields.forEach(field => {
 	    field.addEventListener("input", function () {
-	      clearAllEmployerAccountFields();
-	    });
+			  if (isEmployerPrefilled) return;
+			  clearAllEmployerAccountFields();
+			});
 
 	    field.addEventListener("change", function () {
+	    	if (isEmployerPrefilled) return;
 	      // Give FormAssembly time to write mapped Salesforce values.
 	      setTimeout(updateEmployerAccountCalcFields, 100);
 	      setTimeout(updateEmployerAccountCalcFields, 300);
 	    });
 
 	    field.addEventListener("typeahead:select", function () {
+	    	if (isEmployerPrefilled) return;
 	      setTimeout(updateEmployerAccountCalcFields, 100);
 	      setTimeout(updateEmployerAccountCalcFields, 300);
 	    });
 	  });
 
 	  if (formEl) {
-	    formEl.addEventListener(
-	      "submit",
-	      function () {
-	        updateEmployerAccountCalcFields();
-	      },
-	      true
-	    );
-	  }
+		  formEl.addEventListener(
+		    "submit",
+		    function () {
+		      if (isEmployerPrefilled) return;
+		      updateEmployerAccountCalcFields();
+		    },
+		    true
+		  );
+		}
 	}
 
-	initEmployerAccountFieldSync();
+	
+
+	if (!isEmployerPrefilled) {
+	  initEmployerAccountFieldSync();
+	}
 
   function getOriginalText(el) {
 	  if (!el) return "";
