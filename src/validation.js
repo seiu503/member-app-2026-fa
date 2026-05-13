@@ -150,7 +150,7 @@ const validationMessages = {
 };
 
 function translateValidationMessages(getLang) {
-  const lang = (getLang || "en").split("-")[0];
+  const lang = (typeof getLang === "function" ? getLang() : getLang || "en").split("-")[0];
   if (lang === "en") return;
 
   document.querySelectorAll(".errMsg, span").forEach(el => {

@@ -70,22 +70,33 @@
 		#tfa_418,
 		#tfa_422 {
 		  /* employer name inputs */
-		  font-family: "cofo-sans-variable", sans-serif;
+		  font-family: "cofo-sans-variable", sans-serif !important;
 		}
 
-		#tfa_410 ~ .translated-typeahead-value,
-		#tfa_393 ~ .translated-typeahead-value,
-		#tfa_414 ~ .translated-typeahead-value,
-		#tfa_408 ~ .translated-typeahead-value,
-		#tfa_407 ~ .translated-typeahead-value,
-		#tfa_409 ~ .translated-typeahead-value,
-		#tfa_418 ~ .translated-typeahead-value,
-		#tfa_422 ~ .translated-typeahead-value {
-		  /* employer name translated typeahead overlays */
-		    left: 27px !important;
-		    font-family: 'cofo-sans-variable' !important;
-		}
+#tfa_410-D .twitter-typeahead input,
+#tfa_393-D .twitter-typeahead input,
+#tfa_414-D .twitter-typeahead input,
+#tfa_408-D .twitter-typeahead input,
+#tfa_407-D .twitter-typeahead input,
+#tfa_409-D .twitter-typeahead input,
+#tfa_418-D .twitter-typeahead input,
+#tfa_422-D .twitter-typeahead input,
+{
+	/* employer name translated typeahead overlays */
+  font-family: "cofo-sans-variable", sans-serif !important;
+} 
 
+#tfa_410-D .translated-typeahead-value,
+#tfa_393-D .translated-typeahead-value,
+#tfa_414-D .translated-typeahead-value,
+#tfa_408-D .translated-typeahead-value,
+#tfa_407-D .translated-typeahead-value,
+#tfa_409-D .translated-typeahead-value,
+#tfa_418-D .translated-typeahead-value,
+#tfa_422-D .translated-typeahead-value {
+	/* employer name translated typeahead overlays */
+	left: 27px !important; 
+}
 
 
 	#tfa_134 { /* birth date / language group */
@@ -514,6 +525,33 @@ html[lang="ar"] .tt-spinner,
 html[lang="ar"] .tt-clear {
   right: auto !important;
   left: 0.5rem !important;
+}
+
+/* Keep modal buttons centered in Arabic */
+html[lang="ar"] .simple-modal-close,
+html[lang="ar"] .simple-animated-modal-close,
+html[lang="ar"] .custom-link-text,
+.wForm[data-language="ar"] .simple-modal-close,
+.wForm[data-language="ar"] .simple-animated-modal-close,
+.wForm[data-language="ar"] .custom-link-text {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  direction: rtl;
+  display: block !important;
+  width: fit-content !important;
+  max-width: 90% !important;
+  text-align: center !important;
+  white-space: normal;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+html[lang="ar"] .simple-animated-modal,
+html[lang="ar"] .simple-modal {
+  direction: rtl;
+  text-align: center !important;
 }
 </style>
 
@@ -2380,6 +2418,7 @@ var SEIUForm = (() => {
       if (!wrapper) return null;
       wrapper.style.position = "relative";
       let overlay = wrapper.querySelector(".translated-typeahead-value");
+      const inputStyles = window.getComputedStyle(input);
       if (!overlay) {
         overlay = document.createElement("span");
         overlay.className = "translated-typeahead-value";
@@ -2392,7 +2431,14 @@ var SEIUForm = (() => {
         overlay.style.display = "flex";
         overlay.style.alignItems = "center";
         overlay.style.paddingLeft = "inherit";
-        overlay.style.font = "inherit";
+        overlay.style.setProperty(
+          "font-family",
+          '"cofo-sans-variable", sans-serif',
+          "important"
+        );
+        overlay.style.setProperty("font-size", window.getComputedStyle(input).fontSize, "important");
+        overlay.style.setProperty("font-weight", window.getComputedStyle(input).fontWeight, "important");
+        overlay.style.setProperty("line-height", window.getComputedStyle(input).lineHeight, "important");
         overlay.style.color = "inherit";
         overlay.style.background = "transparent";
         overlay.style.zIndex = "2";

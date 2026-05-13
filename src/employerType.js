@@ -438,6 +438,7 @@ function ensureDisplayOverlay(input) {
   wrapper.style.position = "relative";
 
   let overlay = wrapper.querySelector(".translated-typeahead-value");
+  const inputStyles = window.getComputedStyle(input);
 
   if (!overlay) {
     overlay = document.createElement("span");
@@ -452,7 +453,14 @@ function ensureDisplayOverlay(input) {
     overlay.style.display = "flex";
     overlay.style.alignItems = "center";
     overlay.style.paddingLeft = "inherit";
-    overlay.style.font = "inherit";
+    overlay.style.setProperty(
+      "font-family",
+      '"cofo-sans-variable", sans-serif',
+      "important"
+    );
+    overlay.style.setProperty("font-size", window.getComputedStyle(input).fontSize, "important");
+    overlay.style.setProperty("font-weight", window.getComputedStyle(input).fontWeight, "important");
+    overlay.style.setProperty("line-height", window.getComputedStyle(input).lineHeight, "important");
     overlay.style.color = "inherit";
     overlay.style.background = "transparent";
     overlay.style.zIndex = "2";
