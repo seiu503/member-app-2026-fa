@@ -3,6 +3,7 @@
 export function initEmployerType({
   formEl,
   getLang,
+  getCurrentLang,
   employerTypeInput,
   employerTypeTranslations,
   employerNameTranslations,
@@ -30,21 +31,12 @@ export function initEmployerType({
     eNameRetire
   ];
 
-  const employerNameFields = [
-	  document.getElementById("tfa_410"), // State
-	  document.getElementById("tfa_393"), // Higher Ed
-	  document.getElementById("tfa_414"), // HCW
-	  document.getElementById("tfa_408"), // Nursing Home
-	  document.getElementById("tfa_407"), // Local Gov
-	  document.getElementById("tfa_409"), // PNP
-	  document.getElementById("tfa_418"), // Private Homecare
-	  document.getElementById("tfa_422")  // Retiree
-	].filter(Boolean);
+  const employerNameFields = hiddenRequired.filter(Boolean);
 
   let employerTypeEnglishValue = "";
 
   function getLangCode() {
-    return (getLang || document.documentElement.lang || "en").split("-")[0];
+    return (getCurrentLang?.() || document.documentElement.lang || getLang || "en").split("-")[0];
   }
 
   function getEmployerTypeTranslation(englishValue) {
@@ -319,24 +311,9 @@ export function initEmployerType({
 
   translateEmployerTypeSuggestions();
 
-  // initDynamicTypeaheadTranslation(employerTypeInput, normalizeEmployerTypeTranslations());
-
 	employerNameFields.forEach(field => {
 	  initDynamicTypeaheadTranslation(field, employerNameTranslations);
 	});
-
-	function normalizeEmployerTypeTranslations() {
-	  const normalized = {};
-
-	  Object.entries(employerTypeTranslations).forEach(([lang, langMap]) => {
-	    Object.entries(langMap).forEach(([english, translated]) => {
-	      if (!normalized[english]) normalized[english] = { en: english };
-	      normalized[english][lang] = translated;
-	    });
-	  });
-
-	  return normalized;
-	}
 
 	function translateAndSortTypeahead(input, translationMap) {
 	  if (!input || !translationMap) return;

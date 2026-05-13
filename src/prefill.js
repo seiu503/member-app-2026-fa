@@ -4,23 +4,29 @@ export function initPrefill({
   getLang,
   detectedSupportedLang,
   employerTypeInput,
-  hiddenRequired = []
+  hiddenRequired = [],
+  LANGUAGE_CONFIG = {}
 }) {
   initPrefilledFields({
     getLang,
     detectedSupportedLang,
     employerTypeInput,
-    hiddenRequired
+    hiddenRequired,
+    LANGUAGE_CONFIG
   });
 
-  initPrefillModal({ getLang });
+  initPrefillModal({
+    getLang,
+    LANGUAGE_CONFIG
+  });
 }
 
 function initPrefilledFields({
   getLang,
   detectedSupportedLang,
   employerTypeInput,
-  hiddenRequired
+  hiddenRequired,
+  LANGUAGE_CONFIG
 }) {
   const preferredLanguageF = document.getElementById("tfa_91");
   const addressF = document.getElementById("tfa_32");
@@ -41,7 +47,8 @@ function initPrefilledFields({
 	handlePreferredLanguagePrefill({
     preferredLanguageF,
     getLang,
-    detectedSupportedLang
+    detectedSupportedLang,
+    LANGUAGE_CONFIG
   });
 
   const prefillFieldList = [
@@ -142,7 +149,8 @@ function handleAddressPrefillGroup({
 function handlePreferredLanguagePrefill({
   preferredLanguageF,
   getLang,
-  detectedSupportedLang
+  detectedSupportedLang,
+  LANGUAGE_CONFIG
 }) {
   if (!preferredLanguageF) return;
 
@@ -159,24 +167,16 @@ function handlePreferredLanguagePrefill({
     return;
   }
 
-  const languageValueMap = {
-    en: "English",
-    es: "Spanish",
-    ru: "Russian",
-    vi: "Vietnamese",
-    zh: "Chinese",
-    ar: "Arabic",
-    so: "Somali"
-  };
-
-  const desiredValue = languageValueMap[getLang];
+  const preferredValues = LANGUAGE_CONFIG[getLang]?.preferredValues || [];
+  const desiredValues = new Set(preferredValues);
 
   const matchingOption = Array.from(preferredLanguageF.options).find(option => {
-    return (
-      option.value === desiredValue ||
-      option.textContent.trim() === desiredValue ||
-      option.value.toLowerCase() === getLang.toLowerCase()
-    );
+    const englishValue =
+      option.dataset.englishValue ||
+      option.textContent.trim() ||
+      option.value.trim();
+
+    return desiredValues.has(englishValue);
   });
 
   if (!matchingOption) {
@@ -213,7 +213,10 @@ function markFieldSwitchedOff(fieldName) {
   }
 }
 
-function initPrefillModal({ getLang }) {
+function initPrefillModal({
+  getLang,
+  LANGUAGE_CONFIG
+}) {
   const body = document.querySelector("body");
   const fullNameField = document.getElementById("tfa_330");
   const linkInfo = document.getElementById("tfa_331");
@@ -224,7 +227,8 @@ function initPrefillModal({ getLang }) {
   body.insertAdjacentHTML("beforeEnd", `</div>`);
 
   const fullName = fullNameField.value.substring(0, 40);
-  const lang = (getLang || navigator.language || "en").split("-")[0];
+  const rawLang = (getLang || navigator.language || "en").split("-")[0];
+  const lang = LANGUAGE_CONFIG[rawLang]?.renderLang || "en";
 
   const modalText = {
     en: {

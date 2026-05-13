@@ -1538,3 +1538,80 @@ export const employerNameTranslations = {
     so: "Xubnaha bulshada"
   }
 };
+
+export const LANGUAGE_CONFIG = {
+  en: {
+    pickerLabel: "English",
+    preferredValues: ["English", "Other"],
+    nativeLabel: "English",
+    renderLang: "en"
+  },
+  es: {
+    pickerLabel: "Español",
+    preferredValues: ["Spanish"],
+    nativeLabel: "Español",
+    renderLang: "es"
+  },
+  ru: {
+    pickerLabel: "Русский",
+    preferredValues: ["Russian"],
+    nativeLabel: "Русский",
+    renderLang: "ru"
+  },
+  vi: {
+    pickerLabel: "Tiếng Việt",
+    preferredValues: ["Vietnamese"],
+    nativeLabel: "Tiếng Việt",
+    renderLang: "vi"
+  },
+  zh: {
+    pickerLabel: "简体中文",
+    preferredValues: ["Mandarin", "Cantonese"],
+    nativeLabel: "普通话",
+    renderLang: "zh"
+  },
+  ar: {
+    pickerLabel: "عربي",
+    preferredValues: ["Arabic"],
+    nativeLabel: "العربية",
+    renderLang: "ar"
+  },
+  so: {
+    pickerLabel: "Af Soomaaliga",
+    preferredValues: ["Somali"],
+    nativeLabel: "Af Soomaaliga",
+    renderLang: "so"
+  },
+
+  // Not supported for form rendering; preserve selected value, render form in English
+  ko: {
+    pickerLabel: null,
+    preferredValues: ["Korean"],
+    nativeLabel: "한국어",
+    renderLang: "en"
+  },
+  ro: {
+    pickerLabel: null,
+    preferredValues: ["Romanian"],
+    nativeLabel: "Română",
+    renderLang: "en"
+  },
+  uk: {
+    pickerLabel: null,
+    preferredValues: ["Ukrainian"],
+    nativeLabel: "Українська",
+    renderLang: "en"
+  }
+};
+
+export const OTHER_LANGUAGE_LABELS = {
+  Amharic: "አማርኛ",
+  Farsi: "فارسی",
+  "Haitian Creole": "Kreyòl ayisyen",
+  "ASL (Sign Language)": "ASL",
+  Other: "Other"
+};
+
+export const supportedLangs = Object.entries(LANGUAGE_CONFIG)
+  .filter(([, cfg]) => cfg.pickerLabel)
+  .map(([code]) => code);

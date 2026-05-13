@@ -1996,11 +1996,83 @@ var SEIUForm = (() => {
       so: "Xubnaha bulshada"
     }
   };
+  var LANGUAGE_CONFIG = {
+    en: {
+      pickerLabel: "English",
+      preferredValues: ["English", "Other"],
+      nativeLabel: "English",
+      renderLang: "en"
+    },
+    es: {
+      pickerLabel: "Espa\xF1ol",
+      preferredValues: ["Spanish"],
+      nativeLabel: "Espa\xF1ol",
+      renderLang: "es"
+    },
+    ru: {
+      pickerLabel: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
+      preferredValues: ["Russian"],
+      nativeLabel: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
+      renderLang: "ru"
+    },
+    vi: {
+      pickerLabel: "Ti\u1EBFng Vi\u1EC7t",
+      preferredValues: ["Vietnamese"],
+      nativeLabel: "Ti\u1EBFng Vi\u1EC7t",
+      renderLang: "vi"
+    },
+    zh: {
+      pickerLabel: "\u7B80\u4F53\u4E2D\u6587",
+      preferredValues: ["Mandarin", "Cantonese"],
+      nativeLabel: "\u666E\u901A\u8BDD",
+      renderLang: "zh"
+    },
+    ar: {
+      pickerLabel: "\u0639\u0631\u0628\u064A",
+      preferredValues: ["Arabic"],
+      nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+      renderLang: "ar"
+    },
+    so: {
+      pickerLabel: "Af Soomaaliga",
+      preferredValues: ["Somali"],
+      nativeLabel: "Af Soomaaliga",
+      renderLang: "so"
+    },
+    // Not supported for form rendering; preserve selected value, render form in English
+    ko: {
+      pickerLabel: null,
+      preferredValues: ["Korean"],
+      nativeLabel: "\uD55C\uAD6D\uC5B4",
+      renderLang: "en"
+    },
+    ro: {
+      pickerLabel: null,
+      preferredValues: ["Romanian"],
+      nativeLabel: "Rom\xE2n\u0103",
+      renderLang: "en"
+    },
+    uk: {
+      pickerLabel: null,
+      preferredValues: ["Ukrainian"],
+      nativeLabel: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430",
+      renderLang: "en"
+    }
+  };
+  var OTHER_LANGUAGE_LABELS = {
+    Amharic: "\u12A0\u121B\u122D\u129B",
+    Farsi: "\u0641\u0627\u0631\u0633\u06CC",
+    "Haitian Creole": "Krey\xF2l ayisyen",
+    "ASL (Sign Language)": "ASL",
+    Other: "Other"
+  };
+  var supportedLangs = Object.entries(LANGUAGE_CONFIG).filter(([, cfg]) => cfg.pickerLabel).map(([code]) => code);
 
   // src/employerType.js
   function initEmployerType({
     formEl,
     getLang,
+    getCurrentLang,
     employerTypeInput,
     employerTypeTranslations: employerTypeTranslations2,
     employerNameTranslations: employerNameTranslations2,
@@ -2025,27 +2097,10 @@ var SEIUForm = (() => {
       eNamePHC,
       eNameRetire
     ];
-    const employerNameFields = [
-      document.getElementById("tfa_410"),
-      // State
-      document.getElementById("tfa_393"),
-      // Higher Ed
-      document.getElementById("tfa_414"),
-      // HCW
-      document.getElementById("tfa_408"),
-      // Nursing Home
-      document.getElementById("tfa_407"),
-      // Local Gov
-      document.getElementById("tfa_409"),
-      // PNP
-      document.getElementById("tfa_418"),
-      // Private Homecare
-      document.getElementById("tfa_422")
-      // Retiree
-    ].filter(Boolean);
+    const employerNameFields = hiddenRequired.filter(Boolean);
     let employerTypeEnglishValue = "";
     function getLangCode() {
-      return (getLang || document.documentElement.lang || "en").split("-")[0];
+      return (getCurrentLang?.() || document.documentElement.lang || getLang || "en").split("-")[0];
     }
     function getEmployerTypeTranslation(englishValue) {
       const lang = getLangCode();
@@ -2243,16 +2298,6 @@ var SEIUForm = (() => {
     employerNameFields.forEach((field) => {
       initDynamicTypeaheadTranslation(field, employerNameTranslations2);
     });
-    function normalizeEmployerTypeTranslations() {
-      const normalized = {};
-      Object.entries(employerTypeTranslations2).forEach(([lang, langMap]) => {
-        Object.entries(langMap).forEach(([english, translated]) => {
-          if (!normalized[english]) normalized[english] = { en: english };
-          normalized[english][lang] = translated;
-        });
-      });
-      return normalized;
-    }
     function translateAndSortTypeahead(input, translationMap) {
       if (!input || !translationMap) return;
       const lang = getLangCode();
@@ -2525,21 +2570,27 @@ var SEIUForm = (() => {
     getLang,
     detectedSupportedLang,
     employerTypeInput,
-    hiddenRequired = []
+    hiddenRequired = [],
+    LANGUAGE_CONFIG: LANGUAGE_CONFIG2 = {}
   }) {
     initPrefilledFields({
       getLang,
       detectedSupportedLang,
       employerTypeInput,
-      hiddenRequired
+      hiddenRequired,
+      LANGUAGE_CONFIG: LANGUAGE_CONFIG2
     });
-    initPrefillModal({ getLang });
+    initPrefillModal({
+      getLang,
+      LANGUAGE_CONFIG: LANGUAGE_CONFIG2
+    });
   }
   function initPrefilledFields({
     getLang,
     detectedSupportedLang,
     employerTypeInput,
-    hiddenRequired
+    hiddenRequired,
+    LANGUAGE_CONFIG: LANGUAGE_CONFIG2
   }) {
     const preferredLanguageF = document.getElementById("tfa_91");
     const addressF = document.getElementById("tfa_32");
@@ -2558,7 +2609,8 @@ var SEIUForm = (() => {
     handlePreferredLanguagePrefill({
       preferredLanguageF,
       getLang,
-      detectedSupportedLang
+      detectedSupportedLang,
+      LANGUAGE_CONFIG: LANGUAGE_CONFIG2
     });
     const prefillFieldList = [
       emailF,
@@ -2631,7 +2683,8 @@ var SEIUForm = (() => {
   function handlePreferredLanguagePrefill({
     preferredLanguageF,
     getLang,
-    detectedSupportedLang
+    detectedSupportedLang,
+    LANGUAGE_CONFIG: LANGUAGE_CONFIG2
   }) {
     if (!preferredLanguageF) return;
     const container = preferredLanguageF.closest(".field-container-D, .form-group, .question") || preferredLanguageF.parentNode;
@@ -2642,18 +2695,11 @@ var SEIUForm = (() => {
       if (container) container.style.removeProperty("display");
       return;
     }
-    const languageValueMap = {
-      en: "English",
-      es: "Spanish",
-      ru: "Russian",
-      vi: "Vietnamese",
-      zh: "Chinese",
-      ar: "Arabic",
-      so: "Somali"
-    };
-    const desiredValue = languageValueMap[getLang];
+    const preferredValues = LANGUAGE_CONFIG2[getLang]?.preferredValues || [];
+    const desiredValues = new Set(preferredValues);
     const matchingOption = Array.from(preferredLanguageF.options).find((option) => {
-      return option.value === desiredValue || option.textContent.trim() === desiredValue || option.value.toLowerCase() === getLang.toLowerCase();
+      const englishValue = option.dataset.englishValue || option.textContent.trim() || option.value.trim();
+      return desiredValues.has(englishValue);
     });
     if (!matchingOption) {
       preferredLanguageF.dataset.prefilled = "false";
@@ -2678,7 +2724,10 @@ var SEIUForm = (() => {
       switchedOffField.value = parts.join(",");
     }
   }
-  function initPrefillModal({ getLang }) {
+  function initPrefillModal({
+    getLang,
+    LANGUAGE_CONFIG: LANGUAGE_CONFIG2
+  }) {
     const body = document.querySelector("body");
     const fullNameField = document.getElementById("tfa_330");
     const linkInfo = document.getElementById("tfa_331");
@@ -2686,7 +2735,8 @@ var SEIUForm = (() => {
     body.insertAdjacentHTML("afterBegin", `<div id="js-modal-page">`);
     body.insertAdjacentHTML("beforeEnd", `</div>`);
     const fullName = fullNameField.value.substring(0, 40);
-    const lang = (getLang || navigator.language || "en").split("-")[0];
+    const rawLang = (getLang || navigator.language || "en").split("-")[0];
+    const lang = LANGUAGE_CONFIG2[rawLang]?.renderLang || "en";
     const modalText = {
       en: {
         titlePrefix: "Are you",
@@ -2890,8 +2940,6 @@ var SEIUForm = (() => {
     );
   }
   var translationsNorm = normalizeTranslationMap(translations);
-  var employerTypeTranslationsNorm = normalizeTranslationMap(employerTypeTranslations);
-  var employerNameTranslationsNorm = normalizeTranslationMap(employerNameTranslations);
   function getTranslation(map, key, lang, fallbackText = "") {
     if (!map || !key) return fallbackText;
     const entry = map[key.toLowerCase()];
@@ -2917,16 +2965,6 @@ var SEIUForm = (() => {
     console.log("getLang =", getLang);
     document.documentElement.lang = getLang;
     document.querySelector(".wForm")?.setAttribute("data-language", getLang);
-    const languageMap = {
-      "English": "en",
-      "Espa\xF1ol": "es",
-      "\u0420\u0443\u0441\u0441\u043A\u0438\u0439": "ru",
-      "Ti\u1EBFng Vi\u1EC7t": "vi",
-      "\u7B80\u4F53\u4E2D\u6587": "zh",
-      "\u0639\u0631\u0628\u064A": "ar",
-      "Af Soomaaliga": "so"
-    };
-    const supportedLangs = Object.values(languageMap);
     const detectedSupportedLang = supportedLangs.includes(getLang);
     const header = document.querySelector(".wFormHeader");
     if (!header) return;
@@ -2944,10 +2982,11 @@ var SEIUForm = (() => {
     globeSVG.className = "globeSVG";
     pickerWrap.appendChild(globeSVG);
     pickerWrap.appendChild(select);
-    Object.keys(languageMap).forEach((langName) => {
+    Object.entries(LANGUAGE_CONFIG).forEach(([code, cfg]) => {
+      if (!cfg.pickerLabel) return;
       const option = document.createElement("option");
-      option.value = languageMap[langName];
-      option.textContent = langName;
+      option.value = code;
+      option.textContent = cfg.pickerLabel;
       select.appendChild(option);
     });
     if (getLang) {
@@ -2967,11 +3006,7 @@ var SEIUForm = (() => {
     var firstName = document.getElementById("tfa_1-L");
     var lastName = document.getElementById("tfa_2-L");
     var birthDate = document.getElementById("tfa_134-L");
-    var mmPlaceholder = document.getElementById("tfa_156").options[0];
-    var ddPlaceholder = document.getElementById("tfa_157").options[0];
-    var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
     var preferredLanguage = document.getElementById("tfa_91-L");
-    var employer = document.getElementById("tfa_22-L");
     var employerTypeLabel = document.getElementById("tfa_388-L");
     var employerTypeInput = document.getElementById("tfa_388");
     var address = document.getElementById("tfa_32-L");
@@ -2985,8 +3020,6 @@ var SEIUForm = (() => {
     var phoneNote = document.getElementById("tfa_4-HH");
     var smsOptOut = document.getElementById("tfa_114-L");
     var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-    var membershipAuthBlock = document.getElementById("tfa_350-HTML");
-    var duesAuthBlock = document.getElementById("tfa_351-HTML");
     var polOptOut = document.getElementById("tfa_122-L");
     var polOptOutCheckbox = document.getElementById("tfa_123-L");
     var signature = document.getElementById("tfa_386-L");
@@ -2998,29 +3031,14 @@ var SEIUForm = (() => {
     var combinedLL = document.getElementById("tfa_377");
     const preferredLanguageField = document.getElementById("tfa_91");
     normalizePreferredLanguagePicklist();
-    const preferredLanguageValueMap = {
-      English: "en",
-      Spanish: "es",
-      Russian: "ru",
-      Vietnamese: "vi",
-      Cantonese: "zh",
-      Mandarin: "zh",
-      Arabic: "ar",
-      Somali: "so",
-      Korean: "en",
-      Romanian: "en",
-      Ukrainian: "en",
-      "ASL (Sign Language)": "en",
-      Amharic: "en",
-      Farsi: "en",
-      "Haitian Creole": "en",
-      Other: "en"
-    };
     function getPreferredLanguageCodeFromField(field) {
-      if (!field) return "";
+      if (!field) return "en";
       const selectedOption = field.options[field.selectedIndex];
       const englishValue = selectedOption?.dataset.englishValue || selectedOption?.textContent?.trim() || field.value;
-      return preferredLanguageValueMap[englishValue] || "en";
+      const matchedConfig = Object.values(LANGUAGE_CONFIG).find(
+        (cfg) => cfg.preferredValues.includes(englishValue)
+      );
+      return matchedConfig?.renderLang || "en";
     }
     if (preferredLanguageField) {
       preferredLanguageField.addEventListener("change", function() {
@@ -3072,6 +3090,7 @@ var SEIUForm = (() => {
     initEmployerType({
       formEl,
       getLang,
+      getCurrentLang: () => getLang,
       employerTypeInput,
       employerTypeTranslations,
       employerNameTranslations,
@@ -3086,7 +3105,8 @@ var SEIUForm = (() => {
       getLang,
       detectedSupportedLang,
       employerTypeInput,
-      hiddenRequired
+      hiddenRequired,
+      LANGUAGE_CONFIG
     });
     const employerNameFieldIDs = ["tfa_393", "tfa_407", "tfa_408", "tfa_409", "tfa_410", "tfa_414", "tfa_418", "tfa_422"];
     const aIdFieldIDs = ["tfa_430", "tfa_436", "tfa_432", "tfa_434", "tfa_427", "tfa_401", "tfa_438", "tfa_440"];
@@ -3212,32 +3232,21 @@ var SEIUForm = (() => {
     function normalizePreferredLanguagePicklist() {
       const field = document.getElementById("tfa_91");
       if (!field) return;
-      const langLabels = {
-        English: "English",
-        Spanish: "Espa\xF1ol",
-        Russian: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
-        Vietnamese: "Ti\u1EBFng Vi\u1EC7t",
-        Cantonese: "\u7CB5\u8A9E",
-        Mandarin: "\u666E\u901A\u8BDD",
-        Arabic: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-        Somali: "Af Soomaaliga",
-        Korean: "\uD55C\uAD6D\uC5B4",
-        Romanian: "Rom\xE2n\u0103",
-        Ukrainian: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430",
-        Amharic: "\u12A0\u121B\u122D\u129B",
-        Farsi: "\u0641\u0627\u0631\u0633\u06CC",
-        "Haitian Creole": "Krey\xF2l ayisyen",
-        "ASL (Sign Language)": "ASL",
-        Other: "Other"
-      };
+      const preferredValueToNativeLabel = {};
+      Object.values(LANGUAGE_CONFIG).forEach((cfg) => {
+        cfg.preferredValues.forEach((value) => {
+          preferredValueToNativeLabel[value] = cfg.nativeLabel;
+        });
+      });
+      Object.assign(preferredValueToNativeLabel, OTHER_LANGUAGE_LABELS);
       Array.from(field.options).forEach((option) => {
         if (!option.textContent.trim()) return;
         if (!option.dataset.englishValue) {
           option.dataset.englishValue = option.textContent.trim();
         }
         const englishValue = option.dataset.englishValue;
-        if (langLabels[englishValue]) {
-          option.textContent = langLabels[englishValue];
+        if (preferredValueToNativeLabel[englishValue]) {
+          option.textContent = preferredValueToNativeLabel[englishValue];
         }
       });
     }
@@ -3308,26 +3317,13 @@ var SEIUForm = (() => {
         combinedLL.value = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`;
       }
     }
-    const labelByLang = {
-      en: ["English"],
-      es: ["Spanish", "Espa\xF1ol"],
-      ru: ["Russian", "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"],
-      vi: ["Vietnamese", "Ti\u1EBFng Vi\u1EC7t"],
-      zh: ["Chinese", "Mandarin", "Cantonese", "\u7B80\u4F53\u4E2D\u6587"],
-      ar: ["Arabic", "\u0639\u0631\u0628\u064A"],
-      so: ["Somali", "Af Soomaaliga"]
-    };
     function setPreferredLanguageFieldFromLang(lang) {
       if (!preferredLanguageField) return;
-      const targets = labelByLang[lang];
+      const targets = LANGUAGE_CONFIG[lang]?.preferredValues;
       if (!targets) return;
       const option = Array.from(preferredLanguageField.options).find((opt) => {
-        const englishValue = opt.dataset.englishValue || "";
-        const value = opt.value.trim();
-        const text = opt.textContent.trim();
-        return targets.some(
-          (target) => englishValue === target || value === target || text === target || englishValue.toLowerCase() === target.toLowerCase() || value.toLowerCase() === target.toLowerCase() || text.toLowerCase() === target.toLowerCase()
-        );
+        const englishValue = opt.dataset.englishValue || opt.textContent.trim();
+        return targets.includes(englishValue);
       });
       if (option) {
         preferredLanguageField.value = option.value;
@@ -3382,7 +3378,6 @@ var SEIUForm = (() => {
       );
     }
     const membershipCheckbox = document.getElementById("tfa_116");
-    const duesAuthCheckbox = document.getElementById("tfa_380");
     const membershipAuthLanguage = membershipAuthLL.value;
     const duesAuthLanguage = duesAuthLL.value;
     membershipCheckbox.addEventListener("blur", function() {
