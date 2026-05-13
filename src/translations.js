@@ -473,6 +473,188 @@ export const translations = {
     zh: "国家家庭护理或个人支持",
     ar: "رعاية منزلية أو دعم شخصي تابع للولاية",
     so: "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
+  },
+
+  english: {
+    en: "English",
+    es: "Inglés",
+    ru: "Английский",
+    vi: "Tiếng Anh",
+    zh: "英语",
+    ar: "الإنجليزية",
+    so: "Ingiriisi",
+    ko: "영어",
+    ro: "Engleză",
+    uk: "Англійська"
+  },
+
+  "asl (sign language)": {
+    en: "ASL (Sign Language)",
+    es: "ASL (lenguaje de señas)",
+    ru: "Американский язык жестов (ASL)",
+    vi: "Ngôn ngữ ký hiệu Hoa Kỳ (ASL)",
+    zh: "美国手语 (ASL)",
+    ar: "لغة الإشارة الأمريكية (ASL)",
+    so: "ASL (Luqadda Calaamadaha)",
+    ko: "미국 수어 (ASL)",
+    ro: "ASL (limbajul semnelor)",
+    uk: "Американська мова жестів (ASL)"
+  },
+
+  cantonese: {
+    en: "Cantonese",
+    es: "Cantonés",
+    ru: "Кантонский",
+    vi: "Tiếng Quảng Đông",
+    zh: "粤语",
+    ar: "الكانتونية",
+    so: "Kantoniis",
+    ko: "광둥어",
+    ro: "Cantoneză",
+    uk: "Кантонська"
+  },
+
+  mandarin: {
+    en: "Mandarin",
+    es: "Mandarín",
+    ru: "Мандаринское наречие китайского языка",
+    vi: "Tiếng Quan Thoại",
+    zh: "汉语（普通话）",
+    ar: "الماندرين",
+    so: "Mandariin",
+    ko: "중국어(표준 중국어)",
+    ro: "Mandarină",
+    uk: "Мандаринська китайська"
+  },
+
+  russian: {
+    en: "Russian",
+    es: "Ruso",
+    ru: "Русский",
+    vi: "Tiếng Nga",
+    zh: "俄语",
+    ar: "الروسية",
+    so: "Ruush",
+    ko: "러시아어",
+    ro: "Rusă",
+    uk: "Російська"
+  },
+
+  spanish: {
+    en: "Spanish",
+    es: "Español",
+    ru: "Испанский",
+    vi: "Tiếng Tây Ban Nha",
+    zh: "西班牙语",
+    ar: "الإسبانية",
+    so: "Isbaanish",
+    ko: "스페인어",
+    ro: "Spaniolă",
+    uk: "Іспанська"
+  },
+
+  vietnamese: {
+    en: "Vietnamese",
+    es: "Vietnamita",
+    ru: "Вьетнамский",
+    vi: "Tiếng Việt",
+    zh: "越南语",
+    ar: "الفيتنامية",
+    so: "Fiyetnaamiis",
+    ko: "베트남어",
+    ro: "Vietnameză",
+    uk: "В’єтнамська"
+  },
+
+  amharic: {
+    en: "Amharic",
+    es: "Amhárico",
+    ru: "Амхарский",
+    vi: "Tiếng Amharic",
+    zh: "阿姆哈拉语",
+    ar: "الأمهرية",
+    so: "Amxaari",
+    ko: "암하라어",
+    ro: "Amharică",
+    uk: "Амхарська"
+  },
+
+  arabic: {
+    en: "Arabic",
+    es: "Árabe",
+    ru: "Арабский",
+    vi: "Tiếng Ả Rập",
+    zh: "阿拉伯语",
+    ar: "العربية",
+    so: "Carabi",
+    ko: "아랍어",
+    ro: "Arabă",
+    uk: "Арабська"
+  },
+
+  farsi: {
+    en: "Farsi",
+    es: "Farsi",
+    ru: "Фарси",
+    vi: "Tiếng Farsi",
+    zh: "波斯语",
+    ar: "الفارسية",
+    so: "Faarisi",
+    ko: "페르시아어",
+    ro: "Farsi",
+    uk: "Фарсі"
+  },
+
+  "haitian creole": {
+    en: "Haitian Creole",
+    es: "Criollo haitiano",
+    ru: "Гаитянский креольский язык",
+    vi: "Tiếng Creole Haiti",
+    zh: "海地克里奥尔语",
+    ar: "الكريولية الهايتية",
+    so: "Kiriiyoolka Haiti",
+    ko: "아이티 크리올어",
+    ro: "Creolă haitiană",
+    uk: "Гаїтянська креольська"
+  },
+
+  korean: {
+    en: "Korean",
+    es: "Coreano",
+    ru: "Корейский",
+    vi: "Tiếng Hàn",
+    zh: "韩语",
+    ar: "الكورية",
+    so: "Kuuriyaan",
+    ko: "한국어",
+    ro: "Coreeană",
+    uk: "Корейська"
+  },
+
+  romanian: {
+    en: "Romanian",
+    es: "Rumano",
+    ru: "Румынский",
+    vi: "Tiếng Romania",
+    zh: "罗马尼亚语",
+    ar: "الرومانية",
+    so: "Romaaniyaan",
+    ko: "루마니아어",
+    ro: "Română",
+    uk: "Румунська"
+  },
+
+  ukrainian: {
+    en: "Ukrainian",
+    es: "Ucraniano",
+    ru: "Украинский",
+    vi: "Tiếng Ukraina",
+    zh: "乌克兰语",
+    ar: "الأوكرانية",
+    so: "Yukreeniyaan",
+    ko: "우크라이나어",
+    ro: "Ucraineană",
+    uk: "Українська"
   }
 };
 

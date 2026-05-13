@@ -514,6 +514,15 @@ function clearTranslatedSelectedValue(input) {
   input.style.caretColor = "";
   input.dataset.englishValue = "";
 }
+
+  document.addEventListener("languagechange", function () {
+    translateEmployerTypeSuggestions();
+
+    employerNameFields.forEach(field => {
+      translateAndSortTypeahead(field, employerNameTranslations);
+      showTranslatedSelectedValue(field, employerNameTranslations);
+    });
+  });
 }
 
 

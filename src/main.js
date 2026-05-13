@@ -117,16 +117,11 @@ window.addEventListener("load", function() {
     }
 
     // Handle selection change
-    select.addEventListener("change", function() {
-      const newLang = select.value;
-      const currentUrl = new URL(window.location.href);
-
-      // Update or set the lang param
-      currentUrl.searchParams.set("lang", newLang);
-
-      // Reload page with new lang
-      window.location.href = currentUrl.toString();
-    });
+    select.addEventListener("change", function () {
+		  switchLanguage(select.value, {
+		    syncPreferredLanguageField: true
+		  });
+		});
 
     // Insert picker after header
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
@@ -171,6 +166,65 @@ window.addEventListener("load", function() {
 	var duesAuthLL = document.getElementById("tfa_380-L");
 	var combinedLL = document.getElementById("tfa_377"); // jcl
 	const preferredLanguageField = document.getElementById("tfa_91");
+
+	normalizePreferredLanguagePicklist();
+
+	const preferredLanguageValueMap = {
+	  English: "en",
+	  Spanish: "es",
+	  Russian: "ru",
+	  Vietnamese: "vi",
+	  Cantonese: "zh",
+	  Mandarin: "zh",
+	  Arabic: "ar",
+	  Somali: "so",
+
+	  Korean: "en",
+	  Romanian: "en",
+	  Ukrainian: "en",
+	  "ASL (Sign Language)": "en",
+	  Amharic: "en",
+	  Farsi: "en",
+	  "Haitian Creole": "en",
+	  Other: "en"
+	};
+
+	function getPreferredLanguageCodeFromField(field) {
+	  if (!field) return "";
+
+	  const selectedOption = field.options[field.selectedIndex];
+
+	  const englishValue =
+	    selectedOption?.dataset.englishValue ||
+	    selectedOption?.textContent?.trim() ||
+	    field.value;
+
+	  return preferredLanguageValueMap[englishValue] || "en";
+	}
+
+	if (preferredLanguageField) {
+	  preferredLanguageField.addEventListener("change", function () {
+		  const selectedOption =
+		    preferredLanguageField.options[preferredLanguageField.selectedIndex];
+
+		  const selectedEnglishValue =
+		    selectedOption?.dataset.englishValue || "";
+
+		  const newLang = getPreferredLanguageCodeFromField(preferredLanguageField);
+
+		  if (!newLang) return;
+
+		  switchLanguage(newLang, {
+		    syncPreferredLanguageField: false
+		  });
+
+		  normalizePreferredLanguagePicklist();
+
+		  setPreferredLanguageValue(selectedEnglishValue, {
+		    fireEvents: false
+		  });
+		});
+	}
 
 	initDateHelpers({
 	  monthPlaceholder: getTranslation(
@@ -368,79 +422,236 @@ window.addEventListener("load", function() {
 	  el.innerHTML = translated;
 	}
 
-function applyTranslations() {
-  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
+	function setPreferredLanguageValue(englishValue, options = {}) {
+	  const { fireEvents = false } = options;
+	  const field = document.getElementById("tfa_91");
+	  if (!field || !englishValue) return false;
 
-  setHTML(valueFormTitle, "formTitle");
-  if (valueSubmitButton) {
-	  valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
-	  valueSubmitButton.value = getTranslation(
-		  translationsNorm,
-		  "submitButton",
-		  getLang,
-		  valueSubmitButton.dataset.originalValue
-		);
+	  const option = Array.from(field.options).find(opt => {
+	    return opt.dataset.englishValue === englishValue;
+	  });
+
+	  if (!option) return false;
+
+	  field.value = option.value;
+	  option.selected = true;
+
+	  if (fireEvents) {
+	    field.dispatchEvent(new Event("input", { bubbles: true }));
+	    field.dispatchEvent(new Event("change", { bubbles: true }));
+	  }
+
+	  return true;
 	}
 
-  if (stagingWarning) {
-    stagingWarning.innerHTML = `
-      <div style="background-color: rgb(255, 152, 0); padding: 20px;">
-        <div>
-          <p style="display: inline;" id="testWarning" data-testid="testWarning">
-            ${getTranslation(
-						  translationsNorm,
-						  "stagingWarning",
-						  getLang,
-						  "This form is for testing only."
-						)}&nbsp;
-          </p>
-          <strong>
-            <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
-              seiu503signup.org
-            </a>
-          </strong>
-        </div>
-      </div>
-    `;
-  }
+	function normalizePreferredLanguagePicklist() {
+	  const field = document.getElementById("tfa_91");
+	  if (!field) return;
 
-  setText(prefillWarning1, "prefillWarning1");
-  setText(prefillWarning2, "prefillWarning2");
-  setText(employerTypeLabel, "employerTypeLabel");
-  setText(firstName, "firstName");
-  setText(lastName, "lastName");
-  setText(birthDate, "birthDate");
+	  const langLabels = {
+	    English: "English",
+	    Spanish: "Español",
+	    Russian: "Русский",
+	    Vietnamese: "Tiếng Việt",
+	    Cantonese: "粵語",
+	    Mandarin: "普通话",
+	    Arabic: "العربية",
+	    Somali: "Af Soomaaliga",
+	    Korean: "한국어",
+	    Romanian: "Română",
+	    Ukrainian: "Українська",
+	    Amharic: "አማርኛ",
+	    Farsi: "فارسی",
+	    "Haitian Creole": "Kreyòl ayisyen",
+	    "ASL (Sign Language)": "ASL",
+	    Other: "Other"
+	  };
 
-  if (birthDate) {
-    birthDate.classList.add("reqMark");
-    birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
-  }
+	  Array.from(field.options).forEach(option => {
+	    if (!option.textContent.trim()) return;
 
-  setText(preferredLanguage, "preferredLanguage");
-  setText(address, "address");
-  setText(addressNote, "addressNote");
-  setText(city, "city");
-  setText(state, "state");
-  setText(zip, "zip");
-  setText(email, "email");
-  setText(emailNote, "emailNote");
-  setText(phone, "phone");
-  setText(phoneNote, "phoneNote");
-  setText(smsOptOut, "smsOptOut");
-  setText(smsOptOutCheckbox, "smsOptOutCheckbox");
-  setText(polOptOut, "polOptOut");
-  setText(polOptOutCheckbox, "polOptOutCheckbox");
-  setText(signature, "signature");
-  setText(signatureNote, "signatureNote");
-  setText(membershipAuthTitle, "membershipAuthTitle");
-  setText(membershipAuthLL, "membershipAuthLL");
-  setText(duesAuthTitle, "duesAuthTitle");
-  setText(duesAuthLL, "duesAuthLL");
+	    if (!option.dataset.englishValue) {
+	      option.dataset.englishValue = option.textContent.trim();
+	    }
 
-  if (combinedLL && membershipAuthLL && duesAuthLL) {
-    combinedLL.value = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`;
-  }
-}
+	    const englishValue = option.dataset.englishValue;
+
+	    if (langLabels[englishValue]) {
+	      option.textContent = langLabels[englishValue];
+	    }
+	  });
+	}
+
+	function applyTranslations() {
+	  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
+
+	  setHTML(valueFormTitle, "formTitle");
+	  if (valueSubmitButton) {
+		  valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
+		  valueSubmitButton.value = getTranslation(
+			  translationsNorm,
+			  "submitButton",
+			  getLang,
+			  valueSubmitButton.dataset.originalValue
+			);
+		}
+
+	  if (stagingWarning) {
+	    stagingWarning.innerHTML = `
+	      <div style="background-color: rgb(255, 152, 0); padding: 20px;">
+	        <div>
+	          <p style="display: inline;" id="testWarning" data-testid="testWarning">
+	            ${getTranslation(
+							  translationsNorm,
+							  "stagingWarning",
+							  getLang,
+							  "This form is for testing only."
+							)}&nbsp;
+	          </p>
+	          <strong>
+	            <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
+	              seiu503signup.org
+	            </a>
+	          </strong>
+	        </div>
+	      </div>
+	    `;
+	  }
+
+	  setText(prefillWarning1, "prefillWarning1");
+	  setText(prefillWarning2, "prefillWarning2");
+	  setText(employerTypeLabel, "employerTypeLabel");
+	  setText(firstName, "firstName");
+	  setText(lastName, "lastName");
+	  setText(birthDate, "birthDate");
+
+	  if (birthDate) {
+	    birthDate.classList.add("reqMark");
+	    birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
+	  }
+
+	  setText(preferredLanguage, "preferredLanguage");
+	  setText(address, "address");
+	  setText(addressNote, "addressNote");
+	  setText(city, "city");
+	  setText(state, "state");
+	  setText(zip, "zip");
+	  setText(email, "email");
+	  setText(emailNote, "emailNote");
+	  setText(phone, "phone");
+	  setText(phoneNote, "phoneNote");
+	  setText(smsOptOut, "smsOptOut");
+	  setText(smsOptOutCheckbox, "smsOptOutCheckbox");
+	  setText(polOptOut, "polOptOut");
+	  setText(polOptOutCheckbox, "polOptOutCheckbox");
+	  setText(signature, "signature");
+	  setText(signatureNote, "signatureNote");
+	  setText(membershipAuthTitle, "membershipAuthTitle");
+	  setText(membershipAuthLL, "membershipAuthLL");
+	  setText(duesAuthTitle, "duesAuthTitle");
+	  setText(duesAuthLL, "duesAuthLL");
+
+	  if (combinedLL && membershipAuthLL && duesAuthLL) {
+	    combinedLL.value = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`;
+	  }
+
+	}
+
+	const labelByLang = {
+	  en: ["English"],
+	  es: ["Spanish", "Español"],
+	  ru: ["Russian", "Русский"],
+	  vi: ["Vietnamese", "Tiếng Việt"],
+	  zh: ["Chinese", "Mandarin", "Cantonese", "简体中文"],
+	  ar: ["Arabic", "عربي"],
+	  so: ["Somali", "Af Soomaaliga"]
+	};
+
+	function setPreferredLanguageFieldFromLang(lang) {
+	  if (!preferredLanguageField) return;
+
+	  const targets = labelByLang[lang];
+	  if (!targets) return;
+
+	  const option = Array.from(preferredLanguageField.options).find(opt => {
+	    const englishValue = opt.dataset.englishValue || "";
+	    const value = opt.value.trim();
+	    const text = opt.textContent.trim();
+
+	    return targets.some(target =>
+	      englishValue === target ||
+	      value === target ||
+	      text === target ||
+	      englishValue.toLowerCase() === target.toLowerCase() ||
+	      value.toLowerCase() === target.toLowerCase() ||
+	      text.toLowerCase() === target.toLowerCase()
+	    );
+	  });
+
+	  if (option) {
+	    preferredLanguageField.value = option.value;
+	    option.selected = true;
+	  }
+	}
+
+	function updateDatePlaceholders() {
+	  const mmSelect = document.getElementById("tfa_156");
+	  const ddSelect = document.getElementById("tfa_157");
+	  const yyyySelect = document.getElementById("tfa_158");
+
+	  if (mmSelect?.options?.[0]) {
+	    mmSelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "mmPlaceholder",
+	      getLang,
+	      "Month"
+	    );
+	  }
+
+	  if (ddSelect?.options?.[0]) {
+	    ddSelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "ddPlaceholder",
+	      getLang,
+	      "Day"
+	    );
+	  }
+
+	  if (yyyySelect?.options?.[0]) {
+	    yyyySelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "yyyyPlaceholder",
+	      getLang,
+	      "Year"
+	    );
+	  }
+	}
+
+	function switchLanguage(newLang, options = {}) {
+	  if (!supportedLangs.includes(newLang)) return;
+
+	  const { syncPreferredLanguageField = true } = options;
+
+	  getLang = newLang;
+
+	  document.documentElement.lang = getLang;
+	  document.querySelector(".wForm")?.setAttribute("data-language", getLang);
+
+	  if (select) select.value = getLang;
+
+	  if (syncPreferredLanguageField) {
+	    setPreferredLanguageFieldFromLang(getLang);
+	  }
+
+	  applyTranslations();
+	  updateDatePlaceholders();
+
+	  document.dispatchEvent(
+	    new CustomEvent("languagechange", {
+	      detail: { lang: getLang }
+	    })
+	  );
+	}
   
 
 	// set legal language (this block should run AFTER translation blocks)
