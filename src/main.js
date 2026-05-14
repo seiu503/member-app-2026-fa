@@ -63,6 +63,14 @@ window.addEventListener("load", function() {
 	document.documentElement.lang = getLang;
 	document.querySelector('.wForm')?.setAttribute('data-language', getLang);
 
+	// check if tmp1 is set in a passed query param
+
+	const tmp1 = getParam("tmp1", window.location.href);
+
+	// If so, assign it to the hidden tmp1 field
+
+	document.getElementById("tfa_468").value = tmp1;
+
 	// ADD LANGUAGE PICKER TO DOM
 
 		const detectedSupportedLang = supportedLangs.includes(getLang);

@@ -3074,6 +3074,8 @@ var SEIUForm = (() => {
     console.log("getLang =", getLang);
     document.documentElement.lang = getLang;
     document.querySelector(".wForm")?.setAttribute("data-language", getLang);
+    const tmp1 = getParam("tmp1", window.location.href);
+    document.getElementById("tfa_468").value = tmp1;
     const detectedSupportedLang = supportedLangs.includes(getLang);
     const header = document.querySelector(".wFormHeader");
     if (!header) return;
