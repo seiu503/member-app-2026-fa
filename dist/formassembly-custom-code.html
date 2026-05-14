@@ -2110,7 +2110,7 @@ var SEIUForm = (() => {
   function initEmployerType({
     formEl,
     getLang,
-    getCurrentLang,
+    getCurrentLang: getCurrentLang2,
     employerTypeInput,
     employerTypeTranslations: employerTypeTranslations2,
     employerNameTranslations: employerNameTranslations2,
@@ -2138,7 +2138,7 @@ var SEIUForm = (() => {
     const employerNameFields = hiddenRequired.filter(Boolean);
     let employerTypeEnglishValue = "";
     function getLangCode() {
-      return (getCurrentLang?.() || document.documentElement.lang || getLang || "en").split("-")[0];
+      return (getCurrentLang2?.() || document.documentElement.lang || getLang || "en").split("-")[0];
     }
     function getEmployerTypeTranslation(englishValue) {
       const lang = getLangCode();
@@ -2475,141 +2475,204 @@ var SEIUForm = (() => {
   }
 
   // src/validation.js
-  function initValidation({ formEl, getLang }) {
-    if (!formEl) return;
-    formEl.addEventListener("submit", function() {
-      console.log("submitclick");
-      setTimeout(() => {
-        logFormAssemblyErrors();
-        translateValidationMessages(getLang);
-      }, 0);
-      logMissingRequiredFields(formEl);
-    });
-  }
-  function logFormAssemblyErrors() {
-    const errContainers = document.querySelectorAll(".oneField.errFld");
-    console.group("FormAssembly validation errors (.errFld)");
-    errContainers.forEach((container) => {
-      const input = container.querySelector("input, select, textarea");
-      const labelEl = container.querySelector(".label span") || container.querySelector(".label") || container.querySelector("label");
-      const msgEl = container.querySelector(".errMsg");
-      console.log({
-        id: input && input.id,
-        name: input && input.name,
-        label: labelEl && labelEl.textContent.trim(),
-        errorMessage: msgEl && msgEl.textContent.trim(),
-        visible: container.offsetParent !== null,
-        container
-      });
-    });
-    console.groupEnd();
-  }
-  function logMissingRequiredFields(formEl) {
-    const switchedOffValue = formEl.elements["tfa_switchedoff"]?.value || "";
-    const switchedOff = new Set(
-      switchedOffValue.split(",").map((s) => s.trim()).filter(Boolean)
-    );
-    const missing = [];
-    Array.from(formEl.elements).forEach((el) => {
-      if (!el.name) return;
-      if (el.disabled) return;
-      if (switchedOff.has(el.name)) return;
-      const isRequired = el.required || el.getAttribute("aria-required") === "true" || el.dataset.required === "true";
-      if (!isRequired) return;
-      let hasValue = false;
-      switch (el.type) {
-        case "checkbox":
-        case "radio": {
-          const group = formEl.querySelectorAll(
-            `[name="${CSS.escape(el.name)}"]`
-          );
-          hasValue = Array.from(group).some((f) => f.checked);
-          break;
-        }
-        case "file":
-          hasValue = el.files && el.files.length > 0;
-          break;
-        default:
-          hasValue = el.value != null && el.value.trim() !== "";
+  console.log("validation.js loaded");
+  var i18n = {
+    es: {
+      pleaseWait: "Espere...",
+      alert: (n) => `El formulario no est\xE1 completo y a\xFAn no se ha enviado. Hay ${n} problema${n === 1 ? "" : "s"} con su env\xEDo.`,
+      messages: {
+        "This field is required.": "Requerido",
+        "This does not appear to be a valid email address.": "Direcci\xF3n de correo electr\xF3nico no v\xE1lida",
+        "Please enter a valid 5-digit ZIP code": "Ingrese un c\xF3digo postal v\xE1lido de 5 d\xEDgitos",
+        "This does not appear to be a valid date.": "Ingrese una fecha v\xE1lida.",
+        "Please enter a valid phone number": "Ingrese un n\xFAmero de tel\xE9fono v\xE1lido",
+        "This date must be between": "La fecha debe ser entre"
       }
-      if (!hasValue) missing.push(el);
-    });
-    console.group("Missing required fields (custom check, FA aware)");
-    missing.forEach((el) => {
-      console.log({
-        name: el.name,
-        id: el.id,
-        type: el.type,
-        value: el.value,
-        isHiddenType: el.type === "hidden",
-        isVisiblyHidden: el.offsetParent === null,
-        element: el
-      });
-    });
-    console.groupEnd();
-  }
-  var validationMessages = {
-    "This field is required.": {
-      es: "Requerido",
-      ru: "\u042D\u0442\u043E \u043F\u043E\u043B\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E.",
-      vi: "Tr\u01B0\u1EDDng n\xE0y l\xE0 b\u1EAFt bu\u1ED9c.",
-      zh: "\u6B64\u5B57\u6BB5\u4E3A\u5FC5\u586B\u9879\u3002",
-      ar: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0642\u0644 \u0645\u0637\u0644\u0648\u0628.",
-      so: "Goobtan waa qasab."
     },
-    "This does not appear to be a valid email address.": {
-      es: "Direcci\xF3n de correo electr\xF3nico no v\xE1lida",
-      ru: "\u041F\u043E\u0445\u043E\u0436\u0435, \u044D\u0442\u043E \u043D\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u0430\u0434\u0440\u0435\u0441 \u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B.",
-      vi: "\u0110\u1ECBa ch\u1EC9 email n\xE0y kh\xF4ng h\u1EE3p l\u1EC7.",
-      zh: "\u8FD9\u4F3C\u4E4E\u4E0D\u662F\u6709\u6548\u7684\u7535\u5B50\u90AE\u4EF6\u5730\u5740\u3002",
-      ar: "\u0644\u0627 \u064A\u0628\u062F\u0648 \u0623\u0646 \u0647\u0630\u0627 \u0639\u0646\u0648\u0627\u0646 \u0628\u0631\u064A\u062F \u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A \u0635\u0627\u0644\u062D.",
-      so: "Tani uma muuqato cinwaan iimayl sax ah."
+    ru: {
+      pleaseWait: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043F\u043E\u0434\u043E\u0436\u0434\u0438\u0442\u0435...",
+      alert: (n) => `\u0424\u043E\u0440\u043C\u0430 \u043D\u0435 \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0430 \u0438 \u0435\u0449\u0435 \u043D\u0435 \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430. \u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043F\u0440\u043E\u0431\u043B\u0435\u043C: ${n}.`,
+      messages: {
+        "This field is required.": "\u042D\u0442\u043E \u043F\u043E\u043B\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E.",
+        "This does not appear to be a valid email address.": "\u041F\u043E\u0445\u043E\u0436\u0435, \u044D\u0442\u043E \u043D\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u0430\u0434\u0440\u0435\u0441 \u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B.",
+        "Please enter a valid 5-digit ZIP code": "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 5-\u0437\u043D\u0430\u0447\u043D\u044B\u0439 \u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0438\u043D\u0434\u0435\u043A\u0441",
+        "This does not appear to be a valid date.": "\u041F\u043E\u0445\u043E\u0436\u0435, \u044D\u0442\u043E \u043D\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0434\u0430\u0442\u0430.",
+        "Please enter a valid phone number": "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430",
+        "This date must be between": "\u0414\u0430\u0442\u0430 \u0434\u043E\u043B\u0436\u043D\u0430 \u0431\u044B\u0442\u044C \u043C\u0435\u0436\u0434\u0443"
+      }
     },
-    "Please enter a valid 5-digit ZIP code": {
-      es: "Ingrese un c\xF3digo postal v\xE1lido de 5 d\xEDgitos",
-      ru: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 5-\u0437\u043D\u0430\u0447\u043D\u044B\u0439 \u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0438\u043D\u0434\u0435\u043A\u0441",
-      vi: "Vui l\xF2ng nh\u1EADp m\xE3 ZIP g\u1ED3m 5 ch\u1EEF s\u1ED1 h\u1EE3p l\u1EC7",
-      zh: "\u8BF7\u8F93\u5165\u6709\u6548\u7684 5 \u4F4D\u90AE\u653F\u7F16\u7801",
-      ar: "\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0645\u0632 \u0628\u0631\u064A\u062F\u064A \u0635\u0627\u0644\u062D \u0645\u0643\u0648\u0646 \u0645\u0646 5 \u0623\u0631\u0642\u0627\u0645",
-      so: "Fadlan geli koodh boosto oo sax ah oo 5 lambar ah"
+    vi: {
+      pleaseWait: "Vui l\xF2ng ch\u1EDD...",
+      alert: (n) => `Bi\u1EC3u m\u1EABu ch\u01B0a ho\xE0n t\u1EA5t v\xE0 ch\u01B0a \u0111\u01B0\u1EE3c g\u1EEDi. C\xF3 ${n} l\u1ED7i trong n\u1ED9i dung b\u1EA1n g\u1EEDi.`,
+      messages: {
+        "This field is required.": "Tr\u01B0\u1EDDng n\xE0y l\xE0 b\u1EAFt bu\u1ED9c.",
+        "This does not appear to be a valid email address.": "\u0110\u1ECBa ch\u1EC9 email n\xE0y kh\xF4ng h\u1EE3p l\u1EC7.",
+        "Please enter a valid 5-digit ZIP code": "Vui l\xF2ng nh\u1EADp m\xE3 ZIP g\u1ED3m 5 ch\u1EEF s\u1ED1 h\u1EE3p l\u1EC7",
+        "This does not appear to be a valid date.": "Ng\xE0y n\xE0y kh\xF4ng h\u1EE3p l\u1EC7.",
+        "Please enter a valid phone number": "Vui l\xF2ng nh\u1EADp s\u1ED1 \u0111i\u1EC7n tho\u1EA1i h\u1EE3p l\u1EC7",
+        "This date must be between": "Ng\xE0y ph\u1EA3i n\u1EB1m trong kho\u1EA3ng"
+      }
     },
-    "This does not appear to be a valid date.": {
-      es: "Ingrese una fecha v\xE1lida.",
-      ru: "\u041F\u043E\u0445\u043E\u0436\u0435, \u044D\u0442\u043E \u043D\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0434\u0430\u0442\u0430.",
-      vi: "Ng\xE0y n\xE0y kh\xF4ng h\u1EE3p l\u1EC7.",
-      zh: "\u8FD9\u4F3C\u4E4E\u4E0D\u662F\u6709\u6548\u65E5\u671F\u3002",
-      ar: "\u0644\u0627 \u064A\u0628\u062F\u0648 \u0623\u0646 \u0647\u0630\u0627 \u062A\u0627\u0631\u064A\u062E \u0635\u0627\u0644\u062D.",
-      so: "Tani uma muuqato taariikh sax ah."
+    zh: {
+      pleaseWait: "\u8BF7\u7A0D\u5019...",
+      alert: (n) => `\u8868\u5355\u5C1A\u672A\u5B8C\u6210\uFF0C\u5C1A\u672A\u63D0\u4EA4\u3002\u60A8\u7684\u63D0\u4EA4\u4E2D\u6709 ${n} \u4E2A\u95EE\u9898\u3002`,
+      messages: {
+        "This field is required.": "\u6B64\u5B57\u6BB5\u4E3A\u5FC5\u586B\u9879\u3002",
+        "This does not appear to be a valid email address.": "\u8FD9\u4F3C\u4E4E\u4E0D\u662F\u6709\u6548\u7684\u7535\u5B50\u90AE\u4EF6\u5730\u5740\u3002",
+        "Please enter a valid 5-digit ZIP code": "\u8BF7\u8F93\u5165\u6709\u6548\u7684 5 \u4F4D\u90AE\u653F\u7F16\u7801",
+        "This does not appear to be a valid date.": "\u8FD9\u4F3C\u4E4E\u4E0D\u662F\u6709\u6548\u65E5\u671F\u3002",
+        "Please enter a valid phone number": "\u8BF7\u8F93\u5165\u6709\u6548\u7684\u7535\u8BDD\u53F7\u7801",
+        "This date must be between": "\u65E5\u671F\u5FC5\u987B\u4ECB\u4E8E"
+      }
     },
-    "Please enter a valid phone number": {
-      es: "Ingrese un n\xFAmero de tel\xE9fono v\xE1lido",
-      ru: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430",
-      vi: "Vui l\xF2ng nh\u1EADp s\u1ED1 \u0111i\u1EC7n tho\u1EA1i h\u1EE3p l\u1EC7",
-      zh: "\u8BF7\u8F93\u5165\u6709\u6548\u7684\u7535\u8BDD\u53F7\u7801",
-      ar: "\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0642\u0645 \u0647\u0627\u062A\u0641 \u0635\u0627\u0644\u062D",
-      so: "Fadlan geli lambar telefoon oo sax ah"
+    ar: {
+      pleaseWait: "\u064A\u0631\u062C\u0649 \u0627\u0644\u0627\u0646\u062A\u0638\u0627\u0631...",
+      alert: (n) => `\u0627\u0644\u0646\u0645\u0648\u0630\u062C \u063A\u064A\u0631 \u0645\u0643\u062A\u0645\u0644 \u0648\u0644\u0645 \u064A\u062A\u0645 \u0625\u0631\u0633\u0627\u0644\u0647 \u0628\u0639\u062F. \u064A\u0648\u062C\u062F ${n} \u0645\u0634\u0643\u0644\u0629 \u0641\u064A \u0627\u0644\u0625\u0631\u0633\u0627\u0644.`,
+      messages: {
+        "This field is required.": "\u0647\u0630\u0627 \u0627\u0644\u062D\u0642\u0644 \u0645\u0637\u0644\u0648\u0628.",
+        "This does not appear to be a valid email address.": "\u0644\u0627 \u064A\u0628\u062F\u0648 \u0623\u0646 \u0647\u0630\u0627 \u0639\u0646\u0648\u0627\u0646 \u0628\u0631\u064A\u062F \u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A \u0635\u0627\u0644\u062D.",
+        "Please enter a valid 5-digit ZIP code": "\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0645\u0632 \u0628\u0631\u064A\u062F\u064A \u0635\u0627\u0644\u062D \u0645\u0643\u0648\u0646 \u0645\u0646 5 \u0623\u0631\u0642\u0627\u0645",
+        "This does not appear to be a valid date.": "\u0644\u0627 \u064A\u0628\u062F\u0648 \u0623\u0646 \u0647\u0630\u0627 \u062A\u0627\u0631\u064A\u062E \u0635\u0627\u0644\u062D.",
+        "Please enter a valid phone number": "\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0642\u0645 \u0647\u0627\u062A\u0641 \u0635\u0627\u0644\u062D",
+        "This date must be between": "\u064A\u062C\u0628 \u0623\u0646 \u064A\u0643\u0648\u0646 \u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0628\u064A\u0646"
+      }
     },
-    "This date must be between": {
-      es: "La fecha debe ser entre",
-      ru: "\u0414\u0430\u0442\u0430 \u0434\u043E\u043B\u0436\u043D\u0430 \u0431\u044B\u0442\u044C \u043C\u0435\u0436\u0434\u0443",
-      vi: "Ng\xE0y ph\u1EA3i n\u1EB1m trong kho\u1EA3ng",
-      zh: "\u65E5\u671F\u5FC5\u987B\u4ECB\u4E8E",
-      ar: "\u064A\u062C\u0628 \u0623\u0646 \u064A\u0643\u0648\u0646 \u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0628\u064A\u0646",
-      so: "Taariikhdu waa inay u dhexaysaa"
+    so: {
+      pleaseWait: "Fadlan sug...",
+      alert: (n) => `Foomka lama dhammaystirin welina lama dirin. Waxaa jira ${n} qalad gudbintaada.`,
+      messages: {
+        "This field is required.": "Goobtan waa qasab.",
+        "This does not appear to be a valid email address.": "Tani uma muuqato cinwaan iimayl sax ah.",
+        "Please enter a valid 5-digit ZIP code": "Fadlan geli koodh boosto oo sax ah oo 5 lambar ah",
+        "This does not appear to be a valid date.": "Tani uma muuqato taariikh sax ah.",
+        "Please enter a valid phone number": "Fadlan geli lambar telefoon oo sax ah",
+        "This date must be between": "Taariikhdu waa inay u dhexaysaa"
+      }
     }
   };
-  function translateValidationMessages(getLang) {
-    const lang = (getLang || "en").split("-")[0];
-    if (lang === "en") return;
-    document.querySelectorAll(".errMsg, span").forEach((el) => {
-      Object.entries(validationMessages).forEach(([english, map]) => {
-        const translated = map[lang];
-        if (translated && el.textContent.includes(english)) {
-          el.textContent = el.textContent.replaceAll(english, translated);
+  var currentGetLang = () => "en";
+  function getCurrentLang() {
+    const candidates = [
+      typeof currentGetLang === "function" ? currentGetLang() : currentGetLang,
+      document.documentElement.lang,
+      document.body?.lang,
+      document.body?.dataset?.lang,
+      new URLSearchParams(window.location.search).get("lang"),
+      new URLSearchParams(window.location.search).get("language"),
+      document.querySelector("[lang]")?.getAttribute("lang"),
+      document.querySelector("html")?.getAttribute("lang")
+    ];
+    const found = candidates.map((value) => String(value || "").trim().toLowerCase()).find((value) => value && value !== "en");
+    return (found || "en").split("-")[0];
+  }
+  function patchAlert() {
+    if (window.__faLocalizedAlertPatched) return;
+    window.__faLocalizedAlertPatched = true;
+    const originalAlert = window.alert;
+    window.alert = function(message) {
+      const lang = getCurrentLang();
+      const dict = i18n[lang];
+      console.log("FA alert intercepted:", message, "lang:", lang);
+      if (dict && typeof message === "string") {
+        const match = message.match(
+          /The form is not complete and has not been submitted yet\. There (?:is|are) (\d+) problems? with your submission\./i
+        );
+        if (match) {
+          return originalAlert.call(window, dict.alert(Number(match[1])));
         }
-      });
+      }
+      return originalAlert.call(window, message);
+    };
+  }
+  function observeFormAssemblyErrors() {
+    if (window.__faErrorObserverInstalled) return;
+    window.__faErrorObserverInstalled = true;
+    new MutationObserver(runTranslations).observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["value", "class", "style"]
+    });
+    document.addEventListener(
+      "submit",
+      () => {
+        setTimeout(runTranslations, 0);
+        setTimeout(runTranslations, 50);
+        setTimeout(runTranslations, 250);
+        setTimeout(runTranslations, 1e3);
+      },
+      true
+    );
+    document.addEventListener(
+      "click",
+      () => {
+        setTimeout(runTranslations, 0);
+        setTimeout(runTranslations, 50);
+        setTimeout(runTranslations, 250);
+      },
+      true
+    );
+  }
+  function observeSubmitButton() {
+    document.addEventListener(
+      "submit",
+      () => {
+        setTimeout(translateSubmitButtons, 0);
+        setTimeout(translateSubmitButtons, 50);
+        setTimeout(translateSubmitButtons, 250);
+        setTimeout(translateSubmitButtons, 1e3);
+      },
+      true
+    );
+  }
+  function runTranslations() {
+    console.log("running translations", getCurrentLang());
+    translateValidationMessages();
+    translateSubmitButtons();
+  }
+  function translateSubmitButtons() {
+    const lang = getCurrentLang();
+    const dict = i18n[lang];
+    if (!dict) return;
+    document.querySelectorAll("input[type='submit'], button[type='submit']").forEach((btn) => {
+      if (btn.tagName === "INPUT" && /please wait/i.test(btn.value)) {
+        btn.value = dict.pleaseWait;
+      } else if (/please wait/i.test(btn.textContent)) {
+        btn.textContent = dict.pleaseWait;
+      }
     });
   }
+  function initValidation({ formEl, getLang }) {
+    console.log("initValidation called");
+    if (typeof getLang === "function") {
+      currentGetLang = getLang;
+    } else if (typeof getLang === "string") {
+      currentGetLang = () => getLang;
+    }
+    runTranslations();
+  }
+  function translateValidationMessages() {
+    const lang = getCurrentLang();
+    if (lang === "en") return;
+    const dict = i18n[lang];
+    if (!dict) return;
+    document.querySelectorAll(".errMsg").forEach((el) => {
+      let text = el.textContent || "";
+      Object.entries(dict.messages).forEach(([english, translated]) => {
+        text = text.replaceAll(english, translated);
+      });
+      if (el.textContent !== text) {
+        console.log("Translated error:", el.textContent, "=>", text);
+        el.textContent = text;
+      }
+    });
+  }
+  (function installFormAssemblyLocalization() {
+    patchAlert();
+    observeFormAssemblyErrors();
+    observeSubmitButton();
+  })();
 
   // src/prefill.js
   function initPrefill({
