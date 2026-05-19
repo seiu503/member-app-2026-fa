@@ -120,41 +120,16 @@ window.addEventListener("load", function() {
 	var valueFormTitle = document.getElementsByClassName("gform_title")[0];
 	var valueSubmitButton = document.querySelector("#submit_button");
 	var stagingWarning = document.getElementById("tfa_387-HTML");
-	var prefillWarning1 = document.getElementById("tfa_330-DB"); // span inside this is 'This form is customized especially for'
-	var prefillWarning2 = document.getElementById("tfa_330-DA"); // span inside this is 'If this is not you, do not complete this form!'
 	var firstName = document.getElementById("tfa_1-L"); 
 	var lastName = document.getElementById("tfa_2-L");
-	var birthDate = document.getElementById("tfa_134-L"); 
-	// var mmPlaceholder = document.getElementById("tfa_156").options[0];
-	// var ddPlaceholder = document.getElementById("tfa_157").options[0];
-	// var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
-	var preferredLanguage = document.getElementById("tfa_91-L"); 
-	// var employer = document.getElementById("tfa_22-L"); 
-	var employerTypeLabel = document.getElementById('tfa_388-L');
-	var employerTypeInput = document.getElementById('tfa_388');
-	var address = document.getElementById("tfa_32-L"); 
-	var addressNote = document.getElementById("tfa_32-HH");
-	var city = document.getElementById("tfa_34-L"); 
-	var state = document.getElementById("tfa_35-L");
-	var zip = document.getElementById("tfa_39-L"); 
+	var hireDate = document.getElementById("tfa_134-L"); 
+	var mailToStreet = document.getElementById("tfa_32-L"); 
+	var mailToCity = document.getElementById("tfa_34-L"); 
+	var mailToState = document.getElementById("tfa_35-L");
+	var mailToZip = document.getElementById("tfa_39-L"); 
 	var email = document.getElementById("tfa_3-L"); 
-	var emailNote = document.getElementById("tfa_3-HH");
-	var phone = document.getElementById("tfa_4-L"); 
-	var phoneNote = document.getElementById("tfa_4-HH");
-	var smsOptOut = document.getElementById("tfa_114-L");
-	var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-	// var membershipAuthBlock = document.getElementById("tfa_350-HTML"); 
-	// var duesAuthBlock = document.getElementById("tfa_351-HTML"); 
-	var polOptOut = document.getElementById("tfa_122-L"); 
-	var polOptOutCheckbox = document.getElementById("tfa_123-L"); 
-	var signature = document.getElementById("tfa_386-L");
-	var signatureNote = document.getElementById("tfa_386-HH");
-	var membershipAuthTitle = document.getElementById("tfa_116-L");
-	var membershipAuthLL = document.getElementById("tfa_379-L");
-	var duesAuthTitle = document.getElementById("tfa_355-L");
-	var duesAuthLL = document.getElementById("tfa_380-L");
-	var combinedLL = document.getElementById("tfa_377"); // jcl
-	const preferredLanguageField = document.getElementById("tfa_91");
+	var membershipConf = document.getElementById("membershipConf");
+
 
 	normalizePreferredLanguagePicklist();
 
