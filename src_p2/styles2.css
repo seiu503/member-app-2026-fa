@@ -1,4 +1,4 @@
-/* form styles.css */
+/* styles2.css */
 /* MAIN FORM STYLES */
 
 	/* Form title extra h3? h2 is actual form title */
@@ -210,8 +210,7 @@
 
 
 
-
-
+/* PAGE 2 */
 
 
 .membershipConf {
@@ -219,6 +218,23 @@
 	font-weight: 700 !important;
 }
 
+#tfa_499 { /* Gender / Pronouns group */
+	margin-top: 20px;
+}
+
+#tfa_464-L { /* Other social identities header */
+	font-family: var(--font-mono), monospace !important;
+	font-weight: 400 !important;
+	font-size: 16px !important;
+}
+
+#tfa_464 .oneChoice { /* spacing around other identities checkboxes */
+	margin: 0;
+}
+
+#tfa_464 .oneField { /* spacing around other identities checkboxes */
+	padding: 0px 6px;
+}
 /* --------------------------- */
 /* Arabic form-specific layout */
 /* --------------------------- */

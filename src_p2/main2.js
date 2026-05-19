@@ -1,15 +1,11 @@
-// main.js
+// main2.js
 
 import { translations, 
-	employerTypeTranslations, 
-	employerNameTranslations, 
 	LANGUAGE_CONFIG, 
 	OTHER_LANGUAGE_LABELS, 
 	supportedLangs 
 	} from "./translations2.js";
-import { initEmployerType } from "./employerType2.js";
 import { initValidation } from "./validation2.js";
-import { initPrefill } from "./prefill2.js";
 import { initDateHelpers } from "./dateHelpers2.js";
 
 function normalizeTranslationMap(map) {
@@ -62,14 +58,6 @@ window.addEventListener("load", function() {
 
 	document.documentElement.lang = getLang;
 	document.querySelector('.wForm')?.setAttribute('data-language', getLang);
-
-	// check if tmp1 is set in a passed query param
-
-	const tmp1 = getParam("tmp1", window.location.href);
-
-	// If so, assign it to the hidden tmp1 field
-
-	document.getElementById("tfa_468").value = tmp1;
 
 	// ADD LANGUAGE PICKER TO DOM
 
@@ -246,16 +234,6 @@ window.addEventListener("load", function() {
 
 	const hiddenRequired = Object.values(employerNameElements);
 
-	initEmployerType({
-	  formEl,
-	  getLang,
-	  getCurrentLang: () => getLang,
-	  employerTypeInput,
-	  employerTypeTranslations,
-	  employerNameTranslations,
-	  translations
-	});
-
 	initValidation({
 	  formEl,
 	  getLang,
@@ -269,104 +247,6 @@ window.addEventListener("load", function() {
 	  hiddenRequired,
 	  LANGUAGE_CONFIG
 	});
-
-
-  // set AID and Agency number on Employer change
-  const employerNameFieldIDs = ['tfa_393', 'tfa_407', 'tfa_408', 'tfa_409', 'tfa_410', 'tfa_414', 'tfa_418', 'tfa_422'];
-  const aIdFieldIDs = ['tfa_430', 'tfa_436', 'tfa_432', 'tfa_434', 'tfa_427', 'tfa_401', 'tfa_438', 'tfa_440'];
-  const agencyNumberFieldIDs = ['tfa_449', 'tfa_451', 'tfa_453', 'tfa_455', 'tfa_457', 'tfa_459', 'tfa_461', 'tfa_463'];
-
-  const employerNameFields = employerNameFieldIDs.map(id => document.getElementById(id));
-  const aIdFields = aIdFieldIDs.map(id => document.getElementById(id));
-  const agencyNumberFields = agencyNumberFieldIDs.map(id => document.getElementById(id));
-
-  const aIdPrefillCalc = document.getElementById('tfa_442');
-  const agencyNumberPrefillCalc = document.getElementById('tfa_126');
-
-  const isEmployerPrefilled =
-	  document.getElementById("tfa_444")?.value?.trim() !== "" ||
-	  new URLSearchParams(window.location.search).has("aId");
-
-	console.log(`isEmployerPrefilled: ${isEmployerPrefilled}`);
-	console.log(`Agency Number: ${agencyNumberPrefillCalc.value}`);
-
-  function clearAllEmployerAccountFields() {
-	  [...aIdFields, ...agencyNumberFields].forEach(field => {
-	    if (!field) return;
-
-	    field.value = "";
-	    field.dispatchEvent(new Event("input", { bubbles: true }));
-	    field.dispatchEvent(new Event("change", { bubbles: true }));
-	  });
-
-	  if (aIdPrefillCalc) {
-	    aIdPrefillCalc.value = "";
-	    aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
-	    aIdPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
-
-	  if (agencyNumberPrefillCalc) {
-	    agencyNumberPrefillCalc.value = "";
-	    agencyNumberPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
-	    agencyNumberPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
-	}
-
-	function getFirstPopulatedValue(fields) {
-	  const populated = fields.find(field => {
-	    return field && field.value && field.value.trim() !== "";
-	  });
-
-	  return populated ? populated.value.trim() : "";
-	}
-
-	function updateEmployerAccountCalcFields() {
-		if (isEmployerPrefilled) return;
-	  if (aIdPrefillCalc) {
-	    aIdPrefillCalc.value = getFirstPopulatedValue(aIdFields);
-	    aIdPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
-	    aIdPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
-
-	  if (agencyNumberPrefillCalc) {
-	    agencyNumberPrefillCalc.value = getFirstPopulatedValue(agencyNumberFields);
-	    agencyNumberPrefillCalc.dispatchEvent(new Event("input", { bubbles: true }));
-	    agencyNumberPrefillCalc.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
-	}
-
-	function initEmployerAccountFieldSync() {
-	  employerNameFields.forEach(field => {
-	    field.addEventListener("input", function () {
-			  if (isEmployerPrefilled) return;
-			  clearAllEmployerAccountFields();
-			});
-
-	    field.addEventListener("change", function () {
-	    	if (isEmployerPrefilled) return;
-	      // Give FormAssembly time to write mapped Salesforce values.
-	      setTimeout(updateEmployerAccountCalcFields, 100);
-	      setTimeout(updateEmployerAccountCalcFields, 300);
-	    });
-
-	    field.addEventListener("typeahead:select", function () {
-	    	if (isEmployerPrefilled) return;
-	      setTimeout(updateEmployerAccountCalcFields, 100);
-	      setTimeout(updateEmployerAccountCalcFields, 300);
-	    });
-	  });
-
-	  if (formEl) {
-		  formEl.addEventListener(
-		    "submit",
-		    function () {
-		      if (isEmployerPrefilled) return;
-		      updateEmployerAccountCalcFields();
-		    },
-		    true
-		  );
-		}
-	}
 
 	
 
