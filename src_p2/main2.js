@@ -114,57 +114,6 @@ window.addEventListener("load", function() {
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
 
 
-	// ************ ELEMENT DEFINITIONS ************ //
-	var valueFormTitle = document.getElementsByClassName("gform_title")[0];
-	var valueSubmitButton = document.querySelector("#submit_button");
-	var stagingWarning = document.getElementById("tfa_387-HTML");
-	var firstName = document.getElementById("tfa_1-L"); 
-	var lastName = document.getElementById("tfa_2-L");
-	var hireDate = document.getElementById("tfa_134-L"); 
-	var mailToStreet = document.getElementById("tfa_32-L"); 
-	var mailToCity = document.getElementById("tfa_34-L"); 
-	var mailToState = document.getElementById("tfa_35-L");
-	var mailToZip = document.getElementById("tfa_39-L"); 
-	var email = document.getElementById("tfa_3-L"); 
-	var membershipConf = document.getElementById("membershipConf");
-	var demographicsNote = document.getElementById("tfa_453-HTML");
-	var demographicsHeader = document.getElementById("tfa_452-L");
-	var raceEthnicityHelperText = document.getElementById("tfa_455-L");
-	var africanOrAfricanAmerican = document.getElementById("tfa_456-L");
-	var arabAmericanMiddleEasternOrNorthAfrican = document.getElementById("tfa_457-L");
-	var asianOrAsianAmerican = document.getElementById("tfa_458-L");
-	var hispanicOrLatinx = document.getElementById("tfa_459-L");
-	var nativeAmericanOrIndigenous = document.getElementById("tfa_460-L");
-	var white = document.getElementById("tfa_461-L");
-	var notListed = document.getElementById("tfa_462-L");
-	var declined = document.getElementById("tfa_463-L");
-	var otherSocialIdentities = document.getElementById("tfa_464-L");
-	var lgbtqId = document.getElementById("tfa_466-L");
-	var transId = document.getElementById("tfa_470-L");
-	var veteranId = document.getElementById("tfa_464-L");
-	var disabilityId = document.getElementById("tfa_478-L");
-	var deafOrHardOfHearing = document.getElementById("tfa_482-L");
-	var blindOrVisuallyImpaired = document.getElementById("tfa_486-L");
-	var gender = document.getElementById("tfa_487-L");
-	var female = document.getElementById("tfa_500");
-	var male = document.getElementById("tfa_501");
-	var nonBinary = document.getElementById("tfa_502");
-	var notListed2 = document.getElementById("tfa_503");
-	var pronouns = document.getElementById("tfa_495-L");
-	var sheHer = document.getElementById("tfa_504");
-	var heHim = document.getElementById("tfa_505");
-	var theyThem = document.getElementById("tfa_506");
-	var sheThey = document.getElementById("tfa_507");
-	var heThey = document.getElementById("tfa_508");
-	var notListed3 = document.getElementById("tfa_509");
-	var employmentInfo = document.getElementById("tfa_446-L");
-	var jobTitle = document.getElementById("tfa_511-L");
-	var worksite = document.getElementById("tfa_386-L");
-	var workEmail = document.getElementById("tfa_450-L");
-	var workPhone = document.getElementById("tfa_4-L");
-	var mailToAddress = document.getElementById("tfa_447-L");
-	var fieldHintAddress = document.getElementById("tfa_448-HTML");
-
 	initDateHelpers({
 	  monthPlaceholder: getTranslation(
 	    translationsNorm,
@@ -231,28 +180,64 @@ window.addEventListener("load", function() {
 	function applyTranslations() {
 	  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
 
-	  setHTML(valueFormTitle, "formTitle");
-	  if (valueSubmitButton) {
-		  valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
-		  valueSubmitButton.value = getTranslation(
-			  translationsNorm,
-			  "submitButton",
-			  getLang,
-			  valueSubmitButton.dataset.originalValue
-			);
-		}
+	  Object.entries(translations).forEach(([key, entry]) => {
+	    const selectors = [];
 
+			if (entry.selector) selectors.push(entry.selector);
+
+			if (entry.id) {
+			  selectors.push(`#${CSS.escape(entry.id)}`);
+			}
+
+			if (entry.ids?.length) {
+			  entry.ids.forEach(id => {
+			    selectors.push(`#${CSS.escape(id)}`);
+			  });
+			}
+
+			selectors.forEach(selector => {
+			  const el = document.querySelector(selector);
+			  if (!el) return;
+
+		    const translated = getTranslation(translationsNorm, key, getLang, "");
+
+		    if (entry.mode === "html") {
+		      if (!el.dataset.originalHtml) el.dataset.originalHtml = el.innerHTML || "";
+		      el.innerHTML = translated || el.dataset.originalHtml;
+		      return;
+		    }
+
+		    if (entry.mode === "value") {
+		      if (!el.dataset.originalValue) el.dataset.originalValue = el.value || "";
+		      el.value = translated || el.dataset.originalValue;
+		      return;
+		    }
+
+		    if (entry.mode === "firstOption") {
+				  const option = el.options?.[0] || el.querySelector?.("option:first-child");
+				  if (!option) return;
+
+				  if (!option.dataset.originalText) {
+				    option.dataset.originalText = option.textContent || "";
+				  }
+
+				  option.textContent = translated || option.dataset.originalText;
+				  return;
+				}
+
+		    if (!el.dataset.originalText) el.dataset.originalText = el.textContent || "";
+		    el.textContent = translated || el.dataset.originalText;
+		  });
+
+		});
+
+	  const stagingWarning = document.getElementById("tfa_387-HTML");
 	  if (stagingWarning) {
 	    stagingWarning.innerHTML = `
 	      <div style="background-color: rgb(255, 152, 0); padding: 20px;">
 	        <div>
 	          <p style="display: inline;" id="testWarning" data-testid="testWarning">
-	            ${getTranslation(
-							  translationsNorm,
-							  "stagingWarning",
-							  getLang,
-							  "This form is for testing only."
-							)}&nbsp;
+	            ${getTranslation(translationsNorm, "stagingWarning", getLang, "This form is for testing only.")}&nbsp;
 	          </p>
 	          <strong>
 	            <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
@@ -263,16 +248,6 @@ window.addEventListener("load", function() {
 	      </div>
 	    `;
 	  }
-
-	  setText(firstName, "firstName");
-	  setText(lastName, "lastName");
-	  setText(hireDate, "hireDate");
-	  setText(mailToStreet, "mailToStreet");
-	  setText(mailToCity, "mailToCity");
-	  setText(mailToState, "mailToState");
-	  setText(mailToZip, "mailToZip");
-	  setText(email, "email");
-	  setText(membershipConf, "membershipConf");
 	}
 
 	function updateDatePlaceholders() {
@@ -328,16 +303,4 @@ window.addEventListener("load", function() {
 	  );
 	}
   
-
-	// set legal language (this block should run AFTER translation blocks)
-	const membershipCheckbox = document.getElementById("tfa_116");
-	// const duesAuthCheckbox = document.getElementById("tfa_380");
-	const membershipAuthLanguage = membershipAuthLL.value;
-	const duesAuthLanguage = duesAuthLL.value;
-
-	membershipCheckbox.addEventListener('blur', function() {
-		const combinedLegalLanguage = `**Membership Authorization: ${membershipAuthLanguage} • **Dues Authorization: ${duesAuthLanguage}`
-		combinedLL.value = combinedLegalLanguage;
-
-	});
 });

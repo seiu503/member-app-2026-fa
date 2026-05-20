@@ -623,7 +623,19 @@ export const translations = {
     zh: "年",
     ar: "السنة",
     so: "Sannadka"
-  }
+  },
+
+  pleaseSelect: {
+    ids: ["tfa_487", "tfa_495"],
+    mode: "firstOption",
+    en: "Please select...",
+    es: "Seleccione...",
+    ru: "Выберите...",
+    vi: "Vui lòng chọn...",
+    zh: "请选择...",
+    ar: "يرجى الاختيار...",
+    so: "Fadlan dooro..."
+  },
 };
 
 export const LANGUAGE_CONFIG = {

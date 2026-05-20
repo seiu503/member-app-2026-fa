@@ -383,6 +383,8 @@ var SEIUForm = (() => {
   // src_p2/translations2.js
   var translations = {
     formTitle: {
+      selector: ".gform_title",
+      mode: "html",
       en: "SEIU 503 Membership Application \u2022 Page 2",
       es: "Solicitud de membres\xEDa de SEIU 503 \u2022 P\xE1gina 2",
       ru: "\u0417\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 SEIU 503 \u2022 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430 2",
@@ -392,6 +394,8 @@ var SEIUForm = (() => {
       so: "Codsiga Xubinimada SEIU 503 \u2022 Bogga 2"
     },
     submitButton: {
+      id: "submit_button",
+      mode: "value",
       en: "Submit",
       es: "Enviar",
       ru: "\u041F\u043E\u0434\u0430\u0442\u044C",
@@ -401,6 +405,8 @@ var SEIUForm = (() => {
       so: "Gudbi"
     },
     stagingWarning: {
+      id: "tfa_387-HTML",
+      mode: "custom",
       en: `This form is for testing only. Membership data submitted through this form will not be processed. If you landed on the test page by mistake and want to become a member of SEIU Local 503, please click here:`,
       es: `Este formulario es solo para fines de prueba. Los datos de membres\xEDa enviados a trav\xE9s de este formulario no se procesar\xE1n. Si lleg\xF3 a la p\xE1gina de prueba por error y desea afiliarse a SEIU Local 503, haga clic aqu\xED:`,
       ru: `\u042D\u0442\u0430 \u0444\u043E\u0440\u043C\u0430 \u043F\u0440\u0435\u0434\u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430 \u0442\u043E\u043B\u044C\u043A\u043E \u0434\u043B\u044F \u0442\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F. \u0414\u0430\u043D\u043D\u044B\u0435 \u043E \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u0435, \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0435 \u0447\u0435\u0440\u0435\u0437 \u044D\u0442\u0443 \u0444\u043E\u0440\u043C\u0443, \u043E\u0431\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0442\u044C\u0441\u044F \u043D\u0435 \u0431\u0443\u0434\u0443\u0442. \u0415\u0441\u043B\u0438 \u0432\u044B \u043F\u043E\u043F\u0430\u043B\u0438 \u043D\u0430 \u0442\u0435\u0441\u0442\u043E\u0432\u0443\u044E \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u043F\u043E \u043E\u0448\u0438\u0431\u043A\u0435 \u0438 \u0445\u043E\u0442\u0438\u0442\u0435 \u0441\u0442\u0430\u0442\u044C \u0447\u043B\u0435\u043D\u043E\u043C SEIU Local 503, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u0437\u0434\u0435\u0441\u044C:`,
@@ -410,6 +416,8 @@ var SEIUForm = (() => {
       so: `Foomkan waxaa loogu talagalay tijaabo oo keliya. Xogta xubinimada ee lagu gudbiyo foomkan lama baaraandegi doono. Haddii aad si qalad ah u timid bogga tijaabada oo aad rabto inaad xubin ka noqoto SEIU Local 503, fadlan halkan guji:`
     },
     firstName: {
+      id: "tfa_1-L",
+      mode: "text",
       en: "First Name",
       es: "Primer nombre",
       ru: "\u0418\u043C\u044F",
@@ -419,6 +427,8 @@ var SEIUForm = (() => {
       so: "Magaca koowaad"
     },
     lastName: {
+      id: "tfa_2-L",
+      mode: "text",
       en: "Last Name",
       es: "Apellido",
       ru: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F",
@@ -428,6 +438,8 @@ var SEIUForm = (() => {
       so: "Magaca dambe"
     },
     hireDate: {
+      id: "tfa_134-L",
+      mode: "text",
       en: "Hire Date",
       es: "Fecha de contrataci\xF3n",
       ru: "\u0414\u0430\u0442\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u0443",
@@ -436,70 +448,9 @@ var SEIUForm = (() => {
       ar: "\u062A\u0627\u0631\u064A\u062E \u0627\u0644\u062A\u0648\u0638\u064A\u0641",
       so: "Taariikhda shaqaalaysiinta"
     },
-    mmPlaceholder: {
-      en: "Month",
-      es: "Mes",
-      ru: "\u041C\u0435\u0441\u044F\u0446",
-      vi: "Th\xE1ng",
-      zh: "\u6708",
-      ar: "\u0627\u0644\u0634\u0647\u0631",
-      so: "Bisha"
-    },
-    ddPlaceholder: {
-      en: "Day",
-      es: "D\xEDa",
-      ru: "\u0414\u0435\u043D\u044C",
-      vi: "Ng\xE0y",
-      zh: "\u5929",
-      ar: "\u0627\u0644\u064A\u0648\u0645",
-      so: "Maalinta"
-    },
-    yyyyPlaceholder: {
-      en: "Year",
-      es: "A\xF1o",
-      ru: "\u0413\u043E\u0434",
-      vi: "N\u0103m",
-      zh: "\u5E74",
-      ar: "\u0627\u0644\u0633\u0646\u0629",
-      so: "Sannadka"
-    },
-    address: {
-      en: "Mailing Address",
-      es: "Direcci\xF3n postal",
-      ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441",
-      vi: "\u0110\u1ECBa ch\u1EC9 g\u1EEDi th\u01B0",
-      zh: "\u90AE\u5BC4\u5730\u5740",
-      ar: "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
-      so: "Cinwaanka boostada"
-    },
-    city: {
-      en: "City",
-      es: "Ciudad",
-      ru: "\u0413\u043E\u0440\u043E\u0434 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
-      vi: "Th\xE0nh ph\u1ED1",
-      zh: "\u57CE\u5E02",
-      ar: "\u0627\u0644\u0645\u062F\u064A\u0646\u0629",
-      so: "Magaalada"
-    },
-    state: {
-      en: "State",
-      es: "Estado",
-      ru: "\u0428\u0442\u0430\u0442 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
-      vi: "Ti\u1EC3u bang",
-      zh: "\u5DDE",
-      ar: "\u0627\u0644\u0648\u0644\u0627\u064A\u0629",
-      so: "Gobolka"
-    },
-    zip: {
-      en: "ZIP Code",
-      es: "C\xF3digo postal",
-      ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0438\u043D\u0434\u0435\u043A\u0441",
-      vi: "M\xE3 b\u01B0u ch\xEDnh",
-      zh: "\u90AE\u653F\u7F16\u7801",
-      ar: "\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
-      so: "Koodhka boostada"
-    },
     email: {
+      id: "tfa_3-L",
+      mode: "text",
       en: "Email",
       es: "Correo electr\xF3nico particular",
       ru: "\u0414\u043E\u043C. \u044D\u043B. \u043F\u043E\u0447\u0442\u0430",
@@ -509,6 +460,8 @@ var SEIUForm = (() => {
       so: "Iimayl"
     },
     membershipConf: {
+      id: "membershipConf",
+      mode: "text",
       en: "Your membership application has been received and will be reviewed shortly.",
       es: "Su solicitud de membres\xEDa ha sido recibida y ser\xE1 revisada en breve.",
       ru: "\u0412\u0430\u0448\u0435 \u0437\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043E \u0438 \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043E \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.",
@@ -518,6 +471,8 @@ var SEIUForm = (() => {
       so: "Codsigaaga xubinnimada waa la helay waxaana dib loo eegi doonaa dhawaan."
     },
     demographicsNote: {
+      id: "tfa_453-HTML",
+      mode: "html",
       en: "In the mean time, please help your fellow union members get to know you better by telling us a little more about yourself. SEIU Local 503 is committed to honoring the diversity of all members. This optional demographic information helps us understand the social identities of our membership.",
       es: "Mientras tanto, ayude a sus compa\xF1eros sindicales a conocerle mejor cont\xE1ndonos un poco m\xE1s sobre usted. SEIU Local 503 est\xE1 comprometido a honrar la diversidad de todos sus miembros. Esta informaci\xF3n demogr\xE1fica opcional nos ayuda a comprender las identidades sociales de nuestra membres\xEDa.",
       ru: "\u0422\u0435\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0435\u043C \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435 \u0432\u0430\u0448\u0438\u043C \u043A\u043E\u043B\u043B\u0435\u0433\u0430\u043C \u043F\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0443 \u043B\u0443\u0447\u0448\u0435 \u0443\u0437\u043D\u0430\u0442\u044C \u0432\u0430\u0441, \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u0430\u0432 \u043D\u0435\u043C\u043D\u043E\u0433\u043E \u0431\u043E\u043B\u044C\u0448\u0435 \u043E \u0441\u0435\u0431\u0435. SEIU Local 503 \u0441\u0442\u0440\u0435\u043C\u0438\u0442\u0441\u044F \u0443\u0432\u0430\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u043D\u043E\u043E\u0431\u0440\u0430\u0437\u0438\u0435 \u0432\u0441\u0435\u0445 \u0441\u0432\u043E\u0438\u0445 \u0447\u043B\u0435\u043D\u043E\u0432. \u042D\u0442\u0430 \u043D\u0435\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0434\u0435\u043C\u043E\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u043D\u0430\u043C \u043B\u0443\u0447\u0448\u0435 \u043F\u043E\u043D\u0438\u043C\u0430\u0442\u044C \u0441\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u0443\u044E \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u043E\u0441\u0442\u044C \u043D\u0430\u0448\u0438\u0445 \u0447\u043B\u0435\u043D\u043E\u0432.",
@@ -527,6 +482,8 @@ var SEIUForm = (() => {
       so: "Dhanka kale, fadlan ka caawi xubnaha kale ee ururka inay si fiican kuu bartaan adigoo wax yar nooga sheegaya naftaada. SEIU Local 503 waxaa ka go'an inay ixtiraamto kala duwanaanshaha dhammaan xubnaha. Macluumaadkan ikhtiyaariga ah ee tirakoobka bulshada wuxuu naga caawiyaa inaan fahanno aqoonsiyada bulsheed ee xubnahayaga."
     },
     demographicsHeader: {
+      id: "tfa_452-L",
+      mode: "text",
       en: "demographic information",
       es: "informaci\xF3n demogr\xE1fica",
       ru: "\u0434\u0435\u043C\u043E\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F",
@@ -536,6 +493,8 @@ var SEIUForm = (() => {
       so: "macluumaadka tirakoobka bulshada"
     },
     raceEthnicityHelperText: {
+      id: "tfa_455-L",
+      mode: "text",
       en: "Check as many as apply to your race/ethnicity",
       es: "Marque todas las opciones que correspondan a su raza o grupo \xE9tnico",
       ru: "\u041E\u0442\u043C\u0435\u0442\u044C\u0442\u0435 \u0432\u0441\u0435 \u043F\u0440\u0438\u043C\u0435\u043D\u0438\u043C\u044B\u0435 \u043A \u0432\u0430\u043C \u0432\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u0440\u0430\u0441\u043E\u0432\u043E\u0439/\u044D\u0442\u043D\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u043F\u0440\u0438\u043D\u0430\u0434\u043B\u0435\u0436\u043D\u043E\u0441\u0442\u0438.",
@@ -545,6 +504,8 @@ var SEIUForm = (() => {
       so: "Calaamadee dhammaan kuwa khuseeya jinsiyaddaada/qowmiyaddaada"
     },
     africanOrAfricanAmerican: {
+      id: "tfa_456-L",
+      mode: "text",
       en: "Black, African, or African-American",
       es: "Africano o afroestadounidense",
       ru: "\u0410\u0444\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0438\u043B\u0438 \u0430\u0444\u0440\u043E\u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446",
@@ -554,6 +515,8 @@ var SEIUForm = (() => {
       so: "Madow, Afrikaan, ama Afrikaan Ameerikaan ah"
     },
     arabAmericanMiddleEasternOrNorthAfrican: {
+      id: "tfa_457-L",
+      mode: "text",
       en: "Arab, Middle Eastern, or North African",
       es: "Oriente Medio, \xE1rabe estadounidense o del norte de \xC1frica",
       ru: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0430\u0440\u0430\u0431\u0441\u043A\u043E\u0433\u043E \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u044F, \u0432\u044B\u0445\u043E\u0434\u0435\u0446 \u0438\u0437 \u0441\u0442\u0440\u0430\u043D \u0411\u043B\u0438\u0436\u043D\u0435\u0433\u043E \u0412\u043E\u0441\u0442\u043E\u043A\u0430 \u0438\u043B\u0438 \u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0439 \u0410\u0444\u0440\u0438\u043A\u0438",
@@ -563,6 +526,8 @@ var SEIUForm = (() => {
       so: "Carab, Bariga Dhexe, ama Waqooyiga Afrika"
     },
     asianOrAsianAmerican: {
+      id: "tfa_458-L",
+      mode: "text",
       en: "Asian, Desi, or Pacific Islander",
       es: "Asi\xE1tico o asi\xE1tico estadounidense",
       ru: "\u0410\u0437\u0438\u0430\u0442 \u0438\u043B\u0438 \u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0430\u0437\u0438\u0430\u0442\u0441\u043A\u043E\u0433\u043E \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u044F",
@@ -572,6 +537,8 @@ var SEIUForm = (() => {
       so: "Aasiyaan, Desi, ama Jasiiradaha Baasifigga"
     },
     hispanicOrLatinx: {
+      id: "tfa_459-L",
+      mode: "text",
       en: "Latino/a/x, Chicano/a, or Hispanic",
       es: "Latino/a, Chicano/a, o Hispano/a",
       ru: "\u0418\u0441\u043F\u0430\u043D\u043E\u044F\u0437\u044B\u0447\u043D\u044B\u0439 \u0438\u043B\u0438 \u043B\u0430\u0442\u0438\u043D\u043E\u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446",
@@ -581,6 +548,8 @@ var SEIUForm = (() => {
       so: "Laatiin, Chicano, ama Hisbaanik"
     },
     nativeAmericanOrIndigenous: {
+      id: "tfa_460-L",
+      mode: "text",
       en: "Indigenous, American Indian, or Native American",
       es: "Ind\xEDgena estadounidense o ind\xEDgena",
       ru: "\u041A\u043E\u0440\u0435\u043D\u043D\u043E\u0439 \u0436\u0438\u0442\u0435\u043B\u044C \u0410\u043C\u0435\u0440\u0438\u043A\u0438 \u0438\u043B\u0438 \u0438\u043D\u0434\u0435\u0435\u0446",
@@ -589,16 +558,9 @@ var SEIUForm = (() => {
       ar: "\u0645\u0646 \u0627\u0644\u0633\u0643\u0627\u0646 \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646 \u0623\u0648 \u0627\u0644\u0647\u0646\u0648\u062F \u0627\u0644\u0623\u0645\u0631\u064A\u0643\u064A\u064A\u0646",
       so: "Dadka asaliga ah ama Hindida Ameerika"
     },
-    nativeHawaiianOrOtherPacificIslander: {
-      en: "Native Hawaiian or Other Pacific Islander",
-      es: "Nativo de Haw\xE1i o de otra isla del Pac\xEDfico",
-      ru: "\u041A\u043E\u0440\u0435\u043D\u043D\u043E\u0439 \u0436\u0438\u0442\u0435\u043B\u044C \u0413\u0430\u0432\u0430\u0439\u0441\u043A\u0438\u0445 \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043E\u0441\u0442\u0440\u043E\u0432\u043E\u0432 \u0422\u0438\u0445\u043E\u0433\u043E \u043E\u043A\u0435\u0430\u043D\u0430",
-      vi: "Ng\u01B0\u1EDDi Hawaii B\u1EA3n x\u1EE9 ho\u1EB7c C\u01B0 d\xE2n V\xF9ng \u0110\u1EA3o Th\xE1i B\xECnh D\u01B0\u01A1ng kh\xE1c",
-      zh: "\u590F\u5A01\u5937\u539F\u4F4F\u6C11\u6216\u5176\u4ED6\u592A\u5E73\u6D0B\u5C9B\u6C11",
-      ar: "\u0645\u0646 \u0633\u0643\u0627\u0646 \u0647\u0627\u0648\u0627\u064A \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646 \u0623\u0648 \u062C\u0632\u0631 \u0627\u0644\u0645\u062D\u064A\u0637 \u0627\u0644\u0647\u0627\u062F\u0626 \u0627\u0644\u0623\u062E\u0631\u0649",
-      so: "Dhalad Hawaii ama Jasiiradaha kale ee Baasifigga"
-    },
     white: {
+      id: "tfa_461-L",
+      mode: "text",
       en: "White",
       es: "Blanco",
       ru: "\u0415\u0432\u0440\u043E\u043F\u0435\u0435\u0446",
@@ -608,6 +570,8 @@ var SEIUForm = (() => {
       so: "Caddaan"
     },
     notListed: {
+      id: "tfa_462-L",
+      mode: "text",
       en: "Not listed",
       es: "No figura en la lista",
       ru: "\u041D\u0435\u0442 \u0432 \u0441\u043F\u0438\u0441\u043A\u0435",
@@ -616,16 +580,9 @@ var SEIUForm = (() => {
       ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
       so: "Kuma jiro liiska"
     },
-    other: {
-      en: "Not listed",
-      es: "Otro",
-      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
-      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
-      zh: "\u5176\u4ED6",
-      ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
-      so: "Kuma jiro liiska"
-    },
     declined: {
+      id: "tfa_463-L",
+      mode: "text",
       en: "Prefer not to say",
       es: "No deseo contestar",
       ru: "\u041E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u044E\u0441\u044C \u043E\u0442\u0432\u0435\u0447\u0430\u0442\u044C",
@@ -635,6 +592,8 @@ var SEIUForm = (() => {
       so: "Waxaan doorbidayaa inaanan sheegin"
     },
     otherSocialIdentities: {
+      id: "tfa_464-L",
+      mode: "text",
       en: "Other Social Identities",
       es: "Otras identidades sociales",
       ru: "\u0414\u0440\u0443\u0433\u0430\u044F \u0441\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u0430\u044F \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u043E\u0441\u0442\u044C",
@@ -644,6 +603,8 @@ var SEIUForm = (() => {
       so: "Aqoonsiyo bulsheed oo kale"
     },
     lgbtqId: {
+      id: "tfa_466-L",
+      mode: "text",
       en: "I identify as LGBTQIA2S+ or Queer",
       es: "Me identifico como LGBTQIA2S+ o Queer",
       ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F\u043C \u041B\u0413\u0411\u0422\u041A\u0418\u0410+ \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430",
@@ -653,6 +614,8 @@ var SEIUForm = (() => {
       so: "Waxaan isu aqoonsanahay LGBTQIA2S+ ama Queer"
     },
     transId: {
+      id: "tfa_470-L",
+      mode: "text",
       en: "I identify as transgender",
       es: "Me identifico como transg\xE9nero",
       ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0442\u0440\u0430\u043D\u0441\u0433\u0435\u043D\u0434\u0435\u0440\u0430\u043C",
@@ -662,6 +625,8 @@ var SEIUForm = (() => {
       so: "Waxaan isu aqoonsanahay qof transgender ah"
     },
     veteranId: {
+      id: "tfa_474-L",
+      mode: "text",
       en: "I am a veteran or active military",
       es: "Soy veterano/a o militar activo/a",
       ru: "\u042F \u0432\u0435\u0442\u0435\u0440\u0430\u043D \u0438\u043B\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 ",
@@ -671,6 +636,8 @@ var SEIUForm = (() => {
       so: "Waxaan ahay halyeey ciidan hore ama ciidan firfircoon"
     },
     disabilityId: {
+      id: "tfa_478-L",
+      mode: "text",
       en: "I identify as disabled or a person with a disability",
       es: "Me identifico como persona discapacitada o una persona con discapacidad",
       ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0438\u043D\u0432\u0430\u043B\u0438\u0434\u0430\u043C \u0438\u043B\u0438 \u043B\u0438\u0446\u0430\u043C \u0441 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u043D\u044B\u043C\u0438 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044F\u043C\u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F",
@@ -680,6 +647,8 @@ var SEIUForm = (() => {
       so: "Waxaan isu aqoonsanahay qof naafo ah ama qof qaba naafonimo"
     },
     deafOrHardOfHearing: {
+      id: "tfa_482-L",
+      mode: "text",
       en: "I identify as Deaf or hard-of-hearing",
       es: "Me identifico como persona sorda o con dificultades auditivas",
       ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0433\u043B\u0443\u0445\u0438\u043C \u0438\u043B\u0438 \u0441\u043B\u0430\u0431\u043E\u0441\u043B\u044B\u0448\u0430\u0449\u0438\u043C",
@@ -689,6 +658,8 @@ var SEIUForm = (() => {
       so: "Waxaan isu aqoonsanahay qof dhagool ah ama maqalkiisu liito"
     },
     blindOrVisuallyImpaired: {
+      id: "tfa_486-L",
+      mode: "text",
       en: "I identify as Blind or visually impaired",
       es: "Me identifico como persona ciega o con discapacidad visual",
       ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u043D\u0435\u0437\u0440\u044F\u0447\u0438\u043C \u0438\u043B\u0438 \u0441\u043B\u0430\u0431\u043E\u0432\u0438\u0434\u044F\u0449\u0438\u043C",
@@ -698,6 +669,8 @@ var SEIUForm = (() => {
       so: "Waxaan isu aqoonsanahay qof indhoole ah ama araggiisu liito"
     },
     gender: {
+      id: "tfa_487-L",
+      mode: "text",
       en: "Gender",
       es: "G\xE9nero",
       ru: "\u041F\u043E\u043B",
@@ -707,6 +680,8 @@ var SEIUForm = (() => {
       so: "Jinsiga"
     },
     female: {
+      id: "tfa_500",
+      mode: "text",
       en: "Female",
       es: "Femenino",
       ru: "\u0416\u0435\u043D\u0441\u043A\u0438\u0439",
@@ -716,6 +691,8 @@ var SEIUForm = (() => {
       so: "Dhedig"
     },
     male: {
+      id: "tfa_501",
+      mode: "text",
       en: "Male",
       es: "Masculino",
       ru: "\u041C\u0443\u0436\u0441\u043A\u043E\u0439",
@@ -724,7 +701,9 @@ var SEIUForm = (() => {
       ar: "\u0630\u0643\u0631",
       so: "Lab"
     },
-    "non-binary": {
+    nonBinary: {
+      id: "tfa_502",
+      mode: "text",
       en: "Non-Binary",
       es: "No binario",
       ru: "\u041B\u0438\u0446\u043E \u043D\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u043D\u043E\u0433\u043E \u043F\u043E\u043B\u0430",
@@ -733,25 +712,20 @@ var SEIUForm = (() => {
       ar: "\u063A\u064A\u0631 \u062B\u0646\u0627\u0626\u064A",
       so: "Aan laba-jinsi ahayn"
     },
-    genderOther: {
-      en: "Other",
-      es: "Otro",
-      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
-      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
-      zh: "\u5176\u4ED6",
-      ar: "\u0623\u062E\u0631\u0649",
-      so: "Kale"
+    notListedGender: {
+      id: "tfa_503",
+      mode: "text",
+      en: "Not listed",
+      es: "No figura en la lista",
+      ru: "\u041D\u0435\u0442 \u0432 \u0441\u043F\u0438\u0441\u043A\u0435",
+      vi: "Kh\xF4ng c\xF3 trong danh s\xE1ch",
+      zh: "\u672A\u5217\u51FA",
+      ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
+      so: "Kuma jiro liiska"
     },
-    genderOtherDescription: {
-      en: "Gender Other - Description",
-      es: "Otro g\xE9nero - descripci\xF3n",
-      ru: "\u0414\u0440\u0443\u0433\u043E\u0439 \u043F\u043E\u043B \u2013 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
-      vi: "Gi\u1EDBi t\xEDnh kh\xE1c - M\xF4 t\u1EA3",
-      zh: "\u5176\u4ED6\u6027\u522B \u2014\u2014 \u8BF7\u63CF\u8FF0",
-      ar: "\u062C\u0646\u0633 \u0622\u062E\u0631 - \u0627\u0644\u0648\u0635\u0641",
-      so: "Jinsi kale - Sharaxaad"
-    },
-    genderPronoun: {
+    pronouns: {
+      id: "tfa_495-L",
+      mode: "text",
       en: "Your Pronouns",
       es: "Sus pronombres",
       ru: "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u043C\u044B\u0435 \u043A \u0432\u0430\u043C \u043C\u0435\u0441\u0442\u043E\u0438\u043C\u0435\u043D\u0438\u044F",
@@ -760,7 +734,9 @@ var SEIUForm = (() => {
       ar: "\u0636\u0645\u0627\u0626\u0631\u0643",
       so: "Magac-u-yaalladaada"
     },
-    "she/her": {
+    sheHer: {
+      id: "tfa_504",
+      mode: "text",
       en: "She/Her",
       es: "Ella",
       ru: "\u041E\u043D\u0430/\u0435\u0435/\u0435\u0439",
@@ -769,7 +745,9 @@ var SEIUForm = (() => {
       ar: "\u0647\u064A / \u0644\u0647\u0627",
       so: "Iyadu / keeda"
     },
-    "he/him": {
+    heHim: {
+      id: "tfa_505",
+      mode: "text",
       en: "He/Him",
       es: "\xC9l",
       ru: "\u041E\u043D/\u0435\u0433\u043E/\u0435\u043C\u0443",
@@ -778,7 +756,9 @@ var SEIUForm = (() => {
       ar: "\u0647\u0648 / \u0644\u0647",
       so: "Isaga / kiisa"
     },
-    "they/them": {
+    theyThem: {
+      id: "tfa_506",
+      mode: "text",
       en: "They/Them",
       es: "Elle/Elles",
       ru: "\u041E\u043D\u0438/\u0438\u0445/\u0438\u043C",
@@ -787,7 +767,9 @@ var SEIUForm = (() => {
       ar: "\u0647\u0645 / \u0644\u0647\u0645",
       so: "Iyaga / kooda"
     },
-    "she/they": {
+    sheThey: {
+      id: "tfa_507",
+      mode: "text",
       en: "She/They",
       es: "Ella/Elle",
       ru: "\u041E\u043D\u0430/\u041E\u043D\u0438",
@@ -796,7 +778,9 @@ var SEIUForm = (() => {
       ar: "\u0647\u064A / \u0647\u0645",
       so: "Iyadu / Iyaga"
     },
-    "he/they": {
+    heThey: {
+      id: "tfa_508",
+      mode: "text",
       en: "He/They",
       es: "\xC9l/Elle",
       ru: "\u041E\u043D/\u041E\u043D\u0438",
@@ -805,16 +789,20 @@ var SEIUForm = (() => {
       ar: "\u0647\u0648 / \u0647\u0645",
       so: "Isaga / Iyaga"
     },
-    pronounOther: {
+    notListedPronoun: {
+      id: "tfa_509",
+      mode: "text",
       en: "Not listed",
-      es: "Otro",
-      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
-      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
-      zh: "\u5176\u4ED6",
+      es: "No figura en la lista",
+      ru: "\u041D\u0435\u0442 \u0432 \u0441\u043F\u0438\u0441\u043A\u0435",
+      vi: "Kh\xF4ng c\xF3 trong danh s\xE1ch",
+      zh: "\u672A\u5217\u51FA",
       ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
       so: "Kuma jiro liiska"
     },
     employmentInfo: {
+      id: "tfa_446-L",
+      mode: "text",
       en: "Employment Info",
       es: "Informaci\xF3n sobre el empleo",
       ru: "\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u0440\u0443\u0434\u043E\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435",
@@ -824,6 +812,8 @@ var SEIUForm = (() => {
       so: "Macluumaadka shaqada"
     },
     jobTitle: {
+      id: "tfa_511-L",
+      mode: "text",
       en: "Job Class/Title",
       es: "Clase/puesto laboral",
       ru: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F/\u0434\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C",
@@ -833,6 +823,8 @@ var SEIUForm = (() => {
       so: "Nooca / magaca shaqada"
     },
     worksite: {
+      id: "tfa_386-L",
+      mode: "text",
       en: "Worksite",
       es: "Sitio de trabajo",
       ru: "\u041C\u0435\u0441\u0442\u043E \u0440\u0430\u0431\u043E\u0442\u044B",
@@ -842,6 +834,8 @@ var SEIUForm = (() => {
       so: "Goobta shaqada"
     },
     workEmail: {
+      id: "tfa_450-L",
+      mode: "text",
       en: "Work Email",
       es: "Correo electr\xF3nico del trabajo",
       ru: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u044D\u043B. \u043F\u043E\u0447\u0442\u0430",
@@ -851,6 +845,8 @@ var SEIUForm = (() => {
       so: "Iimaylka shaqada"
     },
     workPhone: {
+      id: "tfa_4-L",
+      mode: "text",
       en: "Work phone",
       es: "Tel\xE9fono del trabajo",
       ru: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D",
@@ -860,6 +856,8 @@ var SEIUForm = (() => {
       so: "Telefoonka shaqada"
     },
     mailToAddress: {
+      id: "tfa_447-L",
+      mode: "text",
       en: "Mailing Address",
       es: "Direcci\xF3n postal",
       ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441",
@@ -869,6 +867,8 @@ var SEIUForm = (() => {
       so: "Cinwaanka boostada"
     },
     fieldHintAddress: {
+      id: "tfa_448-HTML",
+      mode: "html",
       en: "If different from residence address",
       es: "Si es diferente al domicilio",
       ru: "\u0415\u0441\u043B\u0438 \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0430\u0434\u0440\u0435\u0441\u0430 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
@@ -878,6 +878,8 @@ var SEIUForm = (() => {
       so: "Haddii uu ka duwan yahay cinwaanka deganaanshaha"
     },
     mailToStreet: {
+      id: "tfa_32-L",
+      mode: "text",
       en: "Mailing Street",
       es: "Calle y n\xFAmero postal",
       ru: "\u0423\u043B\u0438\u0446\u0430 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
@@ -887,6 +889,8 @@ var SEIUForm = (() => {
       so: "Waddada boostada"
     },
     mailToCity: {
+      id: "tfa_34-L",
+      mode: "text",
       en: "Mailing City",
       es: "Ciudad postal",
       ru: "\u0413\u043E\u0440\u043E\u0434 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
@@ -896,6 +900,8 @@ var SEIUForm = (() => {
       so: "Magaalada boostada"
     },
     mailToState: {
+      id: "tfa_35-L",
+      mode: "text",
       en: "Mailing State",
       es: "Estado postal",
       ru: "\u0428\u0442\u0430\u0442 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
@@ -905,6 +911,8 @@ var SEIUForm = (() => {
       so: "Gobolka boostada"
     },
     mailToZip: {
+      id: "tfa_39-L",
+      mode: "text",
       en: "Mailing Zip",
       es: "C\xF3digo postal",
       ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0438\u043D\u0434\u0435\u043A\u0441 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
@@ -912,6 +920,50 @@ var SEIUForm = (() => {
       zh: "\u90AE\u653F\u7F16\u7801",
       ar: "\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
       so: "Lambarka boostada"
+    },
+    mmPlaceholder: {
+      selector: "#tfa_156 option:first-child",
+      mode: "text",
+      en: "Month",
+      es: "Mes",
+      ru: "\u041C\u0435\u0441\u044F\u0446",
+      vi: "Th\xE1ng",
+      zh: "\u6708",
+      ar: "\u0627\u0644\u0634\u0647\u0631",
+      so: "Bisha"
+    },
+    ddPlaceholder: {
+      selector: "#tfa_157 option:first-child",
+      mode: "text",
+      en: "Day",
+      es: "D\xEDa",
+      ru: "\u0414\u0435\u043D\u044C",
+      vi: "Ng\xE0y",
+      zh: "\u5929",
+      ar: "\u0627\u0644\u064A\u0648\u0645",
+      so: "Maalinta"
+    },
+    yyyyPlaceholder: {
+      selector: "#tfa_158 option:first-child",
+      mode: "text",
+      en: "Year",
+      es: "A\xF1o",
+      ru: "\u0413\u043E\u0434",
+      vi: "N\u0103m",
+      zh: "\u5E74",
+      ar: "\u0627\u0644\u0633\u0646\u0629",
+      so: "Sannadka"
+    },
+    pleaseSelect: {
+      ids: ["tfa_487", "tfa_495"],
+      mode: "firstOption",
+      en: "Please select...",
+      es: "Seleccione...",
+      ru: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435...",
+      vi: "Vui l\xF2ng ch\u1ECDn...",
+      zh: "\u8BF7\u9009\u62E9...",
+      ar: "\u064A\u0631\u062C\u0649 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631...",
+      so: "Fadlan dooro..."
     }
   };
   var LANGUAGE_CONFIG = {
@@ -1354,18 +1406,6 @@ var SEIUForm = (() => {
       switchLanguage(select.value);
     });
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
-    var valueFormTitle = document.getElementsByClassName("gform_title")[0];
-    var valueSubmitButton = document.querySelector("#submit_button");
-    var stagingWarning = document.getElementById("tfa_387-HTML");
-    var firstName = document.getElementById("tfa_1-L");
-    var lastName = document.getElementById("tfa_2-L");
-    var hireDate = document.getElementById("tfa_134-L");
-    var mailToStreet = document.getElementById("tfa_32-L");
-    var mailToCity = document.getElementById("tfa_34-L");
-    var mailToState = document.getElementById("tfa_35-L");
-    var mailToZip = document.getElementById("tfa_39-L");
-    var email = document.getElementById("tfa_3-L");
-    var membershipConf = document.getElementById("membershipConf");
     initDateHelpers({
       monthPlaceholder: getTranslation(
         translationsNorm,
@@ -1387,25 +1427,11 @@ var SEIUForm = (() => {
       )
     });
     applyTranslations();
-    const employerNameElements = {
-      eNameState: document.getElementById("tfa_410"),
-      eNameHiEd: document.getElementById("tfa_393"),
-      eNameHCW: document.getElementById("tfa_414"),
-      eNameNH: document.getElementById("tfa_408"),
-      eNameLGov: document.getElementById("tfa_407"),
-      eNamePNP: document.getElementById("tfa_409"),
-      eNamePHC: document.getElementById("tfa_418"),
-      eNameRetire: document.getElementById("tfa_422")
-    };
-    const hiddenRequired = Object.values(employerNameElements);
     initValidation({
       formEl,
       getLang,
       translations
     });
-    if (!isEmployerPrefilled) {
-      initEmployerAccountFieldSync();
-    }
     function getOriginalText(el) {
       if (!el) return "";
       if (!el.dataset.originalText) {
@@ -1434,27 +1460,51 @@ var SEIUForm = (() => {
     }
     function applyTranslations() {
       document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
-      setHTML(valueFormTitle, "formTitle");
-      if (valueSubmitButton) {
-        valueSubmitButton.dataset.originalValue ||= valueSubmitButton.value || "";
-        valueSubmitButton.value = getTranslation(
-          translationsNorm,
-          "submitButton",
-          getLang,
-          valueSubmitButton.dataset.originalValue
-        );
-      }
+      Object.entries(translations).forEach(([key, entry]) => {
+        const selectors = [];
+        if (entry.selector) selectors.push(entry.selector);
+        if (entry.id) {
+          selectors.push(`#${CSS.escape(entry.id)}`);
+        }
+        if (entry.ids?.length) {
+          entry.ids.forEach((id) => {
+            selectors.push(`#${CSS.escape(id)}`);
+          });
+        }
+        selectors.forEach((selector) => {
+          const el = document.querySelector(selector);
+          if (!el) return;
+          const translated = getTranslation(translationsNorm, key, getLang, "");
+          if (entry.mode === "html") {
+            if (!el.dataset.originalHtml) el.dataset.originalHtml = el.innerHTML || "";
+            el.innerHTML = translated || el.dataset.originalHtml;
+            return;
+          }
+          if (entry.mode === "value") {
+            if (!el.dataset.originalValue) el.dataset.originalValue = el.value || "";
+            el.value = translated || el.dataset.originalValue;
+            return;
+          }
+          if (entry.mode === "firstOption") {
+            const option = el.options?.[0] || el.querySelector?.("option:first-child");
+            if (!option) return;
+            if (!option.dataset.originalText) {
+              option.dataset.originalText = option.textContent || "";
+            }
+            option.textContent = translated || option.dataset.originalText;
+            return;
+          }
+          if (!el.dataset.originalText) el.dataset.originalText = el.textContent || "";
+          el.textContent = translated || el.dataset.originalText;
+        });
+      });
+      const stagingWarning = document.getElementById("tfa_387-HTML");
       if (stagingWarning) {
         stagingWarning.innerHTML = `
 	      <div style="background-color: rgb(255, 152, 0); padding: 20px;">
 	        <div>
 	          <p style="display: inline;" id="testWarning" data-testid="testWarning">
-	            ${getTranslation(
-          translationsNorm,
-          "stagingWarning",
-          getLang,
-          "This form is for testing only."
-        )}&nbsp;
+	            ${getTranslation(translationsNorm, "stagingWarning", getLang, "This form is for testing only.")}&nbsp;
 	          </p>
 	          <strong>
 	            <a href="https://seiu503signup.org" style="font-weight: bold; font-size: 1.2em;">
@@ -1465,15 +1515,6 @@ var SEIUForm = (() => {
 	      </div>
 	    `;
       }
-      setText(firstName, "firstName");
-      setText(lastName, "lastName");
-      setText(hireDate, "hireDate");
-      setText(mailToStreet, "mailToStreet");
-      setText(mailToCity, "mailToCity");
-      setText(mailToState, "mailToState");
-      setText(mailToZip, "mailToZip");
-      setText(email, "email");
-      setText(membershipConf, "membershipConf");
     }
     function updateDatePlaceholders() {
       const mmSelect = document.getElementById("tfa_156");
@@ -1518,13 +1559,6 @@ var SEIUForm = (() => {
         })
       );
     }
-    const membershipCheckbox = document.getElementById("tfa_116");
-    const membershipAuthLanguage = membershipAuthLL.value;
-    const duesAuthLanguage = duesAuthLL.value;
-    membershipCheckbox.addEventListener("blur", function() {
-      const combinedLegalLanguage = `**Membership Authorization: ${membershipAuthLanguage} \u2022 **Dues Authorization: ${duesAuthLanguage}`;
-      combinedLL.value = combinedLegalLanguage;
-    });
   });
 })();
 
