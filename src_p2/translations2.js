@@ -2,6 +2,8 @@
 
 export const translations = {
   formTitle: {
+    selector: ".gform_title",
+    mode: "html",
     en: "SEIU 503 Membership Application • Page 2",
     es: "Solicitud de membresía de SEIU 503 • Página 2",
     ru: "Заявление на вступление в SEIU 503 • Страница 2",
@@ -12,6 +14,8 @@ export const translations = {
   },
 
   submitButton: {
+    id: "submit_button",
+    mode: "value",
     en: "Submit",
     es: "Enviar",
     ru: "Подать",
@@ -22,6 +26,8 @@ export const translations = {
   },
 
   stagingWarning: {
+    id: "tfa_387-HTML",
+    mode: "custom",
     en: `This form is for testing only. Membership data submitted through this form will not be processed. If you landed on the test page by mistake and want to become a member of SEIU Local 503, please click here:`,
     es: `Este formulario es solo para fines de prueba. Los datos de membresía enviados a través de este formulario no se procesarán. Si llegó a la página de prueba por error y desea afiliarse a SEIU Local 503, haga clic aquí:`,
     ru: `Эта форма предназначена только для тестирования. Данные о членстве, отправленные через эту форму, обрабатываться не будут. Если вы попали на тестовую страницу по ошибке и хотите стать членом SEIU Local 503, нажмите здесь:`,
@@ -32,6 +38,8 @@ export const translations = {
   },
 
   firstName: {
+    id: "tfa_1-L",
+    mode: "text",
     en: "First Name",
     es: "Primer nombre",
     ru: "Имя",
@@ -42,6 +50,8 @@ export const translations = {
   },
 
   lastName: {
+    id: "tfa_2-L",
+    mode: "text",
     en: "Last Name",
     es: "Apellido",
     ru: "Фамилия",
@@ -52,6 +62,8 @@ export const translations = {
   },
 
   hireDate: {
+    id: "tfa_134-L",
+    mode: "text",
     en: "Hire Date",
     es: "Fecha de contratación",
     ru: "Дата приема на работу",
@@ -61,77 +73,9 @@ export const translations = {
     so: "Taariikhda shaqaalaysiinta"
   },
 
-  mmPlaceholder: {
-    en: "Month",
-    es: "Mes",
-    ru: "Месяц",
-    vi: "Tháng",
-    zh: "月",
-    ar: "الشهر",
-    so: "Bisha"
-  },
-
-  ddPlaceholder: {
-    en: "Day",
-    es: "Día",
-    ru: "День",
-    vi: "Ngày",
-    zh: "天",
-    ar: "اليوم",
-    so: "Maalinta"
-  },
-
-  yyyyPlaceholder: {
-    en: "Year",
-    es: "Año",
-    ru: "Год",
-    vi: "Năm",
-    zh: "年",
-    ar: "السنة",
-    so: "Sannadka"
-  },
-
-  address: {
-    en: "Mailing Address",
-    es: "Dirección postal",
-    ru: "Почтовый адрес",
-    vi: "Địa chỉ gửi thư",
-    zh: "邮寄地址",
-    ar: "العنوان البريدي",
-    so: "Cinwaanka boostada"
-  },
-
-  city: {
-    en: "City",
-    es: "Ciudad",
-    ru: "Город проживания",
-    vi: "Thành phố",
-    zh: "城市",
-    ar: "المدينة",
-    so: "Magaalada"
-  },
-
-  state: {
-    en: "State",
-    es: "Estado",
-    ru: "Штат проживания",
-    vi: "Tiểu bang",
-    zh: "州",
-    ar: "الولاية",
-    so: "Gobolka"
-  },
-
-  zip: {
-    en: "ZIP Code",
-    es: "Código postal",
-    ru: "Почтовый индекс",
-    vi: "Mã bưu chính",
-    zh: "邮政编码",
-    ar: "الرمز البريدي",
-    so: "Koodhka boostada"
-  },
-
   email: {
+    id: "tfa_3-L",
+    mode: "text",
     en: "Email",
     es: "Correo electrónico particular",
     ru: "Дом. эл. почта",
@@ -142,6 +86,8 @@ export const translations = {
   },
 
   membershipConf: {
+    id: "membershipConf",
+    mode: "text",
     en: "Your membership application has been received and will be reviewed shortly.",
     es: "Su solicitud de membresía ha sido recibida y será revisada en breve.",
     ru: "Ваше заявление на вступление в профсоюз получено и будет рассмотрено в ближайшее время.",
@@ -152,6 +98,8 @@ export const translations = {
   },
 
   demographicsNote: {
+    id: "tfa_453-HTML",
+    mode: "html",
     en: "In the mean time, please help your fellow union members get to know you better by telling us a little more about yourself. SEIU Local 503 is committed to honoring the diversity of all members. This optional demographic information helps us understand the social identities of our membership.",
     es: "Mientras tanto, ayude a sus compañeros sindicales a conocerle mejor contándonos un poco más sobre usted. SEIU Local 503 está comprometido a honrar la diversidad de todos sus miembros. Esta información demográfica opcional nos ayuda a comprender las identidades sociales de nuestra membresía.",
     ru: "Тем временем помогите вашим коллегам по профсоюзу лучше узнать вас, рассказав немного больше о себе. SEIU Local 503 стремится уважать разнообразие всех своих членов. Эта необязательная демографическая информация помогает нам лучше понимать социальную идентичность наших членов.",
@@ -162,6 +110,8 @@ export const translations = {
   },
 
   demographicsHeader: {
+    id: "tfa_452-L",
+    mode: "text",
     en: "demographic information",
     es: "información demográfica",
     ru: "демографическая информация",
@@ -172,6 +122,8 @@ export const translations = {
   },
 
   raceEthnicityHelperText: {
+    id: "tfa_455-L",
+    mode: "text",
     en: "Check as many as apply to your race/ethnicity",
     es: "Marque todas las opciones que correspondan a su raza o grupo étnico",
     ru: "Отметьте все применимые к вам варианты расовой/этнической принадлежности.",
@@ -182,6 +134,8 @@ export const translations = {
   },
 
   africanOrAfricanAmerican: {
+    id: "tfa_456-L",
+    mode: "text",
     en: "Black, African, or African-American",
     es: "Africano o afroestadounidense",
     ru: "Африканец или афроамериканец",
@@ -192,6 +146,8 @@ export const translations = {
   },
 
   arabAmericanMiddleEasternOrNorthAfrican: {
+    id: "tfa_457-L",
+    mode: "text",
     en: "Arab, Middle Eastern, or North African",
     es: "Oriente Medio, árabe estadounidense o del norte de África",
     ru: "Американец арабского происхождения, выходец из стран Ближнего Востока или Северной Африки",
@@ -202,6 +158,8 @@ export const translations = {
   },
 
   asianOrAsianAmerican: {
+    id: "tfa_458-L",
+    mode: "text",
     en: "Asian, Desi, or Pacific Islander",
     es: "Asiático o asiático estadounidense",
     ru: "Азиат или американец азиатского происхождения",
@@ -212,6 +170,8 @@ export const translations = {
   },
 
   hispanicOrLatinx: {
+    id: "tfa_459-L",
+    mode: "text",
     en: "Latino/a/x, Chicano/a, or Hispanic",
     es: "Latino/a, Chicano/a, o Hispano/a",
     ru: "Испаноязычный или латиноамериканец",
@@ -222,6 +182,8 @@ export const translations = {
   },
 
   nativeAmericanOrIndigenous: {
+    id: "tfa_460-L",
+    mode: "text",
     en: "Indigenous, American Indian, or Native American",
     es: "Indígena estadounidense o indígena",
     ru: "Коренной житель Америки или индеец",
@@ -231,17 +193,9 @@ export const translations = {
     so: "Dadka asaliga ah ama Hindida Ameerika"
   },
 
-  nativeHawaiianOrOtherPacificIslander: {
-    en: "Native Hawaiian or Other Pacific Islander",
-    es: "Nativo de Hawái o de otra isla del Pacífico",
-    ru: "Коренной житель Гавайских или других островов Тихого океана",
-    vi: "Người Hawaii Bản xứ hoặc Cư dân Vùng Đảo Thái Bình Dương khác",
-    zh: "夏威夷原住民或其他太平洋岛民",
-    ar: "من سكان هاواي الأصليين أو جزر المحيط الهادئ الأخرى",
-    so: "Dhalad Hawaii ama Jasiiradaha kale ee Baasifigga"
-  },
-
   white: {
+    id: "tfa_461-L",
+    mode: "text",
     en: "White",
     es: "Blanco",
     ru: "Европеец",
@@ -252,6 +206,8 @@ export const translations = {
   },
 
   notListed: {
+    id: "tfa_462-L",
+    mode: "text",
     en: "Not listed",
     es: "No figura en la lista",
     ru: "Нет в списке",
@@ -261,17 +217,9 @@ export const translations = {
     so: "Kuma jiro liiska"
   },
 
-  other: {
-    en: "Not listed",
-    es: "Otro",
-    ru: "Другое",
-    vi: "Câu trả lời khác",
-    zh: "其他",
-    ar: "غير مدرج",
-    so: "Kuma jiro liiska"
-  },
-
   declined: {
+    id: "tfa_463-L",
+    mode: "text",
     en: "Prefer not to say",
     es: "No deseo contestar",
     ru: "Отказываюсь отвечать",
@@ -282,6 +230,8 @@ export const translations = {
   },
 
   otherSocialIdentities: {
+    id: "tfa_464-L",
+    mode: "text",
     en: "Other Social Identities",
     es: "Otras identidades sociales",
     ru: "Другая социальная идентичность",
@@ -292,6 +242,8 @@ export const translations = {
   },
 
   lgbtqId: {
+    id: "tfa_466-L",
+    mode: "text",
     en: "I identify as LGBTQIA2S+ or Queer",
     es: "Me identifico como LGBTQIA2S+ o Queer",
     ru: "Я отношу себя к представителям ЛГБТКИА+ сообщества",
@@ -302,6 +254,8 @@ export const translations = {
   },
 
   transId: {
+    id: "tfa_470-L",
+    mode: "text",
     en: "I identify as transgender",
     es: "Me identifico como transgénero",
     ru: "Я отношу себя к трансгендерам",
@@ -312,6 +266,8 @@ export const translations = {
   },
 
   veteranId: {
+    id: "tfa_474-L",
+    mode: "text",
     en: "I am a veteran or active military",
     es: "Soy veterano/a o militar activo/a",
     ru: "Я ветеран или действующий военный ",
@@ -322,6 +278,8 @@ export const translations = {
   },
 
   disabilityId: {
+    id: "tfa_478-L",
+    mode: "text",
     en: "I identify as disabled or a person with a disability",
     es: "Me identifico como persona discapacitada o una persona con discapacidad",
     ru: "Я отношу себя к инвалидам или лицам с ограниченными возможностями здоровья",
@@ -332,6 +290,8 @@ export const translations = {
   },
 
   deafOrHardOfHearing: {
+    id: "tfa_482-L",
+    mode: "text",
     en: "I identify as Deaf or hard-of-hearing",
     es: "Me identifico como persona sorda o con dificultades auditivas",
     ru: "Я отношу себя к глухим или слабослышащим",
@@ -342,6 +302,8 @@ export const translations = {
   },
 
   blindOrVisuallyImpaired: {
+    id: "tfa_486-L",
+    mode: "text",
     en: "I identify as Blind or visually impaired",
     es: "Me identifico como persona ciega o con discapacidad visual",
     ru: "Я отношу себя к незрячим или слабовидящим",
@@ -352,6 +314,8 @@ export const translations = {
   },
 
   gender: {
+    id: "tfa_487-L",
+    mode: "text",
     en: "Gender",
     es: "Género",
     ru: "Пол",
@@ -362,6 +326,8 @@ export const translations = {
   },
 
   female: {
+    id: "tfa_500",
+    mode: "text",
     en: "Female",
     es: "Femenino",
     ru: "Женский",
@@ -372,6 +338,8 @@ export const translations = {
   },
 
   male: {
+    id: "tfa_501",
+    mode: "text",
     en: "Male",
     es: "Masculino",
     ru: "Мужской",
@@ -381,7 +349,9 @@ export const translations = {
     so: "Lab"
   },
 
-  "non-binary": {
+  nonBinary: {
+    id: "tfa_502",
+    mode: "text",
     en: "Non-Binary",
     es: "No binario",
     ru: "Лицо неопределенного пола",
@@ -391,27 +361,21 @@ export const translations = {
     so: "Aan laba-jinsi ahayn"
   },
 
-  genderOther: {
-    en: "Other",
-    es: "Otro",
-    ru: "Другое",
-    vi: "Câu trả lời khác",
-    zh: "其他",
-    ar: "أخرى",
-    so: "Kale"
+  notListedGender: {
+    id: "tfa_503",
+    mode: "text",
+    en: "Not listed",
+    es: "No figura en la lista",
+    ru: "Нет в списке",
+    vi: "Không có trong danh sách",
+    zh: "未列出",
+    ar: "غير مدرج",
+    so: "Kuma jiro liiska"
   },
 
-  genderOtherDescription: {
-    en: "Gender Other - Description",
-    es: "Otro género - descripción",
-    ru: "Другой пол – описание",
-    vi: "Giới tính khác - Mô tả",
-    zh: "其他性别 —— 请描述",
-    ar: "جنس آخر - الوصف",
-    so: "Jinsi kale - Sharaxaad"
-  },
-
-  genderPronoun: {
+  pronouns: {
+    id: "tfa_495-L",
+    mode: "text",
     en: "Your Pronouns",
     es: "Sus pronombres",
     ru: "Применимые к вам местоимения",
@@ -421,7 +385,9 @@ export const translations = {
     so: "Magac-u-yaalladaada"
   },
 
-  "she/her": {
+  sheHer: {
+    id: "tfa_504",
+    mode: "text",
     en: "She/Her",
     es: "Ella",
     ru: "Она/ее/ей",
@@ -431,7 +397,9 @@ export const translations = {
     so: "Iyadu / keeda"
   },
 
-  "he/him": {
+  heHim: {
+    id: "tfa_505",
+    mode: "text",
     en: "He/Him",
     es: "Él",
     ru: "Он/его/ему",
@@ -441,7 +409,9 @@ export const translations = {
     so: "Isaga / kiisa"
   },
 
-  "they/them": {
+  theyThem: {
+    id: "tfa_506",
+    mode: "text",
     en: "They/Them",
     es: "Elle/Elles",
     ru: "Они/их/им",
@@ -451,7 +421,9 @@ export const translations = {
     so: "Iyaga / kooda"
   },
 
-  "she/they": {
+  sheThey: {
+    id: "tfa_507",
+    mode: "text",
     en: "She/They",
     es: "Ella/Elle",
     ru: "Она/Они",
@@ -461,7 +433,9 @@ export const translations = {
     so: "Iyadu / Iyaga"
   },
 
-  "he/they": {
+  heThey: {
+    id: "tfa_508",
+    mode: "text",
     en: "He/They",
     es: "Él/Elle",
     ru: "Он/Они",
@@ -471,17 +445,21 @@ export const translations = {
     so: "Isaga / Iyaga"
   },
 
-  pronounOther: {
+  notListedPronoun: {
+    id: "tfa_509",
+    mode: "text",
     en: "Not listed",
-    es: "Otro",
-    ru: "Другое",
-    vi: "Câu trả lời khác",
-    zh: "其他",
+    es: "No figura en la lista",
+    ru: "Нет в списке",
+    vi: "Không có trong danh sách",
+    zh: "未列出",
     ar: "غير مدرج",
     so: "Kuma jiro liiska"
   },
 
   employmentInfo: {
+    id: "tfa_446-L",
+    mode: "text",
     en: "Employment Info",
     es: "Información sobre el empleo",
     ru: "Информация о трудоустройстве",
@@ -492,6 +470,8 @@ export const translations = {
   },
 
   jobTitle: {
+    id: "tfa_511-L",
+    mode: "text",
     en: "Job Class/Title",
     es: "Clase/puesto laboral",
     ru: "Рабочая категория/должность",
@@ -501,17 +481,9 @@ export const translations = {
     so: "Nooca / magaca shaqada"
   },
 
-  hireDate: {
-    en: "Hire Date",
-    es: "Fecha de contratación",
-    ru: "Дата приема на работу",
-    vi: "Ngày được tuyển dụng",
-    zh: "雇佣日期",
-    ar: "تاريخ التوظيف",
-    so: "Taariikhda shaqaalaysiinta"
-  },
-
   worksite: {
+    id: "tfa_386-L",
+    mode: "text",
     en: "Worksite",
     es: "Sitio de trabajo",
     ru: "Место работы",
@@ -522,6 +494,8 @@ export const translations = {
   },
 
   workEmail: {
+    id: "tfa_450-L",
+    mode: "text",
     en: "Work Email",
     es: "Correo electrónico del trabajo",
     ru: "Рабочая эл. почта",
@@ -532,6 +506,8 @@ export const translations = {
   },
 
   workPhone: {
+    id: "tfa_4-L",
+    mode: "text",
     en: "Work phone",
     es: "Teléfono del trabajo",
     ru: "Рабочий телефон",
@@ -542,6 +518,8 @@ export const translations = {
   },
 
   mailToAddress: {
+    id: "tfa_447-L",
+    mode: "text",
     en: "Mailing Address",
     es: "Dirección postal",
     ru: "Почтовый адрес",
@@ -552,6 +530,8 @@ export const translations = {
   },
 
   fieldHintAddress: {
+    id: "tfa_448-HTML",
+    mode: "html",
     en: "If different from residence address",
     es: "Si es diferente al domicilio",
     ru: "Если отличается от адреса проживания",
@@ -562,6 +542,8 @@ export const translations = {
   },
 
   mailToStreet: {
+    id: "tfa_32-L",
+    mode: "text",
     en: "Mailing Street",
     es: "Calle y número postal",
     ru: "Улица (почтовый адрес)",
@@ -572,6 +554,8 @@ export const translations = {
   },
 
   mailToCity: {
+    id: "tfa_34-L",
+    mode: "text",
     en: "Mailing City",
     es: "Ciudad postal",
     ru: "Город (почтовый адрес)",
@@ -582,6 +566,8 @@ export const translations = {
   },
 
   mailToState: {
+    id: "tfa_35-L",
+    mode: "text",
     en: "Mailing State",
     es: "Estado postal",
     ru: "Штат (почтовый адрес)",
@@ -592,6 +578,8 @@ export const translations = {
   },
 
   mailToZip: {
+    id: "tfa_39-L",
+    mode: "text",
     en: "Mailing Zip",
     es: "Código postal",
     ru: "Почтовый индекс (почтовый адрес)",
@@ -599,10 +587,43 @@ export const translations = {
     zh: "邮政编码",
     ar: "الرمز البريدي",
     so: "Lambarka boostada"
+  },
+
+  mmPlaceholder: {
+    selector: "#tfa_156 option:first-child",
+    mode: "text",
+    en: "Month",
+    es: "Mes",
+    ru: "Месяц",
+    vi: "Tháng",
+    zh: "月",
+    ar: "الشهر",
+    so: "Bisha"
+  },
+
+  ddPlaceholder: {
+    selector: "#tfa_157 option:first-child",
+    mode: "text",
+    en: "Day",
+    es: "Día",
+    ru: "День",
+    vi: "Ngày",
+    zh: "天",
+    ar: "اليوم",
+    so: "Maalinta"
+  },
+
+  yyyyPlaceholder: {
+    selector: "#tfa_158 option:first-child",
+    mode: "text",
+    en: "Year",
+    es: "Año",
+    ru: "Год",
+    vi: "Năm",
+    zh: "年",
+    ar: "السنة",
+    so: "Sannadka"
   }
-
-
-  
 };
 
 export const LANGUAGE_CONFIG = {

@@ -1,5 +1,5 @@
 <style>
-/* form styles.css */
+/* styles2.css */
 /* MAIN FORM STYLES */
 
 	/* Form title extra h3? h2 is actual form title */
@@ -214,7 +214,7 @@
 /* PAGE 2 */
 
 
-.membershipConf {
+#membershipConf {
 	font-family: "cofo-sans-variable", sans-serif !important;
 	font-weight: 700 !important;
 }
@@ -383,13 +383,13 @@ var SEIUForm = (() => {
   // src_p2/translations2.js
   var translations = {
     formTitle: {
-      en: "SEIU 503 Membership Application",
-      es: "Solicitud de membres\xEDa de SEIU 503",
-      ru: "\u0417\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 SEIU 503",
-      vi: "\u0110\u01A1n \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn SEIU 503",
-      zh: "SEIU 503 \u4F1A\u5458\u7533\u8BF7\u8868",
-      ar: "\u0637\u0644\u0628 \u0639\u0636\u0648\u064A\u0629 SEIU 503",
-      so: "Codsiga Xubinimada SEIU 503"
+      en: "SEIU 503 Membership Application \u2022 Page 2",
+      es: "Solicitud de membres\xEDa de SEIU 503 \u2022 P\xE1gina 2",
+      ru: "\u0417\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 SEIU 503 \u2022 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430 2",
+      vi: "\u0110\u01A1n \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn SEIU 503 \u2022 Trang 2",
+      zh: "SEIU 503 \u4F1A\u5458\u7533\u8BF7\u8868 \u2022 \u7B2C 2 \u9875",
+      ar: "\u0637\u0644\u0628 \u0639\u0636\u0648\u064A\u0629 SEIU 503 \u2022 \u0627\u0644\u0635\u0641\u062D\u0629 2",
+      so: "Codsiga Xubinimada SEIU 503 \u2022 Bogga 2"
     },
     submitButton: {
       en: "Submit",
@@ -409,42 +409,6 @@ var SEIUForm = (() => {
       ar: `\u0647\u0630\u0627 \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u0645\u062E\u0635\u0635 \u0644\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0641\u0642\u0637. \u0644\u0646 \u062A\u062A\u0645 \u0645\u0639\u0627\u0644\u062C\u0629 \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u0645\u0642\u062F\u0645\u0629 \u0645\u0646 \u062E\u0644\u0627\u0644 \u0647\u0630\u0627 \u0627\u0644\u0646\u0645\u0648\u0630\u062C. \u0625\u0630\u0627 \u0648\u0635\u0644\u062A \u0625\u0644\u0649 \u0635\u0641\u062D\u0629 \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0639\u0646 \u0637\u0631\u064A\u0642 \u0627\u0644\u062E\u0637\u0623 \u0648\u062A\u0631\u063A\u0628 \u0641\u064A \u0623\u0646 \u062A\u0635\u0628\u062D \u0639\u0636\u0648\u0627\u064B \u0641\u064A SEIU Local 503\u060C \u064A\u0631\u062C\u0649 \u0627\u0644\u0646\u0642\u0631 \u0647\u0646\u0627:`,
       so: `Foomkan waxaa loogu talagalay tijaabo oo keliya. Xogta xubinimada ee lagu gudbiyo foomkan lama baaraandegi doono. Haddii aad si qalad ah u timid bogga tijaabada oo aad rabto inaad xubin ka noqoto SEIU Local 503, fadlan halkan guji:`
     },
-    prefillWarning1: {
-      en: "This form is customized especially for",
-      es: "Este formulario est\xE1 personalizado especialmente para",
-      ru: "\u042D\u0442\u0430 \u0444\u043E\u0440\u043C\u0430 \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u044C\u043D\u043E \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043D\u0430 \u0434\u043B\u044F",
-      vi: "M\u1EABu n\xE0y \u0111\u01B0\u1EE3c t\xF9y ch\u1EC9nh ri\xEAng cho",
-      zh: "\u6B64\u8868\u683C\u4E13\u4E3A\u4EE5\u4E0B\u4EBA\u5458\u5B9A\u5236\uFF1A",
-      ar: "\u062A\u0645 \u062A\u062E\u0635\u064A\u0635 \u0647\u0630\u0627 \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u062E\u0635\u064A\u0635\u0627\u064B \u0644\u0640",
-      so: "Foomkan waxaa si gaar ah loogu diyaariyey"
-    },
-    prefillWarning2: {
-      en: "If this is not you, do not complete this form!",
-      es: "\xA1Si no es usted, no complete este formulario!",
-      ru: "\u0415\u0441\u043B\u0438 \u044D\u0442\u043E \u043D\u0435 \u0432\u044B, \u043D\u0435 \u0437\u0430\u043F\u043E\u043B\u043D\u044F\u0439\u0442\u0435 \u044D\u0442\u0443 \u0444\u043E\u0440\u043C\u0443!",
-      vi: "N\u1EBFu \u0111\xE2y kh\xF4ng ph\u1EA3i l\xE0 qu\xFD v\u1ECB, \u0111\u1EEBng ho\xE0n t\u1EA5t m\u1EABu n\xE0y!",
-      zh: "\u5982\u679C\u8FD9\u4E0D\u662F\u60A8\uFF0C\u8BF7\u4E0D\u8981\u586B\u5199\u6B64\u8868\u683C\uFF01",
-      ar: "\u0625\u0630\u0627 \u0644\u0645 \u064A\u0643\u0646 \u0647\u0630\u0627 \u0623\u0646\u062A\u060C \u0641\u0644\u0627 \u062A\u0643\u0645\u0644 \u0647\u0630\u0627 \u0627\u0644\u0646\u0645\u0648\u0630\u062C!",
-      so: "Haddii tani aysan adiga ahayn, ha buuxin foomkan!"
-    },
-    employerTypeLabel: {
-      en: "Employer Type",
-      es: "Tipo de empleador",
-      ru: "\u0422\u0438\u043F \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044F",
-      vi: "Lo\u1EA1i nh\xE0 tuy\u1EC3n d\u1EE5ng",
-      zh: "\u96C7\u4E3B\u7C7B\u578B",
-      ar: "\u0646\u0648\u0639 \u0635\u0627\u062D\u0628 \u0627\u0644\u0639\u0645\u0644",
-      so: "Nooca loo-shaqeeyaha"
-    },
-    employerNameLabel: {
-      en: "Employer Name",
-      es: "Nombre del empleador",
-      ru: "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044F",
-      vi: "T\xEAn nh\xE0 tuy\u1EC3n d\u1EE5ng",
-      zh: "\u96C7\u4E3B\u540D\u79F0",
-      ar: "\u0627\u0633\u0645 \u0635\u0627\u062D\u0628 \u0627\u0644\u0639\u0645\u0644",
-      so: "Magaca loo-shaqeeyaha"
-    },
     firstName: {
       en: "First Name",
       es: "Primer nombre",
@@ -463,14 +427,14 @@ var SEIUForm = (() => {
       ar: "\u0627\u0633\u0645 \u0627\u0644\u0639\u0627\u0626\u0644\u0629",
       so: "Magaca dambe"
     },
-    birthDate: {
-      en: "Birth Date",
-      es: "Fecha de nacimiento",
-      ru: "\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F",
-      vi: "Ng\xE0y sinh",
-      zh: "\u51FA\u751F\u65E5\u671F",
-      ar: "\u062A\u0627\u0631\u064A\u062E \u0627\u0644\u0645\u064A\u0644\u0627\u062F",
-      so: "Taariikhda dhalashada"
+    hireDate: {
+      en: "Hire Date",
+      es: "Fecha de contrataci\xF3n",
+      ru: "\u0414\u0430\u0442\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u0443",
+      vi: "Ng\xE0y tuy\u1EC3n d\u1EE5ng",
+      zh: "\u5165\u804C\u65E5\u671F",
+      ar: "\u062A\u0627\u0631\u064A\u062E \u0627\u0644\u062A\u0648\u0638\u064A\u0641",
+      so: "Taariikhda shaqaalaysiinta"
     },
     mmPlaceholder: {
       en: "Month",
@@ -499,32 +463,14 @@ var SEIUForm = (() => {
       ar: "\u0627\u0644\u0633\u0646\u0629",
       so: "Sannadka"
     },
-    preferredLanguage: {
-      en: "Preferred language",
-      es: "Idioma preferido",
-      ru: "\u041F\u0440\u0435\u0434\u043F\u043E\u0447\u0438\u0442\u0430\u0435\u043C\u044B\u0439 \u044F\u0437\u044B\u043A",
-      vi: "Ng\xF4n ng\u1EEF th\u01B0\u1EDDng s\u1EED d\u1EE5ng",
-      zh: "\u9996\u9009\u8BED\u8A00",
-      ar: "\u0627\u0644\u0644\u063A\u0629 \u0627\u0644\u0645\u0641\u0636\u0644\u0629",
-      so: "Luqadda la doorbidayo"
-    },
     address: {
-      en: "Address",
-      es: "Calle particular",
-      ru: "\u0410\u0434\u0440\u0435\u0441",
-      vi: "\u0110\u1ECBa ch\u1EC9",
-      zh: "\u5730\u5740",
-      ar: "\u0627\u0644\u0639\u0646\u0648\u0627\u0646",
-      so: "Cinwaanka"
-    },
-    addressNote: {
-      en: "Please enter your physical street address here, not a P.O. box.",
-      es: "Ingrese su direcci\xF3n f\xEDsica aqu\xED, no un apartado postal (P.O. Box).",
-      ru: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0443\u043A\u0430\u0436\u0438\u0442\u0435 \u0437\u0434\u0435\u0441\u044C \u0432\u0430\u0448 \u0444\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0430\u0434\u0440\u0435\u0441 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F, \u0430 \u043D\u0435 \u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u044F\u0449\u0438\u043A.",
-      vi: "Vui l\xF2ng nh\u1EADp \u0111\u1ECBa ch\u1EC9 nh\xE0 c\u1EE7a qu\xFD v\u1ECB \u1EDF \u0111\xE2y, \u0111\u1EEBng cho \u0111\u1ECBa ch\u1EC9 h\u1ED9p th\u01B0 b\u01B0u \u0111i\u1EC7n.",
-      zh: "\u8BF7\u5728\u6B64\u5904\u8F93\u5165\u60A8\u7684\u8857\u9053\u5730\u5740\uFF0C\u800C\u4E0D\u662F\u90AE\u7BB1\u5730\u5740\u3002",
-      ar: "\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0639\u0646\u0648\u0627\u0646\u0643 \u0627\u0644\u0641\u0639\u0644\u064A \u0647\u0646\u0627\u060C \u0648\u0644\u064A\u0633 \u0635\u0646\u062F\u0648\u0642 \u0628\u0631\u064A\u062F.",
-      so: "Fadlan halkan geli cinwaankaaga guriga ee dhabta ah, ha gelin sanduuqa boostada."
+      en: "Mailing Address",
+      es: "Direcci\xF3n postal",
+      ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441",
+      vi: "\u0110\u1ECBa ch\u1EC9 g\u1EEDi th\u01B0",
+      zh: "\u90AE\u5BC4\u5730\u5740",
+      ar: "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Cinwaanka boostada"
     },
     city: {
       en: "City",
@@ -562,362 +508,410 @@ var SEIUForm = (() => {
       ar: "\u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A",
       so: "Iimayl"
     },
-    emailNote: {
-      en: "Please use your personal email if you have one, since some employers limit union communication via work email. If you don't have a personal email, work email is fine. If you don't have an email address, call us at 1.844.503.7348 to sign up over the phone.",
-      es: "Use su correo electr\xF3nico particular, si tiene uno, ya que algunos empleadores limitan la comunicaci\xF3n sindical a trav\xE9s del correo electr\xF3nico del trabajo. Si no tiene un correo electr\xF3nico personal, puede usar el correo electr\xF3nico del trabajo. Si no tiene una direcci\xF3n de correo electr\xF3nico, ll\xE1menos al 1.844.503.7348 para registrarse por tel\xE9fono.",
-      ru: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0443\u043A\u0430\u0436\u0438\u0442\u0435 \u0430\u0434\u0440\u0435\u0441 \u0432\u0430\u0448\u0435\u0439 \u043B\u0438\u0447\u043D\u043E\u0439 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B, \u0435\u0441\u043B\u0438 \u0442\u0430\u043A\u043E\u0432\u043E\u0439 \u0438\u043C\u0435\u0435\u0442\u0441\u044F, \u043F\u043E\u0441\u043A\u043E\u043B\u044C\u043A\u0443 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0431\u043E\u0447\u0435\u0439 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B \u0434\u043B\u044F \u043E\u0431\u043C\u0435\u043D\u0430 \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0435\u0439 \u0441 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u043E\u043C \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044F \u043D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u043C\u0438 \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044F\u043C\u0438. \u0415\u0441\u043B\u0438 \u0443 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043B\u0438\u0447\u043D\u043E\u0439 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B, \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0443\u043A\u0430\u0437\u0430\u0442\u044C \u0430\u0434\u0440\u0435\u0441 \u0440\u0430\u0431\u043E\u0447\u0435\u0439 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B. \u0415\u0441\u043B\u0438 \u0443 \u0432\u0430\u0441 \u043D\u0435\u0442 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B, \u043F\u043E\u0437\u0432\u043E\u043D\u0438\u0442\u0435 \u043D\u0430\u043C \u043F\u043E \u0442\u0435\u043B. 1.844.503.7348, \u0447\u0442\u043E\u0431\u044B \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F \u043F\u043E \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0443.",
-      vi: "Vui l\xF2ng s\u1EED d\u1EE5ng email c\xE1 nh\xE2n c\u1EE7a qu\xFD v\u1ECB n\u1EBFu c\xF3, v\xEC m\u1ED9t s\u1ED1 nh\xE0 tuy\u1EC3n d\u1EE5ng h\u1EA1n ch\u1EBF vi\u1EC7c giao ti\u1EBFp v\u1EC1 c\xF4ng \u0111o\xE0n qua email c\xF4ng ty. N\u1EBFu qu\xFD v\u1ECB kh\xF4ng c\xF3 email c\xE1 nh\xE2n, qu\xFD v\u1ECB cho email c\xF4ng ty c\u0169ng \u0111\u01B0\u1EE3c. N\u1EBFu qu\xFD v\u1ECB kh\xF4ng c\xF3 \u0111\u1ECBa ch\u1EC9 email, h\xE3y g\u1ECDi cho ch\xFAng t\xF4i theo s\u1ED1 1.844.503.7348 \u0111\u1EC3 \u0111\u0103ng k\xFD qua \u0111i\u1EC7n tho\u1EA1i.",
-      zh: "\u5982\u679C\u60A8\u6709\u79C1\u4EBA\u7535\u5B50\u90AE\u7BB1\uFF0C\u8BF7\u4F7F\u7528\u60A8\u7684\u79C1\u4EBA\u7535\u5B50\u90AE\u7BB1\uFF0C\u56E0\u4E3A\u67D0\u4E9B\u96C7\u4E3B\u9650\u5236\u901A\u8FC7\u5DE5\u4F5C\u7535\u5B50\u90AE\u7BB1\u4E0E\u5DE5\u4F1A\u6C9F\u901A\u3002\u5982\u679C\u60A8\u6CA1\u6709\u79C1\u4EBA\u7535\u5B50\u90AE\u7BB1\uFF0C\u53EF\u4F7F\u7528\u5DE5\u4F5C\u7535\u5B50\u90AE\u7BB1\u3002\u5982\u679C\u60A8\u6CA1\u6709\u7535\u5B50\u90AE\u7BB1\u5730\u5740\uFF0C\u8BF7\u81F4\u7535 1.844.503.7348 \u8054\u7CFB\u6211\u4EEC\uFF0C\u901A\u8FC7\u7535\u8BDD\u8FDB\u884C\u6CE8\u518C\u3002",
-      ar: "\u064A\u0631\u062C\u0649 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0628\u0631\u064A\u062F\u0643 \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A \u0627\u0644\u0634\u062E\u0635\u064A \u0625\u0646 \u0648\u062C\u062F\u060C \u0644\u0623\u0646 \u0628\u0639\u0636 \u0623\u0635\u062D\u0627\u0628 \u0627\u0644\u0639\u0645\u0644 \u064A\u062D\u062F\u0651\u0648\u0646 \u0645\u0646 \u0627\u0644\u062A\u0648\u0627\u0635\u0644 \u0627\u0644\u0646\u0642\u0627\u0628\u064A \u0639\u0628\u0631 \u0628\u0631\u064A\u062F \u0627\u0644\u0639\u0645\u0644. \u0625\u0630\u0627 \u0644\u0645 \u064A\u0643\u0646 \u0644\u062F\u064A\u0643 \u0628\u0631\u064A\u062F \u0634\u062E\u0635\u064A\u060C \u0641\u064A\u0645\u0643\u0646\u0643 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0628\u0631\u064A\u062F \u0627\u0644\u0639\u0645\u0644. \u0625\u0630\u0627 \u0644\u0645 \u064A\u0643\u0646 \u0644\u062F\u064A\u0643 \u0628\u0631\u064A\u062F \u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A\u060C \u0641\u0627\u062A\u0635\u0644 \u0628\u0646\u0627 \u0639\u0644\u0649 1.844.503.7348 \u0644\u0644\u062A\u0633\u062C\u064A\u0644 \u0639\u0628\u0631 \u0627\u0644\u0647\u0627\u062A\u0641.",
-      so: "Fadlan isticmaal iimaylkaaga gaarka ah haddii aad leedahay, maadaama qaar ka mid ah loo-shaqeeyayaashu xaddidaan isgaarsiinta ururka ee iimaylka shaqada. Haddii aadan lahayn iimayl gaar ah, iimaylka shaqadu wuu fiican yahay. Haddii aadan lahayn cinwaan iimayl, naga soo wac 1.844.503.7348 si aad telefoon ugu diiwaangasho."
+    membershipConf: {
+      en: "Your membership application has been received and will be reviewed shortly.",
+      es: "Su solicitud de membres\xEDa ha sido recibida y ser\xE1 revisada en breve.",
+      ru: "\u0412\u0430\u0448\u0435 \u0437\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043E \u0438 \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043E \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.",
+      vi: "\u0110\u01A1n \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn c\u1EE7a qu\xFD v\u1ECB \u0111\xE3 \u0111\u01B0\u1EE3c nh\u1EADn v\xE0 s\u1EBD s\u1EDBm \u0111\u01B0\u1EE3c xem x\xE9t.",
+      zh: "\u60A8\u7684\u4F1A\u5458\u7533\u8BF7\u5DF2\u6536\u5230\uFF0C\u6211\u4EEC\u5C06\u5C3D\u5FEB\u5BA1\u6838\u3002",
+      ar: "\u062A\u0645 \u0627\u0633\u062A\u0644\u0627\u0645 \u0637\u0644\u0628 \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u062E\u0627\u0635 \u0628\u0643 \u0648\u0633\u064A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u062A\u0647 \u0642\u0631\u064A\u0628\u064B\u0627.",
+      so: "Codsigaaga xubinnimada waa la helay waxaana dib loo eegi doonaa dhawaan."
     },
-    phone: {
-      en: "Phone",
-      es: "Mejor tel\xE9fono",
-      ru: "\u041F\u0440\u0435\u0434\u043F\u043E\u0447\u0438\u0442\u0430\u0435\u043C\u044B\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430 \u0434\u043B\u044F \u0437\u0432\u043E\u043D\u043A\u043E\u0432",
-      vi: "\u0110i\u1EC7n tho\u1EA1i t\u1ED1t nh\u1EA5t \u0111\u1EC3 g\u1ECDi",
-      zh: "\u9996\u9009\u7535\u8BDD\u53F7\u7801",
-      ar: "\u0627\u0644\u0647\u0627\u062A\u0641",
-      so: "Telefoon"
+    demographicsNote: {
+      en: "In the mean time, please help your fellow union members get to know you better by telling us a little more about yourself. SEIU Local 503 is committed to honoring the diversity of all members. This optional demographic information helps us understand the social identities of our membership.",
+      es: "Mientras tanto, ayude a sus compa\xF1eros sindicales a conocerle mejor cont\xE1ndonos un poco m\xE1s sobre usted. SEIU Local 503 est\xE1 comprometido a honrar la diversidad de todos sus miembros. Esta informaci\xF3n demogr\xE1fica opcional nos ayuda a comprender las identidades sociales de nuestra membres\xEDa.",
+      ru: "\u0422\u0435\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0435\u043C \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435 \u0432\u0430\u0448\u0438\u043C \u043A\u043E\u043B\u043B\u0435\u0433\u0430\u043C \u043F\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0443 \u043B\u0443\u0447\u0448\u0435 \u0443\u0437\u043D\u0430\u0442\u044C \u0432\u0430\u0441, \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u0430\u0432 \u043D\u0435\u043C\u043D\u043E\u0433\u043E \u0431\u043E\u043B\u044C\u0448\u0435 \u043E \u0441\u0435\u0431\u0435. SEIU Local 503 \u0441\u0442\u0440\u0435\u043C\u0438\u0442\u0441\u044F \u0443\u0432\u0430\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u043D\u043E\u043E\u0431\u0440\u0430\u0437\u0438\u0435 \u0432\u0441\u0435\u0445 \u0441\u0432\u043E\u0438\u0445 \u0447\u043B\u0435\u043D\u043E\u0432. \u042D\u0442\u0430 \u043D\u0435\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0434\u0435\u043C\u043E\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u043D\u0430\u043C \u043B\u0443\u0447\u0448\u0435 \u043F\u043E\u043D\u0438\u043C\u0430\u0442\u044C \u0441\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u0443\u044E \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u043E\u0441\u0442\u044C \u043D\u0430\u0448\u0438\u0445 \u0447\u043B\u0435\u043D\u043E\u0432.",
+      vi: "Trong th\u1EDDi gian ch\u1EDD \u0111\u1EE3i, vui l\xF2ng gi\xFAp c\xE1c h\u1ED9i vi\xEAn c\xF4ng \u0111o\xE0n kh\xE1c hi\u1EC3u th\xEAm v\u1EC1 qu\xFD v\u1ECB b\u1EB1ng c\xE1ch chia s\u1EBB th\xEAm \u0111\xF4i \u0111i\u1EC1u v\u1EC1 b\u1EA3n th\xE2n. SEIU Local 503 cam k\u1EBFt t\xF4n tr\u1ECDng s\u1EF1 \u0111a d\u1EA1ng c\u1EE7a t\u1EA5t c\u1EA3 h\u1ED9i vi\xEAn. Th\xF4ng tin nh\xE2n kh\u1EA9u h\u1ECDc t\xF9y ch\u1ECDn n\xE0y gi\xFAp ch\xFAng t\xF4i hi\u1EC3u r\xF5 h\u01A1n v\u1EC1 c\xE1c b\u1EA3n s\u1EAFc x\xE3 h\u1ED9i c\u1EE7a h\u1ED9i vi\xEAn.",
+      zh: "\u4E0E\u6B64\u540C\u65F6\uFF0C\u8BF7\u5411\u5DE5\u4F1A\u7684\u5176\u4ED6\u4F1A\u5458\u4ECB\u7ECD\u66F4\u591A\u5173\u4E8E\u60A8\u7684\u60C5\u51B5\uFF0C\u5E2E\u52A9\u5927\u5BB6\u66F4\u597D\u5730\u4E86\u89E3\u60A8\u3002SEIU Local 503 \u81F4\u529B\u4E8E\u5C0A\u91CD\u6240\u6709\u4F1A\u5458\u7684\u591A\u6837\u6027\u3002\u8FD9\u4E9B\u53EF\u9009\u7684\u4EBA\u53E3\u7EDF\u8BA1\u4FE1\u606F\u5C06\u5E2E\u52A9\u6211\u4EEC\u66F4\u597D\u5730\u4E86\u89E3\u4F1A\u5458\u7684\u793E\u4F1A\u8EAB\u4EFD\u3002",
+      ar: "\u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0623\u062B\u0646\u0627\u0621\u060C \u064A\u0631\u062C\u0649 \u0645\u0633\u0627\u0639\u062F\u0629 \u0632\u0645\u0644\u0627\u0626\u0643 \u0641\u064A \u0627\u0644\u0646\u0642\u0627\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062A\u0639\u0631\u0641 \u0639\u0644\u064A\u0643 \u0628\u0634\u0643\u0644 \u0623\u0641\u0636\u0644 \u0645\u0646 \u062E\u0644\u0627\u0644 \u0625\u062E\u0628\u0627\u0631\u0646\u0627 \u0628\u0627\u0644\u0645\u0632\u064A\u062F \u0639\u0646 \u0646\u0641\u0633\u0643. \u062A\u0644\u062A\u0632\u0645 SEIU Local 503 \u0628\u0627\u062D\u062A\u0631\u0627\u0645 \u062A\u0646\u0648\u0639 \u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0639\u0636\u0627\u0621. \u062A\u0633\u0627\u0639\u062F\u0646\u0627 \u0647\u0630\u0647 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0627\u0644\u062F\u064A\u0645\u0648\u063A\u0631\u0627\u0641\u064A\u0629 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631\u064A\u0629 \u0639\u0644\u0649 \u0641\u0647\u0645 \u0627\u0644\u0647\u0648\u064A\u0627\u062A \u0627\u0644\u0627\u062C\u062A\u0645\u0627\u0639\u064A\u0629 \u0644\u0623\u0639\u0636\u0627\u0626\u0646\u0627.",
+      so: "Dhanka kale, fadlan ka caawi xubnaha kale ee ururka inay si fiican kuu bartaan adigoo wax yar nooga sheegaya naftaada. SEIU Local 503 waxaa ka go'an inay ixtiraamto kala duwanaanshaha dhammaan xubnaha. Macluumaadkan ikhtiyaariga ah ee tirakoobka bulshada wuxuu naga caawiyaa inaan fahanno aqoonsiyada bulsheed ee xubnahayaga."
     },
-    smsOptOut: {
-      en: "Opt out of receiving mobile alerts",
-      es: "No deseo recibir alertas por mensaje de texto",
-      ru: "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F \u043E\u0442 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0445 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0439",
-      vi: "T\u1EEB ch\u1ED1i nh\u1EADn tin nh\u1EAFn tr\xEAn thi\u1EBFt b\u1ECB di \u0111\u1ED9ng",
-      zh: "\u9009\u62E9\u4E0D\u518D\u63A5\u6536\u624B\u673A\u63D0\u9192\u77ED\u4FE1",
-      ar: "\u0639\u062F\u0645 \u062A\u0644\u0642\u064A \u0627\u0644\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0639\u0628\u0631 \u0627\u0644\u0647\u0627\u062A\u0641 \u0627\u0644\u0645\u062D\u0645\u0648\u0644",
-      so: "Ka bax helitaanka digniinaha moobilka"
+    demographicsHeader: {
+      en: "demographic information",
+      es: "informaci\xF3n demogr\xE1fica",
+      ru: "\u0434\u0435\u043C\u043E\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F",
+      vi: "th\xF4ng tin nh\xE2n kh\u1EA9u h\u1ECDc",
+      zh: "\u4EBA\u53E3\u7EDF\u8BA1\u4FE1\u606F",
+      ar: "\u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0627\u0644\u062F\u064A\u0645\u0648\u063A\u0631\u0627\u0641\u064A\u0629",
+      so: "macluumaadka tirakoobka bulshada"
     },
-    smsOptOutCheckbox: {
-      en: "Opt out",
-      es: "Optar por no participar",
-      ru: "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F",
+    raceEthnicityHelperText: {
+      en: "Check as many as apply to your race/ethnicity",
+      es: "Marque todas las opciones que correspondan a su raza o grupo \xE9tnico",
+      ru: "\u041E\u0442\u043C\u0435\u0442\u044C\u0442\u0435 \u0432\u0441\u0435 \u043F\u0440\u0438\u043C\u0435\u043D\u0438\u043C\u044B\u0435 \u043A \u0432\u0430\u043C \u0432\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u0440\u0430\u0441\u043E\u0432\u043E\u0439/\u044D\u0442\u043D\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u043F\u0440\u0438\u043D\u0430\u0434\u043B\u0435\u0436\u043D\u043E\u0441\u0442\u0438.",
+      vi: "\u0110\xE1nh d\u1EA5u t\u1EA5t c\u1EA3 nh\u1EEFng \xF4 \xE1p d\u1EE5ng \u0111\u1ED1i v\u1EDBi ch\u1EE7ng t\u1ED9c/s\u1EAFc t\u1ED9c c\u1EE7a qu\xFD v\u1ECB",
+      zh: "\u8BF7\u52FE\u9009\u6240\u6709\u7B26\u5408\u60A8\u7684\u79CD\u65CF\uFF0F\u65CF\u88D4\u7684\u9009\u9879",
+      ar: "\u062D\u062F\u062F \u062C\u0645\u064A\u0639 \u0627\u0644\u062E\u064A\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u064A \u062A\u0646\u0637\u0628\u0642 \u0639\u0644\u0649 \u0639\u0631\u0642\u0643 \u0623\u0648 \u0625\u062B\u0646\u064A\u062A\u0643",
+      so: "Calaamadee dhammaan kuwa khuseeya jinsiyaddaada/qowmiyaddaada"
+    },
+    africanOrAfricanAmerican: {
+      en: "Black, African, or African-American",
+      es: "Africano o afroestadounidense",
+      ru: "\u0410\u0444\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0438\u043B\u0438 \u0430\u0444\u0440\u043E\u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446",
+      vi: "Ng\u01B0\u1EDDi Ch\xE2u Phi ho\u1EB7c ng\u01B0\u1EDDi M\u1EF9 g\u1ED1c Phi",
+      zh: "\u975E\u6D32\u88D4\u6216\u975E\u6D32\u88D4\u7F8E\u56FD\u4EBA",
+      ar: "\u0623\u0633\u0648\u062F \u0623\u0648 \u0623\u0641\u0631\u064A\u0642\u064A \u0623\u0648 \u0623\u0645\u0631\u064A\u0643\u064A \u0645\u0646 \u0623\u0635\u0644 \u0623\u0641\u0631\u064A\u0642\u064A",
+      so: "Madow, Afrikaan, ama Afrikaan Ameerikaan ah"
+    },
+    arabAmericanMiddleEasternOrNorthAfrican: {
+      en: "Arab, Middle Eastern, or North African",
+      es: "Oriente Medio, \xE1rabe estadounidense o del norte de \xC1frica",
+      ru: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0430\u0440\u0430\u0431\u0441\u043A\u043E\u0433\u043E \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u044F, \u0432\u044B\u0445\u043E\u0434\u0435\u0446 \u0438\u0437 \u0441\u0442\u0440\u0430\u043D \u0411\u043B\u0438\u0436\u043D\u0435\u0433\u043E \u0412\u043E\u0441\u0442\u043E\u043A\u0430 \u0438\u043B\u0438 \u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0439 \u0410\u0444\u0440\u0438\u043A\u0438",
+      vi: "Ng\u01B0\u1EDDi M\u1EF9 g\u1ED1c \u1EA2 R\u1EADp, Trung M\u1EF9 ho\u1EB7c B\u1EAFc Phi",
+      zh: "\u963F\u62C9\u4F2F\u88D4\u7F8E\u56FD\u4EBA\u3001\u4E2D\u4E1C\u6216\u5317\u975E",
+      ar: "\u0639\u0631\u0628\u064A \u0623\u0648 \u0645\u0646 \u0627\u0644\u0634\u0631\u0642 \u0627\u0644\u0623\u0648\u0633\u0637 \u0623\u0648 \u0634\u0645\u0627\u0644 \u0623\u0641\u0631\u064A\u0642\u064A\u0627",
+      so: "Carab, Bariga Dhexe, ama Waqooyiga Afrika"
+    },
+    asianOrAsianAmerican: {
+      en: "Asian, Desi, or Pacific Islander",
+      es: "Asi\xE1tico o asi\xE1tico estadounidense",
+      ru: "\u0410\u0437\u0438\u0430\u0442 \u0438\u043B\u0438 \u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446 \u0430\u0437\u0438\u0430\u0442\u0441\u043A\u043E\u0433\u043E \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u044F",
+      vi: "Ng\u01B0\u1EDDi Ch\xE2u \xC1 ho\u1EB7c ng\u01B0\u1EDDi M\u1EF9 g\u1ED1c \xC1",
+      zh: "\u4E9A\u88D4\u6216\u4E9A\u88D4\u7F8E\u56FD\u4EBA",
+      ar: "\u0622\u0633\u064A\u0648\u064A \u0623\u0648 \u0645\u0646 \u062C\u0632\u0631 \u0627\u0644\u0645\u062D\u064A\u0637 \u0627\u0644\u0647\u0627\u062F\u0626",
+      so: "Aasiyaan, Desi, ama Jasiiradaha Baasifigga"
+    },
+    hispanicOrLatinx: {
+      en: "Latino/a/x, Chicano/a, or Hispanic",
+      es: "Latino/a, Chicano/a, o Hispano/a",
+      ru: "\u0418\u0441\u043F\u0430\u043D\u043E\u044F\u0437\u044B\u0447\u043D\u044B\u0439 \u0438\u043B\u0438 \u043B\u0430\u0442\u0438\u043D\u043E\u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0435\u0446",
+      vi: "Ng\u01B0\u1EDDi g\u1ED1c T\xE2y Ban Nha ho\u1EB7c Ng\u01B0\u1EDDi La-tinh",
+      zh: "\u897F\u73ED\u7259\u88D4\uFF0F\u62C9\u4E01\u88D4",
+      ar: "\u0644\u0627\u062A\u064A\u0646\u064A/\u0629 \u0623\u0648 \u0645\u0646 \u0623\u0635\u0648\u0644 \u0625\u0633\u0628\u0627\u0646\u064A\u0629",
+      so: "Laatiin, Chicano, ama Hisbaanik"
+    },
+    nativeAmericanOrIndigenous: {
+      en: "Indigenous, American Indian, or Native American",
+      es: "Ind\xEDgena estadounidense o ind\xEDgena",
+      ru: "\u041A\u043E\u0440\u0435\u043D\u043D\u043E\u0439 \u0436\u0438\u0442\u0435\u043B\u044C \u0410\u043C\u0435\u0440\u0438\u043A\u0438 \u0438\u043B\u0438 \u0438\u043D\u0434\u0435\u0435\u0446",
+      vi: "Ng\u01B0\u1EDDi M\u1EF9 b\u1EA3n x\u1EE9 ho\u1EB7c Ng\u01B0\u1EDDi b\u1EA3n \u0111\u1ECBa",
+      zh: "\u7F8E\u6D32\u539F\u4F4F\u6C11\u6216\u571F\u8457\u4EBA",
+      ar: "\u0645\u0646 \u0627\u0644\u0633\u0643\u0627\u0646 \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646 \u0623\u0648 \u0627\u0644\u0647\u0646\u0648\u062F \u0627\u0644\u0623\u0645\u0631\u064A\u0643\u064A\u064A\u0646",
+      so: "Dadka asaliga ah ama Hindida Ameerika"
+    },
+    nativeHawaiianOrOtherPacificIslander: {
+      en: "Native Hawaiian or Other Pacific Islander",
+      es: "Nativo de Haw\xE1i o de otra isla del Pac\xEDfico",
+      ru: "\u041A\u043E\u0440\u0435\u043D\u043D\u043E\u0439 \u0436\u0438\u0442\u0435\u043B\u044C \u0413\u0430\u0432\u0430\u0439\u0441\u043A\u0438\u0445 \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043E\u0441\u0442\u0440\u043E\u0432\u043E\u0432 \u0422\u0438\u0445\u043E\u0433\u043E \u043E\u043A\u0435\u0430\u043D\u0430",
+      vi: "Ng\u01B0\u1EDDi Hawaii B\u1EA3n x\u1EE9 ho\u1EB7c C\u01B0 d\xE2n V\xF9ng \u0110\u1EA3o Th\xE1i B\xECnh D\u01B0\u01A1ng kh\xE1c",
+      zh: "\u590F\u5A01\u5937\u539F\u4F4F\u6C11\u6216\u5176\u4ED6\u592A\u5E73\u6D0B\u5C9B\u6C11",
+      ar: "\u0645\u0646 \u0633\u0643\u0627\u0646 \u0647\u0627\u0648\u0627\u064A \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646 \u0623\u0648 \u062C\u0632\u0631 \u0627\u0644\u0645\u062D\u064A\u0637 \u0627\u0644\u0647\u0627\u062F\u0626 \u0627\u0644\u0623\u062E\u0631\u0649",
+      so: "Dhalad Hawaii ama Jasiiradaha kale ee Baasifigga"
+    },
+    white: {
+      en: "White",
+      es: "Blanco",
+      ru: "\u0415\u0432\u0440\u043E\u043F\u0435\u0435\u0446",
+      vi: "Ng\u01B0\u1EDDi Da Tr\u1EAFng",
+      zh: "\u767D\u4EBA",
+      ar: "\u0623\u0628\u064A\u0636",
+      so: "Caddaan"
+    },
+    notListed: {
+      en: "Not listed",
+      es: "No figura en la lista",
+      ru: "\u041D\u0435\u0442 \u0432 \u0441\u043F\u0438\u0441\u043A\u0435",
+      vi: "Kh\xF4ng c\xF3 trong danh s\xE1ch",
+      zh: "\u672A\u5217\u51FA",
+      ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
+      so: "Kuma jiro liiska"
+    },
+    other: {
+      en: "Not listed",
+      es: "Otro",
+      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
+      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
+      zh: "\u5176\u4ED6",
+      ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
+      so: "Kuma jiro liiska"
+    },
+    declined: {
+      en: "Prefer not to say",
+      es: "No deseo contestar",
+      ru: "\u041E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u044E\u0441\u044C \u043E\u0442\u0432\u0435\u0447\u0430\u0442\u044C",
       vi: "T\u1EEB ch\u1ED1i",
-      zh: "\u9009\u62E9\u9000\u51FA",
-      ar: "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643",
-      so: "Ka bax"
+      zh: "\u62D2\u7EDD",
+      ar: "\u0623\u0641\u0636\u0644 \u0639\u062F\u0645 \u0627\u0644\u0625\u062C\u0627\u0628\u0629",
+      so: "Waxaan doorbidayaa inaanan sheegin"
     },
-    phoneNote: {
-      en: "\u2020 By providing my phone number, I understand that the Service Employees International Union (SEIU), its local unions, and affiliates may use automated calling technologies and/or text message me on my cellular phone on a periodic basis. SEIU will never charge for text message alerts. Carrier message and data rates may apply to such alerts. Reply STOP to stop receiving messages; reply HELP for more information.",
-      es: "\u2020 Al proporcionar mi n\xFAmero de tel\xE9fono, entiendo que la Uni\xF3n Internacional de Empleados de Servicios (SEIU, por sus siglas en ingl\xE9s), sus uniones locales y sus afiliados pueden usar tecnolog\xEDas automatizadas para llamarme y/o para enviar mensajes de texto a mi celular peri\xF3dicamente. SEIU nunca cobrar\xE1 por las alertas de mensaje de texto. Pueden aplicar tarifas por el env\xEDo de mensaje y el uso de datos para dichas alertas. Responda con la palabra STOP para dejar de recibir mensajes; responda con la palabra HELP para obtener m\xE1s informaci\xF3n.",
-      ru: "\u2020 \u041F\u0440\u0435\u0434\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u044F \u043D\u043E\u043C\u0435\u0440 \u0441\u0432\u043E\u0435\u0433\u043E \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430, \u044F \u043F\u043E\u043D\u0438\u043C\u0430\u044E, \u0447\u0442\u043E \u041C\u0435\u0436\u0434\u0443\u043D\u0430\u0440\u043E\u0434\u043D\u044B\u0439 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432 \u0441\u0444\u0435\u0440\u044B \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u044F (SEIU), \u0432\u043A\u043B\u044E\u0447\u0430\u044F \u0435\u0433\u043E \u043C\u0435\u0441\u0442\u043D\u044B\u0435 \u043E\u0442\u0434\u0435\u043B\u0435\u043D\u0438\u044F \u0438 \u0444\u0438\u043B\u0438\u0430\u043B\u044B, \u043C\u043E\u0436\u0435\u0442 \u043F\u0440\u0438\u043C\u0435\u043D\u044F\u0442\u044C \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0432\u044B\u0437\u043E\u0432\u0430 \u0438/\u0438\u043B\u0438 \u043D\u0430 \u043F\u0435\u0440\u0438\u043E\u0434\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u043E\u0441\u043D\u043E\u0432\u0435 \u043F\u043E\u0441\u044B\u043B\u0430\u0442\u044C \u043D\u0430 \u043C\u043E\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D \u0442\u0435\u043A\u0441\u0442\u043E\u0432\u044B\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F. \u041F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 SEIU \u043D\u0438\u043A\u043E\u0438\u043C \u043E\u0431\u0440\u0430\u0437\u043E\u043C \u043D\u0435 \u0431\u0443\u0434\u0435\u0442 \u0432\u0437\u044B\u0441\u043A\u0438\u0432\u0430\u0442\u044C \u043F\u043B\u0430\u0442\u0443 \u0437\u0430 \u043E\u043F\u043E\u0432\u0435\u0449\u0435\u043D\u0438\u044F \u043F\u043E\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043E\u043C \u0442\u0435\u043A\u0441\u0442\u043E\u0432\u044B\u0445 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439. \u0412 \u043E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u0438 \u043E\u043F\u043E\u0432\u0435\u0449\u0435\u043D\u0438\u0439 \u043C\u043E\u0433\u0443\u0442 \u043F\u0440\u0438\u043C\u0435\u043D\u044F\u0442\u044C\u0441\u044F \u0440\u0430\u0441\u0446\u0435\u043D\u043A\u0438 \u0438 \u0442\u0430\u0440\u0438\u0444\u044B \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438. \u041E\u0442\u043F\u0440\u0430\u0432\u044C\u0442\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0441\u043E \u0441\u043B\u043E\u0432\u043E\u043C STOP, \u0447\u0442\u043E\u0431\u044B \u043F\u0440\u0435\u043A\u0440\u0430\u0442\u0438\u0442\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0443 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439; \u043E\u0442\u043F\u0440\u0430\u0432\u044C\u0442\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0441\u043E \u0441\u043B\u043E\u0432\u043E\u043C HELP, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0431\u043E\u043B\u0435\u0435 \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u0443\u044E \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E.",
-      vi: "\u2020 B\u1EB1ng c\xE1ch cung c\u1EA5p s\u1ED1 \u0111i\u1EC7n tho\u1EA1i c\u1EE7a t\xF4i, t\xF4i hi\u1EC3u r\u1EB1ng C\xF4ng \u0111o\xE0n Nh\xE2n vi\xEAn Ph\u1EE5c v\u1EE5 Qu\u1ED1c t\u1EBF (SEIU) v\xE0 c\xE1c chi nh\xE1nh c\u0169ng nh\u01B0 t\u1ED5 ch\u1EE9c li\xEAn quan c\u1EE7a c\xF4ng \u0111o\xE0n c\xF3 th\u1EC3 s\u1EED d\u1EE5ng c\xE1c c\xF4ng ngh\u1EC7 t\u1EF1 \u0111\u1ED9ng \u0111\u1EC3 th\u1EC9nh tho\u1EA3ng g\u1ECDi v\xE0/ho\u1EB7c g\u1EEDi tin nh\u1EAFn \u0111\u1EBFn \u0111i\u1EC7n tho\u1EA1i di \u0111\u1ED9ng c\u1EE7a t\xF4i. SEIU s\u1EBD kh\xF4ng bao gi\u1EDD t\xEDnh ti\u1EC1n cho c\xE1c tin nh\u1EAFn b\xE1o \u0111\u1ED9ng. C\u01B0\u1EDBc ph\xED tin nh\u1EAFn v\xE0 d\u1EEF li\u1EC7u c\u1EE7a nh\xE0 cung c\u1EA5p d\u1ECBch v\u1EE5 m\u1EA1ng di \u0111\u1ED9ng c\xF3 th\u1EC3 \xE1p d\u1EE5ng cho nh\u1EEFng tin nh\u1EAFn nh\u01B0 v\u1EADy. Nh\u1EAFn tin tr\u1EA3 l\u1EDDi v\u1EDBi t\u1EEB kh\xF3a STOP \u0111\u1EC3 ng\u1EEBng nh\u1EADn tin nh\u1EAFn, t\u1EEB HELP \u0111\u1EC3 nh\u1EADn th\xEAm th\xF4ng tin.",
-      zh: "\u2020\u63D0\u4F9B\u6211\u7684\u7535\u8BDD\u53F7\u7801\uFF0C\u5373\u8868\u793A\u6211\u660E\u767D\u670D\u52A1\u884C\u4E1A\u96C7\u5458\u56FD\u9645\u5DE5\u4F1A (SEIU) \u53CA\u5176\u5F53\u5730\u5DE5\u4F1A\u548C\u9644\u5C5E\u5DE5\u4F1A\u53EF\u5B9A\u671F\u4F7F\u7528\u81EA\u52A8\u547C\u53EB\u6280\u672F\u53CA\uFF0F\u6216\u53D1\u77ED\u4FE1\u5230\u6211\u7684\u624B\u673A\u3002SEIU \u7EDD\u4E0D\u4F1A\u5BF9\u77ED\u4FE1\u63D0\u9192\u6536\u53D6\u8D39\u7528\u3002\u8FD0\u8425\u5546\u8BAF\u606F\u548C\u6570\u636E\u6536\u8D39\u53EF\u80FD\u9002\u7528\u4E8E\u8FD9\u4E9B\u63D0\u9192\u3002\u56DE\u590D STOP\uFF08\u505C\u6B62\uFF09\u4EE5\u505C\u6B62\u63A5\u6536\u8BAF\u606F\uFF1B\u56DE\u590D HELP\uFF08\u5E2E\u52A9\uFF09\u4EE5\u83B7\u53D6\u66F4\u591A\u4FE1\u606F\u3002",
-      ar: "\u2020 \u0628\u062A\u0642\u062F\u064A\u0645 \u0631\u0642\u0645 \u0647\u0627\u062A\u0641\u064A\u060C \u0623\u0641\u0647\u0645 \u0623\u0646 \u0627\u0644\u0627\u062A\u062D\u0627\u062F \u0627\u0644\u062F\u0648\u0644\u064A \u0644\u0645\u0648\u0638\u0641\u064A \u0627\u0644\u062E\u062F\u0645\u0627\u062A (SEIU) \u0648\u0646\u0642\u0627\u0628\u0627\u062A\u0647 \u0627\u0644\u0645\u062D\u0644\u064A\u0629 \u0648\u0627\u0644\u0634\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0627\u0628\u0639\u0629 \u0644\u0647 \u0642\u062F \u064A\u0633\u062A\u062E\u062F\u0645\u0648\u0646 \u062A\u0642\u0646\u064A\u0627\u062A \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0627\u0644\u0622\u0644\u064A \u0648/\u0623\u0648 \u064A\u0631\u0633\u0644\u0648\u0646 \u0631\u0633\u0627\u0626\u0644 \u0646\u0635\u064A\u0629 \u0625\u0644\u0649 \u0647\u0627\u062A\u0641\u064A \u0627\u0644\u0645\u062D\u0645\u0648\u0644 \u0628\u0634\u0643\u0644 \u062F\u0648\u0631\u064A. \u0644\u0646 \u062A\u0641\u0631\u0636 SEIU \u0623\u064A \u0631\u0633\u0648\u0645 \u0639\u0644\u0649 \u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0627\u0644\u0631\u0633\u0627\u0626\u0644 \u0627\u0644\u0646\u0635\u064A\u0629. \u0642\u062F \u062A\u0637\u0628\u0642 \u0634\u0631\u0643\u0629 \u0627\u0644\u0627\u062A\u0635\u0627\u0644\u0627\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u0631\u0633\u0627\u0626\u0644 \u0648\u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A. \u0623\u0631\u0633\u0644 STOP \u0644\u0625\u064A\u0642\u0627\u0641 \u0627\u0644\u0631\u0633\u0627\u0626\u0644\u061B \u0648\u0623\u0631\u0633\u0644 HELP \u0644\u0645\u0632\u064A\u062F \u0645\u0646 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A.",
-      so: "\u2020 Markaan bixiyo lambarkayga telefoonka, waxaan fahamsanahay in Service Employees International Union (SEIU), ururradeeda maxalliga ah, iyo kuwa la xiriira ay isticmaali karaan teknoolojiyada wicitaanka otomaatiga ah iyo/ama ay ii soo diri karaan fariimo qoraal ah telefoonkeyga gacanta mararka qaarkood. SEIU waligeed lacag kama qaadi doonto digniinaha fariimaha qoraalka ah. Qiimaha fariimaha iyo xogta ee shirkadda telefoonka ayaa jiri kara. Ku jawaab STOP si aad u joojiso fariimaha; ku jawaab HELP si aad macluumaad dheeraad ah u hesho."
+    otherSocialIdentities: {
+      en: "Other Social Identities",
+      es: "Otras identidades sociales",
+      ru: "\u0414\u0440\u0443\u0433\u0430\u044F \u0441\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u0430\u044F \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u043E\u0441\u0442\u044C",
+      vi: "C\xE1c b\u1EA3n s\u1EAFc x\xE3 h\u1ED9i kh\xE1c",
+      zh: "\u5176\u4ED6\u793E\u4F1A\u8EAB\u4EFD",
+      ar: "\u0647\u0648\u064A\u0627\u062A \u0627\u062C\u062A\u0645\u0627\u0639\u064A\u0629 \u0623\u062E\u0631\u0649",
+      so: "Aqoonsiyo bulsheed oo kale"
     },
-    polOptOut: {
-      en: "Check the box below if you would like the portion of dues spent on political power to go toward SEIU 503\u2019s scholarship fund.",
-      es: "Seleccione esta casilla si quiere que una parte de las cuotas se invierta en el poder pol\xEDtico para mejorar el fondo para becas de SEIU 503.",
-      ru: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0444\u043B\u0430\u0436\u043E\u043A \u043D\u0438\u0436\u0435, \u0435\u0441\u043B\u0438 \u0445\u043E\u0442\u0438\u0442\u0435, \u0447\u0442\u043E\u0431\u044B \u0447\u0430\u0441\u0442\u044C \u0432\u0437\u043D\u043E\u0441\u043E\u0432, \u0440\u0430\u0441\u0445\u043E\u0434\u0443\u0435\u043C\u0430\u044F \u043D\u0430 \u043F\u043E\u043B\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0443\u044E \u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C, \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044F\u043B\u0430\u0441\u044C \u0432 \u0441\u0442\u0438\u043F\u0435\u043D\u0434\u0438\u0430\u043B\u044C\u043D\u044B\u0439 \u0444\u043E\u043D\u0434 SEIU 503.",
-      vi: "\u0110\xE1nh d\u1EA5u v\xE0o \xF4 b\xEAn d\u01B0\u1EDBi n\u1EBFu qu\xFD v\u1ECB mu\u1ED1n ph\u1EA7n c\xF4ng \u0111o\xE0n ph\xED \u0111\u01B0\u1EE3c d\xF9ng cho quy\u1EC1n l\u1EF1c ch\xEDnh tr\u1ECB chuy\u1EC3n v\xE0o qu\u1EF9 h\u1ECDc b\u1ED5ng c\u1EE7a SEIU 503.",
-      zh: "\u5982\u679C\u60A8\u5E0C\u671B\u5C06\u7528\u4E8E\u653F\u6CBB\u529B\u91CF\u7684\u4F1A\u8D39\u90E8\u5206\u8F6C\u5165 SEIU 503 \u5956\u5B66\u91D1\u57FA\u91D1\uFF0C\u8BF7\u52FE\u9009\u4E0B\u9762\u7684\u6846\u3002",
-      ar: "\u062D\u062F\u062F \u0627\u0644\u0645\u0631\u0628\u0639 \u0623\u062F\u0646\u0627\u0647 \u0625\u0630\u0627 \u0643\u0646\u062A \u062A\u0631\u063A\u0628 \u0641\u064A \u062A\u0648\u062C\u064A\u0647 \u0627\u0644\u062C\u0632\u0621 \u0645\u0646 \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0644\u0644\u0642\u0648\u0629 \u0627\u0644\u0633\u064A\u0627\u0633\u064A\u0629 \u0625\u0644\u0649 \u0635\u0646\u062F\u0648\u0642 \u0627\u0644\u0645\u0646\u062D \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u0629 \u0627\u0644\u062A\u0627\u0628\u0639 \u0644\u0640 SEIU 503.",
-      so: "Calaamadee sanduuqa hoose haddii aad rabto in qaybta qaaraanka ee loo isticmaalo awoodda siyaasadeed lagu wareejiyo sanduuqa deeqaha waxbarasho ee SEIU 503."
+    lgbtqId: {
+      en: "I identify as LGBTQIA2S+ or Queer",
+      es: "Me identifico como LGBTQIA2S+ o Queer",
+      ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F\u043C \u041B\u0413\u0411\u0422\u041A\u0418\u0410+ \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430",
+      vi: "T\xF4i x\xE1c \u0111\u1ECBnh m\xECnh l\xE0 LGBTQIA+",
+      zh: "\u6211\u8BA4\u5B9A\u81EA\u5DF1\u662F\u7537\u5973\u540C\u6027\u604B\u8005\u3001\u53CC\u6027\u604B\u8005\u3001\u53D8\u6027\u4EBA\u3001\u8DE8\u6027\u522B\u8005\u3001\u53CC\u6027\u4EBA\u3001\u65E0\u6027\u604B\u8005\u53CA\u5176\u4ED6 \uFF08LGBTQIA+\uFF09",
+      ar: "\u0623\u0639\u0631\u0651\u0641 \u0646\u0641\u0633\u064A \u0628\u0623\u0646\u0646\u064A \u0645\u0646 \u0645\u062C\u062A\u0645\u0639 LGBTQIA2S+ \u0623\u0648 \u0643\u0648\u064A\u0631",
+      so: "Waxaan isu aqoonsanahay LGBTQIA2S+ ama Queer"
     },
-    polOptOutCheckbox: {
-      en: "Opt out of worker political power",
-      es: "Optar por no participar del poder pol\xEDtico de los trabajadores",
-      ru: "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F \u043E\u0442 \u0443\u0447\u0430\u0441\u0442\u0438\u044F \u0432 \u043F\u043E\u043B\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0441\u0438\u043B\u0435 \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432",
-      vi: "T\u1EEB ch\u1ED1i tham gia quy\u1EC1n l\u1EF1c ch\xEDnh tr\u1ECB c\u1EE7a ng\u01B0\u1EDDi lao \u0111\u1ED9ng",
-      zh: "\u9009\u62E9\u9000\u51FA\u5DE5\u4EBA\u653F\u6CBB\u529B\u91CF",
-      ar: "\u0639\u062F\u0645 \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0641\u064A \u0627\u0644\u0642\u0648\u0629 \u0627\u0644\u0633\u064A\u0627\u0633\u064A\u0629 \u0644\u0644\u0639\u0645\u0627\u0644",
-      so: "Ka bax awoodda siyaasadeed ee shaqaalaha"
+    transId: {
+      en: "I identify as transgender",
+      es: "Me identifico como transg\xE9nero",
+      ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0442\u0440\u0430\u043D\u0441\u0433\u0435\u043D\u0434\u0435\u0440\u0430\u043C",
+      vi: "T\xF4i x\xE1c \u0111\u1ECBnh m\xECnh l\xE0 ng\u01B0\u1EDDi chuy\u1EC3n gi\u1EDBi",
+      zh: "\u6211\u8BA4\u5B9A\u81EA\u5DF1\u4E3A\u8DE8\u6027\u522B\u8005",
+      ar: "\u0623\u0639\u0631\u0651\u0641 \u0646\u0641\u0633\u064A \u0628\u0623\u0646\u0646\u064A \u0639\u0627\u0628\u0631/\u0639\u0627\u0628\u0631\u0629 \u062C\u0646\u062F\u0631\u064A\u064B\u0627",
+      so: "Waxaan isu aqoonsanahay qof transgender ah"
     },
-    signature: {
-      en: "Signature",
-      es: "Firma",
-      ru: "\u041F\u043E\u0434\u043F\u0438\u0441\u044C",
-      vi: "Ch\u1EEF k\xFD",
-      zh: "\u7B7E\u540D",
-      ar: "\u0627\u0644\u062A\u0648\u0642\u064A\u0639",
-      so: "Saxiixa"
+    veteranId: {
+      en: "I am a veteran or active military",
+      es: "Soy veterano/a o militar activo/a",
+      ru: "\u042F \u0432\u0435\u0442\u0435\u0440\u0430\u043D \u0438\u043B\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 ",
+      vi: "T\xF4i l\xE0 m\u1ED9t c\u1EF1u chi\u1EBFn binh ho\u1EB7c qu\xE2n \u0111\u1ED9i t\u1EA1i ng\u0169",
+      zh: "\u6211\u662F\u9000\u4F0D\u519B\u4EBA\u6216\u73B0\u5F79\u519B\u4EBA ",
+      ar: "\u0623\u0646\u0627 \u0645\u0646 \u0642\u062F\u0627\u0645\u0649 \u0627\u0644\u0645\u062D\u0627\u0631\u0628\u064A\u0646 \u0623\u0648 \u0641\u064A \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u0639\u0633\u0643\u0631\u064A\u0629 \u062D\u0627\u0644\u064A\u064B\u0627",
+      so: "Waxaan ahay halyeey ciidan hore ama ciidan firfircoon"
     },
-    signatureNote: {
-      en: "Enter your full legal name. This will act as your signature.",
-      es: "Ingrese su nombre legal completo. Esto servir\xE1 como su firma.",
-      ru: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u0438\u043C\u044F \u0438 \u0444\u0430\u043C\u0438\u043B\u0438\u044E \u0441\u043E\u0433\u043B\u0430\u0441\u043D\u043E \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0430\u043C. \u0412\u0430\u0448\u0435 \u0438\u043C\u044F \u0431\u0443\u0434\u0435\u0442 \u0441\u043B\u0443\u0436\u0438\u0442\u044C \u0432\u0430\u0448\u0435\u0439 \u043F\u043E\u0434\u043F\u0438\u0441\u044C\u044E.",
-      vi: "Nh\u1EADp h\u1ECD t\xEAn h\u1EE3p ph\xE1p c\u1EE7a qu\xFD v\u1ECB. \u0110i\u1EC1u n\xE0y s\u1EBD c\xF3 hi\u1EC7u l\u1EF1c nh\u01B0 ch\u1EEF k\xFD c\u1EE7a qu\xFD v\u1ECB.",
-      zh: "\u8F93\u5165\u60A8\u7684\u5408\u6CD5\u59D3\u540D\u3002\u8FD9\u5C06\u4F5C\u4E3A\u60A8\u7684\u7B7E\u540D\u3002",
-      ar: "\u0623\u062F\u062E\u0644 \u0627\u0633\u0645\u0643 \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064A \u0627\u0644\u0643\u0627\u0645\u0644. \u0633\u064A\u064F\u0639\u062F \u0647\u0630\u0627 \u0628\u0645\u062B\u0627\u0628\u0629 \u062A\u0648\u0642\u064A\u0639\u0643.",
-      so: "Geli magacaaga sharciga ah oo buuxa. Tani waxay noqon doontaa saxiixaaga."
+    disabilityId: {
+      en: "I identify as disabled or a person with a disability",
+      es: "Me identifico como persona discapacitada o una persona con discapacidad",
+      ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0438\u043D\u0432\u0430\u043B\u0438\u0434\u0430\u043C \u0438\u043B\u0438 \u043B\u0438\u0446\u0430\u043C \u0441 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u043D\u044B\u043C\u0438 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044F\u043C\u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F",
+      vi: "T\xF4i x\xE1c \u0111\u1ECBnh m\xECnh l\xE0 ng\u01B0\u1EDDi khuy\u1EBFt t\u1EADt ho\u1EB7c ng\u01B0\u1EDDi c\xF3 m\u1ED9t khuy\u1EBFt t\u1EADt",
+      zh: "\u6211\u8BA4\u5B9A\u81EA\u5DF1\u4E3A\u6B8B\u75BE\u4EBA\u6216\u6B8B\u969C\u4EBA\u58EB",
+      ar: "\u0623\u0639\u0631\u0651\u0641 \u0646\u0641\u0633\u064A \u0628\u0623\u0646\u0646\u064A \u0634\u062E\u0635 \u0645\u0639\u0627\u0642 \u0623\u0648 \u0634\u062E\u0635 \u0630\u0648 \u0625\u0639\u0627\u0642\u0629",
+      so: "Waxaan isu aqoonsanahay qof naafo ah ama qof qaba naafonimo"
     },
-    membershipAuthTitle: {
-      en: "Membership Authorization",
-      es: "Autorizaci\xF3n de membres\xEDa",
-      ru: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043D\u0430 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E",
-      vi: "\u1EE6y quy\u1EC1n h\u1ED9i vi\xEAn",
-      zh: "\u4F1A\u5458\u6388\u6743",
-      ar: "\u062A\u0641\u0648\u064A\u0636 \u0627\u0644\u0639\u0636\u0648\u064A\u0629",
-      so: "Oggolaanshaha Xubinimada"
+    deafOrHardOfHearing: {
+      en: "I identify as Deaf or hard-of-hearing",
+      es: "Me identifico como persona sorda o con dificultades auditivas",
+      ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u0433\u043B\u0443\u0445\u0438\u043C \u0438\u043B\u0438 \u0441\u043B\u0430\u0431\u043E\u0441\u043B\u044B\u0448\u0430\u0449\u0438\u043C",
+      vi: "T\xF4i x\xE1c \u0111\u1ECBnh m\xECnh b\u1ECB \u0111i\u1EBFc ho\u1EB7c khi\u1EBFm th\xEDnh",
+      zh: "\u6211\u8BA4\u5B9A\u81EA\u5DF1\u4E3A\u5931\u806A\u8005\u6216\u6709\u542C\u529B\u969C\u788D",
+      ar: "\u0623\u0639\u0631\u0651\u0641 \u0646\u0641\u0633\u064A \u0628\u0623\u0646\u0646\u064A \u0623\u0635\u0645 \u0623\u0648 \u0636\u0639\u064A\u0641 \u0627\u0644\u0633\u0645\u0639",
+      so: "Waxaan isu aqoonsanahay qof dhagool ah ama maqalkiisu liito"
     },
-    membershipAuthLL: {
-      en: "I request and voluntarily accept membership in SEIU Local 503 and its successors or assigns (collectively \u201CLocal 503\u201D). This means I will receive the benefits and abide by the obligations of membership set forth in both Local 503\u2019s and the Service Employees International Union\u2019s Constitutions and Bylaws. I authorize Local 503 to act as my representative in collective bargaining over wages, benefits, and other terms/conditions of employment with my employer, and as my exclusive representative where authorized by law. My membership will be continuous, unless I resign by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503 policies). I know that union membership is voluntary and not a condition of employment, and that I can decline to join without reprisal.",
-      es: "Solicito y acepto voluntariamente la membres\xEDa en SEIU Local 503 y sus sucesores o cesionarios (en conjunto \u201CLocal 503\u201D). Esto significa que recibir\xE9 los beneficios y cumplir\xE9 las obligaciones derivadas de la membres\xEDa que se estipulan en la Constituci\xF3n y los Estatutos de Local 503 y de la Uni\xF3n Internacional de Empleados de Servicios. Autorizo a Local 503 para que act\xFAe como mi representante en las negociaciones colectivas relativas a salarios, beneficios y dem\xE1s t\xE9rminos/condiciones laborales que lleve a cabo con mi empleador, y como mi representante exclusivo en los casos que la ley lo permita. Mi membres\xEDa ser\xE1 permanente, a menos que renuncie a la misma por medio de un aviso dirigido a Local 503 y lo env\xEDe a trav\xE9s del correo postal de los EE. UU. (u otro m\xE9todo, si as\xED lo permiten las pol\xEDticas de Local 503). S\xE9 que la membres\xEDa de la uni\xF3n es voluntaria y no es una condici\xF3n laboral, y que puedo rechazar la opci\xF3n de unirme sin que esto implique represalias.",
-      ru: "\u042F \u0437\u0430\u043F\u0440\u0430\u0448\u0438\u0432\u0430\u044E \u0438 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0430\u044E \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 SEIU Local 503 \u0438 \u0435\u0433\u043E \u043F\u0440\u0430\u0432\u043E\u043F\u0440\u0435\u0435\u043C\u043D\u0438\u043A\u0430\u0445 \u0438\u043B\u0438 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F\u0445 (\u0441\u043E\u0432\u043C\u0435\u0441\u0442\u043D\u043E \u0438\u043C\u0435\u043D\u0443\u0435\u043C\u044B\u0445 Local 503). \u042D\u0442\u043E \u043E\u0437\u043D\u0430\u0447\u0430\u0435\u0442, \u0447\u0442\u043E \u044F \u0431\u0443\u0434\u0443 \u043F\u043E\u043B\u0443\u0447\u0430\u0442\u044C \u043B\u044C\u0433\u043E\u0442\u044B \u0438 \u0441\u043E\u0431\u043B\u044E\u0434\u0430\u0442\u044C \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 \u043F\u043E \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u0443, \u0438\u0437\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0432 \u0423\u0441\u0442\u0430\u0432\u0435 \u0438 \u0432\u043D\u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0445 \u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u0445 \u043A\u0430\u043A Local 503, \u0442\u0430\u043A \u0438 \u041C\u0435\u0436\u0434\u0443\u043D\u0430\u0440\u043E\u0434\u043D\u043E\u0433\u043E \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430 \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432 \u0441\u0444\u0435\u0440\u044B \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u044F (Service Employees International Union, SEIU). \u042F \u0443\u043F\u043E\u043B\u043D\u043E\u043C\u043E\u0447\u0438\u0432\u0430\u044E Local 503 \u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u0435 \u043C\u043E\u0435\u0433\u043E \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F \u0432 \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0430\u0445 \u043E \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u043D\u043E\u0439 \u043F\u043B\u0430\u0442\u0435, \u043B\u044C\u0433\u043E\u0442\u0430\u0445 \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u0443\u0441\u043B\u043E\u0432\u0438\u044F\u0445 \u043D\u0430\u0439\u043C\u0430 \u0441 \u043C\u043E\u0438\u043C \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u0435\u043C, \u0438 \u044D\u043A\u0441\u043A\u043B\u044E\u0437\u0438\u0432\u043D\u043E\u0433\u043E \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044F \u0432 \u0441\u043B\u0443\u0447\u0430\u044F\u0445, \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u0445 \u0437\u0430\u043A\u043E\u043D\u043E\u043C. \u0423\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0431\u0435\u0441\u0441\u0440\u043E\u0447\u043D\u044B\u043C \u0432\u043F\u043B\u043E\u0442\u044C \u0434\u043E \u043C\u043E\u0435\u0433\u043E \u043E\u0442\u043A\u0430\u0437\u0430 \u043E\u0442 \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u0430 \u043F\u0443\u0442\u0435\u043C \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F Local 503 \u043F\u043E \u041F\u043E\u0447\u0442\u0435 \u0421\u0428\u0410 (\u0438\u043B\u0438 \u0438\u043D\u044B\u043C \u0441\u043F\u043E\u0441\u043E\u0431\u043E\u043C, \u043F\u0440\u0435\u0434\u0443\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u043C \u0440\u0435\u0433\u043B\u0430\u043C\u0435\u043D\u0442\u0430\u043C\u0438 Local 503). \u042F \u0437\u043D\u0430\u044E, \u0447\u0442\u043E \u0447\u043B\u0435\u043D\u0441\u0442\u0432\u043E \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0435 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E\u0435, \u0438 \u043E\u0442\u043A\u0430\u0437 \u043E\u0442 \u043D\u0435\u0433\u043E \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0441\u043B\u0443\u0436\u0438\u0442\u044C \u043E\u0441\u043D\u043E\u0432\u0430\u043D\u0438\u0435\u043C \u0434\u043B\u044F \u043D\u0435\u0433\u0430\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u043E\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u0438\u0439.",
-      vi: "T\xF4i y\xEAu c\u1EA7u v\xE0 t\u1EF1 nguy\u1EC7n ch\u1EA5p nh\u1EADn tr\u1EDF th\xE0nh th\xE0nh vi\xEAn c\u1EE7a SEIU Local 503 c\u0169ng nh\u01B0 c\xE1c t\u1ED5 ch\u1EE9c li\xEAn \u0111o\xE0n k\u1EBF nhi\u1EC7m ho\u1EB7c \u0111\u01B0\u1EE3c giao tr\u1ECDng tr\xE1ch (g\u1ECDi chung l\xE0 \u201CLocal 503\u201D). \u0110i\u1EC1u n\xE0y c\xF3 ngh\u0129a l\xE0 t\xF4i s\u1EBD \u0111\u01B0\u1EE3c h\u01B0\u1EDFng c\xE1c l\u1EE3i \xEDch v\xE0 tu\xE2n th\u1EE7 c\xE1c ngh\u0129a v\u1EE5 c\u1EE7a th\xE0nh vi\xEAn \u0111\u01B0\u1EE3c quy \u0111\u1ECBnh trong Hi\u1EBFn ph\xE1p v\xE0 Quy ch\u1EBF c\u1EE7a c\u1EA3 Local 503 v\xE0 Service Employees International Union. T\xF4i \u1EE7y quy\u1EC1n cho Local 503 l\xE0m \u0111\u1EA1i di\u1EC7n c\u1EE7a t\xF4i trong vi\u1EC7c th\u01B0\u01A1ng l\u01B0\u1EE3ng t\u1EADp th\u1EC3 v\u1EC1 ti\u1EC1n l\u01B0\u01A1ng, l\u1EE3i \xEDch v\xE0 c\xE1c \u0111i\u1EC1u kho\u1EA3n/\u0111i\u1EC1u ki\u1EC7n l\xE0m vi\u1EC7c kh\xE1c v\u1EDBi ch\u1EE7 lao \u0111\u1ED9ng c\u1EE7a t\xF4i, v\xE0 l\xE0 \u0111\u1EA1i di\u1EC7n \u0111\u1ED9c quy\u1EC1n khi ph\xE1p lu\u1EADt cho ph\xE9p. T\u01B0 c\xE1ch th\xE0nh vi\xEAn c\u1EE7a t\xF4i s\u1EBD ti\u1EBFp t\u1EE5c tr\u1EEB khi t\xF4i t\u1EEB ch\u1EE9c b\u1EB1ng c\xE1ch g\u1EEDi th\xF4ng b\xE1o cho Local 503 qua d\u1ECBch v\u1EE5 b\u01B0u \u0111i\u1EC7n Hoa K\u1EF3 (ho\u1EB7c ph\u01B0\u01A1ng th\u1EE9c kh\xE1c n\u1EBFu \u0111\u01B0\u1EE3c ph\xE9p theo ch\xEDnh s\xE1ch c\u1EE7a Local 503). T\xF4i hi\u1EC3u r\u1EB1ng vi\u1EC7c tham gia c\xF4ng \u0111o\xE0n l\xE0 t\u1EF1 nguy\u1EC7n v\xE0 kh\xF4ng ph\u1EA3i l\xE0 \u0111i\u1EC1u ki\u1EC7n l\xE0m vi\u1EC7c, v\xE0 t\xF4i c\xF3 th\u1EC3 t\u1EEB ch\u1ED1i tham gia m\xE0 kh\xF4ng b\u1ECB tr\u1EA3 \u0111\u0169a.",
-      zh: "\u672C\u4EBA\u8BF7\u6C42\u81EA\u613F\u6210\u4E3A SEIU Local 503 \u4EE5\u53CA\u5176\u7EE7\u627F\u65B9\u6216\u53D7\u8BA9\u65B9\uFF08\u7EDF\u79F0\u201CLocal 503\u201D\uFF09\u7684\u6210\u5458\u3002\u8FD9\u8868\u793A\u6211\u5C06\u83B7\u5F97\u798F\u5229\uFF0C\u5E76\u9075\u5B88 Local 503 \u548C\u670D\u52A1\u884C\u4E1A\u96C7\u5458\u56FD\u9645\u5DE5\u4F1A\u7AE0\u7A0B\u548C\u7EC6\u5219\u4E2D\u89C4\u5B9A\u7684\u4F1A\u5458\u4E49\u52A1\u3002\u6211\u6388\u6743 Local 503 \u4F5C\u4E3A\u6211\u7684\u4EE3\u8868\u4E0E\u6211\u7684\u96C7\u4E3B\u5C31\u5DE5\u8D44\u3001\u798F\u5229\u548C\u5176\u4ED6\u96C7\u4F63\u6761\u6B3E/\u6761\u4EF6\u8FDB\u884C\u96C6\u4F53\u8C08\u5224\uFF0C\u5E76\u5728\u6CD5\u5F8B\u5141\u8BB8\u7684\u60C5\u51B5\u4E0B\u4F5C\u4E3A\u6211\u7684\u4E13\u5C5E\u4EE3\u8868\u3002\u9664\u975E\u6211\u901A\u8FC7\u7F8E\u56FD\u90AE\u653F\u670D\u52A1\uFF08\u6216 Local 503 \u653F\u7B56\u89C4\u5B9A\u7684\u5176\u4ED6\u65B9\u5F0F\uFF09\u5411 Local 503 \u63D0\u4EA4\u901A\u77E5\u9000\u51FA\uFF0C\u5426\u5219\u6211\u7684\u6210\u5458\u8D44\u683C\u5C06\u6301\u7EED\u6709\u6548\u3002\u6211\u4E86\u89E3\u52A0\u5165\u5DE5\u4F1A\u662F\u81EA\u613F\u7684\uFF0C\u5E76\u4E0D\u662F\u5C31\u4E1A\u7684\u6761\u4EF6\uFF0C\u6211\u53EF\u4EE5\u62D2\u7EDD\u52A0\u5165\u800C\u4E0D\u4F1A\u53D7\u5230\u62A5\u590D\u3002",
-      ar: '\u0623\u0637\u0644\u0628 \u0648\u0623\u0648\u0627\u0641\u0642 \u0637\u0648\u0639\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0627\u0646\u0636\u0645\u0627\u0645 \u0625\u0644\u0649 SEIU Local 503 \u0648\u062E\u0644\u0641\u0627\u0626\u0647 \u0623\u0648 \u0627\u0644\u062C\u0647\u0627\u062A \u0627\u0644\u0645\u062D\u0627\u0644\u0629 \u0625\u0644\u064A\u0647 (\u0648\u064A\u0634\u0627\u0631 \u0625\u0644\u064A\u0647\u0645 \u0645\u062C\u062A\u0645\u0639\u064A\u0646 \u0628\u0627\u0633\u0645 "Local 503"). \u0648\u0647\u0630\u0627 \u064A\u0639\u0646\u064A \u0623\u0646\u0646\u064A \u0633\u0623\u062D\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u0645\u0632\u0627\u064A\u0627 \u0648\u0623\u0644\u062A\u0632\u0645 \u0628\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u0645\u0646\u0635\u0648\u0635 \u0639\u0644\u064A\u0647\u0627 \u0641\u064A \u062F\u0633\u0627\u062A\u064A\u0631 \u0648\u0644\u0648\u0627\u0626\u062D \u0643\u0644 \u0645\u0646 Local 503 \u0648\u0627\u062A\u062D\u0627\u062F \u0645\u0648\u0638\u0641\u064A \u0627\u0644\u062E\u062F\u0645\u0627\u062A \u0627\u0644\u062F\u0648\u0644\u064A. \u0648\u0623\u0641\u0648\u0636 Local 503 \u0644\u0644\u0639\u0645\u0644 \u0643\u0645\u0645\u062B\u0644 \u0644\u064A \u0641\u064A \u0627\u0644\u0645\u0641\u0627\u0648\u0636\u0627\u062A \u0627\u0644\u062C\u0645\u0627\u0639\u064A\u0629 \u0628\u0634\u0623\u0646 \u0627\u0644\u0623\u062C\u0648\u0631 \u0648\u0627\u0644\u0645\u0632\u0627\u064A\u0627 \u0648\u0634\u0631\u0648\u0637 \u0648\u0623\u062D\u0643\u0627\u0645 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0623\u062E\u0631\u0649 \u0645\u0639 \u0635\u0627\u062D\u0628 \u0639\u0645\u0644\u064A\u060C \u0648\u0643\u0630\u0644\u0643 \u0643\u0645\u0645\u062B\u0644 \u062D\u0635\u0631\u064A \u0644\u064A \u062D\u064A\u062B \u064A\u0633\u0645\u062D \u0627\u0644\u0642\u0627\u0646\u0648\u0646 \u0628\u0630\u0644\u0643. \u0633\u062A\u0633\u062A\u0645\u0631 \u0639\u0636\u0648\u064A\u062A\u064A \u0645\u0627 \u0644\u0645 \u0623\u0633\u062A\u0642\u0644 \u0645\u0646 \u062E\u0644\u0627\u0644 \u062A\u0642\u062F\u064A\u0645 \u0625\u0634\u0639\u0627\u0631 \u0625\u0644\u0649 Local 503 \u0639\u0628\u0631 \u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0623\u0645\u0631\u064A\u0643\u064A (\u0623\u0648 \u0623\u064A \u0648\u0633\u064A\u0644\u0629 \u0623\u062E\u0631\u0649 \u062A\u0633\u0645\u062D \u0628\u0647\u0627 \u0633\u064A\u0627\u0633\u0627\u062A Local 503). \u0623\u0639\u0644\u0645 \u0623\u0646 \u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u0646\u0642\u0627\u0628\u0629 \u0637\u0648\u0639\u064A\u0629 \u0648\u0644\u064A\u0633\u062A \u0634\u0631\u0637\u064B\u0627 \u0644\u0644\u062A\u0648\u0638\u064A\u0641\u060C \u0648\u064A\u0645\u0643\u0646\u0646\u064A \u0631\u0641\u0636 \u0627\u0644\u0627\u0646\u0636\u0645\u0627\u0645 \u062F\u0648\u0646 \u0627\u0644\u062A\u0639\u0631\u0636 \u0644\u0623\u064A \u0627\u0646\u062A\u0642\u0627\u0645.',
-      so: "Waxaan codsanayaa oo si ikhtiyaari ah u aqbalayaa xubinimada SEIU Local 503 iyo cid kasta oo beddesha ama loo wareejiyo (oo si wadajir ah loogu yeero \u201CLocal 503\u201D). Tani waxay ka dhigan tahay inaan heli doono faa\u2019iidooyinka isla markaana aan raaci doono waajibaadka xubinimada ee ku xusan dastuurka iyo xeerarka Local 503 iyo Ururka Caalamiga ah ee Shaqaalaha Adeegga. Waxaan u oggolaanayaa Local 503 inuu iga noqdo wakiilkayga wadaxaajoodyada mushaharka, faa\u2019iidooyinka, iyo shuruudaha kale ee shaqada ee aan la leeyahay loo-shaqeeyahayga, iyo inuu noqdo wakiilkayga keliya marka sharcigu oggolaado. Xubinimadaydu way sii socon doontaa ilaa aan iska casilo anigoo ogeysiis siinaya Local 503 anigoo adeegsanaya boostada Mareykanka (ama hab kale haddii siyaasadaha Local 503 oggolaadaan). Waan ogahay in xubinimada ururku ay tahay mid ikhtiyaari ah oo aan ahayn shuruud shaqo, waxaana diidi karaa inaan ku biiro anigoon ka baqayn aargudasho."
+    blindOrVisuallyImpaired: {
+      en: "I identify as Blind or visually impaired",
+      es: "Me identifico como persona ciega o con discapacidad visual",
+      ru: "\u042F \u043E\u0442\u043D\u043E\u0448\u0443 \u0441\u0435\u0431\u044F \u043A \u043D\u0435\u0437\u0440\u044F\u0447\u0438\u043C \u0438\u043B\u0438 \u0441\u043B\u0430\u0431\u043E\u0432\u0438\u0434\u044F\u0449\u0438\u043C",
+      vi: "T\xF4i x\xE1c \u0111\u1ECBnh m\xECnh b\u1ECB m\xF9 ho\u1EB7c khi\u1EBFm th\u1ECB",
+      zh: "\u6211\u8BA4\u5B9A\u81EA\u5DF1\u4E3A\u5931\u660E\u8005\u6216\u6709\u89C6\u529B\u969C\u788D",
+      ar: "\u0623\u0639\u0631\u0651\u0641 \u0646\u0641\u0633\u064A \u0628\u0623\u0646\u0646\u064A \u0643\u0641\u064A\u0641 \u0623\u0648 \u0636\u0639\u064A\u0641 \u0627\u0644\u0628\u0635\u0631",
+      so: "Waxaan isu aqoonsanahay qof indhoole ah ama araggiisu liito"
     },
-    duesAuthTitle: {
-      en: "Dues Deduction / Checkoff Authorization",
-      es: "Autorizaci\xF3n de aportes/deducci\xF3n de cuotas",
-      ru: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043D\u0430 \u0443\u0434\u0435\u0440\u0436\u0430\u043D\u0438\u0435 \u0447\u043B\u0435\u043D\u0441\u043A\u0438\u0445 \u0432\u0437\u043D\u043E\u0441\u043E\u0432",
-      vi: "\u1EE6y quy\u1EC1n kh\u1EA5u tr\u1EEB c\xF4ng \u0111o\xE0n ph\xED",
-      zh: "\u4F1A\u8D39\u6263\u9664\u6388\u6743",
-      ar: "\u062A\u0641\u0648\u064A\u0636 \u062E\u0635\u0645 \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0627\u062A",
-      so: "Oggolaanshaha Jarista Qaaraanka"
+    gender: {
+      en: "Gender",
+      es: "G\xE9nero",
+      ru: "\u041F\u043E\u043B",
+      vi: "Gi\u1EDBi t\xEDnh",
+      zh: "\u6027\u522B",
+      ar: "\u0627\u0644\u062C\u0646\u0633",
+      so: "Jinsiga"
     },
-    duesAuthLL: {
-      en: "I request and voluntarily authorize my employer to deduct from my earnings and to pay to Local 503 and its successors and assigns (collectively \u201CLocal 503\u201D) an amount equal to Local 503\u2019s regular dues. This dues deduction authorization shall remain in effect unless I revoke it by providing notice to Local 503 via U.S. mail (or other method if permitted by Local 503\u2019s policies) within 15 days before or after (1) the annual anniversary date of this agreement or (2) the termination of the applicable collective bargaining agreement between my employer and union (\u201Cmy window periods\u201D). This authorization will renew automatically from year to year even if I have resigned my membership, unless I revoke it during one of my window periods and as required by Local 503\u2019s policies. This authorization is voluntary and is not a condition of my employment, and I can decline to agree to it without reprisal. I understand that all members benefit from everyone\u2019s commitments because they help build a strong union that is able to plan for the future.",
-      es: "Solicito y autorizo voluntariamente que mi empleador deduzca de mis ganancias, y le pague a Local 503 y a sus sucesores y cesionarios (en conjunto \u201CLocal 503\u201D), un monto equivalente a las cuotas ordinarias de Local 503. Esta autorizaci\xF3n para deducir las cuotas seguir\xE1 vigente a menos que yo la revoque por medio de un aviso dirigido a Local 503 y lo env\xEDe a trav\xE9s del correo postal de los EE. UU. (u otro m\xE9todo, si as\xED lo permiten las pol\xEDticas de Local 503) en un plazo de 15 d\xEDas antes o despu\xE9s de (1) la fecha de aniversario de este acuerdo o (2) la fecha de terminaci\xF3n del Contrato Colectivo de Trabajo correspondiente celebrado entre la uni\xF3n y mi empleador. Esta autorizaci\xF3n se renovar\xE1 autom\xE1ticamente cada a\xF1o, incluso si renuncio a mi membres\xEDa, salvo que la revoque dentro de los per\xEDodos permitidos. Esta autorizaci\xF3n es voluntaria y no es una condici\xF3n laboral, y puedo rechazarla sin represalias. Entiendo que todos los miembros se benefician de los compromisos colectivos porque ayudan a construir un sindicato fuerte capaz de planificar el futuro.",
-      ru: "\u042F \u043F\u0440\u043E\u0448\u0443 \u0438 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u0440\u0430\u0437\u0440\u0435\u0448\u0430\u044E \u043C\u043E\u0435\u043C\u0443 \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044E \u0443\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0442\u044C \u0438\u0437 \u043C\u043E\u0435\u0433\u043E \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u043A\u0430 \u0438 \u043F\u0435\u0440\u0435\u0447\u0438\u0441\u043B\u044F\u0442\u044C \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0443 Local 503 \u0438 \u0435\u0433\u043E \u043F\u0440\u0430\u0432\u043E\u043F\u0440\u0435\u0435\u043C\u043D\u0438\u043A\u0430\u043C \u0441\u0443\u043C\u043C\u0443, \u0440\u0430\u0432\u043D\u0443\u044E \u0440\u0435\u0433\u0443\u043B\u044F\u0440\u043D\u044B\u043C \u0447\u043B\u0435\u043D\u0441\u043A\u0438\u043C \u0432\u0437\u043D\u043E\u0441\u0430\u043C Local 503. \u0414\u0430\u043D\u043D\u043E\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u043E\u0441\u0442\u0430\u0435\u0442\u0441\u044F \u0432 \u0441\u0438\u043B\u0435, \u0435\u0441\u043B\u0438 \u044F \u043D\u0435 \u043E\u0442\u0437\u043E\u0432\u0443 \u0435\u0433\u043E, \u043D\u0430\u043F\u0440\u0430\u0432\u0438\u0432 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0435 \u0432 Local 503 \u043F\u043E \u041F\u043E\u0447\u0442\u0435 \u0421\u0428\u0410 (\u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u043C \u0441\u043F\u043E\u0441\u043E\u0431\u043E\u043C, \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u043C \u043F\u043E\u043B\u0438\u0442\u0438\u043A\u0430\u043C\u0438 Local 503) \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 15 \u0434\u043D\u0435\u0439 \u0434\u043E \u0438\u043B\u0438 \u043F\u043E\u0441\u043B\u0435 \u0434\u0430\u0442\u044B \u0433\u043E\u0434\u043E\u0432\u0449\u0438\u043D\u044B \u0441\u043E\u0433\u043B\u0430\u0448\u0435\u043D\u0438\u044F \u0438\u043B\u0438 \u043F\u0440\u0435\u043A\u0440\u0430\u0449\u0435\u043D\u0438\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430. \u042D\u0442\u043E \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043F\u0440\u043E\u0434\u043B\u0435\u0432\u0430\u0435\u0442\u0441\u044F \u0435\u0436\u0435\u0433\u043E\u0434\u043D\u043E, \u0434\u0430\u0436\u0435 \u0435\u0441\u043B\u0438 \u044F \u0432\u044B\u0439\u0434\u0443 \u0438\u0437 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437\u0430, \u0435\u0441\u043B\u0438 \u0442\u043E\u043B\u044C\u043A\u043E \u044F \u043D\u0435 \u043E\u0442\u0437\u043E\u0432\u0443 \u0435\u0433\u043E \u0432 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u044B\u0435 \u043F\u0435\u0440\u0438\u043E\u0434\u044B. \u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u043D\u044B\u043C \u0438 \u043D\u0435 \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0443\u0441\u043B\u043E\u0432\u0438\u0435\u043C \u0442\u0440\u0443\u0434\u043E\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430. \u042F \u043F\u043E\u043D\u0438\u043C\u0430\u044E, \u0447\u0442\u043E \u043A\u043E\u043B\u043B\u0435\u043A\u0442\u0438\u0432\u043D\u044B\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 \u043F\u043E\u043C\u043E\u0433\u0430\u044E\u0442 \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C \u0441\u0438\u043B\u044C\u043D\u044B\u0439 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437.",
-      vi: "T\xF4i y\xEAu c\u1EA7u v\xE0 t\u1EF1 nguy\u1EC7n \u1EE7y quy\u1EC1n cho ch\u1EE7 lao \u0111\u1ED9ng c\u1EE7a t\xF4i kh\u1EA5u tr\u1EEB t\u1EEB thu nh\u1EADp c\u1EE7a t\xF4i v\xE0 thanh to\xE1n cho Local 503 s\u1ED1 ti\u1EC1n t\u01B0\u01A1ng \u0111\u01B0\u01A1ng v\u1EDBi h\u1ED9i ph\xED th\xF4ng th\u01B0\u1EDDng. Vi\u1EC7c \u1EE7y quy\u1EC1n n\xE0y s\u1EBD ti\u1EBFp t\u1EE5c c\xF3 hi\u1EC7u l\u1EF1c tr\u1EEB khi t\xF4i r\xFAt l\u1EA1i b\u1EB1ng c\xE1ch g\u1EEDi th\xF4ng b\xE1o cho Local 503 trong kho\u1EA3ng th\u1EDDi gian quy \u0111\u1ECBnh. Vi\u1EC7c \u1EE7y quy\u1EC1n n\xE0y s\u1EBD t\u1EF1 \u0111\u1ED9ng gia h\u1EA1n h\u1EB1ng n\u0103m tr\u1EEB khi t\xF4i r\xFAt l\u1EA1i theo quy \u0111\u1ECBnh. \u0110\xE2y l\xE0 s\u1EF1 \u1EE7y quy\u1EC1n t\u1EF1 nguy\u1EC7n v\xE0 kh\xF4ng ph\u1EA3i l\xE0 \u0111i\u1EC1u ki\u1EC7n vi\u1EC7c l\xE0m. T\xF4i hi\u1EC3u r\u1EB1ng s\u1EF1 \u0111\xF3ng g\xF3p c\u1EE7a m\u1ECDi th\xE0nh vi\xEAn gi\xFAp x\xE2y d\u1EF1ng m\u1ED9t li\xEAn \u0111o\xE0n v\u1EEFng m\u1EA1nh.",
-      zh: "\u672C\u4EBA\u8BF7\u6C42\u5E76\u81EA\u613F\u6388\u6743\u6211\u7684\u96C7\u4E3B\u4ECE\u6211\u7684\u6536\u5165\u4E2D\u6263\u9664\u5E76\u652F\u4ED8\u7ED9 Local 503 \u7B49\u4E8E\u5E38\u89C4\u4F1A\u8D39\u7684\u91D1\u989D\u3002\u9664\u975E\u6211\u5728\u89C4\u5B9A\u65F6\u95F4\u5185\u64A4\u56DE\u6388\u6743\uFF0C\u5426\u5219\u8BE5\u6388\u6743\u5C06\u6301\u7EED\u6709\u6548\u5E76\u81EA\u52A8\u6BCF\u5E74\u66F4\u65B0\u3002\u8BE5\u6388\u6743\u662F\u81EA\u613F\u7684\uFF0C\u5E76\u4E0D\u662F\u5C31\u4E1A\u7684\u6761\u4EF6\u3002\u6211\u7406\u89E3\u6240\u6709\u6210\u5458\u7684\u627F\u8BFA\u6709\u52A9\u4E8E\u5EFA\u7ACB\u4E00\u4E2A\u5F3A\u5927\u7684\u5DE5\u4F1A\u3002",
-      ar: "\u0623\u0637\u0644\u0628 \u0648\u0623\u0641\u0648\u0636 \u0637\u0648\u0639\u064B\u0627 \u0635\u0627\u062D\u0628 \u0639\u0645\u0644\u064A \u0623\u0646 \u064A\u062E\u0635\u0645 \u0645\u0646 \u0623\u0631\u0628\u0627\u062D\u064A \u0648\u064A\u062F\u0641\u0639 \u0625\u0644\u0649 Local 503 \u0645\u0628\u0644\u063A\u064B\u0627 \u064A\u0639\u0627\u062F\u0644 \u0627\u0644\u0631\u0633\u0648\u0645 \u0627\u0644\u0646\u0642\u0627\u0628\u064A\u0629 \u0627\u0644\u0639\u0627\u062F\u064A\u0629. \u0633\u064A\u0638\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u0633\u0627\u0631\u064A\u064B\u0627 \u0645\u0627 \u0644\u0645 \u0623\u0642\u0645 \u0628\u0625\u0644\u063A\u0627\u0626\u0647 \u0645\u0646 \u062E\u0644\u0627\u0644 \u062A\u0642\u062F\u064A\u0645 \u0625\u0634\u0639\u0627\u0631 \u0625\u0644\u0649 Local 503 \u062E\u0644\u0627\u0644 \u0627\u0644\u0641\u062A\u0631\u0627\u062A \u0627\u0644\u0645\u062D\u062F\u062F\u0629. \u0633\u064A\u062A\u0645 \u062A\u062C\u062F\u064A\u062F \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u062A\u0644\u0642\u0627\u0626\u064A\u064B\u0627 \u0643\u0644 \u0639\u0627\u0645 \u0645\u0627 \u0644\u0645 \u0623\u0642\u0645 \u0628\u0625\u0644\u063A\u0627\u0626\u0647 \u0648\u0641\u0642\u064B\u0627 \u0644\u0644\u0633\u064A\u0627\u0633\u0627\u062A \u0627\u0644\u0645\u0639\u0645\u0648\u0644 \u0628\u0647\u0627. \u0647\u0630\u0627 \u0627\u0644\u062A\u0641\u0648\u064A\u0636 \u0637\u0648\u0639\u064A \u0648\u0644\u064A\u0633 \u0634\u0631\u0637\u064B\u0627 \u0645\u0646 \u0634\u0631\u0648\u0637 \u0627\u0644\u062A\u0648\u0638\u064A\u0641\u060C \u0648\u064A\u0645\u0643\u0646\u0646\u064A \u0631\u0641\u0636\u0647 \u062F\u0648\u0646 \u0627\u0644\u062A\u0639\u0631\u0636 \u0644\u0623\u064A \u0627\u0646\u062A\u0642\u0627\u0645. \u0623\u0641\u0647\u0645 \u0623\u0646 \u0627\u0644\u062A\u0632\u0627\u0645 \u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0639\u0636\u0627\u0621 \u064A\u0633\u0627\u0639\u062F \u0641\u064A \u0628\u0646\u0627\u0621 \u0646\u0642\u0627\u0628\u0629 \u0642\u0648\u064A\u0629 \u0642\u0627\u062F\u0631\u0629 \u0639\u0644\u0649 \u0627\u0644\u062A\u062E\u0637\u064A\u0637 \u0644\u0644\u0645\u0633\u062A\u0642\u0628\u0644.",
-      so: "Waxaan codsanayaa oo si ikhtiyaari ah u oggolaanayaa loo-shaqeeyahayga inuu ka jaro mushaharkayga lacag u dhiganta qaaraanka caadiga ah ee Local 503 oo uu u gudbiyo ururka. Oggolaanshahani wuu sii jiri doonaa ilaa aan ka noqdo anigoo ogeysiis siinaya Local 503 inta lagu jiro waqtiyada la oggol yahay. Oggolaanshahani si toos ah ayuu u cusboonaanayaa sanad kasta ilaa aan ka noqdo sida ay dhigayaan siyaasadaha Local 503. Oggolaanshahani waa ikhtiyaari mana aha shuruud shaqo, waxaana diidi karaa anigoon ka baqayn aargudasho. Waxaan fahamsanahay in dhammaan xubnuhu ka faa\u2019iidaystaan ballanqaadyada wadajirka ah sababtoo ah waxay dhisaan urur xooggan oo qorsheyn kara mustaqbalka."
+    female: {
+      en: "Female",
+      es: "Femenino",
+      ru: "\u0416\u0435\u043D\u0441\u043A\u0438\u0439",
+      vi: "N\u1EEF",
+      zh: "\u5973",
+      ar: "\u0623\u0646\u062B\u0649",
+      so: "Dhedig"
     },
-    homecareOrPersonalSupportWorker: {
-      en: "Homecare or Personal Support Worker",
-      es: "Trabajador de atenci\xF3n domiciliaria o de apoyo personal",
-      ru: "\u0420\u0430\u0431\u043E\u0442\u043D\u0438\u043A \u043D\u0430\u0434\u043E\u043C\u043D\u043E\u0433\u043E \u0438\u043B\u0438 \u0438\u043D\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
-      vi: "Nh\xE2n vi\xEAn ch\u0103m s\xF3c t\u1EA1i gia hay nh\xE2n vi\xEAn h\u1ED7 tr\u1EE3 c\xE1 nh\xE2n",
-      zh: "\u5C45\u5BB6\u62A4\u7406\u6216\u79C1\u4EBA\u62A4\u7406\u5DE5\u4F5C\u8005",
-      ar: "\u0639\u0627\u0645\u0644 \u0631\u0639\u0627\u064A\u0629 \u0645\u0646\u0632\u0644\u064A\u0629 \u0623\u0648 \u062F\u0639\u0645 \u0634\u062E\u0635\u064A",
-      so: "Shaqaale daryeel guri ama taageero shaqsiyeed"
+    male: {
+      en: "Male",
+      es: "Masculino",
+      ru: "\u041C\u0443\u0436\u0441\u043A\u043E\u0439",
+      vi: "Nam",
+      zh: "\u7537",
+      ar: "\u0630\u0643\u0631",
+      so: "Lab"
     },
-    localGovernment: {
-      en: "Local Government (City, County, School District)",
-      es: "Gobierno local (Ciudad, Condado, Distrito Escolar)",
-      ru: "\u041C\u0435\u0441\u0442\u043D\u044B\u0435 \u043E\u0440\u0433\u0430\u043D\u044B \u0432\u043B\u0430\u0441\u0442\u0438",
-      vi: "Ch\xEDnh quy\u1EC1n \u0111\u1ECBa ph\u01B0\u01A1ng",
-      zh: "\u5F53\u5730\u653F\u5E9C",
-      ar: "\u062D\u0643\u0648\u0645\u0629 \u0645\u062D\u0644\u064A\u0629 (\u0645\u062F\u064A\u0646\u0629\u060C \u0645\u0642\u0627\u0637\u0639\u0629\u060C \u0645\u0646\u0637\u0642\u0629 \u062A\u0639\u0644\u064A\u0645\u064A\u0629)",
-      so: "Dowladda hoose (Magaalo, Degmo, Degmo Dugsiyeed)"
+    "non-binary": {
+      en: "Non-Binary",
+      es: "No binario",
+      ru: "\u041B\u0438\u0446\u043E \u043D\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u043D\u043E\u0433\u043E \u043F\u043E\u043B\u0430",
+      vi: "Kh\xF4ng ph\xE2n bi\u1EC7t nam n\u1EEF",
+      zh: "\u975E\u4E8C\u5143\u6027\u522B",
+      ar: "\u063A\u064A\u0631 \u062B\u0646\u0627\u0626\u064A",
+      so: "Aan laba-jinsi ahayn"
     },
-    nursingHome: {
-      en: "Nursing Home",
-      es: "Hogar de ancianos",
-      ru: "\u0414\u043E\u043C\u0430 \u043F\u0440\u0435\u0441\u0442\u0430\u0440\u0435\u043B\u044B\u0445 \u0441 \u043C\u0435\u0434\u0441\u0435\u0441\u0442\u0440\u0438\u043D\u0441\u043A\u0438\u043C \u0443\u0445\u043E\u0434\u043E\u043C",
-      vi: "Vi\u1EC7n an d\u01B0\u1EE1ng",
-      zh: "\u7597\u517B\u9662",
-      ar: "\u062F\u0627\u0631 \u0631\u0639\u0627\u064A\u0629 \u0627\u0644\u0645\u0633\u0646\u064A\u0646",
-      so: "Guriga daryeelka dadka waayeelka ah"
+    genderOther: {
+      en: "Other",
+      es: "Otro",
+      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
+      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
+      zh: "\u5176\u4ED6",
+      ar: "\u0623\u062E\u0631\u0649",
+      so: "Kale"
     },
-    higherEducation: {
-      en: "Higher Education",
-      es: "Educaci\xF3n superior",
-      ru: "\u0412\u044B\u0441\u0448\u0435\u0435 \u043E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u043D\u0438\u0435",
-      vi: "Gi\xE1o d\u1EE5c \u0111\u1EA1i h\u1ECDc",
-      zh: "\u9AD8\u7B49\u6559\u80B2",
-      ar: "\u0627\u0644\u062A\u0639\u0644\u064A\u0645 \u0627\u0644\u0639\u0627\u0644\u064A",
-      so: "Waxbarashada sare"
+    genderOtherDescription: {
+      en: "Gender Other - Description",
+      es: "Otro g\xE9nero - descripci\xF3n",
+      ru: "\u0414\u0440\u0443\u0433\u043E\u0439 \u043F\u043E\u043B \u2013 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+      vi: "Gi\u1EDBi t\xEDnh kh\xE1c - M\xF4 t\u1EA3",
+      zh: "\u5176\u4ED6\u6027\u522B \u2014\u2014 \u8BF7\u63CF\u8FF0",
+      ar: "\u062C\u0646\u0633 \u0622\u062E\u0631 - \u0627\u0644\u0648\u0635\u0641",
+      so: "Jinsi kale - Sharaxaad"
     },
-    nonProfit: {
-      en: "Non-Profit",
-      es: "Organizaci\xF3n sin fines de lucro",
-      ru: "\u041D\u0435\u043A\u043E\u043C\u043C\u0435\u0440\u0447\u0435\u0441\u043A\u0430\u044F \u043E\u0440\u0433\u0430\u043D\u0438\u0437\u0430\u0446\u0438\u044F",
-      vi: "T\u1ED5 ch\u1EE9c phi l\u1EE3i nhu\u1EADn",
-      zh: "\u975E\u8425\u5229",
-      ar: "\u0645\u0646\u0638\u0645\u0629 \u063A\u064A\u0631 \u0631\u0628\u062D\u064A\u0629",
-      so: "Urur aan macaash doon ahayn"
+    genderPronoun: {
+      en: "Your Pronouns",
+      es: "Sus pronombres",
+      ru: "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u043C\u044B\u0435 \u043A \u0432\u0430\u043C \u043C\u0435\u0441\u0442\u043E\u0438\u043C\u0435\u043D\u0438\u044F",
+      vi: "\u0110\u1EA1i t\u1EEB c\u1EE7a qu\xFD v\u1ECB",
+      zh: "\u60A8\u7684\u4EE3\u540D\u8BCD",
+      ar: "\u0636\u0645\u0627\u0626\u0631\u0643",
+      so: "Magac-u-yaalladaada"
     },
-    stateAgency: {
-      en: "State Agency",
-      es: "Agencia estatal",
-      ru: "\u0421\u043B\u0443\u0436\u0431\u0430 \u0448\u0442\u0430\u0442\u0430",
-      vi: "C\u01A1 quan ch\xEDnh ph\u1EE7 ti\u1EC3u bang",
-      zh: "\u5DDE\u7ACB\u673A\u6784",
-      ar: "\u0648\u0643\u0627\u0644\u0629 \u062D\u0643\u0648\u0645\u064A\u0629 \u062A\u0627\u0628\u0639\u0629 \u0644\u0644\u0648\u0644\u0627\u064A\u0629",
-      so: "Hay\u2019ad goboleed"
+    "she/her": {
+      en: "She/Her",
+      es: "Ella",
+      ru: "\u041E\u043D\u0430/\u0435\u0435/\u0435\u0439",
+      vi: "C\xF4/B\xE0",
+      zh: "\u5979\uFF0F\u5979\u7684",
+      ar: "\u0647\u064A / \u0644\u0647\u0627",
+      so: "Iyadu / keeda"
     },
-    privateHomecareAgency: {
-      en: "Private Homecare Agency",
-      es: "Agencia de atenci\xF3n domiciliaria privada",
-      ru: "\u0427\u0430\u0441\u0442\u043D\u043E\u0435 \u0430\u0433\u0435\u043D\u0442\u0441\u0442\u0432\u043E \u043F\u043E \u0443\u0445\u043E\u0434\u0443 \u043D\u0430 \u0434\u043E\u043C\u0443",
-      vi: "\u0110\u1EA1i l\xFD t\u01B0 nh\xE2n t\u1EA1i nh\xE0",
-      zh: "\u79C1\u4EBA\u5BB6\u5EAD\u62A4\u7406\u673A\u6784",
-      ar: "\u0648\u0643\u0627\u0644\u0629 \u0631\u0639\u0627\u064A\u0629 \u0645\u0646\u0632\u0644\u064A\u0629 \u062E\u0627\u0635\u0629",
-      so: "Hay\u2019ad gaar loo leeyahay oo daryeel guri bixisa"
+    "he/him": {
+      en: "He/Him",
+      es: "\xC9l",
+      ru: "\u041E\u043D/\u0435\u0433\u043E/\u0435\u043C\u0443",
+      vi: "Anh/\xD4ng",
+      zh: "\u4ED6\uFF0F\u4ED6\u7684",
+      ar: "\u0647\u0648 / \u0644\u0647",
+      so: "Isaga / kiisa"
     },
-    stateHomecareOrPersonalSupport: {
-      en: "State Homecare or Personal Support",
-      es: "Trabajador de atenci\xF3n domiciliaria o de apoyo personal del estado",
-      ru: "\u0413\u043E\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0443\u0445\u043E\u0434 \u043D\u0430 \u0434\u043E\u043C\u0443 \u0438\u043B\u0438 \u043B\u0438\u0447\u043D\u0430\u044F \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430",
-      vi: "Ch\u0103m s\xF3c t\u1EA1i nh\xE0 ho\u1EB7c h\u1ED7 tr\u1EE3 c\xE1 nh\xE2n c\u1EE7a ti\u1EC3u bang",
-      zh: "\u56FD\u5BB6\u5BB6\u5EAD\u62A4\u7406\u6216\u4E2A\u4EBA\u652F\u6301",
-      ar: "\u0631\u0639\u0627\u064A\u0629 \u0645\u0646\u0632\u0644\u064A\u0629 \u0623\u0648 \u062F\u0639\u0645 \u0634\u062E\u0635\u064A \u062A\u0627\u0628\u0639 \u0644\u0644\u0648\u0644\u0627\u064A\u0629",
-      so: "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
+    "they/them": {
+      en: "They/Them",
+      es: "Elle/Elles",
+      ru: "\u041E\u043D\u0438/\u0438\u0445/\u0438\u043C",
+      vi: "H\u1ECD",
+      zh: "\u4ED6\u4EEC\uFF0F\u4ED6\u4EEC\u7684",
+      ar: "\u0647\u0645 / \u0644\u0647\u0645",
+      so: "Iyaga / kooda"
     },
-    english: {
-      en: "English",
-      es: "Ingl\xE9s",
-      ru: "\u0410\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Anh",
-      zh: "\u82F1\u8BED",
-      ar: "\u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629",
-      so: "Ingiriisi",
-      ko: "\uC601\uC5B4",
-      ro: "Englez\u0103",
-      uk: "\u0410\u043D\u0433\u043B\u0456\u0439\u0441\u044C\u043A\u0430"
+    "she/they": {
+      en: "She/They",
+      es: "Ella/Elle",
+      ru: "\u041E\u043D\u0430/\u041E\u043D\u0438",
+      vi: "C\xF4/H\u1ECD",
+      zh: "\u5979\uFF0F\u4ED6\u4EEC",
+      ar: "\u0647\u064A / \u0647\u0645",
+      so: "Iyadu / Iyaga"
     },
-    "asl (sign language)": {
-      en: "ASL (Sign Language)",
-      es: "ASL (lenguaje de se\xF1as)",
-      ru: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0441\u043A\u0438\u0439 \u044F\u0437\u044B\u043A \u0436\u0435\u0441\u0442\u043E\u0432 (ASL)",
-      vi: "Ng\xF4n ng\u1EEF k\xFD hi\u1EC7u Hoa K\u1EF3 (ASL)",
-      zh: "\u7F8E\u56FD\u624B\u8BED (ASL)",
-      ar: "\u0644\u063A\u0629 \u0627\u0644\u0625\u0634\u0627\u0631\u0629 \u0627\u0644\u0623\u0645\u0631\u064A\u0643\u064A\u0629 (ASL)",
-      so: "ASL (Luqadda Calaamadaha)",
-      ko: "\uBBF8\uAD6D \uC218\uC5B4 (ASL)",
-      ro: "ASL (limbajul semnelor)",
-      uk: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0441\u044C\u043A\u0430 \u043C\u043E\u0432\u0430 \u0436\u0435\u0441\u0442\u0456\u0432 (ASL)"
+    "he/they": {
+      en: "He/They",
+      es: "\xC9l/Elle",
+      ru: "\u041E\u043D/\u041E\u043D\u0438",
+      vi: "Anh/H\u1ECD",
+      zh: "\u4ED6\uFF0F\u4ED6\u4EEC",
+      ar: "\u0647\u0648 / \u0647\u0645",
+      so: "Isaga / Iyaga"
     },
-    cantonese: {
-      en: "Cantonese",
-      es: "Canton\xE9s",
-      ru: "\u041A\u0430\u043D\u0442\u043E\u043D\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Qu\u1EA3ng \u0110\xF4ng",
-      zh: "\u7CA4\u8BED",
-      ar: "\u0627\u0644\u0643\u0627\u0646\u062A\u0648\u0646\u064A\u0629",
-      so: "Kantoniis",
-      ko: "\uAD11\uB465\uC5B4",
-      ro: "Cantonez\u0103",
-      uk: "\u041A\u0430\u043D\u0442\u043E\u043D\u0441\u044C\u043A\u0430"
+    pronounOther: {
+      en: "Not listed",
+      es: "Otro",
+      ru: "\u0414\u0440\u0443\u0433\u043E\u0435",
+      vi: "C\xE2u tr\u1EA3 l\u1EDDi kh\xE1c",
+      zh: "\u5176\u4ED6",
+      ar: "\u063A\u064A\u0631 \u0645\u062F\u0631\u062C",
+      so: "Kuma jiro liiska"
     },
-    mandarin: {
-      en: "Mandarin",
-      es: "Mandar\xEDn",
-      ru: "\u041C\u0430\u043D\u0434\u0430\u0440\u0438\u043D\u0441\u043A\u043E\u0435 \u043D\u0430\u0440\u0435\u0447\u0438\u0435 \u043A\u0438\u0442\u0430\u0439\u0441\u043A\u043E\u0433\u043E \u044F\u0437\u044B\u043A\u0430",
-      vi: "Ti\u1EBFng Quan Tho\u1EA1i",
-      zh: "\u6C49\u8BED\uFF08\u666E\u901A\u8BDD\uFF09",
-      ar: "\u0627\u0644\u0645\u0627\u0646\u062F\u0631\u064A\u0646",
-      so: "Mandariin",
-      ko: "\uC911\uAD6D\uC5B4(\uD45C\uC900 \uC911\uAD6D\uC5B4)",
-      ro: "Mandarin\u0103",
-      uk: "\u041C\u0430\u043D\u0434\u0430\u0440\u0438\u043D\u0441\u044C\u043A\u0430 \u043A\u0438\u0442\u0430\u0439\u0441\u044C\u043A\u0430"
+    employmentInfo: {
+      en: "Employment Info",
+      es: "Informaci\xF3n sobre el empleo",
+      ru: "\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u0440\u0443\u0434\u043E\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435",
+      vi: "Th\xF4ng tin v\u1EC1 vi\u1EC7c l\xE0m",
+      zh: "\u5C31\u4E1A\u4FE1\u606F",
+      ar: "\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0627\u0644\u062A\u0648\u0638\u064A\u0641",
+      so: "Macluumaadka shaqada"
     },
-    russian: {
-      en: "Russian",
-      es: "Ruso",
-      ru: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Nga",
-      zh: "\u4FC4\u8BED",
-      ar: "\u0627\u0644\u0631\u0648\u0633\u064A\u0629",
-      so: "Ruush",
-      ko: "\uB7EC\uC2DC\uC544\uC5B4",
-      ro: "Rus\u0103",
-      uk: "\u0420\u043E\u0441\u0456\u0439\u0441\u044C\u043A\u0430"
+    jobTitle: {
+      en: "Job Class/Title",
+      es: "Clase/puesto laboral",
+      ru: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F/\u0434\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C",
+      vi: "C\u1EA5p l\u1EDBp/Danh hi\u1EC7u vi\u1EC7c l\xE0m",
+      zh: "\u804C\u52A1\uFF0F\u804C\u8854",
+      ar: "\u0641\u0626\u0629 / \u0627\u0644\u0645\u0633\u0645\u0649 \u0627\u0644\u0648\u0638\u064A\u0641\u064A",
+      so: "Nooca / magaca shaqada"
     },
-    spanish: {
-      en: "Spanish",
-      es: "Espa\xF1ol",
-      ru: "\u0418\u0441\u043F\u0430\u043D\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng T\xE2y Ban Nha",
-      zh: "\u897F\u73ED\u7259\u8BED",
-      ar: "\u0627\u0644\u0625\u0633\u0628\u0627\u0646\u064A\u0629",
-      so: "Isbaanish",
-      ko: "\uC2A4\uD398\uC778\uC5B4",
-      ro: "Spaniol\u0103",
-      uk: "\u0406\u0441\u043F\u0430\u043D\u0441\u044C\u043A\u0430"
+    worksite: {
+      en: "Worksite",
+      es: "Sitio de trabajo",
+      ru: "\u041C\u0435\u0441\u0442\u043E \u0440\u0430\u0431\u043E\u0442\u044B",
+      vi: "N\u01A1i l\xE0m vi\u1EC7c",
+      zh: "\u5DE5\u4F5C\u5730\u70B9",
+      ar: "\u0645\u0648\u0642\u0639 \u0627\u0644\u0639\u0645\u0644",
+      so: "Goobta shaqada"
     },
-    vietnamese: {
-      en: "Vietnamese",
-      es: "Vietnamita",
-      ru: "\u0412\u044C\u0435\u0442\u043D\u0430\u043C\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Vi\u1EC7t",
-      zh: "\u8D8A\u5357\u8BED",
-      ar: "\u0627\u0644\u0641\u064A\u062A\u0646\u0627\u0645\u064A\u0629",
-      so: "Fiyetnaamiis",
-      ko: "\uBCA0\uD2B8\uB0A8\uC5B4",
-      ro: "Vietnamez\u0103",
-      uk: "\u0412\u2019\u0454\u0442\u043D\u0430\u043C\u0441\u044C\u043A\u0430"
+    workEmail: {
+      en: "Work Email",
+      es: "Correo electr\xF3nico del trabajo",
+      ru: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u044D\u043B. \u043F\u043E\u0447\u0442\u0430",
+      vi: "Email n\u01A1i l\xE0m vi\u1EC7c",
+      zh: "\u5DE5\u4F5C\u7535\u5B50\u90AE\u7BB1",
+      ar: "\u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A \u0644\u0644\u0639\u0645\u0644",
+      so: "Iimaylka shaqada"
     },
-    amharic: {
-      en: "Amharic",
-      es: "Amh\xE1rico",
-      ru: "\u0410\u043C\u0445\u0430\u0440\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Amharic",
-      zh: "\u963F\u59C6\u54C8\u62C9\u8BED",
-      ar: "\u0627\u0644\u0623\u0645\u0647\u0631\u064A\u0629",
-      so: "Amxaari",
-      ko: "\uC554\uD558\uB77C\uC5B4",
-      ro: "Amharic\u0103",
-      uk: "\u0410\u043C\u0445\u0430\u0440\u0441\u044C\u043A\u0430"
+    workPhone: {
+      en: "Work phone",
+      es: "Tel\xE9fono del trabajo",
+      ru: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D",
+      vi: "\u0110i\u1EC7n tho\u1EA1i n\u01A1i l\xE0m vi\u1EC7c",
+      zh: "\u5DE5\u4F5C\u7535\u8BDD",
+      ar: "\u0647\u0627\u062A\u0641 \u0627\u0644\u0639\u0645\u0644",
+      so: "Telefoonka shaqada"
     },
-    arabic: {
-      en: "Arabic",
-      es: "\xC1rabe",
-      ru: "\u0410\u0440\u0430\u0431\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng \u1EA2 R\u1EADp",
-      zh: "\u963F\u62C9\u4F2F\u8BED",
-      ar: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-      so: "Carabi",
-      ko: "\uC544\uB78D\uC5B4",
-      ro: "Arab\u0103",
-      uk: "\u0410\u0440\u0430\u0431\u0441\u044C\u043A\u0430"
+    mailToAddress: {
+      en: "Mailing Address",
+      es: "Direcci\xF3n postal",
+      ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441",
+      vi: "\u0110\u1ECBa ch\u1EC9 n\u01A1i nh\u1EADn th\u01B0",
+      zh: "\u90AE\u5BC4\u5730\u5740",
+      ar: "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Cinwaanka boostada"
     },
-    farsi: {
-      en: "Farsi",
-      es: "Farsi",
-      ru: "\u0424\u0430\u0440\u0441\u0438",
-      vi: "Ti\u1EBFng Farsi",
-      zh: "\u6CE2\u65AF\u8BED",
-      ar: "\u0627\u0644\u0641\u0627\u0631\u0633\u064A\u0629",
-      so: "Faarisi",
-      ko: "\uD398\uB974\uC2DC\uC544\uC5B4",
-      ro: "Farsi",
-      uk: "\u0424\u0430\u0440\u0441\u0456"
+    fieldHintAddress: {
+      en: "If different from residence address",
+      es: "Si es diferente al domicilio",
+      ru: "\u0415\u0441\u043B\u0438 \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0430\u0434\u0440\u0435\u0441\u0430 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
+      vi: "N\u1EBFu kh\xE1c v\u1EDBi \u0111\u1ECBa ch\u1EC9 n\u01A1i th\u01B0\u1EDDng tr\xFA",
+      zh: "\u82E5\u4E0E\u5C45\u4F4F\u5730\u5740\u4E0D\u540C",
+      ar: "\u0625\u0630\u0627 \u0643\u0627\u0646 \u0645\u062E\u062A\u0644\u0641\u064B\u0627 \u0639\u0646 \u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0633\u0643\u0646",
+      so: "Haddii uu ka duwan yahay cinwaanka deganaanshaha"
     },
-    "haitian creole": {
-      en: "Haitian Creole",
-      es: "Criollo haitiano",
-      ru: "\u0413\u0430\u0438\u0442\u044F\u043D\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043E\u043B\u044C\u0441\u043A\u0438\u0439 \u044F\u0437\u044B\u043A",
-      vi: "Ti\u1EBFng Creole Haiti",
-      zh: "\u6D77\u5730\u514B\u91CC\u5965\u5C14\u8BED",
-      ar: "\u0627\u0644\u0643\u0631\u064A\u0648\u0644\u064A\u0629 \u0627\u0644\u0647\u0627\u064A\u062A\u064A\u0629",
-      so: "Kiriiyoolka Haiti",
-      ko: "\uC544\uC774\uD2F0 \uD06C\uB9AC\uC62C\uC5B4",
-      ro: "Creol\u0103 haitian\u0103",
-      uk: "\u0413\u0430\u0457\u0442\u044F\u043D\u0441\u044C\u043A\u0430 \u043A\u0440\u0435\u043E\u043B\u044C\u0441\u044C\u043A\u0430"
+    mailToStreet: {
+      en: "Mailing Street",
+      es: "Calle y n\xFAmero postal",
+      ru: "\u0423\u043B\u0438\u0446\u0430 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
+      vi: "T\xEAn \u0111\u01B0\u1EDDng v\xE0 s\u1ED1 nh\xE0",
+      zh: "\u90AE\u5BC4\u8857\u9053",
+      ar: "\u0634\u0627\u0631\u0639 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Waddada boostada"
     },
-    korean: {
-      en: "Korean",
-      es: "Coreano",
-      ru: "\u041A\u043E\u0440\u0435\u0439\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng H\xE0n",
-      zh: "\u97E9\u8BED",
-      ar: "\u0627\u0644\u0643\u0648\u0631\u064A\u0629",
-      so: "Kuuriyaan",
-      ko: "\uD55C\uAD6D\uC5B4",
-      ro: "Coreean\u0103",
-      uk: "\u041A\u043E\u0440\u0435\u0439\u0441\u044C\u043A\u0430"
+    mailToCity: {
+      en: "Mailing City",
+      es: "Ciudad postal",
+      ru: "\u0413\u043E\u0440\u043E\u0434 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
+      vi: "Th\xE0nh ph\u1ED1",
+      zh: "\u90AE\u5BC4\u57CE\u5E02",
+      ar: "\u0645\u062F\u064A\u0646\u0629 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Magaalada boostada"
     },
-    romanian: {
-      en: "Romanian",
-      es: "Rumano",
-      ru: "\u0420\u0443\u043C\u044B\u043D\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Romania",
-      zh: "\u7F57\u9A6C\u5C3C\u4E9A\u8BED",
-      ar: "\u0627\u0644\u0631\u0648\u0645\u0627\u0646\u064A\u0629",
-      so: "Romaaniyaan",
-      ko: "\uB8E8\uB9C8\uB2C8\uC544\uC5B4",
-      ro: "Rom\xE2n\u0103",
-      uk: "\u0420\u0443\u043C\u0443\u043D\u0441\u044C\u043A\u0430"
+    mailToState: {
+      en: "Mailing State",
+      es: "Estado postal",
+      ru: "\u0428\u0442\u0430\u0442 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
+      vi: "Ti\u1EC3u bang",
+      zh: "\u90AE\u5BC4\u5DDE",
+      ar: "\u0648\u0644\u0627\u064A\u0629 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Gobolka boostada"
     },
-    ukrainian: {
-      en: "Ukrainian",
-      es: "Ucraniano",
-      ru: "\u0423\u043A\u0440\u0430\u0438\u043D\u0441\u043A\u0438\u0439",
-      vi: "Ti\u1EBFng Ukraina",
-      zh: "\u4E4C\u514B\u5170\u8BED",
-      ar: "\u0627\u0644\u0623\u0648\u0643\u0631\u0627\u0646\u064A\u0629",
-      so: "Yukreeniyaan",
-      ko: "\uC6B0\uD06C\uB77C\uC774\uB098\uC5B4",
-      ro: "Ucrainean\u0103",
-      uk: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430"
+    mailToZip: {
+      en: "Mailing Zip",
+      es: "C\xF3digo postal",
+      ru: "\u041F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0438\u043D\u0434\u0435\u043A\u0441 (\u043F\u043E\u0447\u0442\u043E\u0432\u044B\u0439 \u0430\u0434\u0440\u0435\u0441)",
+      vi: "M\xE3 b\u01B0u ch\xEDnh",
+      zh: "\u90AE\u653F\u7F16\u7801",
+      ar: "\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064A\u062F\u064A",
+      so: "Lambarka boostada"
     }
   };
   var LANGUAGE_CONFIG = {
@@ -982,13 +976,6 @@ var SEIUForm = (() => {
       nativeLabel: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430",
       renderLang: "en"
     }
-  };
-  var OTHER_LANGUAGE_LABELS = {
-    Amharic: "\u12A0\u121B\u122D\u129B",
-    Farsi: "\u0641\u0627\u0631\u0633\u06CC",
-    "Haitian Creole": "Krey\xF2l ayisyen",
-    "ASL (Sign Language)": "ASL",
-    Other: "Other"
   };
   var supportedLangs = Object.entries(LANGUAGE_CONFIG).filter(([, cfg]) => cfg.pickerLabel).map(([code]) => code);
 
@@ -1364,68 +1351,21 @@ var SEIUForm = (() => {
       select.value = getLang;
     }
     select.addEventListener("change", function() {
-      switchLanguage(select.value, {
-        syncPreferredLanguageField: true
-      });
+      switchLanguage(select.value);
     });
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
     var valueFormTitle = document.getElementsByClassName("gform_title")[0];
     var valueSubmitButton = document.querySelector("#submit_button");
     var stagingWarning = document.getElementById("tfa_387-HTML");
-    var prefillWarning1 = document.getElementById("tfa_330-DB");
-    var prefillWarning2 = document.getElementById("tfa_330-DA");
     var firstName = document.getElementById("tfa_1-L");
     var lastName = document.getElementById("tfa_2-L");
-    var birthDate = document.getElementById("tfa_134-L");
-    var preferredLanguage = document.getElementById("tfa_91-L");
-    var employerTypeLabel = document.getElementById("tfa_388-L");
-    var employerTypeInput = document.getElementById("tfa_388");
-    var address = document.getElementById("tfa_32-L");
-    var addressNote = document.getElementById("tfa_32-HH");
-    var city = document.getElementById("tfa_34-L");
-    var state = document.getElementById("tfa_35-L");
-    var zip = document.getElementById("tfa_39-L");
+    var hireDate = document.getElementById("tfa_134-L");
+    var mailToStreet = document.getElementById("tfa_32-L");
+    var mailToCity = document.getElementById("tfa_34-L");
+    var mailToState = document.getElementById("tfa_35-L");
+    var mailToZip = document.getElementById("tfa_39-L");
     var email = document.getElementById("tfa_3-L");
-    var emailNote = document.getElementById("tfa_3-HH");
-    var phone = document.getElementById("tfa_4-L");
-    var phoneNote = document.getElementById("tfa_4-HH");
-    var smsOptOut = document.getElementById("tfa_114-L");
-    var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-    var polOptOut = document.getElementById("tfa_122-L");
-    var polOptOutCheckbox = document.getElementById("tfa_123-L");
-    var signature = document.getElementById("tfa_386-L");
-    var signatureNote = document.getElementById("tfa_386-HH");
-    var membershipAuthTitle = document.getElementById("tfa_116-L");
-    var membershipAuthLL = document.getElementById("tfa_379-L");
-    var duesAuthTitle = document.getElementById("tfa_355-L");
-    var duesAuthLL = document.getElementById("tfa_380-L");
-    var combinedLL = document.getElementById("tfa_377");
-    const preferredLanguageField = document.getElementById("tfa_91");
-    normalizePreferredLanguagePicklist();
-    function getPreferredLanguageCodeFromField(field) {
-      if (!field) return "en";
-      const selectedOption = field.options[field.selectedIndex];
-      const englishValue = selectedOption?.dataset.englishValue || selectedOption?.textContent?.trim() || field.value;
-      const matchedConfig = Object.values(LANGUAGE_CONFIG).find(
-        (cfg) => cfg.preferredValues.includes(englishValue)
-      );
-      return matchedConfig?.renderLang || "en";
-    }
-    if (preferredLanguageField) {
-      preferredLanguageField.addEventListener("change", function() {
-        const selectedOption = preferredLanguageField.options[preferredLanguageField.selectedIndex];
-        const selectedEnglishValue = selectedOption?.dataset.englishValue || "";
-        const newLang = getPreferredLanguageCodeFromField(preferredLanguageField);
-        if (!newLang) return;
-        switchLanguage(newLang, {
-          syncPreferredLanguageField: false
-        });
-        normalizePreferredLanguagePicklist();
-        setPreferredLanguageValue(selectedEnglishValue, {
-          fireEvents: false
-        });
-      });
-    }
+    var membershipConf = document.getElementById("membershipConf");
     initDateHelpers({
       monthPlaceholder: getTranslation(
         translationsNorm,
@@ -1463,13 +1403,6 @@ var SEIUForm = (() => {
       getLang,
       translations
     });
-    initPrefill({
-      getLang,
-      detectedSupportedLang,
-      employerTypeInput,
-      hiddenRequired,
-      LANGUAGE_CONFIG
-    });
     if (!isEmployerPrefilled) {
       initEmployerAccountFieldSync();
     }
@@ -1498,43 +1431,6 @@ var SEIUForm = (() => {
       const fallback = getOriginalHTML(el);
       const translated = getTranslation(translationsNorm, key, getLang, fallback);
       el.innerHTML = translated;
-    }
-    function setPreferredLanguageValue(englishValue, options = {}) {
-      const { fireEvents = false } = options;
-      const field = document.getElementById("tfa_91");
-      if (!field || !englishValue) return false;
-      const option = Array.from(field.options).find((opt) => {
-        return opt.dataset.englishValue === englishValue;
-      });
-      if (!option) return false;
-      field.value = option.value;
-      option.selected = true;
-      if (fireEvents) {
-        field.dispatchEvent(new Event("input", { bubbles: true }));
-        field.dispatchEvent(new Event("change", { bubbles: true }));
-      }
-      return true;
-    }
-    function normalizePreferredLanguagePicklist() {
-      const field = document.getElementById("tfa_91");
-      if (!field) return;
-      const preferredValueToNativeLabel = {};
-      Object.values(LANGUAGE_CONFIG).forEach((cfg) => {
-        cfg.preferredValues.forEach((value) => {
-          preferredValueToNativeLabel[value] = cfg.nativeLabel;
-        });
-      });
-      Object.assign(preferredValueToNativeLabel, OTHER_LANGUAGE_LABELS);
-      Array.from(field.options).forEach((option) => {
-        if (!option.textContent.trim()) return;
-        if (!option.dataset.englishValue) {
-          option.dataset.englishValue = option.textContent.trim();
-        }
-        const englishValue = option.dataset.englishValue;
-        if (preferredValueToNativeLabel[englishValue]) {
-          option.textContent = preferredValueToNativeLabel[englishValue];
-        }
-      });
     }
     function applyTranslations() {
       document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
@@ -1569,52 +1465,15 @@ var SEIUForm = (() => {
 	      </div>
 	    `;
       }
-      setText(prefillWarning1, "prefillWarning1");
-      setText(prefillWarning2, "prefillWarning2");
-      setText(employerTypeLabel, "employerTypeLabel");
       setText(firstName, "firstName");
       setText(lastName, "lastName");
-      setText(birthDate, "birthDate");
-      if (birthDate) {
-        birthDate.classList.add("reqMark");
-        birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
-      }
-      setText(preferredLanguage, "preferredLanguage");
-      setText(address, "address");
-      setText(addressNote, "addressNote");
-      setText(city, "city");
-      setText(state, "state");
-      setText(zip, "zip");
+      setText(hireDate, "hireDate");
+      setText(mailToStreet, "mailToStreet");
+      setText(mailToCity, "mailToCity");
+      setText(mailToState, "mailToState");
+      setText(mailToZip, "mailToZip");
       setText(email, "email");
-      setText(emailNote, "emailNote");
-      setText(phone, "phone");
-      setText(phoneNote, "phoneNote");
-      setText(smsOptOut, "smsOptOut");
-      setText(smsOptOutCheckbox, "smsOptOutCheckbox");
-      setText(polOptOut, "polOptOut");
-      setText(polOptOutCheckbox, "polOptOutCheckbox");
-      setText(signature, "signature");
-      setText(signatureNote, "signatureNote");
-      setText(membershipAuthTitle, "membershipAuthTitle");
-      setText(membershipAuthLL, "membershipAuthLL");
-      setText(duesAuthTitle, "duesAuthTitle");
-      setText(duesAuthLL, "duesAuthLL");
-      if (combinedLL && membershipAuthLL && duesAuthLL) {
-        combinedLL.value = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`;
-      }
-    }
-    function setPreferredLanguageFieldFromLang(lang) {
-      if (!preferredLanguageField) return;
-      const targets = LANGUAGE_CONFIG[lang]?.preferredValues;
-      if (!targets) return;
-      const option = Array.from(preferredLanguageField.options).find((opt) => {
-        const englishValue = opt.dataset.englishValue || opt.textContent.trim();
-        return targets.includes(englishValue);
-      });
-      if (option) {
-        preferredLanguageField.value = option.value;
-        option.selected = true;
-      }
+      setText(membershipConf, "membershipConf");
     }
     function updateDatePlaceholders() {
       const mmSelect = document.getElementById("tfa_156");
@@ -1647,14 +1506,10 @@ var SEIUForm = (() => {
     }
     function switchLanguage(newLang, options = {}) {
       if (!supportedLangs.includes(newLang)) return;
-      const { syncPreferredLanguageField = true } = options;
       getLang = newLang;
       document.documentElement.lang = getLang;
       document.querySelector(".wForm")?.setAttribute("data-language", getLang);
       if (select) select.value = getLang;
-      if (syncPreferredLanguageField) {
-        setPreferredLanguageFieldFromLang(getLang);
-      }
       applyTranslations();
       updateDatePlaceholders();
       document.dispatchEvent(

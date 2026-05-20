@@ -107,9 +107,7 @@ window.addEventListener("load", function() {
 
     // Handle selection change
     select.addEventListener("change", function () {
-		  switchLanguage(select.value, {
-		    syncPreferredLanguageField: true
-		  });
+		  switchLanguage(select.value);
 		});
 
     // Insert picker after header
@@ -129,49 +127,43 @@ window.addEventListener("load", function() {
 	var mailToZip = document.getElementById("tfa_39-L"); 
 	var email = document.getElementById("tfa_3-L"); 
 	var membershipConf = document.getElementById("membershipConf");
-
-
-	normalizePreferredLanguagePicklist();
-
-	function getPreferredLanguageCodeFromField(field) {
-	  if (!field) return "en";
-
-	  const selectedOption = field.options[field.selectedIndex];
-	  const englishValue =
-	    selectedOption?.dataset.englishValue ||
-	    selectedOption?.textContent?.trim() ||
-	    field.value;
-
-	  const matchedConfig = Object.values(LANGUAGE_CONFIG).find(cfg =>
-	    cfg.preferredValues.includes(englishValue)
-	  );
-
-	  return matchedConfig?.renderLang || "en";
-	}
-
-	if (preferredLanguageField) {
-	  preferredLanguageField.addEventListener("change", function () {
-		  const selectedOption =
-		    preferredLanguageField.options[preferredLanguageField.selectedIndex];
-
-		  const selectedEnglishValue =
-		    selectedOption?.dataset.englishValue || "";
-
-		  const newLang = getPreferredLanguageCodeFromField(preferredLanguageField);
-
-		  if (!newLang) return;
-
-		  switchLanguage(newLang, {
-		    syncPreferredLanguageField: false
-		  });
-
-		  normalizePreferredLanguagePicklist();
-
-		  setPreferredLanguageValue(selectedEnglishValue, {
-		    fireEvents: false
-		  });
-		});
-	}
+	var demographicsNote = document.getElementById("tfa_453-HTML");
+	var demographicsHeader = document.getElementById("tfa_452-L");
+	var raceEthnicityHelperText = document.getElementById("tfa_455-L");
+	var africanOrAfricanAmerican = document.getElementById("tfa_456-L");
+	var arabAmericanMiddleEasternOrNorthAfrican = document.getElementById("tfa_457-L");
+	var asianOrAsianAmerican = document.getElementById("tfa_458-L");
+	var hispanicOrLatinx = document.getElementById("tfa_459-L");
+	var nativeAmericanOrIndigenous = document.getElementById("tfa_460-L");
+	var white = document.getElementById("tfa_461-L");
+	var notListed = document.getElementById("tfa_462-L");
+	var declined = document.getElementById("tfa_463-L");
+	var otherSocialIdentities = document.getElementById("tfa_464-L");
+	var lgbtqId = document.getElementById("tfa_466-L");
+	var transId = document.getElementById("tfa_470-L");
+	var veteranId = document.getElementById("tfa_464-L");
+	var disabilityId = document.getElementById("tfa_478-L");
+	var deafOrHardOfHearing = document.getElementById("tfa_482-L");
+	var blindOrVisuallyImpaired = document.getElementById("tfa_486-L");
+	var gender = document.getElementById("tfa_487-L");
+	var female = document.getElementById("tfa_500");
+	var male = document.getElementById("tfa_501");
+	var nonBinary = document.getElementById("tfa_502");
+	var notListed2 = document.getElementById("tfa_503");
+	var pronouns = document.getElementById("tfa_495-L");
+	var sheHer = document.getElementById("tfa_504");
+	var heHim = document.getElementById("tfa_505");
+	var theyThem = document.getElementById("tfa_506");
+	var sheThey = document.getElementById("tfa_507");
+	var heThey = document.getElementById("tfa_508");
+	var notListed3 = document.getElementById("tfa_509");
+	var employmentInfo = document.getElementById("tfa_446-L");
+	var jobTitle = document.getElementById("tfa_511-L");
+	var worksite = document.getElementById("tfa_386-L");
+	var workEmail = document.getElementById("tfa_450-L");
+	var workPhone = document.getElementById("tfa_4-L");
+	var mailToAddress = document.getElementById("tfa_447-L");
+	var fieldHintAddress = document.getElementById("tfa_448-HTML");
 
 	initDateHelpers({
 	  monthPlaceholder: getTranslation(
@@ -196,38 +188,11 @@ window.addEventListener("load", function() {
 
 	applyTranslations();
 
-	const employerNameElements = {
-	  eNameState: document.getElementById("tfa_410"),
-	  eNameHiEd: document.getElementById("tfa_393"),
-	  eNameHCW: document.getElementById("tfa_414"),
-	  eNameNH: document.getElementById("tfa_408"),
-	  eNameLGov: document.getElementById("tfa_407"),
-	  eNamePNP: document.getElementById("tfa_409"),
-	  eNamePHC: document.getElementById("tfa_418"),
-	  eNameRetire: document.getElementById("tfa_422")
-	};
-
-	const hiddenRequired = Object.values(employerNameElements);
-
 	initValidation({
 	  formEl,
 	  getLang,
 	  translations
 	});
-
-	initPrefill({
-	  getLang,
-	  detectedSupportedLang,
-	  employerTypeInput,
-	  hiddenRequired,
-	  LANGUAGE_CONFIG
-	});
-
-	
-
-	if (!isEmployerPrefilled) {
-	  initEmployerAccountFieldSync();
-	}
 
   function getOriginalText(el) {
 	  if (!el) return "";
@@ -261,57 +226,6 @@ window.addEventListener("load", function() {
 	  const translated = getTranslation(translationsNorm, key, getLang, fallback);
 
 	  el.innerHTML = translated;
-	}
-
-	function setPreferredLanguageValue(englishValue, options = {}) {
-	  const { fireEvents = false } = options;
-	  const field = document.getElementById("tfa_91");
-	  if (!field || !englishValue) return false;
-
-	  const option = Array.from(field.options).find(opt => {
-	    return opt.dataset.englishValue === englishValue;
-	  });
-
-	  if (!option) return false;
-
-	  field.value = option.value;
-	  option.selected = true;
-
-	  if (fireEvents) {
-	    field.dispatchEvent(new Event("input", { bubbles: true }));
-	    field.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
-
-	  return true;
-	}
-
-	function normalizePreferredLanguagePicklist() {
-	  const field = document.getElementById("tfa_91");
-	  if (!field) return;
-
-	  const preferredValueToNativeLabel = {};
-
-	  Object.values(LANGUAGE_CONFIG).forEach(cfg => {
-	    cfg.preferredValues.forEach(value => {
-	      preferredValueToNativeLabel[value] = cfg.nativeLabel;
-	    });
-	  });
-
-	  Object.assign(preferredValueToNativeLabel, OTHER_LANGUAGE_LABELS);
-
-	  Array.from(field.options).forEach(option => {
-	    if (!option.textContent.trim()) return;
-
-	    if (!option.dataset.englishValue) {
-	      option.dataset.englishValue = option.textContent.trim();
-	    }
-
-	    const englishValue = option.dataset.englishValue;
-
-	    if (preferredValueToNativeLabel[englishValue]) {
-	      option.textContent = preferredValueToNativeLabel[englishValue];
-	    }
-	  });
 	}
 
 	function applyTranslations() {
@@ -350,60 +264,15 @@ window.addEventListener("load", function() {
 	    `;
 	  }
 
-	  setText(prefillWarning1, "prefillWarning1");
-	  setText(prefillWarning2, "prefillWarning2");
-	  setText(employerTypeLabel, "employerTypeLabel");
 	  setText(firstName, "firstName");
 	  setText(lastName, "lastName");
-	  setText(birthDate, "birthDate");
-
-	  if (birthDate) {
-	    birthDate.classList.add("reqMark");
-	    birthDate.style.cssText += "font-size:inherit!important;font-style:inherit!important;";
-	  }
-
-	  setText(preferredLanguage, "preferredLanguage");
-	  setText(address, "address");
-	  setText(addressNote, "addressNote");
-	  setText(city, "city");
-	  setText(state, "state");
-	  setText(zip, "zip");
+	  setText(hireDate, "hireDate");
+	  setText(mailToStreet, "mailToStreet");
+	  setText(mailToCity, "mailToCity");
+	  setText(mailToState, "mailToState");
+	  setText(mailToZip, "mailToZip");
 	  setText(email, "email");
-	  setText(emailNote, "emailNote");
-	  setText(phone, "phone");
-	  setText(phoneNote, "phoneNote");
-	  setText(smsOptOut, "smsOptOut");
-	  setText(smsOptOutCheckbox, "smsOptOutCheckbox");
-	  setText(polOptOut, "polOptOut");
-	  setText(polOptOutCheckbox, "polOptOutCheckbox");
-	  setText(signature, "signature");
-	  setText(signatureNote, "signatureNote");
-	  setText(membershipAuthTitle, "membershipAuthTitle");
-	  setText(membershipAuthLL, "membershipAuthLL");
-	  setText(duesAuthTitle, "duesAuthTitle");
-	  setText(duesAuthLL, "duesAuthLL");
-
-	  if (combinedLL && membershipAuthLL && duesAuthLL) {
-	    combinedLL.value = `** Membership Authorization: ${membershipAuthLL.textContent} ** Dues Deduction / Checkoff Authorization: ${duesAuthLL.textContent}`;
-	  }
-
-	}
-
-	function setPreferredLanguageFieldFromLang(lang) {
-	  if (!preferredLanguageField) return;
-
-	  const targets = LANGUAGE_CONFIG[lang]?.preferredValues;
-	  if (!targets) return;
-
-	  const option = Array.from(preferredLanguageField.options).find(opt => {
-	    const englishValue = opt.dataset.englishValue || opt.textContent.trim();
-	    return targets.includes(englishValue);
-	  });
-
-	  if (option) {
-	    preferredLanguageField.value = option.value;
-	    option.selected = true;
-	  }
+	  setText(membershipConf, "membershipConf");
 	}
 
 	function updateDatePlaceholders() {
@@ -442,18 +311,12 @@ window.addEventListener("load", function() {
 	function switchLanguage(newLang, options = {}) {
 	  if (!supportedLangs.includes(newLang)) return;
 
-	  const { syncPreferredLanguageField = true } = options;
-
 	  getLang = newLang;
 
 	  document.documentElement.lang = getLang;
 	  document.querySelector(".wForm")?.setAttribute("data-language", getLang);
 
 	  if (select) select.value = getLang;
-
-	  if (syncPreferredLanguageField) {
-	    setPreferredLanguageFieldFromLang(getLang);
-	  }
 
 	  applyTranslations();
 	  updateDatePlaceholders();
