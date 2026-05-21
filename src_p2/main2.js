@@ -59,6 +59,23 @@ window.addEventListener("load", function() {
 	document.documentElement.lang = getLang;
 	document.querySelector('.wForm')?.setAttribute('data-language', getLang);
 
+	// extract cId from passed query params
+
+  const cId = getParam("cId", window.location.href);
+
+  function setFieldValue(id, value) {
+	  if (!value) return;
+
+	  const field = document.getElementById(id);
+	  if (!field) return;
+
+	  field.value = value;
+	}
+
+	// write cId to hidden CID field
+
+  setFieldValue("tfa_445", cId);
+
 	// ADD LANGUAGE PICKER TO DOM
 
 		const detectedSupportedLang = supportedLangs.includes(getLang);

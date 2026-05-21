@@ -636,6 +636,29 @@ export const translations = {
     ar: "يرجى الاختيار...",
     so: "Fadlan dooro..."
   },
+  emergecyContactHeader: {
+    id: "tfa_513-HTML",
+    mode: "html",
+    en: "<h4>Emergency Contact</h4>",
+    es: "<h4>Contacto de emergencia</h4>",
+    ru: "<h4>Контакт для экстренной связи</h4>",
+    vi: "<h4>Liên hệ khẩn cấp</h4>",
+    zh: "<h4>紧急联系人</h4>",
+    ar: "<h4>جهة اتصال للطوارئ</h4>",
+    so: "<h4>Qofka lala xiriiro marka xaalad degdeg ah jirto</h4>"
+  },
+
+  emergecyContactLabel: {
+    id: "tfa_514-L",
+    mode: "text",
+    en: "Name, phone, relationship to you",
+    es: "Nombre, teléfono, relación con usted",
+    ru: "Имя, телефон, кем приходится вам",
+    vi: "Tên, số điện thoại, mối quan hệ với quý vị",
+    zh: "姓名、电话、与您的关系",
+    ar: "الاسم، رقم الهاتف، صلته بك",
+    so: "Magaca, telefoonka, xiriirka uu kula leeyahay"
+  }
 };
 
 export const LANGUAGE_CONFIG = {

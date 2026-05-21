@@ -235,6 +235,11 @@
 #tfa_464 .oneField { /* spacing around other identities checkboxes */
 	padding: 0px 6px;
 }
+
+#tfa_513 { /* emergency contact header */
+	text-transform: uppercase;
+}
+
 /* --------------------------- */
 /* Arabic form-specific layout */
 /* --------------------------- */

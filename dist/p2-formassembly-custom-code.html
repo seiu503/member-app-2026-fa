@@ -236,6 +236,11 @@
 #tfa_464 .oneField { /* spacing around other identities checkboxes */
 	padding: 0px 6px;
 }
+
+#tfa_513 { /* emergency contact header */
+	text-transform: uppercase;
+}
+
 /* --------------------------- */
 /* Arabic form-specific layout */
 /* --------------------------- */
@@ -964,6 +969,28 @@ var SEIUForm = (() => {
       zh: "\u8BF7\u9009\u62E9...",
       ar: "\u064A\u0631\u062C\u0649 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631...",
       so: "Fadlan dooro..."
+    },
+    emergecyContactHeader: {
+      id: "tfa_513-HTML",
+      mode: "html",
+      en: "<h4>Emergency Contact</h4>",
+      es: "<h4>Contacto de emergencia</h4>",
+      ru: "<h4>\u041A\u043E\u043D\u0442\u0430\u043A\u0442 \u0434\u043B\u044F \u044D\u043A\u0441\u0442\u0440\u0435\u043D\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438</h4>",
+      vi: "<h4>Li\xEAn h\u1EC7 kh\u1EA9n c\u1EA5p</h4>",
+      zh: "<h4>\u7D27\u6025\u8054\u7CFB\u4EBA</h4>",
+      ar: "<h4>\u062C\u0647\u0629 \u0627\u062A\u0635\u0627\u0644 \u0644\u0644\u0637\u0648\u0627\u0631\u0626</h4>",
+      so: "<h4>Qofka lala xiriiro marka xaalad degdeg ah jirto</h4>"
+    },
+    emergecyContactLabel: {
+      id: "tfa_514-L",
+      mode: "text",
+      en: "Name, phone, relationship to you",
+      es: "Nombre, tel\xE9fono, relaci\xF3n con usted",
+      ru: "\u0418\u043C\u044F, \u0442\u0435\u043B\u0435\u0444\u043E\u043D, \u043A\u0435\u043C \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u0432\u0430\u043C",
+      vi: "T\xEAn, s\u1ED1 \u0111i\u1EC7n tho\u1EA1i, m\u1ED1i quan h\u1EC7 v\u1EDBi qu\xFD v\u1ECB",
+      zh: "\u59D3\u540D\u3001\u7535\u8BDD\u3001\u4E0E\u60A8\u7684\u5173\u7CFB",
+      ar: "\u0627\u0644\u0627\u0633\u0645\u060C \u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062A\u0641\u060C \u0635\u0644\u062A\u0647 \u0628\u0643",
+      so: "Magaca, telefoonka, xiriirka uu kula leeyahay"
     }
   };
   var LANGUAGE_CONFIG = {
@@ -1375,6 +1402,14 @@ var SEIUForm = (() => {
     console.log("getLang =", getLang);
     document.documentElement.lang = getLang;
     document.querySelector(".wForm")?.setAttribute("data-language", getLang);
+    const cId = getParam("cId", window.location.href);
+    function setFieldValue(id, value) {
+      if (!value) return;
+      const field = document.getElementById(id);
+      if (!field) return;
+      field.value = value;
+    }
+    setFieldValue("tfa_445", cId);
     const detectedSupportedLang = supportedLangs.includes(getLang);
     const header = document.querySelector(".wFormHeader");
     if (!header) return;
