@@ -2,7 +2,7 @@ const esbuild = require("esbuild");
 const fs = require("fs");
 
 async function build() {
-  const css = fs.readFileSync("src/styles.css", "utf8");
+  const css = fs.readFileSync("src_cape/styles_cape.css", "utf8");
 
   const modalJs = fs.readFileSync(
     "node_modules/van11y-accessible-modal-window-aria/dist/van11y-accessible-modal-window-aria.min.js",
@@ -10,7 +10,7 @@ async function build() {
   );
 
   const jsResult = await esbuild.build({
-    entryPoints: ["src/main.js"],
+    entryPoints: ["src_cape/main_cape.js"],
     bundle: true,
     format: "iife",
     globalName: "SEIUForm",
@@ -30,7 +30,7 @@ ${appJs}
 </script>`;
 
   fs.mkdirSync("dist", { recursive: true });
-  fs.writeFileSync("dist/formassembly-custom-code.html", html);
+  fs.writeFileSync("dist/cape-formassembly-custom-code.html", html);
 }
 
 build();

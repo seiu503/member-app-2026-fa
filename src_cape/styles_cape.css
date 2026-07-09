@@ -1,0 +1,178 @@
+.cape-quote {
+  display: flex;
+}
+
+.cape-quote-content {
+  flex: 1 1 auto;
+}
+
+.cape-quote-text-wrap {
+  position: relative;
+}
+
+.cape-quote-icon {
+  color: rgb(83, 16, 120);
+  opacity: 0.8;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentcolor;
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+.cape-quote-icon-open {
+  transform: scaleX(-1);
+  top: -3px;
+  left: -5px;
+}
+
+.cape-quote-icon-close {
+  bottom: 5px;
+  right: -10px;
+}
+
+.cape-quote-text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-indent: 20px;
+}
+
+.cape-quote-attribution {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgb(83, 16, 120);
+  font-style: italic;
+  padding-top: 10px;
+}
+
+.cape-quote-image {
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  object-fit: cover;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+
+
+  @media (min-width: 0px) { 
+    #quoteCon {flex-direction:column;}
+  }
+  @media (min-width: 450px) { 
+    #quoteCon {flex-direction:row;}
+  }
+
+  h2.gform_title {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+  }
+  #tfa_32-L {
+    text-align: left;
+  }
+
+  #tfa_17-HTML {
+    text-align: center;
+  }
+
+  #tfa_105-L {
+    text-wrap: wrap;
+    text-align: left;
+    max-width: 90%;
+    font-size: 1em;
+  line-height: 1.3em;
+  padding-left: 0;
+  }
+
+  #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D {
+        width: 49% !important
+    }
+
+  #tfa_32 {
+    width: 98.5% !important;
+  }
+
+  #tfa_90 {
+    width: 98.5%;
+  display: flex;
+  justify-content: space-between;
+  }
+
+  /* Authorization checkbox labels (legal language) */
+  #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
+    font-size: 13.6px !important;
+    color: rgb(68, 68, 68) !important;
+    line-height: normal;
+  }
+
+  /* Authorization checkboxes */
+  #tfa_379-L:before,
+  #tfa_380-L:before,
+  #tfa_382-L:before {
+    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    top: -2px;
+  }
+
+  #tfa_379-L:after,
+  #tfa_380-L:after,
+  #tfa_382-L:after {
+    left: 3px;
+    top: 6px;
+  }
+
+  /* checkbox backgrounds checked */
+  .wFormContainer .wForm .inputWrapper input[type="checkbox"]:checked~.label:before {
+    background: #531078;
+  }
+  
+
+    #tfa_1-D .inputWrapper, #tfa_2-D .inputWrapper, #tfa_3-D .inputWrapper, #tfa_4-D .inputWrapper,
+    #tfa_22-D .inputWrapper, #tfa_6-D .inputWrapper, #tfa_7-D .inputWrapper, #tfa_91-D .inputWrapper,
+    #tfa_32-D .inputWrapper, #tfa_34-D .inputWrapper, #tfa_35-D .inputWrapper, #tfa_39-D .inputWrapper, #tfa_32  .inputWrapper{
+        display: block !important;
+    }
+
+  @media only screen and (max-width: 600px)  {
+    #tfa_1-D, #tfa_2-D, #tfa_3-D, #tfa_4-D,
+    #tfa_22-D, #tfa_6-D, #tfa_7-D, #tfa_91-D,
+    #tfa_32-D, #tfa_34-D, #tfa_35-D, #tfa_39-D, #tfa_32 {
+        width: 100% !important
+    }
+    #tfa_90 {
+      display: block;
+      width: 100%;
+    }
+  }
+  
+
+.wFormContainer .actions .primaryAction, #primaryAction {
+ background-color: #531078 !important;
+}
+
+  #791-A:hover {
+    background-color: #531078 !important;
+  }
+
+  form {
+    @media only screen and (max-width: 480px)  {
+    .wFormContainer .wForm form {
+      padding: 0 important;
+    }
+  }
+
+
