@@ -22,6 +22,112 @@ export function initPrefill({
   });
 }
 
+function getFieldContainer(field) {
+  if (!field) return null;
+
+  return (
+    field.closest(".field-container-D, .form-group, .question, .oneField") ||
+    field.parentElement
+  );
+}
+
+function isValidUSPhone(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+  return digits.length === 10;
+}
+
+function showPrefilledField(field) {
+  const container = getFieldContainer(field);
+
+  if (container) {
+    container.style.removeProperty("display");
+  }
+
+  field.dataset.prefilled = "false";
+}
+
+function hidePrefilledField(field) {
+  const container = getFieldContainer(field);
+
+  if (container) {
+    container.style.display = "none";
+  }
+
+  field.dataset.prefilled = "true";
+}
+
+function showFieldValidationError(field, message) {
+  const container = getFieldContainer(field);
+  if (!container) return;
+
+  container.style.removeProperty("display");
+  container.classList.add("errFld", "tfa-inline-error-present");
+
+  field.setAttribute("aria-invalid", "true");
+
+  let errorElement =
+    container.querySelector(".errMsg") ||
+    container.querySelector(".errorMessage");
+
+  if (!errorElement) {
+    errorElement = document.createElement("div");
+    errorElement.className = "errMsg";
+    errorElement.setAttribute("role", "alert");
+
+    const inputWrapper =
+      field.closest(".inputWrapper") ||
+      field.parentElement;
+
+    if (inputWrapper?.parentNode) {
+      inputWrapper.insertAdjacentElement("afterend", errorElement);
+    } else {
+      container.appendChild(errorElement);
+    }
+  }
+
+  errorElement.textContent = message;
+}
+
+function clearFieldValidationError(field) {
+  const container = getFieldContainer(field);
+  if (!container) return;
+
+  container.classList.remove("errFld", "tfa-inline-error-present");
+  field.removeAttribute("aria-invalid");
+
+  const errorElement =
+    container.querySelector(".errMsg") ||
+    container.querySelector(".errorMessage");
+
+  if (errorElement) {
+    errorElement.remove();
+  }
+}
+
+function validatePrefilledPhone(field) {
+  if (!field) return true;
+
+  const value = field.value.trim();
+
+  if (!value) {
+    return true;
+  }
+
+  if (!isValidUSPhone(value)) {
+    showPrefilledField(field);
+
+    showFieldValidationError(
+      field,
+      "Please enter a valid phone number"
+    );
+
+    return false;
+  }
+
+  clearFieldValidationError(field);
+  return true;
+}
+
 function initPrefilledFields({
   getLang,
   detectedSupportedLang,
@@ -60,19 +166,48 @@ function initPrefilledFields({
   ].filter(Boolean);
 
   prefillFieldList.forEach(field => {
-    const wasPrefilled = field.value && field.value.trim() !== "";
+    const wasPrefilled =
+      typeof field.value === "string" &&
+      field.value.trim() !== "";
 
     if (!wasPrefilled) {
       field.dataset.prefilled = "false";
       return;
     }
 
+    /*
+     * A prefilled phone must be valid before it can be hidden.
+     */
+    if (field.id === "tfa_4") {
+      field.addEventListener("input", function () {
+        if (isValidUSPhone(field.value)) {
+          clearFieldValidationError(field);
+        }
+      });
+
+      field.addEventListener("blur", function () {
+        if (field.value.trim() && !isValidUSPhone(field.value)) {
+          showFieldValidationError(
+            field,
+            "Please enter a valid phone number"
+          );
+        } else {
+          clearFieldValidationError(field);
+        }
+      });
+
+      const phoneIsValid = validatePrefilledPhone(field);
+
+      if (!phoneIsValid) {
+        return;
+      }
+    }
+
     field.dataset.prefilled = "true";
 
-    let container;
-
-    if (field.id === "tfa_1303") { // employer naem prefill
-      const employerTypeContainer = document.getElementById("tfa_1301"); // employer picklists section
+    if (field.id === "tfa_1303") {
+      const employerTypeContainer =
+        document.getElementById("tfa_1301");
 
       if (employerTypeContainer) {
         employerTypeContainer.style.display = "none";
@@ -86,34 +221,28 @@ function initPrefilledFields({
         employerTypeInput.disabled = true;
       }
 
-      markFieldSwitchedOff("tfa_1302"); // employer type
+      markFieldSwitchedOff("tfa_1302");
 
-      hiddenRequired.forEach(f => {
-        if (!f) return;
+      hiddenRequired.forEach(hiddenField => {
+        if (!hiddenField) return;
 
-        f.required = false;
-        f.removeAttribute("required");
-        f.classList.remove("required");
-        f.setAttribute("aria-required", "false");
-        f.disabled = true;
+        hiddenField.required = false;
+        hiddenField.removeAttribute("required");
+        hiddenField.classList.remove("required");
+        hiddenField.setAttribute("aria-required", "false");
+        hiddenField.disabled = true;
 
-        const c =
-          f.closest(".oneField") ||
-          f.closest(".field-container-D, .form-group, .question");
+        const container = getFieldContainer(hiddenField);
 
-        if (c) c.style.display = "none";
+        if (container) {
+          container.style.display = "none";
+        }
       });
 
-      container = null;
-    } else {
-      container =
-        field.closest(".field-container-D, .form-group, .question") ||
-        field.parentNode;
+      return;
     }
 
-    if (container) {
-      container.style.display = "none";
-    }
+    hidePrefilledField(field);
   });
 }
 
@@ -219,24 +348,50 @@ function initPrefillModal({
   getLang,
   LANGUAGE_CONFIG
 }) {
-  console.log('initPrefillModal cape');
-  const body = document.querySelector("body");
+  console.log("initPrefillModal cape");
+
+  const body = document.body;
+  const modalContent = document.getElementById("tfa_327");
   const fullNameField = document.getElementById("tfa_330");
-  console.log('225');
-  console.log('fullNameField', fullNameField);
-  console.log('fullName value', fullNameField.value);
   const linkInfo = document.getElementById("tfa_331");
 
-  if (!body || !fullNameField || !linkInfo) return;
+  if (!body || !modalContent || !fullNameField || !linkInfo) {
+    console.warn("CAPE prefill modal missing required elements", {
+      body,
+      modalContent,
+      fullNameField,
+      linkInfo
+    });
 
-  body.insertAdjacentHTML("afterBegin", `<div id="js-modal-page">`);
-  body.insertAdjacentHTML("beforeEnd", `</div>`);
+    return;
+  }
 
-  const fullName = fullNameField.value.substring(0, 40);
-  console.log('233');
-  console.log('fullName', fullName);
-  const rawLang = (getLang || navigator.language || "en").split("-")[0];
-  const lang = LANGUAGE_CONFIG[rawLang]?.renderLang || "en";
+  /*
+   * Prevent this form's initialization from adding a second launcher.
+   */
+  if (document.getElementById("hiddenButton")) {
+    console.warn("CAPE prefill modal already initialized");
+    return;
+  }
+
+  const fullName = fullNameField.value.trim().substring(0, 40);
+
+  if (!fullName) {
+    return;
+  }
+
+  const rawLanguage =
+    typeof getLang === "function"
+      ? getLang()
+      : getLang || navigator.language || "en";
+
+  const languageCode =
+    String(rawLanguage).toLowerCase().split("-")[0];
+
+  const lang =
+    LANGUAGE_CONFIG[languageCode]?.renderLang ||
+    languageCode ||
+    "en";
 
   const modalText = {
     en: {
@@ -279,67 +434,133 @@ function initPrefillModal({
   const text = modalText[lang] || modalText.en;
 
   const hiddenButton = document.createElement("button");
-  hiddenButton.setAttribute("id", "hiddenButton");
-  hiddenButton.setAttribute("data-modal-prefix-class", "simple-animated");
-  hiddenButton.setAttribute("data-modal-content-id", "tfa_327");
-  hiddenButton.setAttribute("data-modal-title", `${text.titlePrefix} ${fullName}?`);
-  hiddenButton.setAttribute("data-modal-close-text", `${text.closePrefix} ${fullName}`);
-  hiddenButton.setAttribute("data-modal-close-title", `${text.closePrefix} ${fullName}`);
-  hiddenButton.setAttribute("class", "js-modal invisible");
 
-  document.body.insertBefore(hiddenButton, document.body.firstChild);
+  hiddenButton.type = "button";
+  hiddenButton.id = "hiddenButton";
+  hiddenButton.className = "js-modal invisible";
 
-  console.log('287', hiddenButton);
+  hiddenButton.setAttribute(
+    "data-modal-prefix-class",
+    "simple-animated"
+  );
 
-  const urlParams = new URLSearchParams(window.location.search);
+  hiddenButton.setAttribute(
+    "data-modal-content-id",
+    "tfa_327"
+  );
+
+  hiddenButton.setAttribute(
+    "data-modal-title",
+    `${text.titlePrefix} ${fullName}?`
+  );
+
+  hiddenButton.setAttribute(
+    "data-modal-close-text",
+    `${text.closePrefix} ${fullName}`
+  );
+
+  hiddenButton.setAttribute(
+    "data-modal-close-title",
+    `${text.closePrefix} ${fullName}`
+  );
+
+  body.insertBefore(hiddenButton, body.firstChild);
+
+  const urlParams =
+    new URLSearchParams(window.location.search);
+
   const cId = urlParams.get("cId");
   const aId = urlParams.get("aId");
+  const omaId = urlParams.get("OMA");
   const src = urlParams.get("src");
-  const OMA = urlParams.get("OMA");
 
   setFieldValue("tfa_326", cId);
-  if (aId) { setFieldValue("tfa_1316", aId); }
-  if (OMA) { setFieldValue("tfa_390", OMA); }
+  setFieldValue("tfa_1316", aId);
+  setFieldValue("tfa_390", omaId);
   setFieldValue("tfa_1335", src || "Direct seiu503signup FA");
 
-  const linkHtml = `
-    <button type="button" class="custom-link-text not-me-button">
+  if (omaId) {
+    console.log("CAPE modal skipped because OMA is present", {
+      omaId
+    });
+    return;
+  }
+
+  /*
+   * tfa_330 already contains the explanatory text and name.
+   * Only add the red "not me" button to tfa_331.
+   */
+  linkInfo.innerHTML = `
+    <button
+      type="button"
+      class="custom-link-text not-me-button"
+    >
       ${text.notMePrefix} ${fullName}
     </button>
   `;
 
-  linkInfo.innerHTML += linkHtml;
-  console.log('307', linkInfo);
-
   document.addEventListener(
     "click",
-    function (e) {
-      const notMeButton = e.target.closest(".not-me-button");
+    function handleNotMeClick(event) {
+      const notMeButton =
+        event.target.closest(".not-me-button");
+
       if (!notMeButton) return;
 
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
 
-      const cleanUrl = window.location.origin + window.location.pathname;
+      const cleanUrl =
+        window.location.origin +
+        window.location.pathname;
+
       window.location.replace(cleanUrl);
     },
     true
   );
 
-  if (cId && aId && fullName) {
-    console.log('hiddenButton click');
+  /*
+   * Modal opens only on 'blank slate' CAPE; not on OMA redirect
+   */
+  const hasContactId = Boolean(cId);
+  const hasAccountId = Boolean(aId);
+  const hasOmaId = Boolean(omaId);
+
+  const shouldOpenModal =
+    Boolean(fullName) &&
+    hasContactId &&
+    hasAccountId &&
+    !hasOmaId;
+
+  console.log("CAPE modal launch check", {
+    cId,
+    aId,
+    omaId,
+    fullName,
+    shouldOpenModal
+  });
+
+  if (shouldOpenModal) {
     hiddenButton.click();
-  } else {
-    console.log('conditions not met 329');
   }
 }
 
 function setFieldValue(id, value) {
-  if (!value) return;
+  if (value === null || value === undefined || value === "") {
+    return;
+  }
 
   const field = document.getElementById(id);
   if (!field) return;
 
   field.value = value;
+
+  field.dispatchEvent(
+    new Event("input", { bubbles: true })
+  );
+
+  field.dispatchEvent(
+    new Event("change", { bubbles: true })
+  );
 }
