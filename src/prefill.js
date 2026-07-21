@@ -7,18 +7,139 @@ export function initPrefill({
   hiddenRequired = [],
   LANGUAGE_CONFIG = {}
 }) {
-  initPrefilledFields({
-    getLang,
-    detectedSupportedLang,
-    employerTypeInput,
-    hiddenRequired,
-    LANGUAGE_CONFIG
-  });
+  try {
+    initPrefilledFields({
+      getLang,
+      detectedSupportedLang,
+      employerTypeInput,
+      hiddenRequired,
+      LANGUAGE_CONFIG
+    });
+  } catch (error) {
+    console.error("initPrefilledFields failed:", error);
+  }
 
-  initPrefillModal({
-    getLang,
-    LANGUAGE_CONFIG
-  });
+  try {
+    initPrefillModal({
+      getLang,
+      LANGUAGE_CONFIG
+    });
+  } catch (error) {
+    console.error("initPrefillModal failed:", error);
+  }
+}
+
+function getFieldContainer(field) {
+  if (!field) return null;
+
+  return (
+    field.closest(".field-container-D, .form-group, .question, .oneField") ||
+    field.parentNode
+  );
+}
+
+function isValidUSPhone(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+
+  // Accept 10 digits, or 11 digits only when the first digit is 1.
+  // return (
+  //   digits.length === 10 ||
+  //   (digits.length === 11 && digits.startsWith("1"))
+  // );
+
+  return digits.length === 10;
+}
+
+function showPrefilledField(field) {
+  const container = getFieldContainer(field);
+
+  if (container) {
+    container.style.removeProperty("display");
+  }
+
+  field.dataset.prefilled = "false";
+}
+
+function hidePrefilledField(field) {
+  const container = getFieldContainer(field);
+
+  if (container) {
+    container.style.display = "none";
+  }
+
+  field.dataset.prefilled = "true";
+}
+
+function showFieldValidationError(field, message) {
+  const container = getFieldContainer(field);
+  if (!container) return;
+
+  container.style.removeProperty("display");
+  container.classList.add("errFld", "tfa-inline-error-present");
+
+  field.setAttribute("aria-invalid", "true");
+
+  let errorElement =
+    container.querySelector(".errMsg") ||
+    container.querySelector(".errorMessage");
+
+  if (!errorElement) {
+    errorElement = document.createElement("div");
+    errorElement.className = "errMsg";
+    errorElement.setAttribute("role", "alert");
+
+    const inputWrapper =
+      field.closest(".inputWrapper") ||
+      field.parentElement;
+
+    if (inputWrapper?.parentNode) {
+      inputWrapper.insertAdjacentElement("afterend", errorElement);
+    } else {
+      container.appendChild(errorElement);
+    }
+  }
+
+  errorElement.textContent = message;
+}
+
+function clearFieldValidationError(field) {
+  const container = getFieldContainer(field);
+  if (!container) return;
+
+  container.classList.remove("errFld", "tfa-inline-error-present");
+  field.removeAttribute("aria-invalid");
+
+  const errorElement =
+    container.querySelector(".errMsg") ||
+    container.querySelector(".errorMessage");
+
+  if (errorElement) {
+    errorElement.remove();
+  }
+}
+
+function validatePrefilledPhone(field) {
+  if (!field) return true;
+
+  const value = field.value.trim();
+
+  if (!value) {
+    return true;
+  }
+
+  if (!isValidUSPhone(value)) {
+    showPrefilledField(field);
+
+    showFieldValidationError(
+      field,
+      "Please enter a valid phone number"
+    );
+
+    return false;
+  }
+
+  clearFieldValidationError(field);
+  return true;
 }
 
 function initPrefilledFields({
@@ -65,9 +186,36 @@ function initPrefilledFields({
       return;
     }
 
-    field.dataset.prefilled = "true";
+    /*
+     * Validate the prefilled phone before hiding it.
+     * Invalid Salesforce data must remain visible so the user can correct it.
+     */
+    if (field.id === "tfa_4") {
+      field.addEventListener("input", function () {
+        if (isValidUSPhone(field.value)) {
+          clearFieldValidationError(field);
+        }
+      });
 
-    let container;
+      field.addEventListener("blur", function () {
+        if (field.value.trim() && !isValidUSPhone(field.value)) {
+          showFieldValidationError(
+            field,
+            "Please enter a valid phone number"
+          );
+        } else {
+          clearFieldValidationError(field);
+        }
+      });
+
+      const phoneIsValid = validatePrefilledPhone(field);
+
+      if (!phoneIsValid) {
+        return;
+      }
+    }
+
+    field.dataset.prefilled = "true";
 
     if (field.id === "tfa_444") {
       const employerTypeContainer = document.getElementById("tfa_400");
@@ -95,23 +243,19 @@ function initPrefilledFields({
         f.setAttribute("aria-required", "false");
         f.disabled = true;
 
-        const c =
+        const container =
           f.closest(".oneField") ||
           f.closest(".field-container-D, .form-group, .question");
 
-        if (c) c.style.display = "none";
+        if (container) {
+          container.style.display = "none";
+        }
       });
 
-      container = null;
-    } else {
-      container =
-        field.closest(".field-container-D, .form-group, .question") ||
-        field.parentNode;
+      return;
     }
 
-    if (container) {
-      container.style.display = "none";
-    }
+    hidePrefilledField(field);
   });
 }
 
@@ -217,14 +361,33 @@ function initPrefillModal({
   getLang,
   LANGUAGE_CONFIG
 }) {
+  console.log("initPrefillModal called");
+
   const body = document.querySelector("body");
   const fullNameField = document.getElementById("tfa_330");
   const linkInfo = document.getElementById("tfa_331");
 
+  console.log("Prefill modal elements:", {
+    body,
+    fullNameField,
+    linkInfo,
+    fullNameValue: fullNameField?.value
+  });
+
   if (!body || !fullNameField || !linkInfo) return;
 
-  body.insertAdjacentHTML("afterBegin", `<div id="js-modal-page">`);
-  body.insertAdjacentHTML("beforeEnd", `</div>`);
+  let modalPage = document.getElementById("js-modal-page");
+
+  if (!modalPage) {
+    modalPage = document.createElement("div");
+    modalPage.id = "js-modal-page";
+
+    while (body.firstChild) {
+      modalPage.appendChild(body.firstChild);
+    }
+
+    body.appendChild(modalPage);
+  }
 
   const fullName = fullNameField.value.substring(0, 40);
   const rawLang = (getLang || navigator.language || "en").split("-")[0];
@@ -234,12 +397,16 @@ function initPrefillModal({
     en: {
       titlePrefix: "Are you",
       closePrefix: "Yes, I'm",
-      notMePrefix: "I'm not"
+      notMePrefix: "I'm not",
+      customizedFor: "This form is customized especially for",
+      warning: "If this is not you, do not complete this form."
     },
     es: {
       titlePrefix: "¿Es Ud.",
       closePrefix: "Sí, soy",
-      notMePrefix: "No soy"
+      notMePrefix: "No soy",
+      customizedFor: "Este formulario está personalizado especialmente para",
+      warning: "Si esta persona no es usted, no complete este formulario."
     },
     ru: {
       titlePrefix: "Это вы,",
@@ -279,7 +446,7 @@ function initPrefillModal({
   hiddenButton.setAttribute("data-modal-close-title", `${text.closePrefix} ${fullName}`);
   hiddenButton.setAttribute("class", "js-modal invisible");
 
-  document.body.insertBefore(hiddenButton, document.body.firstChild);
+  document.body.insertBefore(hiddenButton, modalPage);
 
   const urlParams = new URLSearchParams(window.location.search);
   const cId = urlParams.get("cId");
@@ -290,13 +457,18 @@ function initPrefillModal({
   setFieldValue("tfa_442", aId);
   setFieldValue("tfa_446", src || "Direct seiu503signup FA");
 
-  const linkHtml = `
-    <button type="button" class="custom-link-text not-me-button">
+  const bodyText =
+    text.bodyText ||
+    modalText.en.bodyText;
+
+  linkInfo.innerHTML = `
+    <button
+      type="button"
+      class="custom-link-text not-me-button"
+    >
       ${text.notMePrefix} ${fullName}
     </button>
   `;
-
-  linkInfo.innerHTML += linkHtml;
 
   document.addEventListener(
     "click",
@@ -314,7 +486,16 @@ function initPrefillModal({
     true
   );
 
+  console.log("Prefill modal launch check:", {
+      cId,
+      aId,
+      fullName,
+      hiddenButton,
+      hasModalLibrary: hiddenButton.classList.contains("js-modal")
+    });
+
   if (cId && aId && fullName) {
+    console.log("Clicking hidden modal button");
     hiddenButton.click();
   }
 }

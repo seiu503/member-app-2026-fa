@@ -176,3 +176,79 @@
   }
 
 
+/* Let the modal size itself to its content */
+.simple-animated-modal,
+.simple-animated-modal__content,
+[role="dialog"] {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: calc(100dvh - 2rem) !important;
+}
+
+/* Allow the full modal to scroll on short/mobile screens */
+.simple-animated-modal,
+[role="dialog"] {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+/* Remove fixed heights from the FormAssembly modal section */
+#tfa_327,
+#tfa_327-D,
+#tfa_327 .section,
+#tfa_327 .htmlSection,
+#tfa_327 .oneField {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+/* Remove the border and large spacing between the two areas */
+#tfa_327,
+#tfa_327-D,
+#tfa_331,
+#tfa_331-D {
+  border: 0 !important;
+}
+
+#tfa_327 .oneField,
+#tfa_327 .htmlSection,
+#tfa_331,
+#tfa_331-D {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Keep the generated message compact */
+.prefill-modal-message {
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0.75rem 1rem 1.5rem !important;
+  text-align: center;
+}
+
+.prefill-modal-message p {
+  margin: 0 0 0.75rem !important;
+}
+
+/* Mobile modal sizing */
+@media (max-width: 600px) {
+  .simple-animated-modal,
+  [role="dialog"] {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    max-height: calc(100dvh - 2rem) !important;
+    margin: 1rem auto !important;
+  }
+
+  #tfa_327,
+  #tfa_327-D {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+}
+
+

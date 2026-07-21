@@ -4,11 +4,6 @@ const fs = require("fs");
 async function build() {
   const css = fs.readFileSync("src/styles.css", "utf8");
 
-  const modalJs = fs.readFileSync(
-    "node_modules/van11y-accessible-modal-window-aria/dist/van11y-accessible-modal-window-aria.min.js",
-    "utf8"
-  );
-
   const jsResult = await esbuild.build({
     entryPoints: ["src/main.js"],
     bundle: true,
@@ -24,13 +19,17 @@ ${css}
 </style>
 
 <script>
-${modalJs}
-
 ${appJs}
 </script>`;
 
   fs.mkdirSync("dist", { recursive: true });
-  fs.writeFileSync("dist/formassembly-custom-code.html", html);
+  fs.writeFileSync(
+    "dist/formassembly-custom-code.html",
+    html
+  );
 }
 
-build();
+build().catch(error => {
+  console.error(error);
+  process.exit(1);
+});

@@ -216,201 +216,304 @@
 
 /* PREFILL MODAL STYLE */
 
-
-
-#modal-title {
-	font-size: 1.5em !important;
-}
-
 #hiddenButton {
-	left: -10000px;
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-/*	fullname display */
-#tfa_330 {
-		border: 0;
-		font-size: 1.2em;
-		font-weight: bold;
-		background: transparent;
-		text-align: center;
-		margin: auto;
-		padding: 10px 0;
-	}
+.invisible {
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
-/*	add spacing between elements in modal */
-	#tfa_331-HTML {
-		margin: 10px 0 30px 0;
-	}
-	/*	'If this is not you, do not complete this form' */
-	#tfa_330-DA span {
-		font-size: 16px !important;
-	}
+.no-scroll {
+  overflow: hidden;
+}
 
-	dialog {
-	  display: block;
-	  border: 0;
-	}
-	/* screenreader only style */
-	.invisible {
-		position: absolute;
-    top: -1000px;
-    left: -1000px;
-    height: 1px;
-    width: 1px;
-    text-align: left;
-    overflow: hidden;
-	}
-	/* removes scroll when modal is opened */
-	.no-scroll {
-	  overflow: hidden;
-	}
-	/* overlay covers everything */
-	.simple-modal-overlay,
-	.simple-animated-modal-overlay {
-	  position: fixed;
-	  top: 0;
-	  bottom: 0;
-	  right: 0;
-	  left: 0;
-	  background: #fff;
-	  opacity: .8;
-	  z-index: 666;
-	  cursor: pointer;
-	}
-	.simple-modal-overlay[data-background-click="disabled"],
-	.simple-animated-modal-overlay[data-background-click="disabled"] {
-	  cursor: auto;
-	}
-	.simple-animated-modal-overlay  {
-	  /*animation: fadewhite ease .5s 1 normal ;*/
-	}
+/* Overlay */
+.simple-modal-overlay,
+.simple-animated-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 666;
+  background: #fff;
+  opacity: 0.8;
+  cursor: pointer;
+}
 
-	@keyframes fadewhite {
-	  0% {
-	    opacity: 0;
-	  }
-	  100% {
-	    opacity: .8;
-	  }
-	}
-	/* modal */
-	.simple-modal,
-	.simple-animated-modal {
-		font-family: "Open Sans", sans-serif;
-	  position: fixed;
-	  left: 50%;
-    transform: translate(-50%, 0);
-	  top: 5%;
-	  width: 70%;
-	  max-height: 98vh;
-	  border: 2px solid #fc9802;
-	  background: #f4f2c8;
-	  z-index: 667;
-	  padding: 2em 2em 6em 2em;
-	  right: auto;
-	  overflow: hidden;
-	}
+.simple-modal-overlay[data-background-click="disabled"],
+.simple-animated-modal-overlay[data-background-click="disabled"] {
+  cursor: default;
+}
 
-	.simple-animated-modal__content {
-		text-align: center;
-	}
-/* "Yes, I'm (name)" button */
-	.simple-modal-close,
-	.simple-animated-modal-close,
-	.custom-link-text {
-	  position: relative;
-    bottom: 10px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin: 1.6em auto .4em auto;
-    background-color: #2f9d26;
-    font-weight: normal;
-    font-size: 1em;
-    color: rgb(254, 254, 255);
-    box-shadow: none;
-    padding: 1em 2em;
-    border-radius: 0.25em;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
-    transition: all 0.25s linear 0s;
-    cursor: pointer;
-	}
-	.simple-modal-close:focus,
-	.simple-modal-close:hover,
-	.simple-modal-close:active {
-	  outline: 1px dotted #fff;
-	}
-	.simple-animated-modal-close:hover,
-	.simple-animated-modal-close:active,
-	.simple-modal-close:hover,
-	.simple-modal-close:active {
-	  background-color: #44dc38;
-	}
-	/* "No, I'm not (name), get me a new link" button */
-	.custom-link-text {
-		position: static;
-		bottom: auto;
-		left: auto;
-		transform: none;
-		margin: auto;
-		background-color: #aa0627;
-		text-decoration: none;
-	}
-	.custom-link-text:hover,
-	.custom-link-text:focus {
-		background-color: #e00834;
-	}
+/* Actual dialog */
+dialog.simple-modal,
+dialog.simple-animated-modal {
+  box-sizing: border-box;
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
 
-	.simple-animated-modal {
-	  /*animation: apparition ease .5s 1 normal ;*/
-	}
+  display: block;
+  width: min(90%, 700px);
+  height: auto;
+  max-height: 90vh;
 
-	@keyframes apparition {
-	  0% {
-	    opacity: 0;
-	    max-height: 0;
-	    width: 0;
-	    left: 50%;
-	  }
-	  100% {
-	    opacity: 1;
-	    max-height: 100%;
-	    width: 70%;
-	    left: 15%;
-	  }
-	}
+  margin: 0;
+  padding: 2rem;
 
-	/* tablet */
-	@media (max-width: 55.625em) {
+  overflow-x: hidden;
+  overflow-y: auto;
 
-	  .simple-modal,
-	  .simple-animated-modal {
-	    left: 50%;
-    transform: translate(-50%, 0);
-	    top: 5%;
-	    height: 50vh;
-	    width: 90%;
-	    overflow: hidden;
-	  }
+  border: 2px solid #fc9802;
+  background: #f4f2c8;
+  z-index: 667;
 
-	}
+  font-family: "Open Sans", sans-serif;
+}
 
-	/* mobile */
-	@media (max-width: 44.375em) {
+/* Remove sizing and spacing imposed by wrappers */
+.simple-modal__wrapper,
+.simple-animated-modal__wrapper,
+.simple-modal__content,
+.simple-animated-modal__content {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
 
-	  .simple-modal,
-	  .simple-animated-modal {
-	    left: 50%;
-    transform: translate(-50%, 0);
-	    top: 1%;
-	    width: 98%;
-	    height: 50vh;
-	    overflow: hidden;
-	  }
+.simple-modal__content,
+.simple-animated-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
 
-	}
+/* Modal title */
+#modal-title {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.5em !important;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/*
+ * FormAssembly copies the contents of tfa_327 into this element.
+ * Remove all fieldset, section, and field-container layout styling.
+ */
+#js-modal-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+}
+
+#js-modal-content *,
+#js-modal-content *::before,
+#js-modal-content *::after {
+  box-sizing: border-box;
+}
+
+/* The two actual FormAssembly elements copied into the dialog */
+#js-modal-content > #tfa_330-D,
+#js-modal-content > #tfa_331 {
+  display: block !important;
+
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+}
+
+/* Remove inherited section borders, including the horizontal divider */
+#js-modal-content .oneField,
+#js-modal-content .field-container-D,
+#js-modal-content .htmlSection,
+#js-modal-content .htmlContent,
+#js-modal-content .inputWrapper,
+#js-modal-content .delimiter {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+}
+
+/* Name and surrounding sentences */
+#js-modal-content #tfa_330-D .inputWrapper {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+
+  width: 100%;
+}
+
+#js-modal-content #tfa_330-DB,
+#js-modal-content #tfa_330-DA {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem !important;
+  line-height: 1.4;
+}
+
+#js-modal-content #tfa_330 {
+  display: block;
+  width: auto !important;
+  max-width: 100%;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+
+  color: inherit;
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Container for the red "not me" button */
+#js-modal-content > #tfa_331 {
+  margin-top: 0.75rem !important;
+  text-align: center;
+}
+
+/* Buttons */
+.simple-modal-close,
+.simple-animated-modal-close,
+.custom-link-text {
+  position: static;
+  display: block;
+
+  width: fit-content;
+  max-width: 100%;
+
+  margin: 0 auto 20px auto;
+  padding: 1em 2em;
+
+  transform: none;
+
+  border: 0;
+  border-radius: 0.25em;
+  box-shadow: none;
+
+  background-color: #2f9d26;
+  color: #fff;
+
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+
+  cursor: pointer;
+  transition: background-color 0.25s linear;
+}
+
+.simple-modal-close:hover,
+.simple-modal-close:focus,
+.simple-modal-close:active,
+.simple-animated-modal-close:hover,
+.simple-animated-modal-close:focus,
+.simple-animated-modal-close:active {
+  background-color: #44dc38;
+}
+
+.custom-link-text {
+  background-color: #aa0627;
+  text-decoration: none;
+}
+
+.custom-link-text:hover,
+.custom-link-text:focus {
+  background-color: #e00834;
+}
+
+/* Tablet */
+@media (max-width: 55.625em) {
+  dialog.simple-modal,
+  dialog.simple-animated-modal {
+    top: 2vh;
+    width: calc(100% - 2rem);
+    max-height: 96vh;
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 44.375em) {
+  dialog.simple-modal,
+  dialog.simple-animated-modal {
+    top: 1vh;
+    width: calc(100% - 1rem);
+    max-height: 98vh;
+    padding: 1rem;
+  }
+
+  .simple-modal__content,
+  .simple-animated-modal__content {
+    gap: 0.8rem;
+  }
+
+  #js-modal-content {
+    gap: 0.5rem;
+  }
+
+  #modal-title {
+    font-size: 1.3em !important;
+  }
+}
 
 /* --------------------------- */
 /* Arabic form-specific layout */

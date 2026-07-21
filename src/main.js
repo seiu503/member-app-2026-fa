@@ -288,7 +288,7 @@ window.addEventListener("load", function() {
 	  new URLSearchParams(window.location.search).has("aId");
 
 	console.log(`isEmployerPrefilled: ${isEmployerPrefilled}`);
-	console.log(`Agency Number: ${agencyNumberPrefillCalc.value}`);
+	console.log(`Agency Number: ${agencyNumberPrefillCalc ? agencyNumberPrefillCalc.value : 'null'}`);
 
   function clearAllEmployerAccountFields() {
 	  [...aIdFields, ...agencyNumberFields].forEach(field => {
