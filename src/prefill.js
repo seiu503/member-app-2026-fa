@@ -191,28 +191,40 @@ function initPrefilledFields({
      * Invalid Salesforce data must remain visible so the user can correct it.
      */
     if (field.id === "tfa_4") {
-      field.addEventListener("input", function () {
-        if (isValidUSPhone(field.value)) {
-          clearFieldValidationError(field);
-        }
-      });
-
-      field.addEventListener("blur", function () {
-        if (field.value.trim() && !isValidUSPhone(field.value)) {
-          showFieldValidationError(
-            field,
-            "Please enter a valid phone number"
-          );
-        } else {
-          clearFieldValidationError(field);
-        }
-      });
-
       const phoneIsValid = validatePrefilledPhone(field);
 
       if (!phoneIsValid) {
+        /*
+         * Invalid prefilled phone stays visible.
+         * The mobile-alert opt-out also stays visible.
+         */
+        showMobileAlertsOptOut();
+
+        field.addEventListener("input", function () {
+          if (isValidUSPhone(field.value)) {
+            clearFieldValidationError(field);
+          }
+        });
+
+        field.addEventListener("blur", function () {
+          if (field.value.trim() && !isValidUSPhone(field.value)) {
+            showFieldValidationError(
+              field,
+              "Please enter a valid phone number"
+            );
+          } else {
+            clearFieldValidationError(field);
+          }
+        });
+
         return;
       }
+
+      /*
+       * The phone came from prefill and is valid.
+       * Hide both the phone and the mobile-alert opt-out.
+       */
+      hideMobileAlertsOptOut();
     }
 
     field.dataset.prefilled = "true";
@@ -507,4 +519,28 @@ function setFieldValue(id, value) {
   if (!field) return;
 
   field.value = value;
+}
+
+function hideElementById(id) {
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.style.display = "none";
+  }
+}
+
+function showElementById(id) {
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.style.removeProperty("display");
+  }
+}
+
+function hideMobileAlertsOptOut() {
+  hideElementById("tfa_114-D");
+}
+
+function showMobileAlertsOptOut() {
+  showElementById("tfa_114-D");
 }

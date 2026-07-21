@@ -2805,25 +2805,27 @@ dialog.simple-animated-modal {
         return;
       }
       if (field.id === "tfa_4") {
-        field.addEventListener("input", function() {
-          if (isValidUSPhone(field.value)) {
-            clearFieldValidationError(field);
-          }
-        });
-        field.addEventListener("blur", function() {
-          if (field.value.trim() && !isValidUSPhone(field.value)) {
-            showFieldValidationError(
-              field,
-              "Please enter a valid phone number"
-            );
-          } else {
-            clearFieldValidationError(field);
-          }
-        });
         const phoneIsValid = validatePrefilledPhone(field);
         if (!phoneIsValid) {
+          showMobileAlertsOptOut();
+          field.addEventListener("input", function() {
+            if (isValidUSPhone(field.value)) {
+              clearFieldValidationError(field);
+            }
+          });
+          field.addEventListener("blur", function() {
+            if (field.value.trim() && !isValidUSPhone(field.value)) {
+              showFieldValidationError(
+                field,
+                "Please enter a valid phone number"
+              );
+            } else {
+              clearFieldValidationError(field);
+            }
+          });
           return;
         }
+        hideMobileAlertsOptOut();
       }
       field.dataset.prefilled = "true";
       if (field.id === "tfa_1303") {
@@ -3044,6 +3046,24 @@ dialog.simple-animated-modal {
     field.dispatchEvent(
       new Event("change", { bubbles: true })
     );
+  }
+  function hideElementById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.style.display = "none";
+    }
+  }
+  function showElementById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.style.removeProperty("display");
+    }
+  }
+  function hideMobileAlertsOptOut() {
+    hideElementById("tfa_114-D");
+  }
+  function showMobileAlertsOptOut() {
+    showElementById("tfa_114-D");
   }
 
   // src_cape/validation_cape.js

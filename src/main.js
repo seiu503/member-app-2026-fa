@@ -374,6 +374,36 @@ window.addEventListener("load", function() {
 	  initEmployerAccountFieldSync();
 	}
 
+	// Keep encoded employer name in hidden field for redirect to CAPE form
+	const employerNameCalc = document.getElementById("tfa_444");
+	const encodedEmployerName = document.getElementById("tfa_469");
+
+	function updateEncodedEmployerName() {
+	  if (!employerNameCalc || !encodedEmployerName) return;
+
+	  encodedEmployerName.value = encodeURIComponent(
+	    employerNameCalc.value.trim()
+	  );
+	}
+
+	// initialize
+	updateEncodedEmployerName();
+
+	// update whenever employer changes
+	if (employerNameCalc) {
+	  employerNameCalc.addEventListener("input", updateEncodedEmployerName);
+	  employerNameCalc.addEventListener("change", updateEncodedEmployerName);
+	}
+
+	// one last update immediately before submit
+	if (formEl) {
+	  formEl.addEventListener(
+	    "submit",
+	    updateEncodedEmployerName,
+	    true
+	  );
+	}
+
   function getOriginalText(el) {
 	  if (!el) return "";
 	  if (!el.dataset.originalText) {

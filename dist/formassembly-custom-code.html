@@ -2913,25 +2913,27 @@ var SEIUForm = (() => {
         return;
       }
       if (field.id === "tfa_4") {
-        field.addEventListener("input", function() {
-          if (isValidUSPhone(field.value)) {
-            clearFieldValidationError(field);
-          }
-        });
-        field.addEventListener("blur", function() {
-          if (field.value.trim() && !isValidUSPhone(field.value)) {
-            showFieldValidationError(
-              field,
-              "Please enter a valid phone number"
-            );
-          } else {
-            clearFieldValidationError(field);
-          }
-        });
         const phoneIsValid = validatePrefilledPhone(field);
         if (!phoneIsValid) {
+          showMobileAlertsOptOut();
+          field.addEventListener("input", function() {
+            if (isValidUSPhone(field.value)) {
+              clearFieldValidationError(field);
+            }
+          });
+          field.addEventListener("blur", function() {
+            if (field.value.trim() && !isValidUSPhone(field.value)) {
+              showFieldValidationError(
+                field,
+                "Please enter a valid phone number"
+              );
+            } else {
+              clearFieldValidationError(field);
+            }
+          });
           return;
         }
+        hideMobileAlertsOptOut();
       }
       field.dataset.prefilled = "true";
       if (field.id === "tfa_444") {
@@ -3155,6 +3157,24 @@ var SEIUForm = (() => {
     const field = document.getElementById(id);
     if (!field) return;
     field.value = value;
+  }
+  function hideElementById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.style.display = "none";
+    }
+  }
+  function showElementById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.style.removeProperty("display");
+    }
+  }
+  function hideMobileAlertsOptOut() {
+    hideElementById("tfa_114-D");
+  }
+  function showMobileAlertsOptOut() {
+    showElementById("tfa_114-D");
   }
 
   // src/dateHelpers.js
@@ -3524,6 +3544,26 @@ var SEIUForm = (() => {
     }
     if (!isEmployerPrefilled) {
       initEmployerAccountFieldSync();
+    }
+    const employerNameCalc = document.getElementById("tfa_444");
+    const encodedEmployerName = document.getElementById("tfa_469");
+    function updateEncodedEmployerName() {
+      if (!employerNameCalc || !encodedEmployerName) return;
+      encodedEmployerName.value = encodeURIComponent(
+        employerNameCalc.value.trim()
+      );
+    }
+    updateEncodedEmployerName();
+    if (employerNameCalc) {
+      employerNameCalc.addEventListener("input", updateEncodedEmployerName);
+      employerNameCalc.addEventListener("change", updateEncodedEmployerName);
+    }
+    if (formEl) {
+      formEl.addEventListener(
+        "submit",
+        updateEncodedEmployerName,
+        true
+      );
     }
     function getOriginalText(el) {
       if (!el) return "";
