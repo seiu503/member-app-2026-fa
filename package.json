@@ -2,10 +2,14 @@
   "scripts": {
     "build": "node build.js",
     "build2": "node build2.js",
-    "buildcape": "node build_cape.js"
+    "buildcape": "node build_cape.js",
+    "test": "npx vitest run --coverage"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0"
+    "@vitest/coverage-v8": "^4.1.11",
+    "esbuild": "^0.25.0",
+    "jsdom": "^27.0.1",
+    "vitest": "^4.1.11"
   },
   "dependencies": {
     "van11y-accessible-modal-window-aria": "^2.5.1"

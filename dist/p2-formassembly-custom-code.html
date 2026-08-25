@@ -1258,20 +1258,24 @@ var SEIUForm = (() => {
     observeSubmitButton();
   })();
 
-  // src_p2/dateHelpers2.js
+  // src/dateHelpers.js
   function initDateHelpers({
+    mm_tfa,
+    dd_tfa,
+    yy_tfa,
+    dob_tfa,
     monthPlaceholder = "Month",
     dayPlaceholder = "Day",
     yearPlaceholder = "Year"
   } = {}) {
-    const dobEl = document.getElementById("tfa_113");
-    const mmSelect = document.getElementById("tfa_156");
-    const ddSelect = document.getElementById("tfa_157");
-    const yyyySelect = document.getElementById("tfa_158");
+    const dobEl = document.getElementById(dob_tfa);
+    const mmSelect = document.getElementById(mm_tfa);
+    const ddSelect = document.getElementById(dd_tfa);
+    const yyyySelect = document.getElementById(yy_tfa);
     if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
-    const mmPlaceholder = monthPlaceholder;
-    const ddPlaceholder = dayPlaceholder;
-    const yyyyPlaceholder = yearPlaceholder;
+    let mmPlaceholder = monthPlaceholder;
+    let ddPlaceholder = dayPlaceholder;
+    let yyyyPlaceholder = yearPlaceholder;
     if (mmSelect.options[0]) {
       mmSelect.options[0].textContent = mmPlaceholder;
       mmSelect.options[0].value = "";
@@ -1334,6 +1338,30 @@ var SEIUForm = (() => {
       const month = getSelectedText(mmSelect);
       populateSelect(ddSelect, buildDayOptions(month), previousDay);
     }
+    document.addEventListener("languagechange", function(event) {
+      const placeholders = event.detail?.datePlaceholders;
+      if (!placeholders) return;
+      mmPlaceholder = placeholders.month;
+      ddPlaceholder = placeholders.day;
+      yyyyPlaceholder = placeholders.year;
+      const selectedMonth = getSelectedText(mmSelect);
+      const selectedDay = getSelectedText(ddSelect);
+      const selectedYear = getSelectedText(yyyySelect);
+      if (mmSelect.options[0]) {
+        mmSelect.options[0].textContent = mmPlaceholder;
+        mmSelect.options[0].value = "";
+      }
+      populateSelect(
+        ddSelect,
+        buildDayOptions(selectedMonth),
+        selectedDay
+      );
+      populateSelect(
+        yyyySelect,
+        buildYearOptions(),
+        selectedYear
+      );
+    });
     function formatSFDate(mm, dd, yyyy) {
       if (!mm || !dd || !yyyy) return "";
       return `${yyyy}-${mm}-${dd}`;
@@ -1442,6 +1470,10 @@ var SEIUForm = (() => {
     });
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
     initDateHelpers({
+      mm_tfa: "tfa_156",
+      dd_tfa: "tfa_157",
+      yy_tfa: "tfa_158",
+      dob_tfa: "tfa_113",
       monthPlaceholder: getTranslation(
         translationsNorm,
         "mmPlaceholder",

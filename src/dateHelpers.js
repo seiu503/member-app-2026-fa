@@ -1,21 +1,25 @@
 // dateHelpers.js
 
 export function initDateHelpers({
+  mm_tfa,
+  dd_tfa,
+  yy_tfa,
+  dob_tfa,
   monthPlaceholder = "Month",
   dayPlaceholder = "Day",
   yearPlaceholder = "Year"
 } = {}) {
-  const dobEl = document.getElementById("tfa_113");
+  const dobEl = document.getElementById(dob_tfa); // "tfa_113"
 
-  const mmSelect = document.getElementById("tfa_156");
-  const ddSelect = document.getElementById("tfa_157");
-  const yyyySelect = document.getElementById("tfa_158");
+  const mmSelect = document.getElementById(mm_tfa); // "tfa_156"
+  const ddSelect = document.getElementById(dd_tfa); // "tfa_157"
+  const yyyySelect = document.getElementById(yy_tfa); // "tfa_158"
 
   if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
 
-  const mmPlaceholder = monthPlaceholder;
-  const ddPlaceholder = dayPlaceholder;
-  const yyyyPlaceholder = yearPlaceholder;
+  let mmPlaceholder = monthPlaceholder;
+  let ddPlaceholder = dayPlaceholder;
+  let yyyyPlaceholder = yearPlaceholder;
 
   if (mmSelect.options[0]) {
     mmSelect.options[0].textContent = mmPlaceholder;
@@ -24,7 +28,12 @@ export function initDateHelpers({
 
   function getSelectedText(selectEl) {
     const option = selectEl?.options?.[selectEl.selectedIndex];
-    return option?.textContent?.trim() || "";
+
+    if (!option || option.value === "") {
+      return "";
+    }
+
+    return option.textContent?.trim() || "";
   }
 
   function setSelectByText(selectEl, text) {
@@ -96,6 +105,37 @@ export function initDateHelpers({
 
     populateSelect(ddSelect, buildDayOptions(month), previousDay);
   }
+
+  document.addEventListener("languagechange", function (event) {
+    const placeholders = event.detail?.datePlaceholders;
+
+    if (!placeholders) return;
+
+    mmPlaceholder = placeholders.month;
+    ddPlaceholder = placeholders.day;
+    yyyyPlaceholder = placeholders.year;
+
+    const selectedMonth = getSelectedText(mmSelect);
+    const selectedDay = getSelectedText(ddSelect);
+    const selectedYear = getSelectedText(yyyySelect);
+
+    if (mmSelect.options[0]) {
+      mmSelect.options[0].textContent = mmPlaceholder;
+      mmSelect.options[0].value = "";
+    }
+
+    populateSelect(
+      ddSelect,
+      buildDayOptions(selectedMonth),
+      selectedDay
+    );
+
+    populateSelect(
+      yyyySelect,
+      buildYearOptions(),
+      selectedYear
+    );
+  });
 
   function formatSFDate(mm, dd, yyyy) {
     if (!mm || !dd || !yyyy) return "";

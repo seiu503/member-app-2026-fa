@@ -137,11 +137,7 @@ window.addEventListener("load", function() {
 	var firstName = document.getElementById("tfa_1-L"); 
 	var lastName = document.getElementById("tfa_2-L");
 	var birthDate = document.getElementById("tfa_134-L"); 
-	// var mmPlaceholder = document.getElementById("tfa_156").options[0];
-	// var ddPlaceholder = document.getElementById("tfa_157").options[0];
-	// var yyyyPlaceholder = document.getElementById("tfa_158").options[0];
 	var preferredLanguage = document.getElementById("tfa_91-L"); 
-	// var employer = document.getElementById("tfa_22-L"); 
 	var employerTypeLabel = document.getElementById('tfa_388-L');
 	var employerTypeInput = document.getElementById('tfa_388');
 	var address = document.getElementById("tfa_32-L"); 
@@ -155,8 +151,6 @@ window.addEventListener("load", function() {
 	var phoneNote = document.getElementById("tfa_4-HH");
 	var smsOptOut = document.getElementById("tfa_114-L");
 	var smsOptOutCheckbox = document.getElementById("tfa_115-L");
-	// var membershipAuthBlock = document.getElementById("tfa_350-HTML"); 
-	// var duesAuthBlock = document.getElementById("tfa_351-HTML"); 
 	var polOptOut = document.getElementById("tfa_122-L"); 
 	var polOptOutCheckbox = document.getElementById("tfa_123-L"); 
 	var signature = document.getElementById("tfa_386-L");
@@ -171,6 +165,8 @@ window.addEventListener("load", function() {
 	normalizePreferredLanguagePicklist();
 
 	function getPreferredLanguageCodeFromField(field) {
+		console.log('getPreferredLanguageCodeFromField');
+		console.log(field);
 	  if (!field) return "en";
 
 	  const selectedOption = field.options[field.selectedIndex];
@@ -204,13 +200,17 @@ window.addEventListener("load", function() {
 
 		  normalizePreferredLanguagePicklist();
 
-		  setPreferredLanguageValue(selectedEnglishValue, {
-		    fireEvents: false
-		  });
+		  setPreferredLanguageValue(
+			  selectedEnglishValue
+			);
 		});
 	}
 
 	initDateHelpers({
+		mm_tfa: "tfa_156",
+		dd_tfa: "tfa_157",
+		yy_tfa: "tfa_158",
+		dob_tfa: "tfa_113",
 	  monthPlaceholder: getTranslation(
 	    translationsNorm,
 	    "mmPlaceholder",
@@ -438,24 +438,50 @@ window.addEventListener("load", function() {
 	  el.innerHTML = translated;
 	}
 
-	function setPreferredLanguageValue(englishValue, options = {}) {
-	  const { fireEvents = false } = options;
-	  const field = document.getElementById("tfa_91");
-	  if (!field || !englishValue) return false;
+	function setPreferredLanguageValue(
+	  englishValue
+	) {
+	  console.log(
+	    "setPreferredLanguageValue"
+	  );
 
-	  const option = Array.from(field.options).find(opt => {
-	    return opt.dataset.englishValue === englishValue;
-	  });
+	  const langField =
+	    document.getElementById("tfa_91");
 
-	  if (!option) return false;
+	  const codeField =
+	    document.getElementById("tfa_470");
 
-	  field.value = option.value;
+	  if (
+	    !langField ||
+	    !codeField ||
+	    !englishValue
+	  ) {
+	    return false;
+	  }
+
+	  const option =
+	    Array.from(
+	      langField.options
+	    ).find(opt => {
+	      return (
+	        opt.dataset.englishValue ===
+	        englishValue
+	      );
+	    });
+
+	  if (!option) {
+	    return false;
+	  }
+
+	  langField.value =
+	    option.value;
+
 	  option.selected = true;
 
-	  if (fireEvents) {
-	    field.dispatchEvent(new Event("input", { bubbles: true }));
-	    field.dispatchEvent(new Event("change", { bubbles: true }));
-	  }
+	  codeField.value =
+	    getPreferredLanguageCodeFromField(
+	      langField
+	    );
 
 	  return true;
 	}
@@ -634,10 +660,32 @@ window.addEventListener("load", function() {
 	  updateDatePlaceholders();
 
 	  document.dispatchEvent(
-	    new CustomEvent("languagechange", {
-	      detail: { lang: getLang }
-	    })
-	  );
+		  new CustomEvent("languagechange", {
+		    detail: {
+		      lang: getLang,
+		      datePlaceholders: {
+		        month: getTranslation(
+		          translationsNorm,
+		          "mmPlaceholder",
+		          getLang,
+		          "Month"
+		        ),
+		        day: getTranslation(
+		          translationsNorm,
+		          "ddPlaceholder",
+		          getLang,
+		          "Day"
+		        ),
+		        year: getTranslation(
+		          translationsNorm,
+		          "yyyyPlaceholder",
+		          getLang,
+		          "Year"
+		        )
+		      }
+		    }
+		  })
+		);
 	}
   
 

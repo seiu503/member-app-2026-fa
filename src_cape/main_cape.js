@@ -10,6 +10,7 @@ import { employerTypeTranslations,
 import { initEmployerType } from "../src/employerType.js";
 import { initPrefill } from "./prefill_cape.js";
 import { initValidation } from "./validation_cape.js";
+import { initDateHelpers } from "../src/dateHelpers.js";
 
 function normalizeTranslationMap(map) {
   return Object.fromEntries(
@@ -62,6 +63,10 @@ window.addEventListener("load", function() {
 	document.documentElement.lang = getLang;
 	document.querySelector('.wForm')?.setAttribute('data-language', getLang);
 
+	// save language to hidden field to pass to next form if needed
+
+	setFieldValue("tfa_1336", getLang);
+
 	// extract cId from passed query params
 
   const cId = getParam("cId", window.location.href);
@@ -84,6 +89,7 @@ window.addEventListener("load", function() {
   // https://seiu503.tfaforms.net/822?OMA=%%SFA_ONLINEMEMBERAPP__C%%
 
   const OMAId = getParam("OMA", window.location.href);
+  const aId = getParam("aId", window.location.href);
 
 	// write OMA Id to hidden OMA field
 
@@ -106,6 +112,11 @@ window.addEventListener("load", function() {
 
     // Insert skip button after submit
     actions.parentNode.insertBefore(skip, actions.nextSibling);
+
+    // Add event listener to button to redirect to p2
+    skip.addEventListener('click', () => {
+	    window.location.href = `https://seiu503.tfaforms.net/821?cId=${cId}&aId=${aId}`;
+	  });
 
     // hide anything prefilled (DOB, address, phone, email, employer)
 
@@ -174,6 +185,31 @@ window.addEventListener("load", function() {
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
 
     var employerTypeInput = document.getElementById('tfa_1302');
+
+  initDateHelpers({
+		mm_tfa: "tfa_1651",
+		dd_tfa: "tfa_1664",
+		yy_tfa: "tfa_1696",
+		dob_tfa: "tfa_1815",
+	  monthPlaceholder: getTranslation(
+	    translationsNorm,
+	    "mmPlaceholder",
+	    getLang,
+	    "Month"
+	  ),
+	  dayPlaceholder: getTranslation(
+	    translationsNorm,
+	    "ddPlaceholder",
+	    getLang,
+	    "Day"
+	  ),
+	  yearPlaceholder: getTranslation(
+	    translationsNorm,
+	    "yyyyPlaceholder",
+	    getLang,
+	    "Year"
+	  )
+	});
 
 	applyTranslations();
 
@@ -407,6 +443,39 @@ window.addEventListener("load", function() {
 		});
 	}
 
+	function updateDatePlaceholders() {
+	  const mmSelect = document.getElementById("tfa_1651");
+	  const ddSelect = document.getElementById("tfa_1664");
+	  const yyyySelect = document.getElementById("tfa_1696");
+
+	  if (mmSelect?.options?.[0]) {
+	    mmSelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "mmPlaceholder",
+	      getLang,
+	      "Month"
+	    );
+	  }
+
+	  if (ddSelect?.options?.[0]) {
+	    ddSelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "ddPlaceholder",
+	      getLang,
+	      "Day"
+	    );
+	  }
+
+	  if (yyyySelect?.options?.[0]) {
+	    yyyySelect.options[0].textContent = getTranslation(
+	      translationsNorm,
+	      "yyyyPlaceholder",
+	      getLang,
+	      "Year"
+	    );
+	  }
+	}
+
 	function switchLanguage(newLang, options = {}) {
 	  if (!supportedLangs.includes(newLang)) return;
 
@@ -428,5 +497,13 @@ window.addEventListener("load", function() {
 	}
 
 	// set legal language (this block should run AFTER translation blocks)
+
+	const signature = document.getElementById("tfa_386");
+	const capeLegalLanguage = document.getElementById("tfa_383").value;
+	const combinedLL = document.getElementById("tfa_1314");
+
+	signature.addEventListener('blur', function() {
+		combinedLL.value = capeLegalLanguage;
+	});
   
 });

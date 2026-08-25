@@ -2268,25 +2268,25 @@ var SEIUForm = (() => {
       employerTypeInput.value = getEmployerTypeTranslation(englishValue);
     }
     function clearEmployerNameFields(fields) {
-      fields.forEach((field) => {
-        if (!field) return;
-        const container = field.closest(".oneField");
+      fields.forEach((field2) => {
+        if (!field2) return;
+        const container = field2.closest(".oneField");
         if (container) container.style.display = "none";
-        field.required = false;
-        field.classList.remove("required");
-        field.setAttribute("aria-required", "false");
-        field.disabled = true;
-        field.value = "";
-        field.dispatchEvent(new Event("input", { bubbles: true }));
-        field.dispatchEvent(new Event("change", { bubbles: true }));
+        field2.required = false;
+        field2.classList.remove("required");
+        field2.setAttribute("aria-required", "false");
+        field2.disabled = true;
+        field2.value = "";
+        field2.dispatchEvent(new Event("input", { bubbles: true }));
+        field2.dispatchEvent(new Event("change", { bubbles: true }));
       });
     }
     function hideEmployerNameFields() {
-      hiddenRequired.forEach((field) => {
-        if (!field) return;
-        const container = field.closest(".oneField");
+      hiddenRequired.forEach((field2) => {
+        if (!field2) return;
+        const container = field2.closest(".oneField");
         if (container) container.style.display = "none";
-        field.disabled = true;
+        field2.disabled = true;
       });
     }
     function updateEmployerNameFields() {
@@ -2391,8 +2391,8 @@ var SEIUForm = (() => {
           'input:not(.tt-hint)[type="text"]'
         );
         if (!textInput) return;
-        const employerNameField = employerNameFields.find((field) => {
-          return field && field.id === textInput.id;
+        const employerNameField = employerNameFields.find((field2) => {
+          return field2 && field2.id === textInput.id;
         });
         if (employerNameField) {
           e.preventDefault();
@@ -2436,8 +2436,8 @@ var SEIUForm = (() => {
       );
     }
     translateEmployerTypeSuggestions();
-    employerNameFields.forEach((field) => {
-      initDynamicTypeaheadTranslation(field, employerNameTranslations2);
+    employerNameFields.forEach((field2) => {
+      initDynamicTypeaheadTranslation(field2, employerNameTranslations2);
     });
     function translateAndSortTypeahead(input, translationMap) {
       if (!input || !translationMap) return;
@@ -2570,9 +2570,9 @@ var SEIUForm = (() => {
     }
     document.addEventListener("languagechange", function() {
       translateEmployerTypeSuggestions();
-      employerNameFields.forEach((field) => {
-        translateAndSortTypeahead(field, employerNameTranslations2);
-        showTranslatedSelectedValue(field, employerNameTranslations2);
+      employerNameFields.forEach((field2) => {
+        translateAndSortTypeahead(field2, employerNameTranslations2);
+        showTranslatedSelectedValue(field2, employerNameTranslations2);
       });
     });
   }
@@ -2805,40 +2805,40 @@ var SEIUForm = (() => {
       console.error("initPrefillModal failed:", error);
     }
   }
-  function getFieldContainer(field) {
-    if (!field) return null;
-    return field.closest(".field-container-D, .form-group, .question, .oneField") || field.parentNode;
+  function getFieldContainer(field2) {
+    if (!field2) return null;
+    return field2.closest(".field-container-D, .form-group, .question, .oneField") || field2.parentNode;
   }
   function isValidUSPhone(value) {
     const digits = String(value || "").replace(/\D/g, "");
     return digits.length === 10;
   }
-  function showPrefilledField(field) {
-    const container = getFieldContainer(field);
+  function showPrefilledField(field2) {
+    const container = getFieldContainer(field2);
     if (container) {
       container.style.removeProperty("display");
     }
-    field.dataset.prefilled = "false";
+    field2.dataset.prefilled = "false";
   }
-  function hidePrefilledField(field) {
-    const container = getFieldContainer(field);
+  function hidePrefilledField(field2) {
+    const container = getFieldContainer(field2);
     if (container) {
       container.style.display = "none";
     }
-    field.dataset.prefilled = "true";
+    field2.dataset.prefilled = "true";
   }
-  function showFieldValidationError(field, message) {
-    const container = getFieldContainer(field);
+  function showFieldValidationError(field2, message) {
+    const container = getFieldContainer(field2);
     if (!container) return;
     container.style.removeProperty("display");
     container.classList.add("errFld", "tfa-inline-error-present");
-    field.setAttribute("aria-invalid", "true");
+    field2.setAttribute("aria-invalid", "true");
     let errorElement = container.querySelector(".errMsg") || container.querySelector(".errorMessage");
     if (!errorElement) {
       errorElement = document.createElement("div");
       errorElement.className = "errMsg";
       errorElement.setAttribute("role", "alert");
-      const inputWrapper = field.closest(".inputWrapper") || field.parentElement;
+      const inputWrapper = field2.closest(".inputWrapper") || field2.parentElement;
       if (inputWrapper?.parentNode) {
         inputWrapper.insertAdjacentElement("afterend", errorElement);
       } else {
@@ -2847,31 +2847,31 @@ var SEIUForm = (() => {
     }
     errorElement.textContent = message;
   }
-  function clearFieldValidationError(field) {
-    const container = getFieldContainer(field);
+  function clearFieldValidationError(field2) {
+    const container = getFieldContainer(field2);
     if (!container) return;
     container.classList.remove("errFld", "tfa-inline-error-present");
-    field.removeAttribute("aria-invalid");
+    field2.removeAttribute("aria-invalid");
     const errorElement = container.querySelector(".errMsg") || container.querySelector(".errorMessage");
     if (errorElement) {
       errorElement.remove();
     }
   }
-  function validatePrefilledPhone(field) {
-    if (!field) return true;
-    const value = field.value.trim();
+  function validatePrefilledPhone(field2) {
+    if (!field2) return true;
+    const value = field2.value.trim();
     if (!value) {
       return true;
     }
     if (!isValidUSPhone(value)) {
-      showPrefilledField(field);
+      showPrefilledField(field2);
       showFieldValidationError(
-        field,
+        field2,
         "Please enter a valid phone number"
       );
       return false;
     }
-    clearFieldValidationError(field);
+    clearFieldValidationError(field2);
     return true;
   }
   function initPrefilledFields({
@@ -2906,37 +2906,37 @@ var SEIUForm = (() => {
       phoneF,
       employerNamePrefill
     ].filter(Boolean);
-    prefillFieldList.forEach((field) => {
-      const wasPrefilled = field.value && field.value.trim() !== "";
+    prefillFieldList.forEach((field2) => {
+      const wasPrefilled = field2.value && field2.value.trim() !== "";
       if (!wasPrefilled) {
-        field.dataset.prefilled = "false";
+        field2.dataset.prefilled = "false";
         return;
       }
-      if (field.id === "tfa_4") {
-        const phoneIsValid = validatePrefilledPhone(field);
+      if (field2.id === "tfa_4") {
+        const phoneIsValid = validatePrefilledPhone(field2);
         if (!phoneIsValid) {
           showMobileAlertsOptOut();
-          field.addEventListener("input", function() {
-            if (isValidUSPhone(field.value)) {
-              clearFieldValidationError(field);
+          field2.addEventListener("input", function() {
+            if (isValidUSPhone(field2.value)) {
+              clearFieldValidationError(field2);
             }
           });
-          field.addEventListener("blur", function() {
-            if (field.value.trim() && !isValidUSPhone(field.value)) {
+          field2.addEventListener("blur", function() {
+            if (field2.value.trim() && !isValidUSPhone(field2.value)) {
               showFieldValidationError(
-                field,
+                field2,
                 "Please enter a valid phone number"
               );
             } else {
-              clearFieldValidationError(field);
+              clearFieldValidationError(field2);
             }
           });
           return;
         }
         hideMobileAlertsOptOut();
       }
-      field.dataset.prefilled = "true";
-      if (field.id === "tfa_444") {
+      field2.dataset.prefilled = "true";
+      if (field2.id === "tfa_444") {
         const employerTypeContainer = document.getElementById("tfa_400");
         if (employerTypeContainer) {
           employerTypeContainer.style.display = "none";
@@ -2963,7 +2963,7 @@ var SEIUForm = (() => {
         });
         return;
       }
-      hidePrefilledField(field);
+      hidePrefilledField(field2);
     });
   }
   function handleAddressPrefillGroup({
@@ -2977,9 +2977,9 @@ var SEIUForm = (() => {
     const hasCity = !!cityF && cityF.value.trim() !== "";
     const hasZip = !!zipF && zipF.value.trim() !== "";
     const shouldHideAddressGroup = hasAddress && hasCity && hasZip;
-    addressFields.forEach((field) => {
-      field.dataset.prefilled = shouldHideAddressGroup ? "true" : "false";
-      const container = field.closest(".field-container-D, .form-group, .question") || field.parentNode;
+    addressFields.forEach((field2) => {
+      field2.dataset.prefilled = shouldHideAddressGroup ? "true" : "false";
+      const container = field2.closest(".field-container-D, .form-group, .question") || field2.parentNode;
       if (container) {
         if (shouldHideAddressGroup) {
           container.style.display = "none";
@@ -3154,9 +3154,9 @@ var SEIUForm = (() => {
   }
   function setFieldValue(id, value) {
     if (!value) return;
-    const field = document.getElementById(id);
-    if (!field) return;
-    field.value = value;
+    const field2 = document.getElementById(id);
+    if (!field2) return;
+    field2.value = value;
   }
   function hideElementById(id) {
     const element = document.getElementById(id);
@@ -3179,18 +3179,22 @@ var SEIUForm = (() => {
 
   // src/dateHelpers.js
   function initDateHelpers({
+    mm_tfa,
+    dd_tfa,
+    yy_tfa,
+    dob_tfa,
     monthPlaceholder = "Month",
     dayPlaceholder = "Day",
     yearPlaceholder = "Year"
   } = {}) {
-    const dobEl = document.getElementById("tfa_113");
-    const mmSelect = document.getElementById("tfa_156");
-    const ddSelect = document.getElementById("tfa_157");
-    const yyyySelect = document.getElementById("tfa_158");
+    const dobEl = document.getElementById(dob_tfa);
+    const mmSelect = document.getElementById(mm_tfa);
+    const ddSelect = document.getElementById(dd_tfa);
+    const yyyySelect = document.getElementById(yy_tfa);
     if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
-    const mmPlaceholder = monthPlaceholder;
-    const ddPlaceholder = dayPlaceholder;
-    const yyyyPlaceholder = yearPlaceholder;
+    let mmPlaceholder = monthPlaceholder;
+    let ddPlaceholder = dayPlaceholder;
+    let yyyyPlaceholder = yearPlaceholder;
     if (mmSelect.options[0]) {
       mmSelect.options[0].textContent = mmPlaceholder;
       mmSelect.options[0].value = "";
@@ -3253,6 +3257,30 @@ var SEIUForm = (() => {
       const month = getSelectedText(mmSelect);
       populateSelect(ddSelect, buildDayOptions(month), previousDay);
     }
+    document.addEventListener("languagechange", function(event) {
+      const placeholders = event.detail?.datePlaceholders;
+      if (!placeholders) return;
+      mmPlaceholder = placeholders.month;
+      ddPlaceholder = placeholders.day;
+      yyyyPlaceholder = placeholders.year;
+      const selectedMonth = getSelectedText(mmSelect);
+      const selectedDay = getSelectedText(ddSelect);
+      const selectedYear = getSelectedText(yyyySelect);
+      if (mmSelect.options[0]) {
+        mmSelect.options[0].textContent = mmPlaceholder;
+        mmSelect.options[0].value = "";
+      }
+      populateSelect(
+        ddSelect,
+        buildDayOptions(selectedMonth),
+        selectedDay
+      );
+      populateSelect(
+        yyyySelect,
+        buildYearOptions(),
+        selectedYear
+      );
+    });
     function formatSFDate(mm, dd, yyyy) {
       if (!mm || !dd || !yyyy) return "";
       return `${yyyy}-${mm}-${dd}`;
@@ -3389,10 +3417,12 @@ var SEIUForm = (() => {
     var combinedLL = document.getElementById("tfa_377");
     const preferredLanguageField = document.getElementById("tfa_91");
     normalizePreferredLanguagePicklist();
-    function getPreferredLanguageCodeFromField(field) {
-      if (!field) return "en";
-      const selectedOption = field.options[field.selectedIndex];
-      const englishValue = selectedOption?.dataset.englishValue || selectedOption?.textContent?.trim() || field.value;
+    function getPreferredLanguageCodeFromField(field2) {
+      console.log("getPreferredLanguageCodeFromField");
+      console.log(field2);
+      if (!field2) return "en";
+      const selectedOption = field2.options[field2.selectedIndex];
+      const englishValue = selectedOption?.dataset.englishValue || selectedOption?.textContent?.trim() || field2.value;
       const matchedConfig = Object.values(LANGUAGE_CONFIG).find(
         (cfg) => cfg.preferredValues.includes(englishValue)
       );
@@ -3414,6 +3444,10 @@ var SEIUForm = (() => {
       });
     }
     initDateHelpers({
+      mm_tfa: "tfa_156",
+      dd_tfa: "tfa_157",
+      yy_tfa: "tfa_158",
+      dob_tfa: "tfa_113",
       monthPlaceholder: getTranslation(
         translationsNorm,
         "mmPlaceholder",
@@ -3478,11 +3512,11 @@ var SEIUForm = (() => {
     console.log(`isEmployerPrefilled: ${isEmployerPrefilled}`);
     console.log(`Agency Number: ${agencyNumberPrefillCalc ? agencyNumberPrefillCalc.value : "null"}`);
     function clearAllEmployerAccountFields() {
-      [...aIdFields, ...agencyNumberFields].forEach((field) => {
-        if (!field) return;
-        field.value = "";
-        field.dispatchEvent(new Event("input", { bubbles: true }));
-        field.dispatchEvent(new Event("change", { bubbles: true }));
+      [...aIdFields, ...agencyNumberFields].forEach((field2) => {
+        if (!field2) return;
+        field2.value = "";
+        field2.dispatchEvent(new Event("input", { bubbles: true }));
+        field2.dispatchEvent(new Event("change", { bubbles: true }));
       });
       if (aIdPrefillCalc) {
         aIdPrefillCalc.value = "";
@@ -3496,8 +3530,8 @@ var SEIUForm = (() => {
       }
     }
     function getFirstPopulatedValue(fields) {
-      const populated = fields.find((field) => {
-        return field && field.value && field.value.trim() !== "";
+      const populated = fields.find((field2) => {
+        return field2 && field2.value && field2.value.trim() !== "";
       });
       return populated ? populated.value.trim() : "";
     }
@@ -3515,17 +3549,17 @@ var SEIUForm = (() => {
       }
     }
     function initEmployerAccountFieldSync() {
-      employerNameFields.forEach((field) => {
-        field.addEventListener("input", function() {
+      employerNameFields.forEach((field2) => {
+        field2.addEventListener("input", function() {
           if (isEmployerPrefilled) return;
           clearAllEmployerAccountFields();
         });
-        field.addEventListener("change", function() {
+        field2.addEventListener("change", function() {
           if (isEmployerPrefilled) return;
           setTimeout(updateEmployerAccountCalcFields, 100);
           setTimeout(updateEmployerAccountCalcFields, 300);
         });
-        field.addEventListener("typeahead:select", function() {
+        field2.addEventListener("typeahead:select", function() {
           if (isEmployerPrefilled) return;
           setTimeout(updateEmployerAccountCalcFields, 100);
           setTimeout(updateEmployerAccountCalcFields, 300);
@@ -3592,15 +3626,21 @@ var SEIUForm = (() => {
       el.innerHTML = translated;
     }
     function setPreferredLanguageValue(englishValue, options = {}) {
+      console.log("setPreferredLanguageValue");
       const { fireEvents = false } = options;
-      const field = document.getElementById("tfa_91");
-      if (!field || !englishValue) return false;
-      const option = Array.from(field.options).find((opt) => {
+      const langField = document.getElementById("tfa_91");
+      const codeField = document.getElementById("tfa_470");
+      if (!langField || !codeField || !englishValue) return false;
+      const option = Array.from(langField.options).find((opt) => {
         return opt.dataset.englishValue === englishValue;
       });
       if (!option) return false;
-      field.value = option.value;
+      langField.value = option.value;
       option.selected = true;
+      const langCode = getPreferredLanguageCodeFromField(langField);
+      console.log(`langCode: ${langCode}`);
+      console.log(`codeField: ${codeField}`);
+      codeField.value = langCode;
       if (fireEvents) {
         field.dispatchEvent(new Event("input", { bubbles: true }));
         field.dispatchEvent(new Event("change", { bubbles: true }));
@@ -3608,8 +3648,8 @@ var SEIUForm = (() => {
       return true;
     }
     function normalizePreferredLanguagePicklist() {
-      const field = document.getElementById("tfa_91");
-      if (!field) return;
+      const field2 = document.getElementById("tfa_91");
+      if (!field2) return;
       const preferredValueToNativeLabel = {};
       Object.values(LANGUAGE_CONFIG).forEach((cfg) => {
         cfg.preferredValues.forEach((value) => {
@@ -3617,7 +3657,7 @@ var SEIUForm = (() => {
         });
       });
       Object.assign(preferredValueToNativeLabel, OTHER_LANGUAGE_LABELS);
-      Array.from(field.options).forEach((option) => {
+      Array.from(field2.options).forEach((option) => {
         if (!option.textContent.trim()) return;
         if (!option.dataset.englishValue) {
           option.dataset.englishValue = option.textContent.trim();
@@ -3751,7 +3791,29 @@ var SEIUForm = (() => {
       updateDatePlaceholders();
       document.dispatchEvent(
         new CustomEvent("languagechange", {
-          detail: { lang: getLang }
+          detail: {
+            lang: getLang,
+            datePlaceholders: {
+              month: getTranslation(
+                translationsNorm,
+                "mmPlaceholder",
+                getLang,
+                "Month"
+              ),
+              day: getTranslation(
+                translationsNorm,
+                "ddPlaceholder",
+                getLang,
+                "Day"
+              ),
+              year: getTranslation(
+                translationsNorm,
+                "yyyyPlaceholder",
+                getLang,
+                "Year"
+              )
+            }
+          }
         })
       );
     }

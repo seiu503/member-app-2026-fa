@@ -176,6 +176,25 @@
   }
 
 
+/* skip link */
+
+.skip {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  border-bottom: 1px dotted #444;
+  cursor: pointer;
+  color: #444;
+}
+
+.skip:hover,
+.skip:focus,
+.skip:active {
+  color: #623ca9;
+}
+
+
 /* -------------------------------- */
 /* CAPE prefill modal               */
 /* -------------------------------- */
@@ -3266,6 +3285,146 @@ dialog.simple-animated-modal {
     observeSubmitButton();
   })();
 
+  // src/dateHelpers.js
+  function initDateHelpers({
+    mm_tfa,
+    dd_tfa,
+    yy_tfa,
+    dob_tfa,
+    monthPlaceholder = "Month",
+    dayPlaceholder = "Day",
+    yearPlaceholder = "Year"
+  } = {}) {
+    const dobEl = document.getElementById(dob_tfa);
+    const mmSelect = document.getElementById(mm_tfa);
+    const ddSelect = document.getElementById(dd_tfa);
+    const yyyySelect = document.getElementById(yy_tfa);
+    if (!dobEl || !mmSelect || !ddSelect || !yyyySelect) return;
+    let mmPlaceholder = monthPlaceholder;
+    let ddPlaceholder = dayPlaceholder;
+    let yyyyPlaceholder = yearPlaceholder;
+    if (mmSelect.options[0]) {
+      mmSelect.options[0].textContent = mmPlaceholder;
+      mmSelect.options[0].value = "";
+    }
+    function getSelectedText(selectEl) {
+      const option = selectEl?.options?.[selectEl.selectedIndex];
+      return option?.textContent?.trim() || "";
+    }
+    function setSelectByText(selectEl, text) {
+      if (!selectEl || !text) return false;
+      const option = Array.from(selectEl.options).find((opt) => {
+        return opt.textContent.trim() === text || opt.value === text;
+      });
+      if (!option) return false;
+      selectEl.value = option.value;
+      option.selected = true;
+      return true;
+    }
+    function getMaxDay(month) {
+      switch (month) {
+        case "02":
+          return 29;
+        case "04":
+        case "06":
+        case "09":
+        case "11":
+          return 30;
+        default:
+          return 31;
+      }
+    }
+    function buildDayOptions(month) {
+      const max = getMaxDay(month || "01");
+      const days = [ddPlaceholder];
+      for (let i = 1; i <= max; i++) {
+        days.push(i < 10 ? `0${i}` : String(i));
+      }
+      return days;
+    }
+    function buildYearOptions() {
+      const years = [yyyyPlaceholder];
+      const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
+      for (let i = currentYear; i >= currentYear - 99; i--) {
+        years.push(String(i));
+      }
+      return years;
+    }
+    function populateSelect(selectEl, items, previousText) {
+      selectEl.options.length = 0;
+      items.forEach((item, index) => {
+        const value = index === 0 ? "" : item;
+        selectEl.appendChild(new Option(item, value));
+      });
+      if (previousText) {
+        setSelectByText(selectEl, previousText);
+      }
+    }
+    function refreshDayOptions() {
+      const previousDay = getSelectedText(ddSelect);
+      const month = getSelectedText(mmSelect);
+      populateSelect(ddSelect, buildDayOptions(month), previousDay);
+    }
+    document.addEventListener("languagechange", function(event) {
+      const placeholders = event.detail?.datePlaceholders;
+      if (!placeholders) return;
+      mmPlaceholder = placeholders.month;
+      ddPlaceholder = placeholders.day;
+      yyyyPlaceholder = placeholders.year;
+      const selectedMonth = getSelectedText(mmSelect);
+      const selectedDay = getSelectedText(ddSelect);
+      const selectedYear = getSelectedText(yyyySelect);
+      if (mmSelect.options[0]) {
+        mmSelect.options[0].textContent = mmPlaceholder;
+        mmSelect.options[0].value = "";
+      }
+      populateSelect(
+        ddSelect,
+        buildDayOptions(selectedMonth),
+        selectedDay
+      );
+      populateSelect(
+        yyyySelect,
+        buildYearOptions(),
+        selectedYear
+      );
+    });
+    function formatSFDate(mm, dd, yyyy) {
+      if (!mm || !dd || !yyyy) return "";
+      return `${yyyy}-${mm}-${dd}`;
+    }
+    function updateBirthdateField() {
+      const mm = getSelectedText(mmSelect);
+      const dd = getSelectedText(ddSelect);
+      const yyyy = getSelectedText(yyyySelect);
+      dobEl.value = formatSFDate(mm, dd, yyyy);
+      dobEl.dispatchEvent(new Event("input", { bubbles: true }));
+      dobEl.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    function restoreVisibleFieldsFromDob() {
+      const dobValue = dobEl.value || "";
+      const match = dobValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return;
+      const [, yyyy, mm, dd] = match;
+      setSelectByText(mmSelect, mm);
+      refreshDayOptions();
+      setSelectByText(ddSelect, dd);
+      setSelectByText(yyyySelect, yyyy);
+    }
+    populateSelect(yyyySelect, buildYearOptions(), getSelectedText(yyyySelect));
+    refreshDayOptions();
+    restoreVisibleFieldsFromDob();
+    mmSelect.addEventListener("change", function() {
+      refreshDayOptions();
+      updateBirthdateField();
+    });
+    ddSelect.addEventListener("change", updateBirthdateField);
+    yyyySelect.addEventListener("change", updateBirthdateField);
+    if (dobEl.value) {
+      restoreVisibleFieldsFromDob();
+    }
+  }
+
   // src_cape/main_cape.js
   function normalizeTranslationMap(map) {
     return Object.fromEntries(
@@ -3298,6 +3457,7 @@ dialog.simple-animated-modal {
     console.log("getLang =", getLang);
     document.documentElement.lang = getLang;
     document.querySelector(".wForm")?.setAttribute("data-language", getLang);
+    setFieldValue2("tfa_1336", getLang);
     const cId = getParam("cId", window.location.href);
     function setFieldValue2(id, value) {
       if (!value) return;
@@ -3307,6 +3467,7 @@ dialog.simple-animated-modal {
     }
     setFieldValue2("tfa_326", cId);
     const OMAId = getParam("OMA", window.location.href);
+    const aId = getParam("aId", window.location.href);
     setFieldValue2("tfa_390", OMAId);
     if (OMAId) {
       const actions = document.querySelector(".actions");
@@ -3318,6 +3479,9 @@ dialog.simple-animated-modal {
       skip["data-original-value"] = "Skip";
       skip.type = "button";
       actions.parentNode.insertBefore(skip, actions.nextSibling);
+      skip.addEventListener("click", () => {
+        window.location.href = `https://seiu503.tfaforms.net/821?cId=${cId}&aId=${aId}`;
+      });
     } else {
       const skip = document.getElementById("skip_button");
       if (skip) skip.style.display = "none";
@@ -3354,6 +3518,30 @@ dialog.simple-animated-modal {
     });
     header.parentNode.insertBefore(pickerWrap, header.nextSibling);
     var employerTypeInput = document.getElementById("tfa_1302");
+    initDateHelpers({
+      mm_tfa: "tfa_1651",
+      dd_tfa: "tfa_1664",
+      yy_tfa: "tfa_1696",
+      dob_tfa: "tfa_1815",
+      monthPlaceholder: getTranslation(
+        translationsNorm,
+        "mmPlaceholder",
+        getLang,
+        "Month"
+      ),
+      dayPlaceholder: getTranslation(
+        translationsNorm,
+        "ddPlaceholder",
+        getLang,
+        "Day"
+      ),
+      yearPlaceholder: getTranslation(
+        translationsNorm,
+        "yyyyPlaceholder",
+        getLang,
+        "Year"
+      )
+    });
     applyTranslations();
     const employerNameElements = {
       eNameState: document.getElementById("tfa_1308"),
@@ -3533,6 +3721,35 @@ dialog.simple-animated-modal {
         });
       });
     }
+    function updateDatePlaceholders() {
+      const mmSelect = document.getElementById("tfa_1651");
+      const ddSelect = document.getElementById("tfa_1664");
+      const yyyySelect = document.getElementById("tfa_1696");
+      if (mmSelect?.options?.[0]) {
+        mmSelect.options[0].textContent = getTranslation(
+          translationsNorm,
+          "mmPlaceholder",
+          getLang,
+          "Month"
+        );
+      }
+      if (ddSelect?.options?.[0]) {
+        ddSelect.options[0].textContent = getTranslation(
+          translationsNorm,
+          "ddPlaceholder",
+          getLang,
+          "Day"
+        );
+      }
+      if (yyyySelect?.options?.[0]) {
+        yyyySelect.options[0].textContent = getTranslation(
+          translationsNorm,
+          "yyyyPlaceholder",
+          getLang,
+          "Year"
+        );
+      }
+    }
     function switchLanguage(newLang, options = {}) {
       if (!supportedLangs.includes(newLang)) return;
       getLang = newLang;
@@ -3547,6 +3764,12 @@ dialog.simple-animated-modal {
         })
       );
     }
+    const signature = document.getElementById("tfa_386");
+    const capeLegalLanguage = document.getElementById("tfa_383").value;
+    const combinedLL = document.getElementById("tfa_1314");
+    signature.addEventListener("blur", function() {
+      combinedLL.value = capeLegalLanguage;
+    });
   });
 })();
 

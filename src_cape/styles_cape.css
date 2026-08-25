@@ -175,6 +175,25 @@
   }
 
 
+/* skip link */
+
+.skip {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  border-bottom: 1px dotted #444;
+  cursor: pointer;
+  color: #444;
+}
+
+.skip:hover,
+.skip:focus,
+.skip:active {
+  color: #623ca9;
+}
+
+
 /* -------------------------------- */
 /* CAPE prefill modal               */
 /* -------------------------------- */

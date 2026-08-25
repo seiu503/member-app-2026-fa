@@ -6,7 +6,7 @@ import { translations,
 	supportedLangs 
 	} from "./translations2.js";
 import { initValidation } from "./validation2.js";
-import { initDateHelpers } from "./dateHelpers2.js";
+import { initDateHelpers } from "../src/dateHelpers.js";
 
 function normalizeTranslationMap(map) {
   return Object.fromEntries(
@@ -132,6 +132,10 @@ window.addEventListener("load", function() {
 
 
 	initDateHelpers({
+		mm_tfa: "tfa_156",
+		dd_tfa: "tfa_157",
+		yy_tfa: "tfa_158",
+		dob_tfa: "tfa_113",
 	  monthPlaceholder: getTranslation(
 	    translationsNorm,
 	    "mmPlaceholder",
