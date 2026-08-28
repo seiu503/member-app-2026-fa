@@ -112,6 +112,22 @@
   justify-content: space-between;
   }
 
+/* preferred language field wide screen */
+  #tfa_1798-D {
+    margin-top: -8px;
+  }
+
+  /* preferred language field mobile */
+  @media only screen and (max-width: 600px)  {
+   #tfa_1649 table tr {
+    display: flex;
+    flex-direction: column;
+   }
+
+   #tfa_1798-D {
+      margin-top: 10px;
+    }
+  }
   /* Authorization checkbox labels (legal language) */
   #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
     font-size: 13.6px !important;
@@ -637,39 +653,39 @@ dialog.simple-animated-modal {
       ar: "\u062A\u0627\u0631\u064A\u062E \u0627\u0644\u0645\u064A\u0644\u0627\u062F*",
       so: "Taariikhda dhalashada*"
     },
-    // mmPlaceholder: {
-    //   id: "tfa_1651",
-    //   mode: "html",
-    //   en: "Month",
-    //   es: "Mes",
-    //   ru: "Месяц",
-    //   vi: "Tháng",
-    //   zh: "月",
-    //   ar: "الشهر",
-    //   so: "Bisha"
-    // },
-    // ddPlaceholder: {
-    //   id: "tfa_1664",
-    //   mode: "html",
-    //   en: "Day",
-    //   es: "Día",
-    //   ru: "День",
-    //   vi: "Ngày",
-    //   zh: "天",
-    //   ar: "اليوم",
-    //   so: "Maalinta"
-    // },
-    // yyyyPlaceholder: {
-    //   id: "tfa_1696",
-    //   mode: "html",
-    //   en: "Year",
-    //   es: "Año",
-    //   ru: "Год",
-    //   vi: "Năm",
-    //   zh: "年",
-    //   ar: "السنة",
-    //   so: "Sannadka"
-    // },
+    mmPlaceholder: {
+      // id: "tfa_1651",
+      mode: "html",
+      en: "Month",
+      es: "Mes",
+      ru: "\u041C\u0435\u0441\u044F\u0446",
+      vi: "Th\xE1ng",
+      zh: "\u6708",
+      ar: "\u0627\u0644\u0634\u0647\u0631",
+      so: "Bisha"
+    },
+    ddPlaceholder: {
+      // id: "tfa_1664",
+      mode: "html",
+      en: "Day",
+      es: "D\xEDa",
+      ru: "\u0414\u0435\u043D\u044C",
+      vi: "Ng\xE0y",
+      zh: "\u5929",
+      ar: "\u0627\u0644\u064A\u0648\u0645",
+      so: "Maalinta"
+    },
+    yyyyPlaceholder: {
+      // id: "tfa_1696",
+      mode: "html",
+      en: "Year",
+      es: "A\xF1o",
+      ru: "\u0413\u043E\u0434",
+      vi: "N\u0103m",
+      zh: "\u5E74",
+      ar: "\u0627\u0644\u0633\u0646\u0629",
+      so: "Sannadka"
+    },
     preferredLanguage: {
       id: "tfa_1798-L",
       mode: "html",
@@ -837,18 +853,6 @@ dialog.simple-animated-modal {
       zh: "\u9009\u62E9\u9000\u51FA",
       ar: "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643",
       so: "Ka bax"
-    },
-    CAPEIntro: {
-      selector: '[data-cape-translate="CAPEIntro"]',
-      mode: "html",
-      legacyVar: "CAPEIntro",
-      en: `<h3>Contribute to CAPE: Citizen Action for Political Education</h3><p><em>Collective political action to raise wages, protect benefits, fund public services, and build strong communities.</em></p><p>This contribution qualifies for the Oregon Political Tax Credit. Single filers are eligible for a credit up to $50/year; joint filers up to $100 per year.</p>`,
-      es: `<h3>Aporte al CAPE: acci\xF3n ciudadana en favor de la educaci\xF3n pol\xEDtica</h3><p><em>Acci\xF3n pol\xEDtica colectiva que busca aumentar los salarios, proteger los beneficios, financiar los servicios p\xFAblicos y fortalecer las comunidades.</em></p><p>Este aporte cumple con los requisitos del cr\xE9dito fiscal de Oreg\xF3n. Los(as) declarantes solteros(as) son elegibles para recibir un cr\xE9dito anual de hasta $50; mientras que los(as) declarantes conjuntos(as) pueden recibir hasta $100 anuales.</p>`,
-      ru: `<h3>\u0423\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 CAPE \u2014 \u0433\u0440\u0430\u0436\u0434\u0430\u043D\u0441\u043A\u043E\u043C \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0438 \u0437\u0430 \u043F\u043E\u043B\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0435 \u043F\u0440\u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435</h3><p><em>\u0421\u043E\u0432\u043C\u0435\u0441\u0442\u043D\u0430\u044F \u043F\u043E\u043B\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0438\u043D\u0438\u0446\u0438\u0430\u0442\u0438\u0432\u0430 \u0432 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0443 \u043F\u043E\u0432\u044B\u0448\u0435\u043D\u0438\u044F \u0437\u0430\u0440\u043F\u043B\u0430\u0442, \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u044F \u043B\u044C\u0433\u043E\u0442, \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0433\u043E\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0445 \u0434\u043E\u0442\u0430\u0446\u0438\u0439 \u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u0441\u043F\u043B\u043E\u0447\u0435\u043D\u043D\u044B\u0445 \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432.</em></p><p>\u0414\u0430\u043D\u043D\u044B\u0439 \u0432\u0437\u043D\u043E\u0441 \u043F\u043E\u043F\u0430\u0434\u0430\u0435\u0442 \u043F\u043E\u0434 \u043D\u0430\u043B\u043E\u0433\u043E\u0432\u0443\u044E \u043B\u044C\u0433\u043E\u0442\u0443 \u0448\u0442\u0430\u0442\u0430 \u041E\u0440\u0435\u0433\u043E\u043D \u0437\u0430 \u0432\u0437\u043D\u043E\u0441\u044B \u043D\u0430 \u043F\u043E\u043B\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0446\u0435\u043B\u0438. \u041F\u0440\u0438 \u0435\u0434\u0438\u043D\u043E\u043B\u0438\u0447\u043D\u043E\u0439 \u043F\u043E\u0434\u0430\u0447\u0435 \u0437\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u044F \u0440\u0430\u0437\u043C\u0435\u0440 \u043B\u044C\u0433\u043E\u0442\u044B \u043C\u043E\u0436\u0435\u0442 \u0434\u043E\u0441\u0442\u0438\u0433\u0430\u0442\u044C $50 \u0432 \u0433\u043E\u0434, \u043F\u0440\u0438 \u0441\u043E\u0432\u043C\u0435\u0441\u0442\u043D\u043E\u0439 \u043F\u043E\u0434\u0430\u0447\u0435 \u2014 $100 \u0432 \u0433\u043E\u0434.</p>`,
-      vi: `<h3>\u0110\xF3ng g\xF3p v\xE0o CAPE: H\xE0nh \u0111\u1ED9ng c\u1EE7a c\xF4ng d\xE2n cho gi\xE1o d\u1EE5c ch\xEDnh tr\u1ECB</h3><p><em>H\xE0nh \u0111\u1ED9ng ch\xEDnh tr\u1ECB t\u1EADp th\u1EC3 nh\u1EB1m t\u0103ng l\u01B0\u01A1ng, b\u1EA3o v\u1EC7 quy\u1EC1n l\u1EE3i, t\xE0i tr\u1EE3 cho c\xE1c d\u1ECBch v\u1EE5 c\xF4ng c\u1ED9ng v\xE0 x\xE2y d\u1EF1ng c\xE1c c\u1ED9ng \u0111\u1ED3ng v\u1EEFng m\u1EA1nh.</em></p><p>Kho\u1EA3n \u0111\xF3ng g\xF3p n\xE0y \u0111\u1EE7 \u0111i\u1EC1u ki\u1EC7n \u0111\u1EC3 \u0111\u01B0\u1EE3c Gi\u1EA3m Thu\u1EBF Thu Nh\u1EADp Cho M\u1EE5c \u0110\xEDch Ch\xEDnh Tr\u1ECB C\u1EE7a Oregon. Ng\u01B0\u1EDDi g\u1EEDi h\u1ED3 s\u01A1 ri\xEAng l\u1EBB s\u1EBD \u0111\u1EE7 \u0111i\u1EC1u ki\u1EC7n \u0111\u1EC3 \u0111\u01B0\u1EE3c gi\u1EA3m t\u1ED1i \u0111a $50/n\u0103m; c\xE1c tr\u01B0\u1EDDng h\u1EE3p g\u1EEDi h\u1ED3 s\u01A1 t\u1EADp th\u1EC3 s\u1EBD \u0111\u01B0\u1EE3c gi\u1EA3m t\u1ED1i \u0111a $100/n\u0103m.</p>`,
-      zh: `<h3>\u6350\u52A9 CAPE\uFF1A\u516C\u6C11\u653F\u6CBB\u6559\u80B2\u884C\u52A8</h3><p><em>\u96C6\u4F53\u653F\u6CBB\u884C\u52A8\u65E8\u5728\u63D0\u9AD8\u5DE5\u8D44\u3001\u4FDD\u62A4\u798F\u5229\u3001\u8D44\u52A9\u516C\u5171\u670D\u52A1\uFF0C\u4EE5\u53CA\u5EFA\u8BBE\u5F3A\u5927\u7684\u793E\u533A\u3002</em></p><p>\u8FD9\u7B14\u6350\u6B3E\u6709\u8D44\u683C\u83B7\u5F97\u4FC4\u52D2\u5188\u5DDE\u653F\u6CBB\u7A0E\u6536\u62B5\u514D\u3002\u5355\u72EC\u7533\u8BF7\u8005\u6709\u8D44\u683C\u83B7\u5F97\u6BCF\u5E74\u6700\u9AD8 50 \u7F8E\u5143\u7684\u62B5\u514D\u989D\uFF1B\u8054\u5408\u7533\u8BF7\u8005\u6BCF\u5E74\u6700\u9AD8 100 \u7F8E\u5143\u3002</p>`,
-      ar: `<h3>\u0633\u0627\u0647\u0645 \u0641\u064A CAPE: \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u062F\u0646\u064A \u0645\u0646 \u0623\u062C\u0644 \u0627\u0644\u062A\u062B\u0642\u064A\u0641 \u0627\u0644\u0633\u064A\u0627\u0633\u064A</h3><p><em>\u0639\u0645\u0644 \u0633\u064A\u0627\u0633\u064A \u062C\u0645\u0627\u0639\u064A \u0644\u0631\u0641\u0639 \u0627\u0644\u0623\u062C\u0648\u0631\u060C \u0648\u062D\u0645\u0627\u064A\u0629 \u0627\u0644\u0645\u0632\u0627\u064A\u0627\u060C \u0648\u062A\u0645\u0648\u064A\u0644 \u0627\u0644\u062E\u062F\u0645\u0627\u062A \u0627\u0644\u0639\u0627\u0645\u0629\u060C \u0648\u0628\u0646\u0627\u0621 \u0645\u062C\u062A\u0645\u0639\u0627\u062A \u0642\u0648\u064A\u0629.</em></p><p>\u062A\u0624\u0647\u0644 \u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u0647\u0645\u0629 \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0627\u0644\u0627\u0626\u062A\u0645\u0627\u0646 \u0627\u0644\u0636\u0631\u064A\u0628\u064A \u0627\u0644\u0633\u064A\u0627\u0633\u064A \u0641\u064A \u0623\u0648\u0631\u064A\u063A\u0648\u0646. \u064A\u062D\u0642 \u0644\u0644\u0645\u0642\u062F\u0651\u0645\u064A\u0646 \u0627\u0644\u0623\u0641\u0631\u0627\u062F \u0627\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0627\u0626\u062A\u0645\u0627\u0646 \u064A\u0635\u0644 \u0625\u0644\u0649 50 \u062F\u0648\u0644\u0627\u0631\u064B\u0627 \u0633\u0646\u0648\u064A\u064B\u0627\u061B \u0648\u064A\u062D\u0642 \u0644\u0644\u0645\u0642\u062F\u0651\u0645\u064A\u0646 \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u064A\u0646 \u0627\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0645\u0627 \u064A\u0635\u0644 \u0625\u0644\u0649 100 \u062F\u0648\u0644\u0627\u0631 \u0633\u0646\u0648\u064A\u064B\u0627.</p>`,
-      so: `<h3>Ku tabaruc CAPE: Ficilka Muwaadiniinta ee Waxbarashada Siyaasadda</h3><p><em>Ficil siyaasadeed oo wadajir ah si loo kordhiyo mushaharka, loo ilaaliyo dheefaha, loo maalgeliyo adeegyada dadweynaha, loona dhiso bulshooyin xooggan.</em></p><p>Tabarucan wuxuu u qalmaa Oregon Political Tax Credit. Dadka kaligood fayl gareeya waxay xaq u leeyihiin credit ilaa $50 sanadkii; kuwa wadajir u fayl gareeya ilaa $100 sanadkii.</p>`
     },
     CAPEAuthTitle: {
       id: "tfa_120-L",
@@ -2978,10 +2982,17 @@ dialog.simple-animated-modal {
     dd_tfa,
     yy_tfa,
     dob_tfa,
-    monthPlaceholder = "Month",
-    dayPlaceholder = "Day",
-    yearPlaceholder = "Year"
+    monthPlaceholder,
+    dayPlaceholder,
+    yearPlaceholder
   } = {}) {
+    console.log("initDateHelpers");
+    console.log(
+      mm_tfa,
+      dd_tfa,
+      yy_tfa,
+      dob_tfa
+    );
     const dobEl = document.getElementById(dob_tfa);
     const mmSelect = document.getElementById(mm_tfa);
     const ddSelect = document.getElementById(dd_tfa);
@@ -2990,6 +3001,7 @@ dialog.simple-animated-modal {
     let mmPlaceholder = monthPlaceholder;
     let ddPlaceholder = dayPlaceholder;
     let yyyyPlaceholder = yearPlaceholder;
+    console.log(mmPlaceholder, ddPlaceholder, yyyyPlaceholder);
     if (mmSelect.options[0]) {
       mmSelect.options[0].textContent = mmPlaceholder;
       mmSelect.options[0].value = "";

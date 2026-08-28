@@ -128,41 +128,41 @@ export const translations = {
     so: "Taariikhda dhalashada*"
   },
 
-  // mmPlaceholder: {
-  //   id: "tfa_1651",
-  //   mode: "html",
-  //   en: "Month",
-  //   es: "Mes",
-  //   ru: "Месяц",
-  //   vi: "Tháng",
-  //   zh: "月",
-  //   ar: "الشهر",
-  //   so: "Bisha"
-  // },
+  mmPlaceholder: {
+    // id: "tfa_1651",
+    mode: "html",
+    en: "Month",
+    es: "Mes",
+    ru: "Месяц",
+    vi: "Tháng",
+    zh: "月",
+    ar: "الشهر",
+    so: "Bisha"
+  },
 
-  // ddPlaceholder: {
-  //   id: "tfa_1664",
-  //   mode: "html",
-  //   en: "Day",
-  //   es: "Día",
-  //   ru: "День",
-  //   vi: "Ngày",
-  //   zh: "天",
-  //   ar: "اليوم",
-  //   so: "Maalinta"
-  // },
+  ddPlaceholder: {
+    // id: "tfa_1664",
+    mode: "html",
+    en: "Day",
+    es: "Día",
+    ru: "День",
+    vi: "Ngày",
+    zh: "天",
+    ar: "اليوم",
+    so: "Maalinta"
+  },
 
-  // yyyyPlaceholder: {
-  //   id: "tfa_1696",
-  //   mode: "html",
-  //   en: "Year",
-  //   es: "Año",
-  //   ru: "Год",
-  //   vi: "Năm",
-  //   zh: "年",
-  //   ar: "السنة",
-  //   so: "Sannadka"
-  // },
+  yyyyPlaceholder: {
+    // id: "tfa_1696",
+    mode: "html",
+    en: "Year",
+    es: "Año",
+    ru: "Год",
+    vi: "Năm",
+    zh: "年",
+    ar: "السنة",
+    so: "Sannadka"
+  },
 
   preferredLanguage: {
     id: "tfa_1798-L",
@@ -344,19 +344,6 @@ export const translations = {
     zh: "选择退出",
     ar: "إلغاء الاشتراك",
     so: "Ka bax"
-  },
-
-  CAPEIntro: {
-    selector: "[data-cape-translate=\"CAPEIntro\"]",
-    mode: "html",
-    legacyVar: "CAPEIntro",
-    en: `<h3>Contribute to CAPE: Citizen Action for Political Education</h3><p><em>Collective political action to raise wages, protect benefits, fund public services, and build strong communities.</em></p><p>This contribution qualifies for the Oregon Political Tax Credit. Single filers are eligible for a credit up to $50/year; joint filers up to $100 per year.</p>`,
-    es: `<h3>Aporte al CAPE: acción ciudadana en favor de la educación política</h3><p><em>Acción política colectiva que busca aumentar los salarios, proteger los beneficios, financiar los servicios públicos y fortalecer las comunidades.</em></p><p>Este aporte cumple con los requisitos del crédito fiscal de Oregón. Los(as) declarantes solteros(as) son elegibles para recibir un crédito anual de hasta $50; mientras que los(as) declarantes conjuntos(as) pueden recibir hasta $100 anuales.</p>`,
-    ru: `<h3>Участие в CAPE — гражданском движении за политическое просвещение</h3><p><em>Совместная политическая инициатива в поддержку повышения зарплат, увеличения льгот, получения государственных дотаций и создания сплоченных сообществ.</em></p><p>Данный взнос попадает под налоговую льготу штата Орегон за взносы на политические цели. При единоличной подаче заявления размер льготы может достигать $50 в год, при совместной подаче — $100 в год.</p>`,
-    vi: `<h3>Đóng góp vào CAPE: Hành động của công dân cho giáo dục chính trị</h3><p><em>Hành động chính trị tập thể nhằm tăng lương, bảo vệ quyền lợi, tài trợ cho các dịch vụ công cộng và xây dựng các cộng đồng vững mạnh.</em></p><p>Khoản đóng góp này đủ điều kiện để được Giảm Thuế Thu Nhập Cho Mục Đích Chính Trị Của Oregon. Người gửi hồ sơ riêng lẻ sẽ đủ điều kiện để được giảm tối đa $50/năm; các trường hợp gửi hồ sơ tập thể sẽ được giảm tối đa $100/năm.</p>`,
-    zh: `<h3>捐助 CAPE：公民政治教育行动</h3><p><em>集体政治行动旨在提高工资、保护福利、资助公共服务，以及建设强大的社区。</em></p><p>这笔捐款有资格获得俄勒冈州政治税收抵免。单独申请者有资格获得每年最高 50 美元的抵免额；联合申请者每年最高 100 美元。</p>`,
-    ar: `<h3>ساهم في CAPE: العمل المدني من أجل التثقيف السياسي</h3><p><em>عمل سياسي جماعي لرفع الأجور، وحماية المزايا، وتمويل الخدمات العامة، وبناء مجتمعات قوية.</em></p><p>تؤهل هذه المساهمة للحصول على الائتمان الضريبي السياسي في أوريغون. يحق للمقدّمين الأفراد الحصول على ائتمان يصل إلى 50 دولارًا سنويًا؛ ويحق للمقدّمين المشتركين الحصول على ما يصل إلى 100 دولار سنويًا.</p>`,
-    so: `<h3>Ku tabaruc CAPE: Ficilka Muwaadiniinta ee Waxbarashada Siyaasadda</h3><p><em>Ficil siyaasadeed oo wadajir ah si loo kordhiyo mushaharka, loo ilaaliyo dheefaha, loo maalgeliyo adeegyada dadweynaha, loona dhiso bulshooyin xooggan.</em></p><p>Tabarucan wuxuu u qalmaa Oregon Political Tax Credit. Dadka kaligood fayl gareeya waxay xaq u leeyihiin credit ilaa $50 sanadkii; kuwa wadajir u fayl gareeya ilaa $100 sanadkii.</p>`
   },
 
   CAPEAuthTitle: {

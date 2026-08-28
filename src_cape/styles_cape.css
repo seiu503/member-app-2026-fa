@@ -111,6 +111,22 @@
   justify-content: space-between;
   }
 
+/* preferred language field wide screen */
+  #tfa_1798-D {
+    margin-top: -8px;
+  }
+
+  /* preferred language field mobile */
+  @media only screen and (max-width: 600px)  {
+   #tfa_1649 table tr {
+    display: flex;
+    flex-direction: column;
+   }
+
+   #tfa_1798-D {
+      margin-top: 10px;
+    }
+  }
   /* Authorization checkbox labels (legal language) */
   #tfa_379-L, #tfa_380-L, #tfa_382-L, #capeLL2, #tfa_383-HTML {
     font-size: 13.6px !important;

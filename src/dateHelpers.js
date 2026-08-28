@@ -5,10 +5,15 @@ export function initDateHelpers({
   dd_tfa,
   yy_tfa,
   dob_tfa,
-  monthPlaceholder = "Month",
-  dayPlaceholder = "Day",
-  yearPlaceholder = "Year"
+  monthPlaceholder,
+  dayPlaceholder,
+  yearPlaceholder
 } = {}) {
+  console.log('initDateHelpers');
+  console.log(mm_tfa,
+  dd_tfa,
+  yy_tfa,
+  dob_tfa);
   const dobEl = document.getElementById(dob_tfa); // "tfa_113"
 
   const mmSelect = document.getElementById(mm_tfa); // "tfa_156"
@@ -20,6 +25,8 @@ export function initDateHelpers({
   let mmPlaceholder = monthPlaceholder;
   let ddPlaceholder = dayPlaceholder;
   let yyyyPlaceholder = yearPlaceholder;
+
+  console.log(mmPlaceholder, ddPlaceholder, yyyyPlaceholder);
 
   if (mmSelect.options[0]) {
     mmSelect.options[0].textContent = mmPlaceholder;
