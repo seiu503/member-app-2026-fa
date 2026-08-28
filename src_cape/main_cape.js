@@ -389,6 +389,7 @@ window.addEventListener("load", function() {
 	}
 
 	function applyTranslations() {
+		console.log('applyTranslations CAPE');
 	  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
 
 	  Object.entries(translations).forEach(([key, entry]) => {

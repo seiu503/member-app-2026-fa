@@ -504,3 +504,10 @@ dialog.simple-animated-modal {
     font-size: 1.3em !important;
   }
 }
+
+
+/* hide dup form title in intro section: */
+
+#tfa_353 h3 {
+  display:none;
+}
