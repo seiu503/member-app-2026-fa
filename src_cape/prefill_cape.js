@@ -47,6 +47,7 @@ function showPrefilledField(field) {
 }
 
 function hidePrefilledField(field) {
+  console.log(`hiding prefilled field: ${field}`);
   const container = getFieldContainer(field);
 
   if (container) {
@@ -136,7 +137,7 @@ function initPrefilledFields({
   LANGUAGE_CONFIG
 }) {
   console.log('initPrefilledFields cape');
-  // const preferredLanguageF = document.getElementById("tfa_91");
+  const preferredLanguageF = document.getElementById("tfa_1798");
   const addressF = document.getElementById("tfa_32");
   const cityF = document.getElementById("tfa_34");
   const stateF = document.getElementById("tfa_35");
@@ -152,12 +153,12 @@ function initPrefilledFields({
 	  zipF
 	});
 
-	// handlePreferredLanguagePrefill({
-  //   preferredLanguageF,
-  //   getLang,
-  //   detectedSupportedLang,
-  //   LANGUAGE_CONFIG
-  // });
+	handlePreferredLanguagePrefill({
+    preferredLanguageF,
+    getLang,
+    detectedSupportedLang,
+    LANGUAGE_CONFIG
+  });
 
   const prefillFieldList = [
     emailF,
@@ -289,57 +290,57 @@ function handleAddressPrefillGroup({
   });
 }
 
-// function handlePreferredLanguagePrefill({
-//   preferredLanguageF,
-//   getLang,
-//   detectedSupportedLang,
-//   LANGUAGE_CONFIG
-// }) {
-//   if (!preferredLanguageF) return;
+function handlePreferredLanguagePrefill({
+  preferredLanguageF,
+  getLang,
+  detectedSupportedLang,
+  LANGUAGE_CONFIG
+}) {
+  if (!preferredLanguageF) return;
 
-//   const container =
-//     preferredLanguageF.closest(".field-container-D, .form-group, .question") ||
-//     preferredLanguageF.parentNode;
+  const container =
+    preferredLanguageF.closest(".field-container-D, .form-group, .question") ||
+    preferredLanguageF.parentNode;
 
-//   if (!detectedSupportedLang) {
-//     preferredLanguageF.dataset.prefilled = "false";
-//     preferredLanguageF.required = true;
-//     preferredLanguageF.setAttribute("aria-required", "true");
+  if (!detectedSupportedLang) {
+    preferredLanguageF.dataset.prefilled = "false";
+    preferredLanguageF.required = true;
+    preferredLanguageF.setAttribute("aria-required", "true");
 
-//     if (container) container.style.removeProperty("display");
-//     return;
-//   }
+    if (container) container.style.removeProperty("display");
+    return;
+  }
 
-//   const preferredValues = LANGUAGE_CONFIG[getLang]?.preferredValues || [];
-//   const desiredValues = new Set(preferredValues);
+  const preferredValues = LANGUAGE_CONFIG[getLang]?.preferredValues || [];
+  const desiredValues = new Set(preferredValues);
 
-//   const matchingOption = Array.from(preferredLanguageF.options).find(option => {
-//     const englishValue =
-//       option.dataset.englishValue ||
-//       option.textContent.trim() ||
-//       option.value.trim();
+  const matchingOption = Array.from(preferredLanguageF.options).find(option => {
+    const englishValue =
+      option.dataset.englishValue ||
+      option.textContent.trim() ||
+      option.value.trim();
 
-//     return desiredValues.has(englishValue);
-//   });
+    return desiredValues.has(englishValue);
+  });
 
-//   if (!matchingOption) {
-//     preferredLanguageF.dataset.prefilled = "false";
-//     if (container) container.style.removeProperty("display");
-//     return;
-//   }
+  if (!matchingOption) {
+    preferredLanguageF.dataset.prefilled = "false";
+    if (container) container.style.removeProperty("display");
+    return;
+  }
 
-//   preferredLanguageF.value = matchingOption.value;
-//   matchingOption.selected = true;
+  preferredLanguageF.value = matchingOption.value;
+  matchingOption.selected = true;
 
-//   preferredLanguageF.dataset.prefilled = "true";
+  preferredLanguageF.dataset.prefilled = "true";
 
-//   preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));
-//   preferredLanguageF.dispatchEvent(new Event("change", { bubbles: true }));
+  preferredLanguageF.dispatchEvent(new Event("input", { bubbles: true }));
+  preferredLanguageF.dispatchEvent(new Event("change", { bubbles: true }));
 
-//   if (container) {
-//     container.style.display = "none";
-//   }
-// }
+  if (container) {
+    container.style.display = "none";
+  }
+}
 
 function markFieldSwitchedOff(fieldName) {
   const switchedOffField = document.querySelector('input[name="tfa_switchedoff"]');

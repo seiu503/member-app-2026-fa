@@ -1,11 +1,14 @@
 // main_cape.js
 
-import { translations, 
-	LANGUAGE_CONFIG, 
-	supportedLangs 
+import { 
+	translations
 	} from "./translations_cape.js";
-import { employerTypeTranslations, 
-	employerNameTranslations
+import { 
+	employerTypeTranslations, 
+	employerNameTranslations, 
+	LANGUAGE_CONFIG, 
+	OTHER_LANGUAGE_LABELS, 
+	supportedLangs 
 	} from "../src/translations.js";
 import { initEmployerType } from "../src/employerType.js";
 import { initPrefill } from "./prefill_cape.js";
@@ -38,6 +41,126 @@ function getTranslation(map, key, lang, fallbackText = "") {
 window.addEventListener("load", function() {
 
 	const formEl = document.querySelector("form");
+	const preferredLanguageField = document.getElementById("tfa_1798");
+
+	function setPreferredLanguageValue(
+	  englishValue
+	) {
+	  console.log(
+	    "setPreferredLanguageValue"
+	  );
+
+	  const langField = preferredLanguageField;
+
+	  const codeField =
+	    document.getElementById("tfa_1336");
+
+	  if (
+	    !langField ||
+	    !codeField ||
+	    !englishValue
+	  ) {
+	    return false;
+	  }
+
+	  const option =
+	    Array.from(
+	      langField.options
+	    ).find(opt => {
+	      return (
+	        opt.dataset.englishValue ===
+	        englishValue
+	      );
+	    });
+
+	  if (!option) {
+	    return false;
+	  }
+
+	  langField.value =
+	    option.value;
+
+	  option.selected = true;
+
+	  codeField.value =
+	    getPreferredLanguageCodeFromField(
+	      langField
+	    );
+
+	  return true;
+	}
+
+	function normalizePreferredLanguagePicklist() {
+	  if (!preferredLanguageField) return;
+
+	  const preferredValueToNativeLabel = {};
+
+	  Object.values(LANGUAGE_CONFIG).forEach(cfg => {
+	    cfg.preferredValues.forEach(value => {
+	      preferredValueToNativeLabel[value] = cfg.nativeLabel;
+	    });
+	  });
+
+	  Object.assign(preferredValueToNativeLabel, OTHER_LANGUAGE_LABELS);
+
+	  Array.from(preferredLanguageField.options).forEach(option => {
+	    if (!option.textContent.trim()) return;
+
+	    if (!option.dataset.englishValue) {
+	      option.dataset.englishValue = option.textContent.trim();
+	    }
+
+	    const englishValue = option.dataset.englishValue;
+
+	    if (preferredValueToNativeLabel[englishValue]) {
+	      option.textContent = preferredValueToNativeLabel[englishValue];
+	    }
+	  });
+	}
+
+	normalizePreferredLanguagePicklist();
+
+	function getPreferredLanguageCodeFromField(field) {
+		console.log('getPreferredLanguageCodeFromField');
+		console.log(field);
+	  if (!field) return "en";
+
+	  const selectedOption = field.options[field.selectedIndex];
+	  const englishValue =
+	    selectedOption?.dataset.englishValue ||
+	    selectedOption?.textContent?.trim() ||
+	    field.value;
+
+	  const matchedConfig = Object.values(LANGUAGE_CONFIG).find(cfg =>
+	    cfg.preferredValues.includes(englishValue)
+	  );
+
+	  return matchedConfig?.renderLang || "en";
+	}
+
+	if (preferredLanguageField) {
+	  preferredLanguageField.addEventListener("change", function () {
+		  const selectedOption =
+		    preferredLanguageField.options[preferredLanguageField.selectedIndex];
+
+		  const selectedEnglishValue =
+		    selectedOption?.dataset.englishValue || "";
+
+		  const newLang = getPreferredLanguageCodeFromField(preferredLanguageField);
+
+		  if (!newLang) return;
+
+		  switchLanguage(newLang, {
+		    syncPreferredLanguageField: false
+		  });
+
+		  normalizePreferredLanguagePicklist();
+
+		  setPreferredLanguageValue(
+			  selectedEnglishValue
+			);
+		});
+	}
 
 	// parse query params from url
 
@@ -63,7 +186,7 @@ window.addEventListener("load", function() {
 	document.documentElement.lang = getLang;
 	document.querySelector('.wForm')?.setAttribute('data-language', getLang);
 
-	// save language to hidden field to pass to next form if needed
+	// save language code to hidden field to pass to next form if needed
 
 	setFieldValue("tfa_1336", getLang);
 
@@ -178,7 +301,9 @@ window.addEventListener("load", function() {
 
     // Handle selection change
     select.addEventListener("change", function () {
-		  switchLanguage(select.value);
+		  switchLanguage(select.value, {
+		    syncPreferredLanguageField: true
+		  });
 		});
 
     // Insert picker after header
@@ -354,40 +479,6 @@ window.addEventListener("load", function() {
 	  initEmployerAccountFieldSync();
 	}
 
-  function getOriginalText(el) {
-	  if (!el) return "";
-	  if (!el.dataset.originalText) {
-	    el.dataset.originalText = el.textContent || "";
-	  }
-	  return el.dataset.originalText;
-	}
-
-	function getOriginalHTML(el) {
-	  if (!el) return "";
-	  if (!el.dataset.originalHtml) {
-	    el.dataset.originalHtml = el.innerHTML || "";
-	  }
-	  return el.dataset.originalHtml;
-	}
-
-	function setText(el, key) {
-	  if (!el) return;
-
-	  const fallback = getOriginalText(el);
-	  const translated = getTranslation(translationsNorm, key, getLang, fallback);
-
-	  el.textContent = translated;
-	}
-
-	function setHTML(el, key) {
-	  if (!el) return;
-
-	  const fallback = getOriginalHTML(el);
-	  const translated = getTranslation(translationsNorm, key, getLang, fallback);
-
-	  el.innerHTML = translated;
-	}
-
 	function applyTranslations() {
 		console.log('applyTranslations CAPE');
 	  document.title = getTranslation(translationsNorm, "formTitle", getLang, document.title);
@@ -480,6 +571,8 @@ window.addEventListener("load", function() {
 	function switchLanguage(newLang, options = {}) {
 	  if (!supportedLangs.includes(newLang)) return;
 
+	  const { syncPreferredLanguageField = true } = options;
+
 	  getLang = newLang;
 
 	  document.documentElement.lang = getLang;
@@ -487,14 +580,57 @@ window.addEventListener("load", function() {
 
 	  if (select) select.value = getLang;
 
+	  if (syncPreferredLanguageField) {
+	    setPreferredLanguageFieldFromLang(getLang);
+	  }
+
 	  applyTranslations();
 	  updateDatePlaceholders();
 
 	  document.dispatchEvent(
-	    new CustomEvent("languagechange", {
-	      detail: { lang: getLang }
-	    })
-	  );
+		  new CustomEvent("languagechange", {
+		    detail: {
+		      lang: getLang,
+		      datePlaceholders: {
+		        month: getTranslation(
+		          translationsNorm,
+		          "mmPlaceholder",
+		          getLang,
+		          "Month"
+		        ),
+		        day: getTranslation(
+		          translationsNorm,
+		          "ddPlaceholder",
+		          getLang,
+		          "Day"
+		        ),
+		        year: getTranslation(
+		          translationsNorm,
+		          "yyyyPlaceholder",
+		          getLang,
+		          "Year"
+		        )
+		      }
+		    }
+		  })
+		);
+	}
+
+	function setPreferredLanguageFieldFromLang(lang) {
+	  if (!preferredLanguageField) return;
+
+	  const targets = LANGUAGE_CONFIG[lang]?.preferredValues;
+	  if (!targets) return;
+
+	  const option = Array.from(preferredLanguageField.options).find(opt => {
+	    const englishValue = opt.dataset.englishValue || opt.textContent.trim();
+	    return targets.includes(englishValue);
+	  });
+
+	  if (option) {
+	    preferredLanguageField.value = option.value;
+	    option.selected = true;
+	  }
 	}
 
 	// set legal language (this block should run AFTER translation blocks)
