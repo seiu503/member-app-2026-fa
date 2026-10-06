@@ -642,6 +642,15 @@ dialog.simple-animated-modal {
       ar: "\u0646\u0648\u0639 \u0635\u0627\u062D\u0628 \u0627\u0644\u0639\u0645\u0644",
       so: "Nooca loo-shaqeeyaha"
     },
+    employerNameLabel: {
+      en: "Employer Name",
+      es: "Nombre del empleador",
+      ru: "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u043E\u0434\u0430\u0442\u0435\u043B\u044F",
+      vi: "T\xEAn nh\xE0 tuy\u1EC3n d\u1EE5ng",
+      zh: "\u96C7\u4E3B\u540D\u79F0",
+      ar: "\u0627\u0633\u0645 \u0635\u0627\u062D\u0628 \u0627\u0644\u0639\u0645\u0644",
+      so: "Magaca loo-shaqeeyaha"
+    },
     birthDate: {
       id: "tfa_1649-L",
       mode: "html",
@@ -2162,17 +2171,25 @@ dialog.simple-animated-modal {
     employerTypeInput,
     employerTypeTranslations: employerTypeTranslations2,
     employerNameTranslations: employerNameTranslations2,
-    translations: translations2
+    translations: translations2,
+    eNameStateId,
+    eNameHiEdId,
+    eNameHCWId,
+    eNameNHId,
+    eNameLGovId,
+    eNamePNPId,
+    eNamePHCId,
+    eNameRetireId
   }) {
     if (!employerTypeInput) return;
-    const eNameState = document.getElementById("tfa_410");
-    const eNameHiEd = document.getElementById("tfa_393");
-    const eNameHCW = document.getElementById("tfa_414");
-    const eNameNH = document.getElementById("tfa_408");
-    const eNameLGov = document.getElementById("tfa_407");
-    const eNamePNP = document.getElementById("tfa_409");
-    const eNamePHC = document.getElementById("tfa_418");
-    const eNameRetire = document.getElementById("tfa_422");
+    const eNameState = document.getElementById(eNameStateId);
+    const eNameHiEd = document.getElementById(eNameHiEdId);
+    const eNameHCW = document.getElementById(eNameHCWId);
+    const eNameNH = document.getElementById(eNameNHId);
+    const eNameLGov = document.getElementById(eNameLGovId);
+    const eNamePNP = document.getElementById(eNamePNPId);
+    const eNamePHC = document.getElementById(eNamePHCId);
+    const eNameRetire = document.getElementById(eNameRetireId);
     const hiddenRequired = [
       eNameState,
       eNameHiEd,
@@ -2234,6 +2251,13 @@ dialog.simple-animated-modal {
         field.disabled = true;
       });
     }
+    function setEmployerNameLabel(field) {
+      if (!field) return;
+      const label = document.getElementById(`${field.id}-L`);
+      if (!label) return;
+      const lang = getLangCode();
+      label.textContent = translations2?.employerNameLabel?.[lang] || translations2?.employerNameLabel?.en || "Employer Name";
+    }
     function updateEmployerNameFields() {
       const englishValue = getEmployerTypeEnglishFromDisplayed(employerTypeInput.value) || employerTypeInput.dataset.englishValue || employerTypeEnglishValue;
       hideEmployerNameFields();
@@ -2268,18 +2292,16 @@ dialog.simple-animated-modal {
         const container = toShow.closest(".oneField");
         if (container) container.style.display = "";
         toShow.disabled = false;
-        const label = document.getElementById(`${toShow.id}-L`);
-        const lang = getLangCode();
-        if (label) {
-          label.textContent = translations2?.employerNameLabel?.[lang] || translations2?.employerNameLabel?.en || "Employer Name";
-        }
+        setEmployerNameLabel(toShow);
       }
     }
     function translateEmployerTypeSuggestions() {
       const lang = getLangCode();
       const translations3 = employerTypeTranslations2[lang];
       if (!translations3) return;
-      const listbox = document.getElementById("tfa_388_listbox");
+      const listbox = document.getElementById(
+        `${employerTypeInput.id}_listbox`
+      );
       if (!listbox) return;
       listbox.querySelectorAll(".tt-suggestion").forEach((option) => {
         const englishValue = option.getAttribute("data-english-value") || getEmployerTypeEnglishFromDisplayed(option.textContent);
@@ -2315,7 +2337,9 @@ dialog.simple-animated-modal {
     employerTypeInput.addEventListener("focus", () => {
       setTimeout(translateEmployerTypeSuggestions, 100);
     });
-    const employerTypeListbox = document.getElementById("tfa_388_listbox");
+    const employerTypeListbox = document.getElementById(
+      `${employerTypeInput.id}_listbox`
+    );
     if (employerTypeListbox) {
       const observer = new MutationObserver(() => {
         setTimeout(translateEmployerTypeSuggestions, 0);
@@ -2342,11 +2366,71 @@ dialog.simple-animated-modal {
         if (employerNameField) {
           e.preventDefault();
           e.stopPropagation();
-          clearTranslatedSelectedValue(employerNameField);
-          employerNameField.value = "";
-          employerNameField.dataset.englishValue = "";
-          employerNameField.dispatchEvent(new Event("input", { bubbles: true }));
-          employerNameField.dispatchEvent(new Event("change", { bubbles: true }));
+          const $ = window.jQuery;
+          const wrapper = employerNameField.closest(".twitter-typeahead") || fieldWrapper;
+          const typeaheadInputs = Array.from(
+            fieldWrapper.querySelectorAll(
+              'input[type="text"]:not(.tt-hint)'
+            )
+          );
+          const inputsToClear = [
+            employerNameField,
+            textInput,
+            ...typeaheadInputs
+          ].filter(
+            (field, index, array) => field && array.indexOf(field) === index
+          );
+          inputsToClear.forEach((field) => {
+            if ($ && $.fn && typeof $.fn.typeahead === "function") {
+              try {
+                $(field).typeahead("val", "");
+              } catch (error) {
+              }
+            }
+            field.value = "";
+            field.setAttribute("value", "");
+            field.dataset.englishValue = "";
+          });
+          const hint = wrapper?.querySelector(".tt-hint");
+          if (hint) {
+            hint.value = "";
+            hint.setAttribute("value", "");
+          }
+          clearTranslatedSelectedValue(
+            employerNameField
+          );
+          setEmployerNameLabel(
+            employerNameField
+          );
+          inputsToClear.forEach((field) => {
+            field.dispatchEvent(
+              new Event("input", {
+                bubbles: true
+              })
+            );
+            field.dispatchEvent(
+              new Event("change", {
+                bubbles: true
+              })
+            );
+          });
+          setTimeout(() => {
+            inputsToClear.forEach((field) => {
+              field.value = "";
+              field.setAttribute("value", "");
+              field.dataset.englishValue = "";
+            });
+            if (hint) {
+              hint.value = "";
+              hint.setAttribute("value", "");
+            }
+            clearTranslatedSelectedValue(
+              employerNameField
+            );
+            setEmployerNameLabel(
+              employerNameField
+            );
+          }, 0);
           return;
         }
         if (textInput.id === employerTypeInput.id) {
@@ -2437,6 +2521,7 @@ dialog.simple-animated-modal {
       input.addEventListener("focus", runTranslation);
       input.addEventListener("input", function() {
         clearTranslatedSelectedValue(input);
+        setEmployerNameLabel(input);
         if (input.value.trim()) {
           runTranslation();
         }
@@ -2465,33 +2550,51 @@ dialog.simple-animated-modal {
       const wrapper = input.closest(".twitter-typeahead") || input.parentElement;
       if (!wrapper) return null;
       wrapper.style.position = "relative";
-      let overlay = wrapper.querySelector(".translated-typeahead-value");
-      const inputStyles = window.getComputedStyle(input);
+      let overlay = wrapper.querySelector(
+        ".translated-typeahead-value"
+      );
       if (!overlay) {
         overlay = document.createElement("span");
         overlay.className = "translated-typeahead-value";
         overlay.style.position = "absolute";
-        overlay.style.left = "0";
-        overlay.style.top = "0";
-        overlay.style.width = "100%";
-        overlay.style.height = "100%";
         overlay.style.pointerEvents = "none";
         overlay.style.display = "flex";
         overlay.style.alignItems = "center";
-        overlay.style.paddingLeft = "inherit";
-        overlay.style.setProperty(
-          "font-family",
-          '"cofo-sans-variable", sans-serif',
-          "important"
-        );
-        overlay.style.setProperty("font-size", window.getComputedStyle(input).fontSize, "important");
-        overlay.style.setProperty("font-weight", window.getComputedStyle(input).fontWeight, "important");
-        overlay.style.setProperty("line-height", window.getComputedStyle(input).lineHeight, "important");
-        overlay.style.color = "inherit";
+        overlay.style.boxSizing = "border-box";
         overlay.style.background = "transparent";
         overlay.style.zIndex = "2";
         wrapper.appendChild(overlay);
       }
+      const inputStyles = window.getComputedStyle(input);
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const inputRect = input.getBoundingClientRect();
+      overlay.style.left = `${inputRect.left - wrapperRect.left}px`;
+      overlay.style.top = `${inputRect.top - wrapperRect.top}px`;
+      overlay.style.width = `${inputRect.width}px`;
+      overlay.style.height = `${inputRect.height}px`;
+      overlay.style.paddingLeft = inputStyles.paddingLeft;
+      overlay.style.paddingRight = inputStyles.paddingRight;
+      overlay.style.setProperty(
+        "font-family",
+        inputStyles.fontFamily,
+        "important"
+      );
+      overlay.style.setProperty(
+        "font-size",
+        inputStyles.fontSize,
+        "important"
+      );
+      overlay.style.setProperty(
+        "font-weight",
+        inputStyles.fontWeight,
+        "important"
+      );
+      overlay.style.setProperty(
+        "line-height",
+        inputStyles.lineHeight,
+        "important"
+      );
+      overlay.style.color = "inherit";
       return overlay;
     }
     function showTranslatedSelectedValue(input, translationMap) {
@@ -2518,6 +2621,9 @@ dialog.simple-animated-modal {
       employerNameFields.forEach((field) => {
         translateAndSortTypeahead(field, employerNameTranslations2);
         showTranslatedSelectedValue(field, employerNameTranslations2);
+        if (!field.disabled) {
+          setEmployerNameLabel(field);
+        }
       });
     });
   }
@@ -3155,9 +3261,9 @@ dialog.simple-animated-modal {
     dd_tfa,
     yy_tfa,
     dob_tfa,
-    monthPlaceholder,
-    dayPlaceholder,
-    yearPlaceholder
+    monthPlaceholder = "Month",
+    dayPlaceholder = "Day",
+    yearPlaceholder = "Year"
   } = {}) {
     console.log("initDateHelpers");
     console.log(
@@ -3510,7 +3616,15 @@ dialog.simple-animated-modal {
       employerTypeInput,
       employerTypeTranslations,
       employerNameTranslations,
-      translations
+      translations,
+      eNameStateId: "tfa_1308",
+      eNameHiEdId: "tfa_1304",
+      eNameHCWId: "tfa_1309",
+      eNameNHId: "tfa_1306",
+      eNameLGovId: "tfa_1305",
+      eNamePNPId: "tfa_1307",
+      eNamePHCId: "tfa_1310",
+      eNameRetireId: "tfa_1311"
     });
     initValidation({
       formEl,

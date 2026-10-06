@@ -262,7 +262,16 @@ window.addEventListener("load", function() {
 	  employerTypeInput,
 	  employerTypeTranslations,
 	  employerNameTranslations,
-	  translations
+	  translations,
+
+	  eNameStateId: "tfa_410",
+	  eNameHiEdId: "tfa_393",
+	  eNameHCWId: "tfa_414",
+	  eNameNHId: "tfa_408",
+	  eNameLGovId: "tfa_407",
+	  eNamePNPId: "tfa_409",
+	  eNamePHCId: "tfa_418",
+	  eNameRetireId: "tfa_422"
 	});
 
 	initValidation({

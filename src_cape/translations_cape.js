@@ -116,6 +116,16 @@ export const translations = {
     so: "Nooca loo-shaqeeyaha"
   },
 
+  employerNameLabel: {
+    en: "Employer Name",
+    es: "Nombre del empleador",
+    ru: "Название работодателя",
+    vi: "Tên nhà tuyển dụng",
+    zh: "雇主名称",
+    ar: "اسم صاحب العمل",
+    so: "Magaca loo-shaqeeyaha"
+  },
+
   birthDate: {
     id: "tfa_1649-L",
     mode: "html",
