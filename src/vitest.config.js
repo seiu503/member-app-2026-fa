@@ -4,6 +4,11 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     clearMocks: true,
+    silent: true,
+
+    include: [
+      "src/**/*.test.js"
+    ],
 
     environmentOptions: {
       jsdom: {
@@ -15,14 +20,17 @@ export default defineConfig({
       provider: "v8",
 
       include: [
-        "main.js"
+        "src/main.js",
+        "src/dateHelpers.js",
+        "src/prefill.js",
+        "src/validation.js"
       ],
 
       exclude: [
-        "main.test.js",
-        "vitest.config.js",
-        "vitest.config.mjs",
-        "node_modules/**"
+        "src/**/*.test.js",
+        "src/vitest.config.js",
+        "node_modules/**",
+        "dist/**"
       ],
 
       reporter: [
@@ -37,7 +45,7 @@ export default defineConfig({
 
       thresholds: {
         statements: 80,
-        branches: 75,
+        branches: 80,
         functions: 80,
         lines: 80
       }

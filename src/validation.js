@@ -138,11 +138,15 @@ function patchAlert() {
   };
 }
 
+let formAssemblyObserver = null;
+
 function observeFormAssemblyErrors() {
   if (window.__faErrorObserverInstalled) return;
   window.__faErrorObserverInstalled = true;
 
-  new MutationObserver(runTranslations).observe(document.documentElement, {
+  formAssemblyObserver = new MutationObserver(runTranslations);
+
+  formAssemblyObserver.observe(document.documentElement, {
     childList: true,
     subtree: true,
     characterData: true,
@@ -170,6 +174,13 @@ function observeFormAssemblyErrors() {
     },
     true
   );
+}
+
+export function disconnectValidationObserver() {
+  if (formAssemblyObserver) {
+    formAssemblyObserver.disconnect();
+    formAssemblyObserver = null;
+  }
 }
 
 function observeSubmitButton() {

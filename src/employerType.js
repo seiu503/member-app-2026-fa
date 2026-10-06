@@ -7,18 +7,26 @@ export function initEmployerType({
   employerTypeInput,
   employerTypeTranslations,
   employerNameTranslations,
-  translations
+  translations,
+  eNameStateId,
+  eNameHiEdId,
+  eNameHCWId,
+  eNameNHId,
+  eNameLGovId,
+  eNamePNPId,
+  eNamePHCId,
+  eNameRetireId
 }) {
   if (!employerTypeInput) return;
 
-  const eNameState = document.getElementById("tfa_410");
-  const eNameHiEd = document.getElementById("tfa_393");
-  const eNameHCW = document.getElementById("tfa_414");
-  const eNameNH = document.getElementById("tfa_408");
-  const eNameLGov = document.getElementById("tfa_407");
-  const eNamePNP = document.getElementById("tfa_409");
-  const eNamePHC = document.getElementById("tfa_418");
-  const eNameRetire = document.getElementById("tfa_422");
+  const eNameState = document.getElementById(eNameStateId); // tfa_410
+  const eNameHiEd = document.getElementById(eNameHiEdId); // tfa_393
+  const eNameHCW = document.getElementById(eNameHCWId); // tfa_414
+  const eNameNH = document.getElementById(eNameNHId); // tfa_408
+  const eNameLGov = document.getElementById(eNameLGovId); // tfa_407
+  const eNamePNP = document.getElementById(eNamePNPId); // tfa_409
+  const eNamePHC = document.getElementById(eNamePHCId); // tfa_418
+  const eNameRetire = document.getElementById(eNameRetireId); // tfa_422
 
   const hiddenRequired = [
     eNameState,

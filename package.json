@@ -3,15 +3,22 @@
     "build": "node build.js",
     "build2": "node build2.js",
     "buildcape": "node build_cape.js",
-    "test": "npx vitest run --coverage"
+    "test": "vitest run --silent",
+    "test:coverage": "vitest run --coverage --silent",
+    "test:logs": "vitest run --silent=false",
+    "test:coverage:logs": "vitest run --coverage --silent=false"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.11",
     "esbuild": "^0.25.0",
-    "jsdom": "^27.0.1",
+    "jsdom": "^26.1.0",
     "vitest": "^4.1.11"
   },
   "dependencies": {
     "van11y-accessible-modal-window-aria": "^2.5.1"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "fsevents@2.3.3": true
   }
 }

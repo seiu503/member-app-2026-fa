@@ -458,25 +458,40 @@ describe("initDateHelpers", () => {
   });
 
   it("uses default English placeholders when custom placeholders are omitted", () => {
-    buildDom();
+    document.body.innerHTML = `
+      <input id="default-dob" value="">
+
+      <select id="default-mm">
+        <option value=""></option>
+        <option value="01">01</option>
+      </select>
+
+      <select id="default-dd">
+        <option value=""></option>
+      </select>
+
+      <select id="default-yyyy">
+        <option value=""></option>
+      </select>
+    `;
 
     initDateHelpers({
-      mm_tfa: "tfa_156",
-      dd_tfa: "tfa_157",
-      yy_tfa: "tfa_158",
-      dob_tfa: "tfa_113"
+      mm_tfa: "default-mm",
+      dd_tfa: "default-dd",
+      yy_tfa: "default-yyyy",
+      dob_tfa: "default-dob"
     });
 
     expect(
-      document.getElementById("tfa_156").options[0].textContent
+      document.getElementById("default-mm").options[0].textContent
     ).toBe("Month");
 
     expect(
-      document.getElementById("tfa_157").options[0].textContent
+      document.getElementById("default-dd").options[0].textContent
     ).toBe("Day");
 
     expect(
-      document.getElementById("tfa_158").options[0].textContent
+      document.getElementById("default-yyyy").options[0].textContent
     ).toBe("Year");
   });
 });

@@ -5,9 +5,9 @@ export function initDateHelpers({
   dd_tfa,
   yy_tfa,
   dob_tfa,
-  monthPlaceholder,
-  dayPlaceholder,
-  yearPlaceholder
+  monthPlaceholder = "Month",
+  dayPlaceholder = "Day",
+  yearPlaceholder = "Year"
 } = {}) {
   console.log('initDateHelpers');
   console.log(mm_tfa,

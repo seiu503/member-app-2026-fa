@@ -4,6 +4,7 @@ import {
   beforeAll,
   beforeEach,
   afterEach,
+  afterAll,
   describe,
   expect,
   it,
@@ -134,6 +135,10 @@ afterEach(async () => {
 
   vi.clearAllTimers();
   vi.useRealTimers();
+});
+
+afterAll(() => {
+  validationModule.disconnectValidationObserver();
 });
 
 describe("initValidation", () => {

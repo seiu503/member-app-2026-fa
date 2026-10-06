@@ -50,6 +50,15 @@ window.addEventListener("load", function() {
 	  return decodeURIComponent(results[2].replace(/\+/g, " "));
 	}
 
+	// redirect to CAPE if cape param
+	// this will need to be fixed once domain rewrite is implemented
+
+	const cape = getParam("cape", window.location.href);
+
+	if (cape) {
+		window.location.href = "https://seiu503.tfaforms.net/822" + window.location.search;
+	}
+
 	// check if language is set in a passed query param
 
 	const lCode = getParam("lang", window.location.href);
