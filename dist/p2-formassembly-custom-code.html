@@ -467,13 +467,13 @@ var SEIUForm = (() => {
     membershipConf: {
       id: "membershipConf",
       mode: "text",
-      en: "Your membership application has been received and will be reviewed shortly.",
-      es: "Su solicitud de membres\xEDa ha sido recibida y ser\xE1 revisada en breve.",
-      ru: "\u0412\u0430\u0448\u0435 \u0437\u0430\u044F\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0432\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 \u0432 \u043F\u0440\u043E\u0444\u0441\u043E\u044E\u0437 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043E \u0438 \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043E \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.",
-      vi: "\u0110\u01A1n \u0111\u0103ng k\xFD h\u1ED9i vi\xEAn c\u1EE7a qu\xFD v\u1ECB \u0111\xE3 \u0111\u01B0\u1EE3c nh\u1EADn v\xE0 s\u1EBD s\u1EDBm \u0111\u01B0\u1EE3c xem x\xE9t.",
-      zh: "\u60A8\u7684\u4F1A\u5458\u7533\u8BF7\u5DF2\u6536\u5230\uFF0C\u6211\u4EEC\u5C06\u5C3D\u5FEB\u5BA1\u6838\u3002",
-      ar: "\u062A\u0645 \u0627\u0633\u062A\u0644\u0627\u0645 \u0637\u0644\u0628 \u0627\u0644\u0639\u0636\u0648\u064A\u0629 \u0627\u0644\u062E\u0627\u0635 \u0628\u0643 \u0648\u0633\u064A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u062A\u0647 \u0642\u0631\u064A\u0628\u064B\u0627.",
-      so: "Codsigaaga xubinnimada waa la helay waxaana dib loo eegi doonaa dhawaan."
+      en: "Your submission has been received and will be reviewed shortly.",
+      es: "Su env\xEDo ha sido recibido y ser\xE1 revisado en breve.",
+      ru: "\u0412\u0430\u0448\u0430 \u0437\u0430\u044F\u0432\u043A\u0430 \u0431\u044B\u043B\u0430 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0430 \u0438 \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u0430 \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.",
+      vi: "N\u1ED9i dung g\u1EEDi c\u1EE7a qu\xFD v\u1ECB \u0111\xE3 \u0111\u01B0\u1EE3c nh\u1EADn v\xE0 s\u1EBD s\u1EDBm \u0111\u01B0\u1EE3c xem x\xE9t.",
+      zh: "\u60A8\u7684\u63D0\u4EA4\u5185\u5BB9\u5DF2\u6536\u5230\uFF0C\u6211\u4EEC\u5C06\u5C3D\u5FEB\u5BA1\u6838\u3002",
+      ar: "\u062A\u0645 \u0627\u0633\u062A\u0644\u0627\u0645 \u0637\u0644\u0628\u0643 \u0648\u0633\u064A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u062A\u0647 \u0642\u0631\u064A\u0628\u064B\u0627.",
+      so: "Gudbintaada waa la helay waxaana dib loo eegi doonaa dhawaan."
     },
     demographicsNote: {
       id: "tfa_453-HTML",
@@ -1268,6 +1268,13 @@ var SEIUForm = (() => {
     dayPlaceholder = "Day",
     yearPlaceholder = "Year"
   } = {}) {
+    console.log("initDateHelpers");
+    console.log(
+      mm_tfa,
+      dd_tfa,
+      yy_tfa,
+      dob_tfa
+    );
     const dobEl = document.getElementById(dob_tfa);
     const mmSelect = document.getElementById(mm_tfa);
     const ddSelect = document.getElementById(dd_tfa);
@@ -1276,13 +1283,17 @@ var SEIUForm = (() => {
     let mmPlaceholder = monthPlaceholder;
     let ddPlaceholder = dayPlaceholder;
     let yyyyPlaceholder = yearPlaceholder;
+    console.log(mmPlaceholder, ddPlaceholder, yyyyPlaceholder);
     if (mmSelect.options[0]) {
       mmSelect.options[0].textContent = mmPlaceholder;
       mmSelect.options[0].value = "";
     }
     function getSelectedText(selectEl) {
       const option = selectEl?.options?.[selectEl.selectedIndex];
-      return option?.textContent?.trim() || "";
+      if (!option || option.value === "") {
+        return "";
+      }
+      return option.textContent?.trim() || "";
     }
     function setSelectByText(selectEl, text) {
       if (!selectEl || !text) return false;

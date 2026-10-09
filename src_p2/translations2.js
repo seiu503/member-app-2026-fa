@@ -88,13 +88,13 @@ export const translations = {
   membershipConf: {
     id: "membershipConf",
     mode: "text",
-    en: "Your membership application has been received and will be reviewed shortly.",
-    es: "Su solicitud de membresía ha sido recibida y será revisada en breve.",
-    ru: "Ваше заявление на вступление в профсоюз получено и будет рассмотрено в ближайшее время.",
-    vi: "Đơn đăng ký hội viên của quý vị đã được nhận và sẽ sớm được xem xét.",
-    zh: "您的会员申请已收到，我们将尽快审核。",
-    ar: "تم استلام طلب العضوية الخاص بك وسيتم مراجعته قريبًا.",
-    so: "Codsigaaga xubinnimada waa la helay waxaana dib loo eegi doonaa dhawaan."
+    en: "Your submission has been received and will be reviewed shortly.",
+    es: "Su envío ha sido recibido y será revisado en breve.",
+    ru: "Ваша заявка была получена и будет рассмотрена в ближайшее время.",
+    vi: "Nội dung gửi của quý vị đã được nhận và sẽ sớm được xem xét.",
+    zh: "您的提交内容已收到，我们将尽快审核。",
+    ar: "تم استلام طلبك وسيتم مراجعته قريبًا.",
+    so: "Gudbintaada waa la helay waxaana dib loo eegi doonaa dhawaan."
   },
 
   demographicsNote: {

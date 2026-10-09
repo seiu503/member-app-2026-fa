@@ -9,8 +9,10 @@ export const employerTypeTranslations = {
     "Non-Profit": "Organización sin fines de lucro",
     "State Agency": "Agencia estatal",
     "Private Homecare Agency": "Agencia de atención domiciliaria privada",
-    "State Homecare or Personal Support": "Trabajador de atención domiciliaria o de apoyo personal del estado"
+    "State Homecare or Personal Support": "Trabajador de atención domiciliaria o de apoyo personal del estado",
+    "Child Care": "Cuidado Infantil"
   },
+
   ru: {
     "Homecare or Personal Support Worker": "Работник надомного или индивидуального обслуживания",
     "Local Government (City, County, School District)": "Местные органы власти",
@@ -19,8 +21,10 @@ export const employerTypeTranslations = {
     "Non-Profit": "Некоммерческая организация",
     "State Agency": "Служба штата",
     "Private Homecare Agency": "Частное агентство по уходу на дому",
-    "State Homecare or Personal Support": "Государственный уход на дому или личная поддержка"
+    "State Homecare or Personal Support": "Государственный уход на дому или личная поддержка",
+    "Child Care": "Уход за детьми"
   },
+
   vi: {
     "Homecare or Personal Support Worker": "Nhân viên chăm sóc tại gia hay nhân viên hỗ trợ cá nhân",
     "Local Government (City, County, School District)": "Chính quyền địa phương",
@@ -29,8 +33,10 @@ export const employerTypeTranslations = {
     "Non-Profit": "Tổ chức phi lợi nhuận",
     "State Agency": "Cơ quan chính phủ tiểu bang",
     "Private Homecare Agency": "Đại lý tư nhân tại nhà",
-    "State Homecare or Personal Support": "Chăm sóc tại nhà hoặc hỗ trợ cá nhân của tiểu bang"
+    "State Homecare or Personal Support": "Chăm sóc tại nhà hoặc hỗ trợ cá nhân của tiểu bang",
+    "Child Care": "Chăm sóc trẻ em"
   },
+
   zh: {
     "Homecare or Personal Support Worker": "居家护理或私人护理工作者",
     "Local Government (City, County, School District)": "当地政府",
@@ -39,8 +45,10 @@ export const employerTypeTranslations = {
     "Non-Profit": "非营利",
     "State Agency": "州立机构",
     "Private Homecare Agency": "私人家庭护理机构",
-    "State Homecare or Personal Support": "国家家庭护理或个人支持"
+    "State Homecare or Personal Support": "国家家庭护理或个人支持",
+    "Child Care": "儿童照护"
   },
+
   ar: {
     "Homecare or Personal Support Worker": "عامل رعاية منزلية أو دعم شخصي",
     "Local Government (City, County, School District)": "حكومة محلية (مدينة، مقاطعة، منطقة تعليمية)",
@@ -49,8 +57,10 @@ export const employerTypeTranslations = {
     "Non-Profit": "منظمة غير ربحية",
     "State Agency": "وكالة حكومية تابعة للولاية",
     "Private Homecare Agency": "وكالة رعاية منزلية خاصة",
-    "State Homecare or Personal Support": "رعاية منزلية أو دعم شخصي تابع للولاية"
+    "State Homecare or Personal Support": "رعاية منزلية أو دعم شخصي تابع للولاية",
+    "Child Care": "رعاية الأطفال"
   },
+
   so: {
     "Homecare or Personal Support Worker": "Shaqaale daryeel guri ama taageero shaqsiyeed",
     "Local Government (City, County, School District)": "Dowladda hoose (Magaalo, Degmo, Degmo Dugsiyeed)",
@@ -59,7 +69,8 @@ export const employerTypeTranslations = {
     "Non-Profit": "Urur aan macaash doon ahayn",
     "State Agency": "Hay’ad goboleed",
     "Private Homecare Agency": "Hay’ad gaar loo leeyahay oo daryeel guri bixisa",
-    "State Homecare or Personal Support": "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
+    "State Homecare or Personal Support": "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo",
+    "Child Care": "Daryeelka Carruurta"
   }
 };
 
@@ -694,6 +705,24 @@ export const employerNameTranslations = {
     zh: "国家家庭护理或个人支持",
     ar: "رعاية منزلية أو دعم شخصي تابع للولاية",
     so: "Daryeel guri ama taageero shaqsiyeed oo gobolku bixiyo"
+  },
+ "Child Care": {
+    en: "Child Care",
+    es: "Cuidado Infantil",
+    ru: "Уход за детьми",
+    vi: "Chăm sóc trẻ em",
+    zh: "儿童照护",
+    ar: "رعاية الأطفال",
+    so: "Daryeelka Carruurta"
+  },
+  "Family Child Care": {
+    en: "Family Child Care",
+    es: "Cuidado Infantil Familiar",
+    ru: "Уход за детьми на дому",
+    vi: "Chăm sóc trẻ em tại nhà",
+    zh: "家庭儿童照护",
+    ar: "رعاية الأطفال المنزلية",
+    so: "Daryeelka Carruurta ee Guriga"
   },
   "BAKER COUNTY EMPLOYEES": {
     en: "Baker County",

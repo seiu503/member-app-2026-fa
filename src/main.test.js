@@ -97,7 +97,8 @@ const employerIds = [
   "tfa_410",
   "tfa_414",
   "tfa_418",
-  "tfa_422"
+  "tfa_422",
+  "tfa_472"
 ];
 
 const aidIds = [
@@ -108,7 +109,8 @@ const aidIds = [
   "tfa_427",
   "tfa_401",
   "tfa_438",
-  "tfa_440"
+  "tfa_440",
+  "tfa_474"
 ];
 
 const agencyIds = [
@@ -119,7 +121,8 @@ const agencyIds = [
   "tfa_457",
   "tfa_459",
   "tfa_461",
-  "tfa_463"
+  "tfa_463",
+  "tfa_476"
 ];
 
 function label(id, text = id) {

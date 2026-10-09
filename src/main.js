@@ -250,7 +250,8 @@ window.addEventListener("load", function() {
 	  eNameLGov: document.getElementById("tfa_407"),
 	  eNamePNP: document.getElementById("tfa_409"),
 	  eNamePHC: document.getElementById("tfa_418"),
-	  eNameRetire: document.getElementById("tfa_422")
+	  eNameRetire: document.getElementById("tfa_422"),
+	  eNameCC: document.getElementById("tfa_472")
 	};
 
 	const hiddenRequired = Object.values(employerNameElements);
@@ -271,7 +272,8 @@ window.addEventListener("load", function() {
 	  eNameLGovId: "tfa_407",
 	  eNamePNPId: "tfa_409",
 	  eNamePHCId: "tfa_418",
-	  eNameRetireId: "tfa_422"
+	  eNameRetireId: "tfa_422",
+	  eNameCCId: "tfa_472"
 	});
 
 	initValidation({
@@ -290,9 +292,9 @@ window.addEventListener("load", function() {
 
 
   // set AID and Agency number on Employer change
-  const employerNameFieldIDs = ['tfa_393', 'tfa_407', 'tfa_408', 'tfa_409', 'tfa_410', 'tfa_414', 'tfa_418', 'tfa_422'];
-  const aIdFieldIDs = ['tfa_430', 'tfa_436', 'tfa_432', 'tfa_434', 'tfa_427', 'tfa_401', 'tfa_438', 'tfa_440'];
-  const agencyNumberFieldIDs = ['tfa_449', 'tfa_451', 'tfa_453', 'tfa_455', 'tfa_457', 'tfa_459', 'tfa_461', 'tfa_463'];
+  const employerNameFieldIDs = ['tfa_393', 'tfa_407', 'tfa_408', 'tfa_409', 'tfa_410', 'tfa_414', 'tfa_418', 'tfa_422', 'tfa_472'];
+  const aIdFieldIDs = ['tfa_430', 'tfa_436', 'tfa_432', 'tfa_434', 'tfa_427', 'tfa_401', 'tfa_438', 'tfa_440', 'tfa_474'];
+  const agencyNumberFieldIDs = ['tfa_449', 'tfa_451', 'tfa_453', 'tfa_455', 'tfa_457', 'tfa_459', 'tfa_461', 'tfa_463', 'tfa_476'];
 
   const employerNameFields = employerNameFieldIDs.map(id => document.getElementById(id));
   const aIdFields = aIdFieldIDs.map(id => document.getElementById(id));

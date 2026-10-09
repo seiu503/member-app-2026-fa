@@ -346,7 +346,8 @@ window.addEventListener("load", function() {
 	  eNameLGov: document.getElementById("tfa_1305"),
 	  eNamePNP: document.getElementById("tfa_1307"),
 	  eNamePHC: document.getElementById("tfa_1310"),
-	  eNameRetire: document.getElementById("tfa_1311")
+	  eNameRetire: document.getElementById("tfa_1311"),
+	  eNameCC: document.getElementById("tfa_1817")
 	};
 
 	const hiddenRequired = Object.values(employerNameElements);
@@ -367,7 +368,8 @@ window.addEventListener("load", function() {
 	  eNameLGovId: "tfa_1305",
 	  eNamePNPId: "tfa_1307",
 	  eNamePHCId: "tfa_1310",
-	  eNameRetireId: "tfa_1311"
+	  eNameRetireId: "tfa_1311",
+	  eNameCCId: "tfa_1817"
 	});
 
 	initValidation({
@@ -386,9 +388,9 @@ window.addEventListener("load", function() {
 
 
   // set AID and Agency number on Employer change
-  const employerNameFieldIDs = ['tfa_1304', 'tfa_1305', 'tfa_1306', 'tfa_1307', 'tfa_1308', 'tfa_1309', 'tfa_1310', 'tfa_1311'];
-  const aIdFieldIDs = ['tfa_1317', 'tfa_1319', 'tfa_1321', 'tfa_1323', 'tfa_1325', 'tfa_1327', 'tfa_1329', 'tfa_1331'];
-  const agencyNumberFieldIDs = ['tfa_1318', 'tfa_1320', 'tfa_1322', 'tfa_1324', 'tfa_1326', 'tfa_1328', 'tfa_1330', 'tfa_1332'];
+  const employerNameFieldIDs = ['tfa_1304', 'tfa_1305', 'tfa_1306', 'tfa_1307', 'tfa_1308', 'tfa_1309', 'tfa_1310', 'tfa_1311', 'tfa_1817'];
+  const aIdFieldIDs = ['tfa_1317', 'tfa_1319', 'tfa_1321', 'tfa_1323', 'tfa_1325', 'tfa_1327', 'tfa_1329', 'tfa_1331', 'tfa_1819'];
+  const agencyNumberFieldIDs = ['tfa_1318', 'tfa_1320', 'tfa_1322', 'tfa_1324', 'tfa_1326', 'tfa_1328', 'tfa_1330', 'tfa_1332', 'tfa_1821'];
 
   const employerNameFields = employerNameFieldIDs.map(id => document.getElementById(id));
   const aIdFields = aIdFieldIDs.map(id => document.getElementById(id));
@@ -584,8 +586,14 @@ window.addEventListener("load", function() {
 
 	  getLang = newLang;
 
+	  // Keep hidden language field in sync with picker selection
+	  setFieldValue("tfa_1336", getLang);
+
 	  document.documentElement.lang = getLang;
-	  document.querySelector(".wForm")?.setAttribute("data-language", getLang);
+	  document.querySelector(".wForm")?.setAttribute(
+	    "data-language",
+	    getLang
+	  );
 
 	  if (select) select.value = getLang;
 
@@ -597,32 +605,32 @@ window.addEventListener("load", function() {
 	  updateDatePlaceholders();
 
 	  document.dispatchEvent(
-		  new CustomEvent("languagechange", {
-		    detail: {
-		      lang: getLang,
-		      datePlaceholders: {
-		        month: getTranslation(
-		          translationsNorm,
-		          "mmPlaceholder",
-		          getLang,
-		          "Month"
-		        ),
-		        day: getTranslation(
-		          translationsNorm,
-		          "ddPlaceholder",
-		          getLang,
-		          "Day"
-		        ),
-		        year: getTranslation(
-		          translationsNorm,
-		          "yyyyPlaceholder",
-		          getLang,
-		          "Year"
-		        )
-		      }
-		    }
-		  })
-		);
+	    new CustomEvent("languagechange", {
+	      detail: {
+	        lang: getLang,
+	        datePlaceholders: {
+	          month: getTranslation(
+	            translationsNorm,
+	            "mmPlaceholder",
+	            getLang,
+	            "Month"
+	          ),
+	          day: getTranslation(
+	            translationsNorm,
+	            "ddPlaceholder",
+	            getLang,
+	            "Day"
+	          ),
+	          year: getTranslation(
+	            translationsNorm,
+	            "yyyyPlaceholder",
+	            getLang,
+	            "Year"
+	          )
+	        }
+	      }
+	    })
+	  );
 	}
 
 	function setPreferredLanguageFieldFromLang(lang) {

@@ -15,7 +15,8 @@ export function initEmployerType({
   eNameLGovId,
   eNamePNPId,
   eNamePHCId,
-  eNameRetireId
+  eNameRetireId,
+  eNameCCId
 }) {
   if (!employerTypeInput) return;
 
@@ -27,6 +28,7 @@ export function initEmployerType({
   const eNamePNP = document.getElementById(eNamePNPId); // tfa_409
   const eNamePHC = document.getElementById(eNamePHCId); // tfa_418
   const eNameRetire = document.getElementById(eNameRetireId); // tfa_422
+  const eNameCC = document.getElementById(eNameCCId); // tfa_472
 
   const hiddenRequired = [
     eNameState,
@@ -36,7 +38,8 @@ export function initEmployerType({
     eNameLGov,
     eNamePNP,
     eNamePHC,
-    eNameRetire
+    eNameRetire,
+    eNameCC
   ];
 
   const employerNameFields = hiddenRequired.filter(Boolean);
@@ -161,6 +164,10 @@ function updateEmployerNameFields() {
       case "Private Homecare Agency":
         toShow = eNamePHC;
         break;
+
+      case "Child Care":
+        toShow = eNameCC;
+        break;  
 
       default:
         toShow = null;
